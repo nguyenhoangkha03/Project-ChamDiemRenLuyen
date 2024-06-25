@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Upload Files and Display Icons</title>
+    <style>
+        /* Hide default file input */
+        
+    </style>
+</head>
+<body>
+    
+    
+
+    <!-- JavaScript to handle file upload -->
+    <script>
+        function handleFileUpload(event) {
+            var previewContainer = document.getElementById('filePreview');
+            previewContainer.innerHTML = ''; // Clear previous previews
+
+            var files = event.target.files;
+            for (var i = 0; i < files.length; i++) {
+                var file = files[i];
+                var fileType = file.name.split('.').pop().toLowerCase(); // Get file extension
+
+                var fileItem = document.createElement('div');
+                fileItem.classList.add('file-item');
+
+                var iconSrc = '';
+                if (fileType === 'pdf') {
+                    iconSrc = 'images/pdf.png';
+                } else if (fileType === 'doc' || fileType === 'docx') {
+                    iconSrc = 'images/doc.png';
+                } else {
+                    iconSrc = 'file-icon.png'; // Default icon for other file types
+                }
+
+                fileItem.innerHTML = `
+                    <img src="${iconSrc}" alt="${fileType.toUpperCase()} Icon" width="30" height="30">
+                    <span>${file.name}</span>
+                `;
+                
+                previewContainer.appendChild(fileItem);
+            }
+        }
+    </script>
+</body>
+</html>
