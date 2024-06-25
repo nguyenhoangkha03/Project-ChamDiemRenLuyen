@@ -104,6 +104,19 @@ $(document).ready(function(){
     $('.vbhd-view').click(function(){
         window.location.href = "index.php?request=vbhdView";
     });
+    var checkLike = 0;
+    $('.like-icon div').click(function(){
+        if(checkLike == 0){
+            $(this).css('color', '#2577ae');
+            $('.img-like').attr('src', './images/like.png')
+            checkLike = 1;
+        }
+        else{
+            $(this).css('color', 'gray');
+            $('.img-like').attr('src', './images/un-like.png')
+            checkLike = 0;
+        }
+    });
 
     $('.mySelect').select2();
 });

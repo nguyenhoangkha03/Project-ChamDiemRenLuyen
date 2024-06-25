@@ -30,28 +30,41 @@
     </div>
     <div class="vbhd-item">
         <div class="item-title">
-            <div class="item-title-left">
-                <img src="./images/logotruong.png" alt="">
-                <div>
-                    <div class="author-item">Nguyen Hoang Kha</div>
-                    <div class="time-item">19 phút</div>
-                </div>
+            <img src="./images/logotruong.png" alt="">
+            <div>
+                <div class="author-item">Nguyen Hoang Kha</div>
+                <div class="time-item">19 phút</div>
             </div>
-            <div class="item-content">
-
+        </div>
+        <div class="item-content">
+            <div class="text-content">
+                Bầu trời đêm hôm qua🐧
             </div>
-            <div class="item-file">
-
+            <div class="file-content">
+                
             </div>
-            <div class="item-image">
-
+            <div class="image-content">
+                <img src="./images/1.jpg" alt="">
+                <img src="./images/2.jpg" alt="">
+                <img src="./images/3.jpg" alt="">
+                <img src="./images/4.jpg" alt="">
+                <img src="./images/5.jpg" alt="">
             </div>
-            <div class="item-interact">
-                <div class="number-like"></div>
-                <div class="number-view"></div>
+        </div>
+        <div class="item-interact">
+            <div class="number-like">
+                <img src="./images/icon-like.png" alt="">
+                <div>334</div>
             </div>
-            <div class="like-icon">
-                <img src="" alt="">
+            <div class="number-view">
+                <span>123</span> lượt xem
+            </div>
+        </div>
+        <hr class="hr-item">
+        <div class="like-icon">
+            <div>
+                <img class="img-like" src="./images/un-like.png" alt="">
+                Thích
             </div>
         </div>
     </div>
