@@ -365,7 +365,18 @@ hr {
     margin-top: 10px;
 }
 
+
 /* score */
+
+.score {
+    border: 1px solid rgb(216, 216, 216);
+    border-radius: 10px;
+    padding-left: 10px;
+    box-shadow: 10px 10px 30px rgba(0, 0, 0, 0.2);
+    padding-bottom: 20px;
+    margin-top: 10px;
+}
+
 .score-top {
     font-size: 22px;
     font-weight: bold;

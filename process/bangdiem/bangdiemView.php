@@ -36,13 +36,13 @@
 
                     </td>
                     <td>
-                        <input type="number">
+                        <input name="sv-111" type="number">
                     </td>
                     <td>
-                        <input type="number">
+                        <input name="lop-111" type="number">
                     </td>
                     <td>
-                        <input type="number">
+                        <input name="khoa-111" type="number">
                     </td>
                 </tr>
                 <tr>
@@ -59,13 +59,13 @@
 
                     </td>
                     <td>
-                        <input type="number">
+                        <input name="sv-112" type="number">
                     </td>
                     <td>
-                        <input type="number">
+                        <input name="lop-112" type="number">
                     </td>
                     <td>
-                        <input type="number">
+                        <input name="khoa-112" type="number">
                     </td>
                 </tr>
                 <tr>
@@ -78,24 +78,24 @@
                     </td>
                     <td>
                         <div class="custom-file-input-multi">
-                            <input type="file" name="files[]" multiple id="file">
-                            <label style="cursor: pointer;" for="file">Tải tệp lên</label>
+                            <input type="file" name="files113[]" accept="image/*" multiple id="file113">
+                            <label style="cursor: pointer;" for="file">Tải ảnh lên</label>
                         </div>
-                        <div class="file-name-multi"></div>
+                        <div class="file-name-multi-113"></div>
                     </td>
                     <td>
-                        <input type="number">
+                        <input class="sv-113" type="number">
                     </td>
                     <td>
-                        <input type="number">
+                        <input class="lop-113" type="number">
                     </td>
                     <td>
-                        <input type="number">
+                        <input class="khoa-113" type="number">
                     </td>
                 </tr>
                 <tr>
                     <td>
-                        Tham gia các cuộc thi học thuật trong và ngoài trường (dự thi, được BTC xác nhận). 
+                        1.1.4 Tham gia các cuộc thi học thuật trong và ngoài trường (dự thi, được BTC xác nhận). 
                         <p>- Cấp trường</p>
                         <p>- Cấp khoa/ngoài trường</p>
                         <p>- Cấp chi/lớp</p>
@@ -107,19 +107,19 @@
                     </td>
                     <td>
                         <div class="custom-file-input-multi">
-                            <input type="file" name="files[]" multiple id="file">
-                            <label style="cursor: pointer;" for="file">Tải tệp lên</label>
+                            <input type="file" name="files114[]" multiple id="file114">
+                            <label style="cursor: pointer;" for="file">Tải ảnh lên</label>
                         </div>
-                        <div class="file-name-multi"></div>
+                        <div class="file-name-multi-114"></div>
                     </td>
                     <td>
-                        <input type="number" name="" id="">
+                        <input type="number" name="sv-114" id="">
                     </td>
                     <td>
-                        <input type="number" name="" id="">
+                        <input type="number" name="lop-114" id="">
                     </td>
                     <td>
-                        <input type="number" name="" id="">
+                        <input type="number" name="khoa-114" id="">
                     </td>
                 </tr>
                 <tr>
@@ -131,19 +131,19 @@
                     </td>
                     <td>
                         <div class="custom-file-input-multi">
-                            <input type="file" name="files[]" multiple id="file">
-                            <label style="cursor: pointer;" for="file">Tải tệp lên</label>
+                            <input type="file" name="files115[]" multiple id="file115">
+                            <label style="cursor: pointer;" for="file">Tải ảnh lên</label>
                         </div>
-                        <div class="file-name-multi"></div>
+                        <div class="file-name-multi-115"></div>
                     </td>
                     <td>
-                        <input type="number">
+                        <input name="sv-115" type="number">
                     </td>
                     <td>
-                        <input type="number">
+                        <input name="lop-115" type="number">
                     </td>
                     <td>
-                        <input type="number">
+                        <input name="khoa-115" type="number">
                     </td>
                 </tr>
                 <tr>
@@ -172,14 +172,14 @@
                     </td>
                     <td>
                         <div class="custom-file-input-multi">
-                            <input type="file" name="files[]" multiple id="file">
-                            <label style="cursor: pointer;" for="file">Tải tệp lên</label>
+                            <input type="file" name="files116[]" multiple id="file116">
+                            <label style="cursor: pointer;" for="file">Tải ảnh lên</label>
                         </div>
-                        <div class="file-name-multi"></div>
+                        <div class="file-name-multi-116"></div>
                     </td>
-                    <td><input type="number"></td>
-                    <td><input type="number"></td>
-                    <td><input type="number"></td>
+                    <td><input name="sv-116" type="number"></td>
+                    <td><input name="lop-116" type="number"></td>
+                    <td><input name="khoa-116" type="number"></td>
                 </tr>
                 <tr>
                     <td>
@@ -195,10 +195,10 @@
                     </td>
                     <td>
                         <div class="custom-file-input-multi">
-                            <input type="file" name="files[]" multiple id="file">
-                            <label style="cursor: pointer;" for="file">Tải tệp lên</label>
+                            <input type="file" name="files117[]" multiple id="file117">
+                            <label style="cursor: pointer;" for="file">Tải ảnh lên</label>
                         </div>
-                        <div class="file-name-multi"></div>
+                        <div class="file-name-multi-117"></div>
                     </td>
                     <td><input type="number"></td>
                     <td><input type="number"></td>
@@ -209,10 +209,10 @@
                     <td>5 điểm/bài</td>
                     <td>
                         <div class="custom-file-input-multi">
-                            <input type="file" name="files[]" multiple id="file">
-                            <label style="cursor: pointer;" for="file">Tải tệp lên</label>
+                            <input type="file" name="files118[]" multiple id="file118">
+                            <label style="cursor: pointer;" for="file">Tải ảnh lên</label>
                         </div>
-                        <div class="file-name-multi"></div>
+                        <div class="file-name-multi-118"></div>
                     </td>
                     <td><input type="number"></td>
                     <td><input type="number"></td>
@@ -458,10 +458,10 @@
                     </td>
                     <td>
                         <div class="custom-file-input-multi">
-                            <input type="file" name="files[]" multiple id="file">
-                            <label style="cursor: pointer;" for="file">Tải tệp lên</label>
+                            <input type="file" name="files311[]" multiple id="file311">
+                            <label style="cursor: pointer;" for="file">Tải ảnh lên</label>
                         </div>
-                        <div class="file-name-multi"></div>
+                        <div class="file-name-multi-311"></div>
                     </td>
                     <td><input type="number"></td>
                     <td><input type="number"></td>
@@ -472,10 +472,10 @@
                     <td>2 điểm/lần</td>
                     <td>
                         <div class="custom-file-input-multi">
-                            <input type="file" name="files[]" multiple id="file">
-                            <label style="cursor: pointer;" for="file">Tải tệp lên</label>
+                            <input type="file" name="files312[]" multiple id="file312">
+                            <label style="cursor: pointer;" for="file">Tải ảnh lên</label>
                         </div>
-                        <div class="file-name-multi"></div>
+                        <div class="file-name-multi-312"></div>
                     </td>
                     <td><input type="number"></td>
                     <td><input type="number"></td>
@@ -486,10 +486,10 @@
                     <td>3 điểm/lần</td>
                     <td>
                         <div class="custom-file-input-multi">
-                            <input type="file" name="files[]" multiple id="file">
-                            <label style="cursor: pointer;" for="file">Tải tệp lên</label>
+                            <input type="file" name="files313[]" multiple id="file313">
+                            <label style="cursor: pointer;" for="file">Tải ảnh lên</label>
                         </div>
-                        <div class="file-name-multi"></div>
+                        <div class="file-name-multi-313"></div>
                     </td>
                     <td><input type="number"></td>
                     <td><input type="number"></td>
@@ -511,10 +511,10 @@
                     </td>
                     <td>
                         <div class="custom-file-input-multi">
-                            <input type="file" name="files[]" multiple id="file">
-                            <label style="cursor: pointer;" for="file">Tải tệp lên</label>
+                            <input type="file" name="files314[]" multiple id="file314">
+                            <label style="cursor: pointer;" for="file">Tải ảnh lên</label>
                         </div>
-                        <div class="file-name-multi"></div>
+                        <div class="file-name-multi-314"></div>
                     </td>
                     <td><input type="number"></td>
                     <td><input type="number"></td>
@@ -534,10 +534,10 @@
                     </td>
                     <td>
                         <div class="custom-file-input-multi">
-                            <input type="file" name="files[]" multiple id="file">
-                            <label style="cursor: pointer;" for="file">Tải tệp lên</label>
+                            <input type="file" name="files315[]" multiple id="file315">
+                            <label style="cursor: pointer;" for="file">Tải ảnh lên</label>
                         </div>
-                        <div class="file-name-multi"></div>
+                        <div class="file-name-multi-315"></div>
                     </td>
                     <td><input type="number"></td>
                     <td><input type="number"></td>
@@ -550,10 +550,10 @@
                     <td>5 điểm/lần</td>
                     <td>
                         <div class="custom-file-input-multi">
-                            <input type="file" name="files[]" multiple id="file">
-                            <label style="cursor: pointer;" for="file">Tải tệp lên</label>
+                            <input type="file" name="files316[]" multiple id="file316">
+                            <label style="cursor: pointer;" for="file">Tải ảnh lên</label>
                         </div>
-                        <div class="file-name-multi"></div>
+                        <div class="file-name-multi-316"></div>
                     </td>
                     <td><input type="number"></td>
                     <td><input type="number"></td>
@@ -685,10 +685,10 @@
                     </td>
                     <td>
                         <div class="custom-file-input-multi">
-                            <input type="file" name="files[]" multiple id="file">
-                            <label style="cursor: pointer;" for="file">Tải tệp lên</label>
+                            <input type="file" name="files416[]" multiple id="file416">
+                            <label style="cursor: pointer;" for="file">Tải ảnh lên</label>
                         </div>
-                        <div class="file-name-multi"></div>
+                        <div class="file-name-multi-416"></div>
                     </td>
                     <td><input type="number"></td>
                     <td><input type="number"></td>
@@ -740,10 +740,10 @@
                     </td>
                     <td>
                         <div class="custom-file-input-multi">
-                            <input type="file" name="files[]" multiple id="file">
-                            <label style="cursor: pointer;" for="file">Tải tệp lên</label>
+                            <input type="file" name="files512[]" multiple id="file512">
+                            <label style="cursor: pointer;" for="file">Tải ảnh lên</label>
                         </div>
-                        <div class="file-name-multi"></div>
+                        <div class="file-name-multi-512"></div>
                     </td>
                     <td><input type="number" name="" id=""></td>
                     <td><input type="number" name="" id=""></td>
@@ -758,10 +758,10 @@
                     <td>10 điểm</td>
                     <td>
                         <div class="custom-file-input-multi">
-                            <input type="file" name="files[]" multiple id="file">
-                            <label style="cursor: pointer;" for="file">Tải tệp lên</label>
+                            <input type="file" name="files513[]" multiple id="file513">
+                            <label style="cursor: pointer;" for="file">Tải ảnh lên</label>
                         </div>
-                        <div class="file-name-multi"></div>
+                        <div class="file-name-multi-513"></div>
                     </td>
                     <td><input type="number" name="" id=""></td>
                     <td><input type="number" name="" id=""></td>
@@ -772,10 +772,10 @@
                     <td>10 điểm</td>
                     <td>
                         <div class="custom-file-input-multi">
-                            <input type="file" name="files[]" multiple id="file">
-                            <label style="cursor: pointer;" for="file">Tải tệp lên</label>
+                            <input type="file" name="files514[]" multiple id="file514">
+                            <label style="cursor: pointer;" for="file">Tải ảnh lên</label>
                         </div>
-                        <div class="file-name-multi"></div>
+                        <div class="file-name-multi-514"></div>
                     </td>
                     <td><input type="number" name="" id=""></td>
                     <td><input type="number" name="" id=""></td>
@@ -793,10 +793,10 @@
                     </td>
                     <td>
                         <div class="custom-file-input-multi">
-                            <input type="file" name="files[]" multiple id="file">
-                            <label style="cursor: pointer;" for="file">Tải tệp lên</label>
+                            <input type="file" name="files515[]" multiple id="file515">
+                            <label style="cursor: pointer;" for="file">Tải ảnh lên</label>
                         </div>
-                        <div class="file-name-multi"></div>
+                        <div class="file-name-multi-515"></div>
                     </td>
                     <td><input type="number" name="" id=""></td>
                     <td><input type="number" name="" id=""></td>
@@ -814,10 +814,10 @@
                     </td>
                     <td>
                         <div class="custom-file-input-multi">
-                            <input type="file" name="files[]" multiple id="file">
-                            <label style="cursor: pointer;" for="file">Tải tệp lên</label>
+                            <input type="file" name="files516[]" multiple id="file516">
+                            <label style="cursor: pointer;" for="file">Tải ảnh lên</label>
                         </div>
-                        <div class="file-name-multi"></div>
+                        <div class="file-name-multi-516"></div>
                     </td>
                     <td><input type="number" name="" id=""></td>
                     <td><input type="number" name="" id=""></td>
@@ -835,10 +835,10 @@
                     </td>
                     <td>
                         <div class="custom-file-input-multi">
-                            <input type="file" name="files[]" multiple id="file">
-                            <label style="cursor: pointer;" for="file">Tải tệp lên</label>
+                            <input type="file" name="files517[]" multiple id="file517">
+                            <label style="cursor: pointer;" for="file">Tải ảnh lên</label>
                         </div>
-                        <div class="file-name-multi"></div>
+                        <div class="file-name-multi-517"></div>
                     </td>
                     <td><input type="number" name="" id=""></td>
                     <td><input type="number" name="" id=""></td>
@@ -852,10 +852,10 @@
                     </td>
                     <td>
                         <div class="custom-file-input-multi">
-                            <input type="file" name="files[]" multiple id="file">
-                            <label style="cursor: pointer;" for="file">Tải tệp lên</label>
+                            <input type="file" name="files518[]" multiple id="file518">
+                            <label style="cursor: pointer;" for="file">Tải ảnh lên</label>
                         </div>
-                        <div class="file-name-multi"></div>
+                        <div class="file-name-multi-518"></div>
                     </td>
                     <td><input type="number" name="" id=""></td>
                     <td><input type="number" name="" id=""></td>
