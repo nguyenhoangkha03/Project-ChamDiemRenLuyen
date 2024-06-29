@@ -200,9 +200,9 @@
                         </div>
                         <div class="file-name-multi-117"></div>
                     </td>
-                    <td><input type="number"></td>
-                    <td><input type="number"></td>
-                    <td><input type="number"></td>
+                    <td><input name="sv-117" type="number"></td>
+                    <td><input name="lop-117" type="number"></td>
+                    <td><input name="khoa-117" type="number"></td>
                 </tr>
                 <tr>
                     <td>1.1.8 Có bài viết được đăng báo, tạp chí KHPL, kỷ yếu  hội nghị, hội thảo, tham luận, báo cáo chuyên đề liên quan đến hoạt động học thuật</td>
@@ -214,9 +214,9 @@
                         </div>
                         <div class="file-name-multi-118"></div>
                     </td>
-                    <td><input type="number"></td>
-                    <td><input type="number"></td>
-                    <td><input type="number"></td>
+                    <td><input name="sv-118" type="number"></td>
+                    <td><input name="lop-118" type="number"></td>
+                    <td><input name="khoa-118" type="number"></td>
                 </tr>
                 <tr>
                     <td>
@@ -231,9 +231,9 @@
                         <p>8 điểm</p>
                     </td>
                     <td></td>
-                    <td><input type="number"></td>
-                    <td><input type="number"></td>
-                    <td><input type="number"></td>
+                    <td><input name="sv-119" type="number"></td>
+                    <td><input name="lop-119" type="number"></td>
+                    <td><input name="khoa-119" type="number"></td>
                 </tr>
                 <tr style="font-weight: bold;">
                     <td>1.2 Điểm trừ</td>
@@ -255,9 +255,9 @@
                         <p>-20 điểm</p>
                     </td>
                     <td></td>
-                    <td><input type="number"></td>
-                    <td><input type="number"></td>
-                    <td><input type="number"></td>
+                    <td><input name="sv-121" type="number"></td>
+                    <td><input name="lop-121" type="number"></td>
+                    <td><input name="khoa-121" type="number"></td>
                 </tr>
                 <tr>
                     <td>1.2.2 Có hành vi gây ảnh hưởng xấu đến công tác tổ chức các hoạt động học thuật, học tập. (Tùy vào mức độ gây ảnh hưởng, BTC các hoạt động đề xuất điểm trừ) </td>
@@ -266,9 +266,9 @@
                         <p>(tối đa)
                     </td>
                     <td></td>
-                    <td><input type="number"></td>
-                    <td><input type="number"></td>
-                    <td><input type="number"></td>
+                    <td><input name="sv-122" type="number"></td>
+                    <td><input name="lop-122" type="number"></td>
+                    <td><input name="khoa-122" type="number"></td>
                 </tr>
                 <tr class="total-score-part" style="font-weight: bold;">
                     <td>TỔNG ĐIỂM PHẦN 1 </td>
@@ -277,9 +277,9 @@
                         <p>(tối đa)</p>
                     </td>
                     <td></td>
-                    <td><input readonly  type="number"></td>
-                    <td><input readonly type="number"></td>
-                    <td><input readonly type="number"></td>
+                    <td><input readonly name="sv-1"  type="number"></td>
+                    <td><input readonly name="lop-1" type="number"></td>
+                    <td><input readonly name="khoa-1" type="number"></td>
                 </tr>
                 <tr style="font-weight: bold;">
                     <td>2. Đánh giá về ý thức chấp hành nội quy, quy chế, quy định</td>
@@ -300,13 +300,13 @@
 
                     </td>
                     <td>
-                        <input type="number">
+                        <input name="sv-211" type="number">
                     </td>
                     <td>
-                        <input type="number">
+                        <input name="lop-211" type="number">
                     </td>
                     <td>
-                        <input type="number">
+                        <input name="khoa-211" type="number">
                     </td>
                 </tr>
                 <tr>
@@ -323,9 +323,9 @@
                     <td>
 
                     </td>
-                    <td><input type="number"></td>
-                    <td><input type="number"></td>
-                    <td><input type="number"></td>
+                    <td><input name="sv-212" type="number"></td>
+                    <td><input name="lop-212" type="number"></td>
+                    <td><input name="khoa-212" type="number"></td>
                 </tr>
                 <tr style="font-weight: bold;">
                     <td>2.2 Điểm trừ</td>
@@ -344,9 +344,9 @@
                     <td>
 
                     </td>
-                    <td><input type="number"></td>
-                    <td><input type="number"></td>
-                    <td><input type="number"></td>
+                    <td><input name="sv-221" type="number"></td>
+                    <td><input name="lop-221" type="number"></td>
+                    <td><input name="khoa-221" type="number"></td>
                 </tr>
                 <tr>
                     <td>
@@ -358,9 +358,9 @@
                     <td>
 
                     </td>
-                    <td><input type="number"></td>
-                    <td><input type="number"></td>
-                    <td><input type="number"></td>
+                    <td><input name="sv-222" type="number"></td>
+                    <td><input name="lop-222" type="number"></td>
+                    <td><input name="khoa-222" type="number"></td>
                 </tr>
                 <tr>
                     <td>
@@ -388,33 +388,33 @@
                         <p>-20 điểm/lần</p>
                     </td>
                     <td></td>
-                    <td><input type="number"></td>
-                    <td><input type="number"></td>
-                    <td><input type="number"></td>
+                    <td><input name="sv-223" type="number"></td>
+                    <td><input name="lop-223" type="number"></td>
+                    <td><input name="khoa-223" type="number"></td>
                 </tr>
                 <tr>
                     <td>2.2.4 Vi phạm nội quy thư viện ở mức độ: Nhắc nhở, phê bình, khóa thẻ thư viện...</td>
                     <td>-5 điểm/lần</td>
                     <td></td>
-                    <td><input type="number"></td>
-                    <td><input type="number"></td>
-                    <td><input type="number"></td>
+                    <td><input name="sv-224" type="number"></td>
+                    <td><input name="lop-224" type="number"></td>
+                    <td><input name="khoa-224" type="number"></td>
                 </tr>
                 <tr>
                     <td>2.2.5 Không tham gia các buổi sinh hoạt lớp, chi đoàn, chi hội; các buổi phân công trực do Khoa, lớp phân công…</td>
                     <td>-3 điểm/lần</td>
                     <td></td>
-                    <td><input type="number"></td>
-                    <td><input type="number"></td>
-                    <td><input type="number"></td>
+                    <td><input name="sv-225" type="number"></td>
+                    <td><input name="lop-225" type="number"></td>
+                    <td><input name="khoa-225" type="number"></td>
                 </tr>
                 <tr>
                     <td>2.2.6 Không tham gia các buổi sinh hoạt được Nhà trường, Đoàn trường, Hội sinh viên triệu tập.</td>
                     <td>-5 điểm/lần</td>
                     <td></td>
-                    <td><input type="number"></td>
-                    <td><input type="number"></td>
-                    <td><input type="number"></td>
+                    <td><input name="sv-226" type="number"></td>
+                    <td><input name="lop-226" type="number"></td>
+                    <td><input name="khoa-226" type="number"></td>
                 </tr>
                 <tr>
                     <td>
@@ -424,9 +424,9 @@
                     </td>
                     <td></td>
                     <td></td>
-                    <td><input type="number"></td>
-                    <td><input type="number"></td>
-                    <td><input type="number"></td>
+                    <td><input name="sv-227" type="number"></td>
+                    <td><input name="lop-227" type="number"></td>
+                    <td><input name="khoa-227" type="number"></td>
                 </tr>
                 <tr class="total-score-part" style="font-weight: bold;">
                     <td>TỔNG ĐIỂM PHẦN 2 </td>
@@ -435,9 +435,9 @@
                         <p>(tối đa)</p>
                     </td>
                     <td></td>
-                    <td><input readonly type="number"></td>
-                    <td><input readonly type="number"></td>
-                    <td><input readonly type="number"></td>
+                    <td><input readonly name="sv-2" type="number"></td>
+                    <td><input readonly name="lop-2" type="number"></td>
+                    <td><input readonly name="khoa-2" type="number"></td>
                 </tr>
                 <tr style="font-weight: bold;">
                     <td>3. Đánh giá về ý thức tham gia các hoạt động chính trị, xã hội, văn hóa, văn nghệ, thể thao, phòng chống tội phạm và các tệ nạn xã hội</td>
@@ -463,9 +463,9 @@
                         </div>
                         <div class="file-name-multi-311"></div>
                     </td>
-                    <td><input type="number"></td>
-                    <td><input type="number"></td>
-                    <td><input type="number"></td>
+                    <td><input name="sv-311" type="number"></td>
+                    <td><input name="lop-311" type="number"></td>
+                    <td><input name="khoa-311" type="number"></td>
                 </tr>
                 <tr>
                     <td>3.1.2 Tham dự (cỗ vũ, cổ động…) các hoạt động rèn luyện về chính trị, xã hội, văn hóa, văn nghệ, thể thao. (Theo chương trình được duyệt và BTC đề xuất cộng điểm)</td>
@@ -477,9 +477,9 @@
                         </div>
                         <div class="file-name-multi-312"></div>
                     </td>
-                    <td><input type="number"></td>
-                    <td><input type="number"></td>
-                    <td><input type="number"></td>
+                    <td><input name="sv-312" type="number"></td>
+                    <td><input name="lop-312" type="number"></td>
+                    <td><input name="khoa-312" type="number"></td>
                 </tr>
                 <tr>
                     <td>3.1.3 Tham gia (thí sinh, vận động viên,…) các hoạt động rèn luyện về chính trị, xã hội, văn hóa, văn nghệ, thể thao…</td>
@@ -491,9 +491,9 @@
                         </div>
                         <div class="file-name-multi-313"></div>
                     </td>
-                    <td><input type="number"></td>
-                    <td><input type="number"></td>
-                    <td><input type="number"></td>
+                    <td><input name="sv-313" type="number"></td>
+                    <td><input name="lop-313" type="number"></td>
+                    <td><input name="khoa-313" type="number"></td>
                 </tr>
                 <tr>
                     <td>
@@ -516,9 +516,9 @@
                         </div>
                         <div class="file-name-multi-314"></div>
                     </td>
-                    <td><input type="number"></td>
-                    <td><input type="number"></td>
-                    <td><input type="number"></td>
+                    <td><input name="sv-314" type="number"></td>
+                    <td><input name="lop-314" type="number"></td>
+                    <td><input name="khoa-314" type="number"></td>
                 </tr>
                 <tr>
                     <td>
@@ -539,9 +539,9 @@
                         </div>
                         <div class="file-name-multi-315"></div>
                     </td>
-                    <td><input type="number"></td>
-                    <td><input type="number"></td>
-                    <td><input type="number"></td>
+                    <td><input name="sv-315" type="number"></td>
+                    <td><input name="lop-315" type="number"></td>
+                    <td><input name="khoa-315" type="number"></td>
                 </tr>
                 <tr>
                     <td>
@@ -555,9 +555,9 @@
                         </div>
                         <div class="file-name-multi-316"></div>
                     </td>
-                    <td><input type="number"></td>
-                    <td><input type="number"></td>
-                    <td><input type="number"></td>
+                    <td><input name="sv-316" type="number"></td>
+                    <td><input name="lop-316" type="number"></td>
+                    <td><input name="khoa-316" type="number"></td>
                 </tr>
                 <tr style="font-weight: bold;">
                     <td>3.2 Điểm trừ</td>
@@ -570,17 +570,17 @@
                     <td>3.2.1 Đăng ký tham gia, dự thi các hoạt động rèn luyện về chính trị, xã hội, văn hóa, văn nghệ, thể thao, nhưng tự ý bỏ cuộc (không có lý do)</td>
                     <td>-4 điểm/lần</td>
                     <td></td>
-                    <td><input type="number"></td>
-                    <td><input type="number"></td>
-                    <td><input type="number"></td>
+                    <td><input name="sv-321" type="number"></td>
+                    <td><input name="lop-321" type="number"></td>
+                    <td><input name="khoa-321" type="number"></td>
                 </tr>
                 <tr>
                     <td>3.2.2 Có hành vi gây ảnh hưởng xấu đến công tác tổ chức các hoạt động (tùy vào mức độ gây ảnh hưởng, BTC các hoạt động đề xuất điểm trừ)</td>
                     <td>-6 điểm/lần</td>
                     <td></td>
-                    <td><input type="number"></td>
-                    <td><input type="number"></td>
-                    <td><input type="number"></td>
+                    <td><input name="sv-322" type="number"></td>
+                    <td><input name="lop-322" type="number"></td>
+                    <td><input name="khoa-322" type="number"></td>
                 </tr>
                 <tr class="total-score-part" style="font-weight: bold;">
                     <td>TỔNG ĐIỂM PHẦN 3 </td>
@@ -589,9 +589,9 @@
                         <p>(tối đa)</p>
                     </td>
                     <td></td>
-                    <td><input readonly type="number"></td>
-                    <td><input readonly type="number"></td>
-                    <td><input readonly type="number"></td>
+                    <td><input readonly name="sv-3" type="number"></td>
+                    <td><input readonly name="lop-3" type="number"></td>
+                    <td><input readonly name="khoa-3" type="number"></td>
                 </tr>
                 <tr style="font-weight: bold;">
                     <td>4. Đánh giá về ý thức công dân trong quan hệ cộng đồng</td>
@@ -607,9 +607,9 @@
                         <p>(tối đa)</p>
                     </td>
                     <td></td>
-                    <td><input type="number"></td>
-                    <td><input type="number"></td>
-                    <td><input type="number"></td>
+                    <td><input name="sv-411" type="number"></td>
+                    <td><input name="lop-411" type="number"></td>
+                    <td><input name="khoa-411" type="number"></td>
                 </tr>
                 <tr>
                     <td>
@@ -624,9 +624,9 @@
                         <p>(tối đa)</p>
                     </td>
                     <td></td>
-                    <td><input type="number"></td>
-                    <td><input type="number"></td>
-                    <td><input type="number"></td>
+                    <td><input name="sv-412" type="number"></td>
+                    <td><input name="lop-412" type="number"></td>
+                    <td><input name="khoa-412" type="number"></td>
                 </tr>
                 <tr>
                     <td>
@@ -642,17 +642,17 @@
                         <p>(tối đa)</p>
                     </td>
                     <td></td>
-                    <td><input type="number"></td>
-                    <td><input type="number"></td>
-                    <td><input type="number"></td>
+                    <td><input name="sv-413" type="number"></td>
+                    <td><input name="lop-413" type="number"></td>
+                    <td><input name="khoa-413" type="number"></td>
                 </tr>
                 <tr>
                     <td>4.1.4 Hoạt động giúp người, cứu người: Hiến máu nhân đạo; các hoạt động giúp người cứu người được tập thể lớp, các tổ chức đoàn thể trong và ngoài trường công nhận…</td>
                     <td>5 điểm/lần</td>
                     <td></td>
-                    <td><input type="number"></td>
-                    <td><input type="number"></td>
-                    <td><input type="number"></td>
+                    <td><input name="sv-414" type="number"></td>
+                    <td><input name="lop-414" type="number"></td>
+                    <td><input name="khoa-414" type="number"></td>
                 </tr>
                 <tr>
                     <td>
@@ -667,9 +667,9 @@
                         <p>(tối đa)</p>
                     </td>
                     <td></td>
-                    <td><input type="number"></td>
-                    <td><input type="number"></td>
-                    <td><input type="number"></td>
+                    <td><input name="sv-415" type="number"></td>
+                    <td><input name="lop-415" type="number"></td>
+                    <td><input name="khoa-415" type="number"></td>
                 </tr>
                 <tr>
                     <td>
@@ -690,9 +690,9 @@
                         </div>
                         <div class="file-name-multi-416"></div>
                     </td>
-                    <td><input type="number"></td>
-                    <td><input type="number"></td>
-                    <td><input type="number"></td>
+                    <td><input name="sv-416" type="number"></td>
+                    <td><input name="lop-416" type="number"></td>
+                    <td><input name="khoa-416" type="number"></td>
                 </tr>
                 <tr class="total-score-part" style="font-weight: bold;">
                     <td>TỔNG ĐIỂM PHẦN 4 </td>
@@ -701,9 +701,9 @@
                         <p>(tối đa)</p>
                     </td>
                     <td></td>
-                    <td><input readonly type="number"></td>
-                    <td><input readonly type="number"></td>
-                    <td><input readonly type="number"></td>
+                    <td><input readonly name="sv-4" type="number"></td>
+                    <td><input readonly name="lop-4" type="number"></td>
+                    <td><input readonly name="khoa-4" type="number"></td>
                 </tr>
                 <tr style="font-weight: bold;">
                     <td>5. Đánh giá về ý thức và kết quả khi tham gia công tác cán bộ lớp, các đoàn thể, tổ chức trong trường hoặc sinh viên đạt được thành tích đặc biệt trong học tập, rèn luyện</td>
@@ -728,9 +728,9 @@
                         <p>0 điểm</p>
                     </td>
                     <td></td>
-                    <td><input type="number" name="" id=""></td>
-                    <td><input type="number" name="" id=""></td>
-                    <td><input type="number" name="" id=""></td>
+                    <td><input type="number" name="sv-511" id=""></td>
+                    <td><input type="number" name="lop-511" id=""></td>
+                    <td><input type="number" name="khoa-511" id=""></td>
                 </tr>
                 <tr>
                     <td>5.1.2 Sinh viên là cộng tác viên (thường xuyên) của các đơn vị trong trường, tổ chức đoàn thể có nhiều đóng góp trong công tác. Được các đơn vị, tổ chức đoàn thể xác nhận đánh giá công nhận.</td>
@@ -745,9 +745,9 @@
                         </div>
                         <div class="file-name-multi-512"></div>
                     </td>
-                    <td><input type="number" name="" id=""></td>
-                    <td><input type="number" name="" id=""></td>
-                    <td><input type="number" name="" id=""></td>
+                    <td><input type="number" name="sv-512" id=""></td>
+                    <td><input type="number" name="lop-512" id=""></td>
+                    <td><input type="number" name="khoa-512" id=""></td>
                 </tr>
                 <tr style="font-weight: bold;">
                     <td>5.2 Điểm thưởng </td>
@@ -763,9 +763,9 @@
                         </div>
                         <div class="file-name-multi-513"></div>
                     </td>
-                    <td><input type="number" name="" id=""></td>
-                    <td><input type="number" name="" id=""></td>
-                    <td><input type="number" name="" id=""></td>
+                    <td><input type="number" name="sv-513" id=""></td>
+                    <td><input type="number" name="lop-513" id=""></td>
+                    <td><input type="number" name="khoa-513" id=""></td>
                 </tr>
                 <tr>
                     <td>5.2.2 Thành viên đội tuyển trường tham gia các cuộc thi, hội thi từ cấp tỉnh, thành phố trực thuộc trung ương trở lên đạt thành tích cao (Giải A, B, C, hoặc I, II, III, khuyến khích).</td>
@@ -777,9 +777,9 @@
                         </div>
                         <div class="file-name-multi-514"></div>
                     </td>
-                    <td><input type="number" name="" id=""></td>
-                    <td><input type="number" name="" id=""></td>
-                    <td><input type="number" name="" id=""></td>
+                    <td><input type="number" name="sv-514" id=""></td>
+                    <td><input type="number" name="lop-514" id=""></td>
+                    <td><input type="number" name="khoa-514" id=""></td>
                 </tr>
                 <tr>
                     <td>
@@ -798,9 +798,9 @@
                         </div>
                         <div class="file-name-multi-515"></div>
                     </td>
-                    <td><input type="number" name="" id=""></td>
-                    <td><input type="number" name="" id=""></td>
-                    <td><input type="number" name="" id=""></td>
+                    <td><input type="number" name="sv-515" id=""></td>
+                    <td><input type="number" name="lop-515" id=""></td>
+                    <td><input type="number" name="khoa-515" id=""></td>
                 </tr>
                 <tr>
                     <td>
@@ -819,9 +819,9 @@
                         </div>
                         <div class="file-name-multi-516"></div>
                     </td>
-                    <td><input type="number" name="" id=""></td>
-                    <td><input type="number" name="" id=""></td>
-                    <td><input type="number" name="" id=""></td>
+                    <td><input type="number" name="sv-516" id=""></td>
+                    <td><input type="number" name="lop-516" id=""></td>
+                    <td><input type="number" name="khoa-516" id=""></td>
                 </tr>
                 <tr>
                     <td>
@@ -840,9 +840,9 @@
                         </div>
                         <div class="file-name-multi-517"></div>
                     </td>
-                    <td><input type="number" name="" id=""></td>
-                    <td><input type="number" name="" id=""></td>
-                    <td><input type="number" name="" id=""></td>
+                    <td><input type="number" name="sv-517" id=""></td>
+                    <td><input type="number" name="lop-517" id=""></td>
+                    <td><input type="number" name="khoa-517" id=""></td>
                 </tr>
                 <tr>
                     <td>5.2.6 Thành tích đặc biệt trong học tập, rèn luyện khác do Hội đồng đánh giá điểm rèn luyện cấp trường xem xét công nhận.</td>
@@ -857,9 +857,9 @@
                         </div>
                         <div class="file-name-multi-518"></div>
                     </td>
-                    <td><input type="number" name="" id=""></td>
-                    <td><input type="number" name="" id=""></td>
-                    <td><input type="number" name="" id=""></td>
+                    <td><input type="number" name="sv-518" id=""></td>
+                    <td><input type="number" name="lop-518" id=""></td>
+                    <td><input type="number" name="khoa-518" id=""></td>
                 </tr>
                 <tr class="total-score-part" style="font-weight: bold;">
                     <td>TỔNG ĐIỂM PHẦN 5 </td>
@@ -868,9 +868,9 @@
                         <p>(tối đa)</p>
                     </td>
                     <td></td>
-                    <td><input readonly type="number"></td>
-                    <td><input readonly type="number"></td>
-                    <td><input readonly type="number"></td>
+                    <td><input readonly name="sv-5" type="number"></td>
+                    <td><input readonly name="lop-5" type="number"></td>
+                    <td><input readonly name="khoa-5" type="number"></td>
                 </tr>
                 <tr class="total-score-part" style="font-weight: bold;">
                     <td>TỔNG ĐIỂM PHẦN 1 + 2 + 3 + 4 + 5 </td>
@@ -879,9 +879,9 @@
                         <p>(tối đa)</p>
                     </td>
                     <td></td>
-                    <td><input readonly type="number"></td>
-                    <td><input readonly type="number"></td>
-                    <td><input readonly type="number"></td>
+                    <td><input readonly name="sv-tong" type="number"></td>
+                    <td><input readonly name="lop-tong" type="number"></td>
+                    <td><input readonly name="khoa-tong" type="number"></td>
                 </tr>
             </tbody>
         </table>
