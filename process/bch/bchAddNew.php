@@ -1,9 +1,12 @@
 <?php 
-    require './database/sinhvienCls.php';
-    require './database/lopCls.php';
-    $lop = new Lop();
+    if(!isset($_SESSION['ADMIN'])){
+        echo '<script>window.location.href = "index.php";</script>';
+    }
+    //require './database/sinhvienCls.php';
+    //require './database/lopCls.php';
+    //$lop = new Lop();
     $getAllLop = $lop->LopGetAll();
-    $sinhvien = new Sinhvien();
+    //$sinhvien = new Sinhvien();
 ?>
 <form class="form-classification" name="form-classification" method="POST" enctype="multipart/form-data"
         action="./process/sinhvien/sinhvienAct.php?reqact=addNewBCH">
@@ -67,7 +70,17 @@
                     <input type="file" id="file-upload" name="file-upload">
                 </label>
                 <div class="file-name" id="file-name-display"></div>
-            </div>       
+            </div>    
+            <hr>   
+            <div class="title-class" style="margin-top: 20px;">THÔNG TIN MẠNG XÃ HỘI (NẾU CÓ)</div>
+            <div class="input-class" style="margin-top: 20px;">
+                <div>Link Facebook</div>
+                <input type="text" name="facebook" placeholder="Nhập link Facebook" value="">
+            </div>
+            <div class="input-class">
+                <div>Link Instagram</div>
+                <input type="text" name="instagram" placeholder="Nhập link Instagram" value="">
+            </div>
         </div>
         <div class="add-right">
             <div class="button-save">

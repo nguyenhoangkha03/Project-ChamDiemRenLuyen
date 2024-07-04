@@ -1,49 +1,58 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Upload Files and Display Icons</title>
-    <style>
-        /* Hide default file input */
-        
-    </style>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Image Viewer</title>
+<style>
+    /* Style cho phần overlay */
+    .overlay {
+        display: none;
+        position: fixed;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        background-color: rgba(0, 0, 0, 0.7); /* màu nền đen với độ trong suốt */
+        z-index: 999; /* z-index cao hơn để nổi bật */
+    }
+    
+    /* Style cho khung hiển thị ảnh lớn */
+    .overlay img {
+        display: block;
+        margin: auto;
+        max-width: 80%; /* giới hạn kích thước ảnh lớn */
+        max-height: 80%;
+        position: absolute;
+        top: 50%;
+        left: 50%;
+        transform: translate(-50%, -50%);
+        box-shadow: 0 0 20px rgba(0, 0, 0, 0.5); /* đổ bóng */
+    }
+</style>
 </head>
 <body>
-    
-    
 
-    <!-- JavaScript to handle file upload -->
-    <script>
-        function handleFileUpload(event) {
-            var previewContainer = document.getElementById('filePreview');
-            previewContainer.innerHTML = ''; // Clear previous previews
+<!-- Thẻ overlay -->
+<div class="overlay" onclick="closeImage()">
+    <img id="expandedImg">
+</div>
 
-            var files = event.target.files;
-            for (var i = 0; i < files.length; i++) {
-                var file = files[i];
-                var fileType = file.name.split('.').pop().toLowerCase(); // Get file extension
+<!-- Thẻ hình ảnh nhỏ -->
+<img src="./images/anh.jpg" onclick="openImage('./images/anh.jpg')" style="width:200px;height:200px;">
 
-                var fileItem = document.createElement('div');
-                fileItem.classList.add('file-item');
+<!-- JavaScript để mở và đóng ảnh lớn -->
+<script>
+    function openImage(imgSrc) {
+        var expandedImg = document.getElementById("expandedImg");
+        expandedImg.src = imgSrc;
+        document.querySelector('.overlay').style.display = 'block';
+    }
 
-                var iconSrc = '';
-                if (fileType === 'pdf') {
-                    iconSrc = 'images/pdf.png';
-                } else if (fileType === 'doc' || fileType === 'docx') {
-                    iconSrc = 'images/doc.png';
-                } else {
-                    iconSrc = 'file-icon.png'; // Default icon for other file types
-                }
+    function closeImage() {
+        document.querySelector('.overlay').style.display = 'none';
+    }
+</script>
 
-                fileItem.innerHTML = `
-                    <img src="${iconSrc}" alt="${fileType.toUpperCase()} Icon" width="30" height="30">
-                    <span>${file.name}</span>
-                `;
-                
-                previewContainer.appendChild(fileItem);
-            }
-        }
-    </script>
 </body>
 </html>

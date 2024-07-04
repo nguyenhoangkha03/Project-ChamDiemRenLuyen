@@ -43,12 +43,43 @@
             return $update->rowCount();
         }
 
+        public function TaiKhoanUpdatePass($password, $id_tk) {
+            $update = $this->connect->prepare("UPDATE taikhoan SET PASSWORD = ? WHERE ID_TK = ?");
+            $update->execute(array($password, $id_tk));
+            
+            return $update->rowCount();
+        }
+
         public function TaiKhoanGetById($id_tk) {
             $getTaiKhoan = $this->connect->prepare("SELECT * FROM taikhoan WHERE ID_TK = ?");
             $getTaiKhoan->setFetchMode(PDO::FETCH_OBJ);
             $getTaiKhoan->execute(array($id_tk));
             
             return $getTaiKhoan->fetch();
+        }
+
+        public function TaiKhoanGetByIdSV($id_sv) {
+            $getTaiKhoan = $this->connect->prepare("SELECT * FROM taikhoan WHERE ID_SV = ?");
+            $getTaiKhoan->setFetchMode(PDO::FETCH_OBJ);
+            $getTaiKhoan->execute(array($id_sv));
+            
+            return $getTaiKhoan->fetchAll();
+        }
+
+        public function TaiKhoanGetByUsername($username) {
+            $getTaiKhoan = $this->connect->prepare("SELECT * FROM taikhoan WHERE USERNAME = ?");
+            $getTaiKhoan->setFetchMode(PDO::FETCH_OBJ);
+            $getTaiKhoan->execute(array($username));
+            
+            return $getTaiKhoan->fetch();
+        }
+
+        public function TaikhoanCheckLogin($username, $password){
+            $getTK = $this->connect->prepare("SELECT * FROM taikhoan WHERE USERNAME = ? AND PASSWORD = ?");
+            $getTK->setFetchMode(PDO::FETCH_OBJ);
+            $getTK->execute(array($username, $password));
+
+            return $getTK->fetch();
         }
     }
 ?>

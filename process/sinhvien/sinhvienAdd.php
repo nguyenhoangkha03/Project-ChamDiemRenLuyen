@@ -1,7 +1,7 @@
 <?php 
-    require './database/sinhvienCls.php';
+    // require './database/sinhvienCls.php';
     $idlop = $_GET['idlop'];
-    $sinhvien = new Sinhvien();
+    // $sinhvien = new Sinhvien();
 ?>
 <form class="form-classification" name="form-classification" method="POST" enctype="multipart/form-data"
         action="./process/sinhvien/sinhvienAct.php?reqact=addNew&idlop=<?php echo $idlop; ?>">

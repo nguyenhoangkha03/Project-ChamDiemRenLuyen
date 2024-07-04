@@ -1,6 +1,6 @@
 <?php 
-    require './database/sinhvienCls.php';
-    $sinhvien = new Sinhvien();
+    //require './database/sinhvienCls.php';
+    //$sinhvien = new Sinhvien();
     $idsv = $_GET['idsv'];
     $getsv = $sinhvien->SinhVienGetById($idsv);
 ?>

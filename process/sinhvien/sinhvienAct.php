@@ -1,5 +1,7 @@
 <?php 
     require '../../database/sinhvienCls.php';
+    require '../../database/mangxahoiCls.php';
+    require '../../database/taikhoanCls.php';
     if(isset($_GET['idlop'])){
         $idlop = $_GET['idlop'];
     }
@@ -43,12 +45,26 @@
                 $sinhvien = new Sinhvien();
                 $getsv = $sinhvien->SinhVienGetById($idsv);
 
-                $result = $sinhvien->SinhVienDelete($idsv);
-                if($result){
-                    header('location:../../index.php?request=sinhvienView&idlop=' . $getsv->ID_SV . '&result=ok');
+                $taikhoan = new Taikhoan();
+                $gettk = $taikhoan->TaiKhoanGetByIdSV($idsv);
+
+                if(count($gettk) > 0){
+                    echo '<script>';
+                    echo 'if(confirm("Sinh viên đang sở hữu tài khoản vui lòng xóa tài khoản trước khi xóa sinh viên!")){';
+                    echo 'window.location.href="../../index.php?request=bchView"';
+                    echo '}else{';
+                    echo 'window.location.href="../../index.php?request=bchView"';
+                    echo '}';
+                    echo '</script>';
                 }
                 else{
-                    header('location:../../index.php?request=sinhvienView&idlop=' . $getsv->ID_SV . '&result=notok');
+                    $result = $sinhvien->SinhVienDelete($idsv);
+                    if($result){
+                        header('location:../../index.php?request=sinhvienView&idlop=' . $getsv->ID_SV . '&result=ok');
+                    }
+                    else{
+                        header('location:../../index.php?request=sinhvienView&idlop=' . $getsv->ID_SV . '&result=notok');
+                    }
                 }
 
                 break;
@@ -111,9 +127,17 @@
                     echo 'Tải file lên';
                 }
 
+                $facebook = $_POST['facebook'];
+                $instagram = $_POST['instagram'];
+                
+
 
                 $sinhvien = new Sinhvien();
                 $result = $sinhvien->SinhVienAdd($mssv, $hoten, $ngaysinh, $gioitinh, $diachi, $sdt, $email, $hinhanh, true, $chucvu, $idlop);
+
+                $mxh = new MXH();
+                $svLast = $sinhvien->SinhvienIdLonNhat();
+                $resultMXH = $mxh->MXHAdd($facebook, $instagram, $svLast->ID_SV);
 
                 if($result){
                     header('location:../../index.php?request=bchView&result=ok');
@@ -149,6 +173,13 @@
                     $hinhanh = $getsv->HINHANH;
                 }
 
+                $facebook = $_POST['facebook'];
+                $instagram = $_POST['instagram'];
+
+                $mxh = new MXH();
+                $getmxh = $mxh->MXHGetByIDSV($idsv);
+                $resultMXH = $mxh->MXHUpdate($facebook, $instagram, $idsv, $getmxh->ID_MXH);
+
 
                 $sinhvien = new Sinhvien();
                 $result = $sinhvien->SinhVienUpdate($mssv, $hoten, $ngaysinh, $gioitinh, $diachi, $sdt, $email, $hinhanh, true, $chucvu, $idlop, $idsv);
@@ -166,12 +197,30 @@
                 $sinhvien = new Sinhvien();
                 $getsv = $sinhvien->SinhVienGetById($idsv);
 
-                $result = $sinhvien->SinhVienDelete($idsv);
-                if($result){
-                    header('location:../../index.php?request=bchView&result=ok');
+                $mxh = new MXH();
+                $getmxh = $mxh->MXHGetByIDSV($idsv);
+                $resultMXH = $mxh->MXHDelete($getmxh->ID_MXH);  
+
+                $taikhoan = new Taikhoan();
+                $gettk = $taikhoan->TaiKhoanGetByIdSV($idsv);
+
+                if(count($gettk) > 0){
+                    echo '<script>';
+                    echo 'if(confirm("BCH đang sở hữu tài khoản vui lòng xóa tài khoản trước khi xóa BCH!")){';
+                    echo 'window.location.href="../../index.php?request=bchView"';
+                    echo '}else{';
+                    echo 'window.location.href="../../index.php?request=bchView"';
+                    echo '}';
+                    echo '</script>';
                 }
                 else{
-                    header('location:../../index.php?request=bchView&result=notok');
+                    $result = $sinhvien->SinhVienDelete($idsv);
+                    if($result){
+                        header('location:../../index.php?request=bchView&result=ok');
+                    }
+                    else{
+                        header('location:../../index.php?request=bchView&result=notok');
+                    }
                 }
 
                 break;

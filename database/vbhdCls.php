@@ -1,7 +1,7 @@
 <?php 
-    $s = '../../database-query/database.php';
-    $k = '../database-query/database.php';
-    $t = './database-query/database.php';
+    $s = '../../database/database.php';
+    $k = '../database/database.php';
+    $t = './database/database.php';
     if(file_exists($s)){
         $f = $s;
     }
@@ -15,6 +15,13 @@
     class VBHD extends Database{
         public function VBHDGetAll(){
             $getAll = $this->connect->prepare("select * from vbhd");
+            $getAll->setFetchMode(PDO::FETCH_OBJ);
+            $getAll->execute();
+
+            return $getAll->fetchAll();
+        }
+        public function VBHDGetAllByDatetime(){
+            $getAll = $this->connect->prepare("select * from vbhd ORDER BY NGAYDANG DESC");
             $getAll->setFetchMode(PDO::FETCH_OBJ);
             $getAll->execute();
 
@@ -52,6 +59,14 @@
             $getCC->execute(array($id_sv));
             
             return $getCC->fetchAll();
+        }
+
+        public function VBHDGetLast() {
+            $getCC = $this->connect->prepare("select * from vbhd where ID_VBHD = (SELECT max(ID_VBHD) FROM vbhd)");
+            $getCC->setFetchMode(PDO::FETCH_OBJ);
+            $getCC->execute();
+            
+            return $getCC->fetch();
         }
     }
 ?>

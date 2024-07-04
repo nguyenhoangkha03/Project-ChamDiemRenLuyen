@@ -21,9 +21,9 @@
             return $getAll->fetchAll();
         }
 
-        public function FileAdd($filefile, $idvbhd){
-            $add = $this->connect->prepare("INSERT INTO file(FILEFILE, ID_VBHD) VALUES (?,?)");
-            $add->execute(array($filefile, $idvbhd));
+        public function FileAdd($filename, $filefile, $idvbhd){
+            $add = $this->connect->prepare("INSERT INTO file(FILENAME, FILEFILE, ID_VBHD) VALUES (?,?,?)");
+            $add->execute(array($filename, $filefile, $idvbhd));
             
             return $add->rowCount();
         }
@@ -46,6 +46,14 @@
             $getFILE->execute(array($idfile));
             
             return $getFILE->fetch();
+        }
+
+        public function FileGetbyIdVBHD($idvbhd) {
+            $getFILE = $this->connect->prepare("SELECT * FROM file WHERE ID_VBHD = ?");
+            $getFILE->setFetchMode(PDO::FETCH_OBJ);
+            $getFILE->execute(array($idvbhd));
+            
+            return $getFILE->fetchAll();
         }
     }
 ?>

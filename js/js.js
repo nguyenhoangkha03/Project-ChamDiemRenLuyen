@@ -1,10 +1,51 @@
+document.addEventListener("DOMContentLoaded", function(){
+    var urlParams = new URLSearchParams(window.location.search);
+    var requestValue = urlParams.get('request');
+    if(requestValue == 'scoreView'){
+        const View = document.querySelector('.score-view');
+        View.style.color = 'white';
+        View.style.backgroundColor = 'lightblue';
+    }
+    else if(requestValue == 'bchView'){
+        const View = document.querySelector('.bch-view');
+        View.style.color = 'white';
+        View.style.backgroundColor = 'lightblue';
+    }
+    else if(requestValue == 'vbhdView'){
+        const View = document.querySelector('.vbhd-view');
+        View.style.color = 'white';
+        View.style.backgroundColor = 'lightblue';
+    }
+    else if(requestValue == 'profile'){
+        const View = document.querySelector('.profile');
+        View.style.color = 'white';
+        View.style.backgroundColor = 'lightblue';
+    }
+    else if(requestValue == 'taikhoanView'){
+        const View = document.querySelector('.taikhoan-view');
+        View.style.color = 'white';
+        View.style.backgroundColor = 'lightblue';
+    }
+    else if(requestValue == 'lopView'){
+        const View = document.querySelector('.list-class');
+        View.style.color = 'white';
+        View.style.backgroundColor = 'lightblue';
+    }
+});
+
 document.querySelector(".list-class").addEventListener("click", function(){
     window.location.href = "index.php?request=lopView";
 });
 
-document.querySelector(".addnew-class").addEventListener("click", function(){
-    window.location.href = "index.php?request=lopAdd";
+document.querySelector(".addnew-taikhoan").addEventListener("click", function(){
+    window.location.href = "index.php?request=taikhoanAdd";
 });
+
+
+
+// document.querySelector(".addnew-class").addEventListener("click", function(){
+//     window.location.href = "index.php?request=lopAdd";
+// });
 
 function previewImages(event) {
     var previewContainer = document.getElementById('imagePreview');
@@ -59,3 +100,15 @@ function handleFileUpload(event) {
         previewContainer.appendChild(fileItem);
     }
 }
+
+function openImage(base64Img) {
+    var expandedImg = document.getElementById("expandedImg");
+    expandedImg.src = 'data:image/png;base64,' + base64Img;
+    document.querySelector('.overlay').style.display = 'block';
+}
+
+function closeImage() {
+    document.querySelector('.overlay').style.display = 'none';
+}
+
+

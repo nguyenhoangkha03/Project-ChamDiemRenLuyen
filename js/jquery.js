@@ -3,9 +3,17 @@ $(document).ready(function(){
         e.preventDefault();
         window.location.href = "index.php?request=lopView";
     });
-    $('.delete-class').click(function(){
+    $(document).on("click", ".cancel-save-taikhoan", function (e) { 
+        e.preventDefault();
+        window.location.href = "index.php?request=taikhoanView";
+    });
+    $(document).on("click", ".delete-class", function(e){
         var value = $(this).attr('value');
         window.location.href = "./process/lop/lopAct.php?reqact=delete&id=" + value;
+    });
+    $(document).on("click", ".delete-taikhoan", function (e) { 
+        var value = $(this).attr('value');
+        window.location.href = "./process/taikhoan/taikhoanAct.php?reqact=delete&id=" + value;
     });
     $('.delete-student').click(function(){
         var value = $(this).attr('value');
@@ -19,6 +27,10 @@ $(document).ready(function(){
         var value = $(this).attr('value');
         window.location.href = "index.php?request=lopUpdate&id=" + value;
     });
+    $(document).on("click", ".update-taikhoan", function(e){
+        var value = $(this).attr('value');
+        window.location.href = "index.php?request=taikhoanUpdate&id=" + value;
+    });
     $(document).on("click", ".update-student", function(e){
         var value = $(this).attr('value');
         window.location.href = "index.php?request=sinhvienUpdate&idsv=" + value;
@@ -27,6 +39,17 @@ $(document).ready(function(){
         var value = $(this).val();
         $.ajax({
             url: './process/lop/search.php',
+            method: 'POST',
+            data: { searchQuery: value },
+            success: function(data) {
+                $('.table-class tbody').html(data);
+            }
+        });
+    });
+    $('.search-taikhoan').on('change', function(){
+        var value = $(this).val();
+        $.ajax({
+            url: './process/taikhoan/search.php',
             method: 'POST',
             data: { searchQuery: value },
             success: function(data) {
@@ -45,7 +68,7 @@ $(document).ready(function(){
             }
         });
     });
-    $('.list-student').click(function(){
+    $(document).on('click', ".list-student", function(e){
         var value = $(this).attr('value');
         window.location.href = "index.php?request=sinhvienView&idlop=" + value;
     });
@@ -356,6 +379,15 @@ $(document).ready(function(){
     $('.bch-view').click(function(){
         window.location.href = "index.php?request=bchView";
     });
+    $('.profile').click(function(){
+        var value = $(this).attr('value');
+        if(value == ""){
+            window.location.href = "./login/index.php";
+        }
+        else{
+            window.location.href = "index.php?request=profile";
+        }
+    });
     $('.bch-add').click(function(){
         window.location.href = "index.php?request=bchAddNew";
     });
@@ -370,18 +402,116 @@ $(document).ready(function(){
     $('.vbhd-view').click(function(){
         window.location.href = "index.php?request=vbhdView";
     });
-    var checkLike = 0;
+    $('.taikhoan-view').click(function(){
+        window.location.href = "index.php?request=taikhoanView";
+    });
     $('.like-icon div').click(function(){
-        if(checkLike == 0){
-            $(this).css('color', '#2577ae');
-            $('.img-like').attr('src', './images/like.png')
-            checkLike = 1;
+        var value = $(this).attr('value');
+        var [idsv, idvbhd] = value.split(" ");
+        var number = $('.number-like div').html();
+        if(value != ""){
+            $.ajax({
+                url: './process/like/likeAct.php?reqact=addNew',
+                type: 'POST',
+                data: {idsv: idsv, idvbhd: idvbhd},
+                success: function(data){
+                    if(parseInt(data) < parseInt(number)){
+                        $(this).css('color', 'gray');
+                        $('.img-like').attr('src', './images/un-like.png');
+                        $('.number-like div').html(data);
+                    }
+                    else{
+                        $(this).css('color', '#2577ae');
+                        $('.img-like').attr('src', './images/like.png');
+                        $('.number-like div').html(data);
+                    }
+                }
+            });
         }
         else{
-            $(this).css('color', 'gray');
-            $('.img-like').attr('src', './images/un-like.png')
-            checkLike = 0;
+            window.location.href = "./login/index.php";
         }
+    });
+    $('.logout').click(function(){
+        window.location.href = "./process/taikhoan/taikhoanAct.php?reqact=logout";
+    });
+    $('.changePassword').click(function(){
+        $('.modal').css('display', 'block');
+    });
+    $('.change-title > div:nth-child(2)').click(function(){
+        $('.modal').css('display', 'none');
+    });
+    $('.form-changePass').submit(function(e){
+        e.preventDefault();
+        var pass = $('.passNew').val();
+        var passConfim = $('.passConfirm').val();
+        if(pass === passConfim){
+            this.submit();
+        }
+        else{
+            alert("Xác nhận mật khẩu không khớp");
+        }
+    });
+    $('.form-changePass .passConfirm').on('keypress', function(e) {
+        if (e.which == 13) { 
+            e.preventDefault(); 
+            $('.form-changePass input[type="submit"]').click(); 
+        }
+    });
+
+    $(document).on('click', '.addnew-class', function(){
+        window.location.href = "index.php?request=lopAdd";
+    });
+
+    $(document).on('change', '.selectNam', function(e){
+        var value = $(this).val();
+        var idsv = $('.get-sv').attr('value');
+        $.ajax({
+            url: './process/bangdiem/Load.php',
+            type: 'POST',
+            data: {value: value, idsv: idsv},
+            success: function(data){
+                $('.selectHK').html(data);
+                $('.selectHK').prop('disabled', false);
+            }
+        });
+    });
+
+    $('.create-score').click(function(){
+        $('.modal').css('display', 'block');
+    });
+    $('.close-score').click(function(){
+        var idsv = $('.get-sv').attr('value');
+        document.location.href = "./process/bangdiem/bangdiemAct.php?reqact=lockBD&idsv=" + idsv;
+    });
+
+    $('.open-score').click(function(){
+        var idsv = $('.get-sv').attr('value');
+        document.location.href = "./process/bangdiem/bangdiemAct.php?reqact=openBD&idsv=" + idsv;
+    });
+
+    $('.file-item').click(function(){
+        var value = $(this).attr('value');
+        window.location.href = "./process/vbhd/viewPDF.php?id=" + value;
+    });
+    
+    $('.vbhd-item').hover(function(){
+        var value = $(this).attr('value');
+        var [idsv, idvbhd] = value.split(" ");
+        $.ajax({
+            url: './process/vbhd/vbhdAct.php?reqact=view',
+            type: 'POST',
+            data: {idsv: idsv, idvbhd: idvbhd},
+            success: function(data){
+            }
+        });
+    });
+
+    $('.create-story').click(function(){
+        $('.add-back').css('display', 'block');
+    });
+    $('.exit-create').click(function(){
+        $('.add-back').css('display', 'none');
     });
 
     $('.mySelect').select2();

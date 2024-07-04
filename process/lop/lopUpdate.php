@@ -1,4 +1,7 @@
 <?php 
+    if(!isset($_SESSION['ADMIN']) && !isset($_SESSION['BCH'])){
+        echo '<script>window.location.href = "index.php";</script>';
+    }
     $a = './database/lopCls.php';
     $b = '../../database/lopCls.php';
     $c = '../database/lopCls.php';
@@ -20,7 +23,7 @@
         action="./process/lop/lopAct.php?reqact=update&idlop=<?php echo $idlop; ?>">
     <div class="class-add">
         <div class="add-left">
-            <div class="title-class">CẬP NHẬT THÔNG TIN LỚP : <?php echo $getlop->TENLOP . " " . $getlop->KHOAHOC; ?></div>
+            <div class="title-class">CẬP NHẬT THÔNG TIN LỚP : <?php echo $getlop->TENLOP . " - KHÓA : " . $getlop->KHOAHOC; ?></div>
             <hr>
             <div class="input-class">
                 <div>Tên lớp</div>

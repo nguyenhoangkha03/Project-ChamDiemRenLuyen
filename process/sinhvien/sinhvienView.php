@@ -1,8 +1,8 @@
 <?php 
-    require './database/lopCls.php';
-    require 'database/sinhvienCls.php';
-    $lop = new Lop();
-    $sinhvien = new Sinhvien();
+    //require './database/lopCls.php';
+    // require 'database/sinhvienCls.php';
+    //$lop = new Lop();
+    // $sinhvien = new Sinhvien();
     $idlop = $_GET['idlop'];
     $list_sinhvien = $sinhvien->SinhVienGetByIdLop($idlop);
     $count = 0;

@@ -38,6 +38,18 @@
             case 'vbhdView':
                 require './process/vbhd/vbhdView.php';
                 break;
+            case 'profile':
+                require './profile.php';
+                break;
+            case 'taikhoanView':
+                require './process/taikhoan/taikhoanView.php';
+                break; 
+            case 'taikhoanAdd':
+                require './process/taikhoan/taikhoanAdd.php';
+                break; 
+            case 'taikhoanUpdate':
+                require './process/taikhoan/taikhoanUpdate.php';
+                break;  
         }
     }
     else{

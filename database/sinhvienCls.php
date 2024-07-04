@@ -74,5 +74,13 @@
 
             return $getSinhvien->fetchAll();
         }
+
+        public function SinhvienIdLonNhat(){
+            $getSv = $this->connect->prepare("select * from sinhvien WHERE ID_SV = (select max(ID_SV) from sinhvien)");
+            $getSv->setFetchMode(PDO::FETCH_OBJ);
+            $getSv->execute();
+            
+            return $getSv->fetch();
+        }
     }
 ?>

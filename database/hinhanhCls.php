@@ -23,7 +23,7 @@
 
         public function HinhanhAdd($filehinh, $idvbhd){
             $add = $this->connect->prepare("INSERT INTO hinhanh(FILEHINH, ID_VBHD) VALUES (?,?)");
-            $add->execute(array($$filehinh, $idvbhd));
+            $add->execute(array($filehinh, $idvbhd));
             
             return $add->rowCount();
         }
@@ -46,6 +46,14 @@
             $getHinhanh->execute(array($idha));
             
             return $getHinhanh->fetch();
+        }
+
+        public function HinhanhGetbyIdVBHD($idvbhd) {
+            $getHinhanh = $this->connect->prepare("SELECT * FROM hinhanh WHERE ID_VBHD = ?");
+            $getHinhanh->setFetchMode(PDO::FETCH_OBJ);
+            $getHinhanh->execute(array($idvbhd));
+            
+            return $getHinhanh->fetchAll();
         }
     }
 ?>

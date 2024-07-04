@@ -20,11 +20,11 @@
                     <img class="icon-table" src="./images/list.png" alt="">
                     Danh sách sinh viên 
                 </div>
-                <div class="update-class" value="' . $row->ID_LOP  . '">
+                <div class="update update-class" value="' . $row->ID_LOP  . '">
                     <img class="icon-table" src="./images/update.png" alt="">
                     Sửa 
                 </div>
-                <div class="delete-class" value="' . $row->ID_LOP  . '">
+                <div class="delete delete-class" value="' . $row->ID_LOP  . '">
                     <img class="icon-table" src="./images/delete.png" alt="">
                     Delete 
                 </div>'

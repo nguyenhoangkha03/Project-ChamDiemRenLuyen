@@ -27,12 +27,21 @@
             
             return $add->rowCount();
         }
+
+        public function BangdiemAddByBCH($hocky, $namhoc, $tungay, $denngay, $idsv, $isnew, $open){
+            $add = $this->connect->prepare("INSERT INTO bangdiem(HOCKY, NAMHOC, TUNGAY, DENNGAY, ID_SV, ISNEW, OPEN) VALUES (?,?,?,?,?,?,?)");
+            $add->execute(array($hocky, $namhoc, $tungay, $denngay, $idsv, $isnew, $open));
+            
+            return $add->rowCount();
+        }
+
         public function BangdiemDelete($idbd) {
             $del = $this->connect->prepare("DELETE FROM bangdiem WHERE ID_BD = ?");
             $del->execute(array($idbd));
 
             return $del->rowCount();
         }
+
         public function BangdiemUpdate($hocky, $namhoc, $tongdiemsv, $diemdiemlop, $tongdiemkhoa, $idsv, $idbd) {
             $update = $this->connect->prepare("UPDATE bangdiem SET HOCKY = ?, NAMHOC = ?, TONGDIEMSV = ?, TONGDIEMLOP = ?, TONGDIEMKHOA = ?, ID_SV = ?"
                                                 . " WHERE ID_BD = ?");
@@ -40,12 +49,60 @@
             
             return $update->rowCount();
         }
+
+        public function BangdiemGetbyCheckBoth($isnew, $open) {
+            $getBD = $this->connect->prepare("SELECT * FROM bangdiem WHERE ISNEW = ? AND OPEN = ?");
+            $getBD->setFetchMode(PDO::FETCH_OBJ);
+            $getBD->execute(array($isnew, $open));
+            
+            return $getBD->fetch();
+        }
+
+        public function BangdiemGetbyCheckNew() {
+            $getBD = $this->connect->prepare("SELECT * FROM bangdiem WHERE ISNEW = 1");
+            $getBD->setFetchMode(PDO::FETCH_OBJ);
+            $getBD->execute();
+            
+            return $getBD->fetch();
+        }
+
+        public function BangdiemLock($idbd) {
+            $update = $this->connect->prepare("UPDATE bangdiem SET OPEN = 0 WHERE ID_BD = ?");
+            $update->execute(array($idbd));
+            
+            return $update->rowCount();
+        }
+
+        public function BangdiemOpen($idbd) {
+            $update = $this->connect->prepare("UPDATE bangdiem SET OPEN = 1 WHERE ID_BD = ?");
+            $update->execute(array($idbd));
+            
+            return $update->rowCount();
+        }
+
+
         public function BangdiemGetbyId($idbd) {
             $getBD = $this->connect->prepare("SELECT * FROM bangdiem WHERE ID_BD = ?");
             $getBD->setFetchMode(PDO::FETCH_OBJ);
             $getBD->execute(array($idbd));
             
             return $getBD->fetch();
+        }
+
+        public function BangdiemLastOfIDSV($idsv) {
+            $getBD = $this->connect->prepare("SELECT * FROM bangdiem WHERE ID_BD = (SELECT max(ID_BD) FROM bangdiem WHERE ID_SV = ?)");
+            $getBD->setFetchMode(PDO::FETCH_OBJ);
+            $getBD->execute(array($idsv));
+            
+            return $getBD->fetch();
+        }
+
+        public function BangdiemGetByNamHocAndIDSV($namhoc, $idsv) {
+            $getBD = $this->connect->prepare("SELECT * FROM bangdiem WHERE NAMHOC = ? AND ID_SV = ?");
+            $getBD->setFetchMode(PDO::FETCH_OBJ);
+            $getBD->execute(array($namhoc, $idsv));
+            
+            return $getBD->fetchAll();
         }
     }
 ?>

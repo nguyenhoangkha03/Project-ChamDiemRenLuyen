@@ -1,3 +1,8 @@
+<?php 
+    if(!isset($_SESSION['ADMIN']) && !isset($_SESSION['BCH'])){
+        echo '<script>window.location.href = "index.php";</script>';
+    }
+?>
 <form class="form-classification" name="form-classification" method="POST" enctype="multipart/form-data"
         action="./process/lop/lopAct.php?reqact=addNew">
     <div class="class-add">

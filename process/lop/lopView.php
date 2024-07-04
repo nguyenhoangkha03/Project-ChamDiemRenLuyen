@@ -1,6 +1,9 @@
 <?php 
-    require './database/lopCls.php';
-    $lop = new Lop();
+    if(!isset($_SESSION['ADMIN']) && !isset($_SESSION['BCH'])){
+        echo '<script>window.location.href = "index.php";</script>';
+    }
+    // require './database/lopCls.php';
+    // $lop = new Lop();
     $list_lop = $lop->LopGetAll();
     $count = 0;
 

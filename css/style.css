@@ -11,12 +11,41 @@ body {
     padding: 0;
 }
 
+a {
+    text-decoration: none;
+}
+
+.fa-instagram {
+    color: #ff679b!important;
+    transition: color 0.1s;
+}
+
+.fa-instagram:hover {
+    color: #fe2470!important;
+}
+
+.fa-facebook {
+    color: #4a7ad9!important;
+    transition: color 0.1s;
+}
+
+.fa-facebook:hover {
+    color: #1965fe!important;
+}
+
 .top {
     /* display: flex;
     flex-direction: row;
     justify-content: space-between;
     align-items: center; */
+
     background-color: lightblue;
+    /* background: #5399c7;
+    background: -webkit-linear-gradient(-135deg, #5399c7, #41d0bf);
+    background: -o-linear-gradient(-135deg, #5399c7, #41d0bf);
+    background: -moz-linear-gradient(-135deg, #5399c7, #41d0bf);
+    background: linear-gradient(-135deg, #5399c7, #41d0bf); */
+
     color: blue;
 }
 
@@ -30,6 +59,10 @@ body {
 .logo {
     width: 60px;
     height: 60px;
+    /* background-color: rgb(104, 253, 228);
+    border: 1px solid rgb(209, 209, 209);
+    border-radius: 30px;
+    object-fit: contain; */
 }
 
 .left-logo img {
@@ -68,7 +101,8 @@ body {
 .score-view,
 .bch-view,
 .vbhd-view,
-.menu-5 {
+.taikhoan-view,
+.profile {
     background-color: yellow;
     width: 150px;
     /*  height: 150px; */
@@ -88,7 +122,8 @@ body {
 .score-view:hover,
 .bch-view:hover,
 .vbhd-view:hover,
-.menu-5:hover {
+.taikhoan-view:hover,
+.profile:hover {
     color: white;
     background-color: lightblue;
 }
@@ -97,7 +132,8 @@ body {
 .score-view i,
 .bch-view i,
 .vbhd-view i,
-.menu-5 i {
+.taikhoan-view i,
+.profile i {
     font-size: 50px;
 }
 
@@ -105,7 +141,8 @@ body {
 .score-view div,
 .bch-view div,
 .vbhd-view div,
-.menu-5 div {
+.taikhoan-view div,
+.profile div {
     font-weight: 800;
     font-size: 20px;
     text-align: center;
@@ -118,7 +155,8 @@ body {
 
 /* table */
 
-.addnew-class {
+.addnew-class,
+.addnew-taikhoan {
     background-color: blue;
     display: inline-block;
     padding: 10px;
@@ -375,6 +413,20 @@ hr {
     box-shadow: 10px 10px 30px rgba(0, 0, 0, 0.2);
     padding-bottom: 20px;
     margin-top: 10px;
+    background-color: whitesmoke;
+}
+
+.create-score,
+.close-score, 
+.open-score,
+.watch-old {
+    padding: 10px 10px;
+    border: none;
+    background-color: #4db8ff;
+    color: white;
+    font-size: 20px;
+    border-radius: 5px;
+    cursor: pointer;
 }
 
 .score-top {
@@ -551,6 +603,10 @@ hr {
     color: #ff679b!important;
 }
 
+.bch-position-class span:hover {
+    color: #ff3078!important;
+}
+
 .social-bch {
     font-size: 26px;
     color: rgb(163, 163, 163);
@@ -631,11 +687,26 @@ hr {
 
 .add-item {
     border-radius: 10px;
-    margin-top: 30px;
+    margin-top: 15px;
     padding: 0 20px 0px 20px;
     background-color: white;
     box-shadow: 10px 10px 30px rgba(0, 0, 0, 0.2);
-    position: relative;
+    /* position: relative; */
+
+    width: 45.3%;
+    margin-left: 26%;
+}
+
+.add-back {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgb(0,0,0); 
+    background-color: rgba(0,0,0,0.4); 
+    z-index: 1;
+    display: none;
 }
 
 .add-item > div:first-child {
@@ -666,6 +737,7 @@ hr {
     border: 1px solid rgb(213, 213, 213);
     border-radius: 50px;
     margin-right: 10px;
+    object-fit: cover;
 }
 
 .add-item textarea {
@@ -676,6 +748,7 @@ hr {
     font-size: 22px;
     font-family: "Nunito Sans", sans-serif;
     resize: none;
+    caret-color:black;
 }
 
 .add-item > div:nth-child(7) {
@@ -717,6 +790,84 @@ hr {
     background-color: rgb(0, 102, 255);
 }
 
+.file-content {
+    display: flex;
+    flex-wrap: wrap;
+    margin: 0 0 10px 0;
+    padding-left: 15px;
+}
+
+.file-content .file-item {
+    background-color: #f0f0f0;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    padding: 5px;
+    margin: 5px;
+    display: flex;
+    align-items: center;
+    cursor: pointer;
+}
+
+.file-content .file-item img {
+    margin-right: 10px;
+}
+
+.overlay {
+    display: none;
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0, 0, 0, 0.7); 
+    z-index: 999; 
+}
+
+.overlay img {
+    display: block;
+    margin: auto;
+    max-width: 80%; 
+    max-height: 80%;
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    box-shadow: 0 0 20px rgba(0, 0, 0, 0.5); 
+}
+
+.create-story {
+    background-color: #00765e;
+    padding: 10px 0;
+    text-align: center;
+    color: white;
+    font-size: 19px;
+    border-radius: 5px;
+    margin-top: 20px;
+    cursor: pointer;
+}
+
+.create-story:hover {
+    background-color: #00a181;
+}
+
+.exit-create {
+    position: absolute;
+    right: 0;
+    top: 0;
+    background-color: rgb(0, 140, 255);
+    color: white;
+    font-weight: bold;
+    padding: 5px 10px;
+    font-size: 18px;
+    border-radius: 5px;
+    cursor: pointer;
+}
+
+.exit-create:hover {
+    background-color: rgb(50, 163, 255);
+}
+
+
 /* Hinh anh */
 
 .image-preview {
@@ -756,6 +907,7 @@ hr {
 .upload-icon img {
     width: 100%;
 }
+
 
 /* File */
 
@@ -827,10 +979,12 @@ hr {
 .image-content {
     display: flex;
     flex-wrap: wrap;
+    background-color: whitesmoke;
 }
 
 .image-content img {
-    max-width: 49.2%;
+    width: 49.2%;
+    max-height: 300px;
     height: auto;
     cursor: pointer;
     margin: 0 2px 2px 2px;
@@ -892,4 +1046,277 @@ hr {
 
 .like-icon div:hover {
     background-color: rgb(197, 197, 197);
+    border-radius: 3px;
+}
+
+/* Tai khoan */
+
+.img-avatar {
+    width: 80px;
+    height: 80px;
+    object-fit: cover;
+    object-position: top;
+    border-radius: 50px;
+    padding: 2px;
+    border: 1px solid rgb(199, 199, 199);
+}
+
+/* Profile */
+
+.address-profile {
+    background-color: white;
+    padding: 10px 12%;
+    border-bottom-left-radius: 50px;
+    border-bottom-right-radius: 50px;
+}
+
+.profile-address {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    font-size: 15px;
+}
+
+.profile-address img {
+    margin: 0 6px;
+}
+
+.address-profile > div:first-child {
+    color: rgb(17, 17, 17);
+    font-weight: 700;
+    font-size: 24px;
+    margin-bottom: 8px;
+}
+
+.profile-address div {
+    cursor: pointer;
+}
+
+.profile-account {
+    display: flex;
+    flex-direction: row;
+    padding: 100px 12% 100px 12%;
+}
+
+.left-profile {
+    flex: 4;
+}
+
+.left-profile > div:first-child, 
+.right-profile > div:first-child {
+    color: #111111;
+    font-size: 16px;
+    font-weight: 700;
+}
+
+.left-profile > hr {
+    width: 100%;
+    border: 1px solid rgb(239, 239, 239);
+    margin: 20px 0;
+}
+
+.input-profile > div:first-child {
+    margin-top: 10px;
+}
+
+.radio-sex {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    margin-top: 10px;
+    margin-bottom: 20px;
+}
+
+.input-profile input[type*=text], 
+.input-profile input[type*=email],
+.input-profile input[type*=date] {
+    height: 50px;
+    width: 95%;
+    border: 1px solid #e1e1e1;
+    font-size: 14px;
+    color: #b7b7b7;
+    padding-left: 20px;
+    margin-bottom: 20px;
+    margin-top: 10px;
+}
+
+.input-profile input:focus {
+    outline: none;
+}
+
+.radio-sex input {
+    margin-right: 8px;
+    width: 20px;
+    height: 20px;
+    cursor: pointer;
+}
+
+.radio-sex label {
+    cursor: pointer;
+    margin-right: 20px;
+    color: #b7b7b7;
+}
+
+.button-update {
+    width: 98%;
+    text-align: end;
+    margin-top: 30px;
+}
+
+.button-update input {
+    font-size: 14px;
+    font-weight: 700;
+    letter-spacing: 2px;
+    border: none;
+    padding: 14px 35px;
+    color: #ffffff;
+    background: #111111;
+    position: relative;
+    cursor: pointer;
+}
+
+.right-profile {
+    flex: 2;
+}
+
+.avatar {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    margin-top: 30px;
+    background-color: white;
+}
+
+.image-avatar {
+    width:200px;
+    height: 200px;
+    border-radius: 100px;
+    overflow: hidden;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin-top: 40px;
+}
+
+.image-avatar img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    /* object-position: top; */
+}
+
+/* input[type="file"] {
+    display: none;
+} */
+
+.file-avatar {
+    margin-top: 30px;
+}
+
+.file-avatar label {
+    font-size: 14px;
+    font-weight: 700;
+    letter-spacing: 2px;
+    border: none;
+    padding: 14px 35px;
+    color: #ffffff;
+    background: #111111;
+    position: relative;
+    cursor: pointer;
+}
+
+.right-profile hr {
+    width: 100%;
+    border: 1px solid rgb(239, 239, 239);
+    margin: 20px 0 20px 0;
+}
+
+.rule-image {
+    margin-top: 30px;
+    color: #898989;
+    margin-bottom: 20px;
+}
+
+/* Log out button */
+
+.modal {
+    display: none; 
+    position: fixed; 
+    z-index: 1; 
+    left: 0;
+    top: 0;
+    width: 100%; 
+    height: 100%; 
+    overflow: auto; 
+    background-color: rgb(0,0,0); 
+    background-color: rgba(0,0,0,0.4); 
+}
+
+.modal-content {
+    background-color: #fefefe;
+    margin: 15% auto; 
+    padding: 10px 20px 10px 20px;
+    border: 1px solid #888;
+    width: 80%; 
+    max-width: 500px;
+    border-radius: 10px;
+}
+
+.change-title {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+}
+
+.change-title > div:first-child {
+    font-size: 20px;
+    font-weight: bold;
+}
+
+.change-title > div:nth-child(2) {
+    font-size: 22px;
+    font-weight: bolder;
+    background-color: rgb(0, 153, 255);
+    width: 30px;
+    color: white;
+    text-align: center;
+    cursor: pointer;
+}
+
+.change-body label {
+    font-size: 18px;
+    color: gray;
+}
+
+.change-body div {
+    margin-top: 10px;
+}
+
+.change-body input[type="text"],
+.change-body input[type="password"], 
+.change-body input[type="date"] {
+    width: 98%;
+    outline: none;
+    border: none;
+    border: 1px solid rgb(204, 204, 204);
+    border-radius: 2px;
+    height: 40px;
+    color: rgb(198, 198, 198);
+    padding-left: 10px;
+    font-size: 17px;
+}
+
+.change-body input::-webkit-input-placeholder {
+    color: rgb(198, 198, 198);
+    font-size: 17px;
+}
+
+.change-body input[type="submit"] {
+    padding: 10px;
+    border: none;
+    border-radius: 5px;
+    background-color: rgb(0, 153, 255);
+    color: white;
+    font-size: 16px;
+    cursor: pointer;
 }

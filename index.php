@@ -1,3 +1,34 @@
+<?php 
+	session_start();
+    require './database/taikhoanCls.php';
+    require './database/sinhvienCls.php';
+    require './database/lopCls.php';
+    $taikhoan = new Taikhoan();
+    $sinhvien = new Sinhvien();
+    $lop = new Lop();
+    $username = null;
+	if(isset($_SESSION['ADMIN'])){
+		$gettaikhoan = $taikhoan->TaiKhoanGetByUsername($_SESSION['ADMIN']);
+        $getsinhvien = $sinhvien->SinhVienGetById($gettaikhoan->ID_SV);
+        $getlop = $lop->LopGetbyId($getsinhvien->ID_LOP);
+        $username = $_SESSION['ADMIN'];
+	}
+	else if(isset($_SESSION['BCH'])){
+		$gettaikhoan = $taikhoan->TaiKhoanGetByUsername($_SESSION['BCH']);
+        $getsinhvien = $sinhvien->SinhVienGetById($gettaikhoan->ID_SV);
+        $getlop = $lop->LopGetbyId($getsinhvien->ID_LOP);
+        $username = $_SESSION['BCH'];
+	}
+	else if(isset($_SESSION['STUDENT'])){	
+		$gettaikhoan = $taikhoan->TaiKhoanGetByUsername($_SESSION['STUDENT']);
+        $getsinhvien = $sinhvien->SinhVienGetById($gettaikhoan->ID_SV);
+        $getlop = $lop->LopGetbyId($getsinhvien->ID_LOP);
+        $username = $_SESSION['STUDENT'];
+	}
+    else{
+        $getsinhvien = null;
+    }
+?>
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -23,10 +54,16 @@
     </div>
     <div style="display: flex; flex-direction: row; justify-content: center; background-color: white;">
         <div class="menu">
-            <div class="list-class">
-                <i class="fas fa-list"></i>
-                <div class="name-menu">Lớp</div>
-            </div>
+            <?php 
+                if(isset($_SESSION['ADMIN']) || isset($_SESSION['BCH'])){
+            ?>
+                    <div class="list-class">
+                        <i class="fas fa-list"></i>
+                        <div class="name-menu">Lớp</div>
+                    </div>
+            <?php
+                }
+            ?>
             <div class="score-view">
                 <i class="fas fa-file"></i>
                 <div class="name-menu">Chấm Điểm Rèn Luyện</div>
@@ -39,13 +76,42 @@
                 <i class="fas fa-camera"></i>
                 <div class="name-menu">Văn Bản Hoạt Động</div>
             </div>
-            <!-- <div class="menu-4">
-                <i class="fas fa-book"></i>
-                <div class="name-menu">Văn Bản Công Văn</div>
-            </div> -->
-            <div class="menu-5">
-                <i class="fas fa-user"></i>
-                <div class="name-menu">Tài khoản</div>
+            <?php 
+                if(isset($_SESSION['ADMIN'])){
+            ?>
+                    <div class="taikhoan-view">
+                        <i class="fas fa-user"></i>
+                        <div class="name-menu">Cấp Phát Tài Khoản</div>
+                    </div>
+            <?php
+                }
+            ?>
+            <div class="profile" value="<?php echo $username != null ? $username : "";  ?>">
+                <?php 
+                    if(isset($_SESSION['ADMIN'])){
+                ?>
+                        <img class="img-avatar" src="data:image/png;base64,<?php echo $getsinhvien->HINHANH;  ?>" alt="">
+                        <div class="name-menu"><?php echo $getsinhvien->HOTEN; ?></div>
+                <?php
+                    }
+                    else if(isset($_SESSION['BCH'])){
+                ?>
+                        <img class="img-avatar" src="data:image/png;base64,<?php echo $getsinhvien->HINHANH;  ?>" alt="">
+                        <div class="name-menu"><?php echo $getsinhvien->HOTEN; ?></div>
+                <?php
+                    }else if(isset($_SESSION['STUDENT'])){
+                ?>
+                        <img class="img-avatar" src="data:image/png;base64,<?php echo $getsinhvien->HINHANH;  ?>" alt="">
+                        <div class="name-menu"><?php echo $getsinhvien->HOTEN; ?></div>
+                <?php
+                    }
+                    else{
+                ?>
+                        <i class="fas fa-user-tie"></i>
+                        <div class="name-menu">Tài khoản</div>
+                <?php
+                    }
+                ?>
             </div>
         </div>
     </div>
@@ -63,8 +129,10 @@
     <!-- script -->
     <script src="./js/jquery-3.7.1.min.js"></script>
     <script src="./js/jquery.js"></script>
+    <script src="./js/jquery-score.js"></script>
     <script src="./js/js.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/select2@4.1.0-rc.0/dist/js/select2.min.js"></script>
     <script src="https://kit.fontawesome.com/f940b3aea4.js" crossorigin="anonymous"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/pdf.js/2.10.377/pdf.min.js"></script>   
 </body>
 </html>
