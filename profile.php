@@ -1,5 +1,5 @@
 <?php 
-    if(!isset($_SESSION['ADMIN']) && !isset($_SESSION['BCH']) && !isset($_SESSION['STUDENT'])){
+    if(!isset($_SESSION['ADMIN']) && !isset($_SESSION['BCH']) && !isset($_SESSION['STUDENT']) && !isset($_SESSION['BCS'])){
         echo '<script>window.location.href = "index.php";</script>';
     }
 ?>
@@ -71,8 +71,14 @@
                     <input type="email" readonly name="email" value="<?php echo $getsinhvien->CHUCVU; ?>">
                 </div>
             <?php
-                }
-                else{
+                }else if(isset($_SESSION['BCS'])){
+            ?>
+                    <div class="input-profile">
+                        <div>Chức vụ</div>
+                        <input type="email" readonly name="email" value="Ban cán sự lớp <?php echo $getlop->TENLOP; ?>">
+                    </div>
+            <?php
+                }else{
                 }
             ?>
             

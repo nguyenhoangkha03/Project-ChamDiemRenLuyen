@@ -38,12 +38,13 @@
                     <tbody>
                 <?php 
                     foreach($list_lop as $l){
+                        $getsvbylop = $sinhvien->SinhVienGetByIdLop($l->ID_LOP);
                 ?>
                         <tr>
                         <td><?php echo ++$count; ?></td>
                         <td><?php echo $l->TENLOP; ?></td>
                         <td><?php echo $l->KHOAHOC; ?></td>
-                        <td><?php echo $l->SOLUONGSV; ?></td>
+                        <td><?php echo count($getsvbylop); ?></td>
                         <td class="operation-class">
                             <div class="list-student" value="<?php echo $l->ID_LOP; ?>">
                                 <img class="icon-table" src="./images/list.png" alt="">

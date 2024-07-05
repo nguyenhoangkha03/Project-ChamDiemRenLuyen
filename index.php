@@ -25,6 +25,12 @@
         $getlop = $lop->LopGetbyId($getsinhvien->ID_LOP);
         $username = $_SESSION['STUDENT'];
 	}
+    else if(isset($_SESSION['BCS'])){
+        $gettaikhoan = $taikhoan->TaiKhoanGetByUsername($_SESSION['BCS']);
+        $getsinhvien = $sinhvien->SinhVienGetById($gettaikhoan->ID_SV);
+        $getlop = $lop->LopGetbyId($getsinhvien->ID_LOP);
+        $username = $_SESSION['BCS'];
+    }
     else{
         $getsinhvien = null;
     }
@@ -104,8 +110,12 @@
                         <img class="img-avatar" src="data:image/png;base64,<?php echo $getsinhvien->HINHANH;  ?>" alt="">
                         <div class="name-menu"><?php echo $getsinhvien->HOTEN; ?></div>
                 <?php
-                    }
-                    else{
+                    }else if(isset($_SESSION['BCS'])){
+                ?>
+                        <img class="img-avatar" src="data:image/png;base64,<?php echo $getsinhvien->HINHANH;  ?>" alt="">
+                        <div class="name-menu"><?php echo $getsinhvien->HOTEN; ?></div>
+                <?php
+                    }else{
                 ?>
                         <i class="fas fa-user-tie"></i>
                         <div class="name-menu">Tài khoản</div>

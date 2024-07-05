@@ -25,6 +25,10 @@
                         $_SESSION['BCH'] = $username;
                         header('location:../../index.php');
                     }
+                    else if($getquyen->MAQUYEN == 'bcs'){
+                        $_SESSION['BCS'] = $username;
+                        header('location:../../index.php');
+                    }
                     else{
                         $_SESSION['STUDENT'] = $username;
                         header('location:../../index.php');
@@ -49,6 +53,9 @@
                 else if(isset($_SESSION['BCH'])){
                     $namelogin = $_SESSION['BCH'];
                 }
+                else if(isset($_SESSION['BCS'])){
+                    $namelogin = $_SESSION['BCS'];
+                }
                 else{
                     $namelogin = $_SESSION['STUDENT'];
                 }
@@ -63,6 +70,9 @@
                 }
                 else if(isset($_SESSION['BCH'])){
                     $username = $_SESSION['BCH'];
+                }
+                else if(isset($_SESSION['BCS'])){
+                    $username = $_SESSION['BCS'];
                 }
                 else{
                     $username = $_SESSION['STUDENT'];

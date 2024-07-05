@@ -513,6 +513,9 @@ $(document).ready(function(){
     $('.exit-create').click(function(){
         $('.add-back').css('display', 'none');
     });
+    $(document).on('click', '.watch-old', function(e){
+        e.preventDefault();
+    });
 
     $('.mySelect').select2();
 });

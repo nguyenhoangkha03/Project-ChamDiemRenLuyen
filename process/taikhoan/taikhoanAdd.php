@@ -15,11 +15,12 @@
             <hr>
             <div class="input-class" style="margin-bottom: 20px;">
                 <div>Chọn sinh viên</div>
-                <select name="selectSV" class="mySelect" id="sinhvien" style="width: 169px;">
+                <select name="selectSV" class="mySelect" id="sinhvien" style="width: 200px;">
                     <?php 
                         foreach($getAllSV as $sv){
+                            $lopbysv = $lop->LopGetbyId($sv->ID_LOP);
                     ?>
-                            <option value="<?php echo $sv->ID_SV; ?>"><?php echo $sv->HOTEN; ?></option>
+                            <option value="<?php echo $sv->ID_SV; ?>"><?php echo $sv->HOTEN . " - " . $lopbysv->TENLOP; ?></option>
                     <?php
                         }
                     ?>                                 
@@ -27,7 +28,7 @@
             </div>
             <div class="input-class" style="margin-bottom: 20px;">
                 <div>Chọn quyền</div>
-                <select name="selectQuyen" class="mySelect" id="quyen" style="width: 169px;">
+                <select name="selectQuyen" class="mySelect" id="quyen" style="width: 200px;">
                     <?php 
                         foreach($getAllQuyen as $q){
                     ?>

@@ -94,7 +94,7 @@
         </div>
     </div>
 </div>
-<form action="./process/bangdiem/bangdiemAct.php?reqact=chamdiem" method="POST" enctype="multipart/form-data">
+<form action="./process/bangdiem/bangdiemAct.php?reqact=chamdiem&idsv=<?php echo $getsinhvien->ID_SV; ?>" method="POST" enctype="multipart/form-data">
     <div class="score">
         <div class="score-top" style="text-align: center; margin-right: 10px;">
         <?php 
@@ -152,13 +152,13 @@
 
                         </td>
                         <td>
-                            <input required class="sv-111" name="sv-111" type="number">
+                            <input class="sv-111" name="sv-111" type="number">
                         </td>
                         <td>
-                            <input required class="lop-111" name="lop-111" type="number">
+                            <input <?php echo (isset($_SESSION['STUDENT'])) ? "disabled" : ""; ?> class="lop-111" name="lop-111" type="number">
                         </td>
                         <td>
-                            <input required class="khoa-111" name="khoa-111" type="number">
+                            <input <?php echo (!isset($_SESSION['ADMIN']) && !isset($_SESSION['BCH'])) ? "disabled" : ""; ?> class="khoa-111" name="khoa-111" type="number">
                         </td>
                     </tr>
                     <tr>
@@ -175,13 +175,13 @@
 
                         </td>
                         <td>
-                            <input required class="sv-112" name="sv-112" type="number">
+                            <input  class="sv-112" name="sv-112" type="number">
                         </td>
                         <td>
-                            <input required class="lop-112" name="lop-112" type="number">
+                            <input <?php echo (isset($_SESSION['STUDENT'])) ? "disabled" : ""; ?>  class="lop-112" name="lop-112" type="number">
                         </td>
                         <td>
-                            <input required class="khoa-112" name="khoa-112" type="number">
+                            <input <?php echo (!isset($_SESSION['ADMIN']) && !isset($_SESSION['BCH'])) ? "disabled" : ""; ?> class="khoa-112" name="khoa-112" type="number">
                         </td>
                     </tr>
                     <tr>
@@ -200,13 +200,13 @@
                             <div class="file-name-multi-113"></div>
                         </td>
                         <td>
-                            <input required name="sv-113" class="sv-113" type="number">
+                            <input  name="sv-113" class="sv-113" type="number">
                         </td>
                         <td>
-                            <input required name="lop-113" class="lop-113" type="number">
+                            <input <?php echo (isset($_SESSION['STUDENT'])) ? "disabled" : ""; ?>  name="lop-113" class="lop-113" type="number">
                         </td>
                         <td>
-                            <input required name="khoa-113" class="khoa-113" type="number">
+                            <input <?php echo (!isset($_SESSION['ADMIN']) && !isset($_SESSION['BCH'])) ? "disabled" : ""; ?> name="khoa-113" class="khoa-113" type="number">
                         </td>
                     </tr>
                     <tr>
@@ -229,13 +229,13 @@
                             <div class="file-name-multi-114"></div>
                         </td>
                         <td>
-                            <input required class="sv-114" type="number" name="sv-114" id="">
+                            <input  class="sv-114" type="number" name="sv-114" id="">
                         </td>
                         <td>
-                            <input required class="sv-114" type="number" name="lop-114" id="">
+                            <input <?php echo (isset($_SESSION['STUDENT'])) ? "disabled" : ""; ?>  class="lop-114" type="number" name="lop-114" id="">
                         </td>
                         <td>
-                            <input required class="khoa-114" type="number" name="khoa-114" id="">
+                            <input <?php echo (!isset($_SESSION['ADMIN']) && !isset($_SESSION['BCH'])) ? "disabled" : ""; ?> class="khoa-114" type="number" name="khoa-114" id="">
                         </td>
                     </tr>
                     <tr>
@@ -253,13 +253,13 @@
                             <div class="file-name-multi-115"></div>
                         </td>
                         <td>
-                            <input required class="sv-115" name="sv-115" type="number">
+                            <input  class="sv-115" name="sv-115" type="number">
                         </td>
                         <td>
-                            <input required class="lop-115" name="lop-115" type="number">
+                            <input <?php echo (isset($_SESSION['STUDENT'])) ? "disabled" : ""; ?> class="lop-115" name="lop-115" type="number">
                         </td>
                         <td>
-                            <input required class="khoa-115" name="khoa-115" type="number">
+                            <input <?php echo (!isset($_SESSION['ADMIN']) && !isset($_SESSION['BCH'])) ? "disabled" : ""; ?> class="khoa-115" name="khoa-115" type="number">
                         </td>
                     </tr>
                     <tr>
@@ -293,9 +293,9 @@
                             </div>
                             <div class="file-name-multi-116"></div>
                         </td>
-                        <td><input required class="sv-116" name="sv-116" type="number"></td>
-                        <td><input required class="lop-116" name="lop-116" type="number"></td>
-                        <td><input required class="khoa-116" name="khoa-116" type="number"></td>
+                        <td><input  class="sv-116" name="sv-116" type="number"></td>
+                        <td><input <?php echo (isset($_SESSION['STUDENT'])) ? "disabled" : ""; ?>  class="lop-116" name="lop-116" type="number"></td>
+                        <td><input <?php echo (!isset($_SESSION['ADMIN']) && !isset($_SESSION['BCH'])) ? "disabled" : ""; ?> class="khoa-116" name="khoa-116" type="number"></td>
                     </tr>
                     <tr>
                         <td>
@@ -316,9 +316,9 @@
                             </div>
                             <div class="file-name-multi-117"></div>
                         </td>
-                        <td><input required class="sv-117" name="sv-117" type="number"></td>
-                        <td><input required class="lop-117" name="lop-117" type="number"></td>
-                        <td><input required class="khoa-117" name="khoa-117" type="number"></td>
+                        <td><input  class="sv-117" name="sv-117" type="number"></td>
+                        <td><input <?php echo (isset($_SESSION['STUDENT'])) ? "disabled" : ""; ?>  class="lop-117" name="lop-117" type="number"></td>
+                        <td><input <?php echo (!isset($_SESSION['ADMIN']) && !isset($_SESSION['BCH'])) ? "disabled" : ""; ?> class="khoa-117" name="khoa-117" type="number"></td>
                     </tr>
                     <tr>
                         <td>1.1.8 Có bài viết được đăng báo, tạp chí KHPL, kỷ yếu  hội nghị, hội thảo, tham luận, báo cáo chuyên đề liên quan đến hoạt động học thuật</td>
@@ -330,9 +330,9 @@
                             </div>
                             <div class="file-name-multi-118"></div>
                         </td>
-                        <td><input class="sv-118" name="sv-118" type="number"></td>
-                        <td><input name="lop-118" class="lop-118" type="number"></td>
-                        <td><input name="khoa-118" class="khoa-118" type="number"></td>
+                        <td><input  class="sv-118" name="sv-118" type="number"></td>
+                        <td><input <?php echo (isset($_SESSION['STUDENT'])) ? "disabled" : ""; ?>  name="lop-118" class="lop-118" type="number"></td>
+                        <td><input <?php echo (!isset($_SESSION['ADMIN']) && !isset($_SESSION['BCH'])) ? "disabled" : ""; ?> name="khoa-118" class="khoa-118" type="number"></td>
                     </tr>
                     <tr>
                         <td>
@@ -347,9 +347,9 @@
                             <p>8 điểm</p>
                         </td>
                         <td></td>
-                        <td><input class="sv-119" name="sv-119" type="number"></td>
-                        <td><input name="lop-119" class="lop-119" type="number"></td>
-                        <td><input name="khoa-119" class="khoa-119" type="number"></td>
+                        <td><input  class="sv-119" name="sv-119" type="number"></td>
+                        <td><input <?php echo (isset($_SESSION['STUDENT'])) ? "disabled" : ""; ?>  name="lop-119" class="lop-119" type="number"></td>
+                        <td><input <?php echo (!isset($_SESSION['ADMIN']) && !isset($_SESSION['BCH'])) ? "disabled" : ""; ?> name="khoa-119" class="khoa-119" type="number"></td>
                     </tr>
                     <tr style="font-weight: bold;">
                         <td>1.2 Điểm trừ</td>
@@ -371,9 +371,9 @@
                             <p>-20 điểm</p>
                         </td>
                         <td></td>
-                        <td><input class="sv-121" name="sv-121" type="number"></td>
-                        <td><input name="lop-121" class="lop-121" type="number"></td>
-                        <td><input name="khoa-121" class="khoa-121" type="number"></td>
+                        <td><input  class="sv-121" name="sv-121" type="number"></td>
+                        <td><input <?php echo (isset($_SESSION['STUDENT'])) ? "disabled" : ""; ?>  name="lop-121" class="lop-121" type="number"></td>
+                        <td><input <?php echo (!isset($_SESSION['ADMIN']) && !isset($_SESSION['BCH'])) ? "disabled" : ""; ?> name="khoa-121" class="khoa-121" type="number"></td>
                     </tr>
                     <tr>
                         <td>1.2.2 Có hành vi gây ảnh hưởng xấu đến công tác tổ chức các hoạt động học thuật, học tập. (Tùy vào mức độ gây ảnh hưởng, BTC các hoạt động đề xuất điểm trừ) </td>
@@ -382,9 +382,9 @@
                             <p>(tối đa)
                         </td>
                         <td></td>
-                        <td><input class="sv-122" name="sv-122" type="number"></td>
-                        <td><input name="lop-122" class="lop-122" type="number"></td>
-                        <td><input name="khoa-122" class="khoa-122" type="number"></td>
+                        <td><input  class="sv-122" name="sv-122" type="number"></td>
+                        <td><input <?php echo (isset($_SESSION['STUDENT'])) ? "disabled" : ""; ?> name="lop-122" class="lop-122" type="number"></td>
+                        <td><input <?php echo (!isset($_SESSION['ADMIN']) && !isset($_SESSION['BCH'])) ? "disabled" : ""; ?> name="khoa-122" class="khoa-122" type="number"></td>
                     </tr>
                     <tr class="total-score-part" style="font-weight: bold;">
                         <td>TỔNG ĐIỂM PHẦN 1 </td>
@@ -393,9 +393,9 @@
                             <p>(tối đa)</p>
                         </td>
                         <td></td>
-                        <td><input readonly class="sv-1" name="sv-1"  type="number"></td>
-                        <td><input readonly class="lop-1" name="lop-1" type="number"></td>
-                        <td><input readonly class="khoa-1" name="khoa-1" type="number"></td>
+                        <td><input  readonly class="sv-1" name="sv-1"  type="number"></td>
+                        <td><input <?php echo (isset($_SESSION['STUDENT'])) ? "disabled" : ""; ?>  readonly class="lop-1" name="lop-1" type="number"></td>
+                        <td><input <?php echo (!isset($_SESSION['ADMIN']) && !isset($_SESSION['BCH'])) ? "disabled" : ""; ?> readonly class="khoa-1" name="khoa-1" type="number"></td>
                     </tr>
                     <tr style="font-weight: bold;">
                         <td>2. Đánh giá về ý thức chấp hành nội quy, quy chế, quy định</td>
@@ -416,13 +416,13 @@
 
                         </td>
                         <td>
-                            <input class="sv-211" name="sv-211" type="number">
+                            <input  class="sv-211" name="sv-211" type="number">
                         </td>
                         <td>
-                            <input class="lop-211" name="lop-211" type="number">
+                            <input  <?php echo (isset($_SESSION['STUDENT'])) ? "disabled" : ""; ?> class="lop-211" name="lop-211" type="number">
                         </td>
                         <td>
-                            <input class="khoa-211" name="khoa-211" type="number">
+                            <input <?php echo (!isset($_SESSION['ADMIN']) && !isset($_SESSION['BCH'])) ? "disabled" : ""; ?> class="khoa-211" name="khoa-211" type="number">
                         </td>
                     </tr>
                     <tr>
@@ -439,9 +439,9 @@
                         <td>
 
                         </td>
-                        <td><input class="sv-212" name="sv-212" type="number"></td>
-                        <td><input class="lop-212" name="lop-212" type="number"></td>
-                        <td><input class="khoa-212" name="khoa-212" type="number"></td>
+                        <td><input  class="sv-212" name="sv-212" type="number"></td>
+                        <td><input <?php echo (isset($_SESSION['STUDENT'])) ? "disabled" : ""; ?>  class="lop-212" name="lop-212" type="number"></td>
+                        <td><input <?php echo (!isset($_SESSION['ADMIN']) && !isset($_SESSION['BCH'])) ? "disabled" : ""; ?> class="khoa-212" name="khoa-212" type="number"></td>
                     </tr>
                     <tr style="font-weight: bold;">
                         <td>2.2 Điểm trừ</td>
@@ -460,9 +460,9 @@
                         <td>
 
                         </td>
-                        <td><input class="sv-221" name="sv-221" type="number"></td>
-                        <td><input class="lop-221" name="lop-221" type="number"></td>
-                        <td><input class="khoa-221" name="khoa-221" type="number"></td>
+                        <td><input  class="sv-221" name="sv-221" type="number"></td>
+                        <td><input <?php echo (isset($_SESSION['STUDENT'])) ? "disabled" : ""; ?>  class="lop-221" name="lop-221" type="number"></td>
+                        <td><input <?php echo (!isset($_SESSION['ADMIN']) && !isset($_SESSION['BCH'])) ? "disabled" : ""; ?> class="khoa-221" name="khoa-221" type="number"></td>
                     </tr>
                     <tr>
                         <td>
@@ -474,9 +474,9 @@
                         <td>
 
                         </td>
-                        <td><input class="sv-222" name="sv-222" type="number"></td>
-                        <td><input class="lop-222" name="lop-222" type="number"></td>
-                        <td><input class="khoa-222" name="khoa-222" type="number"></td>
+                        <td><input  class="sv-222" name="sv-222" type="number"></td>
+                        <td><input <?php echo (isset($_SESSION['STUDENT'])) ? "disabled" : ""; ?>  class="lop-222" name="lop-222" type="number"></td>
+                        <td><input <?php echo (!isset($_SESSION['ADMIN']) && !isset($_SESSION['BCH'])) ? "disabled" : ""; ?> class="khoa-222" name="khoa-222" type="number"></td>
                     </tr>
                     <tr>
                         <td>
@@ -504,33 +504,33 @@
                             <p>-20 điểm/lần</p>
                         </td>
                         <td></td>
-                        <td><input class="sv-223" name="sv-223" type="number"></td>
-                        <td><input class="lop-223" name="lop-223" type="number"></td>
-                        <td><input class="khoa-223" name="khoa-223" type="number"></td>
+                        <td><input  class="sv-223" name="sv-223" type="number"></td>
+                        <td><input <?php echo (isset($_SESSION['STUDENT'])) ? "disabled" : ""; ?> class="lop-223" name="lop-223" type="number"></td>
+                        <td><input <?php echo (!isset($_SESSION['ADMIN']) && !isset($_SESSION['BCH'])) ? "disabled" : ""; ?> class="khoa-223" name="khoa-223" type="number"></td>
                     </tr>
                     <tr>
                         <td>2.2.4 Vi phạm nội quy thư viện ở mức độ: Nhắc nhở, phê bình, khóa thẻ thư viện...</td>
                         <td>-5 điểm/lần</td>
                         <td></td>
-                        <td><input class="sv-224" name="sv-224" type="number"></td>
-                        <td><input class="lop-224" name="lop-224" type="number"></td>
-                        <td><input class="khoa-224" name="khoa-224" type="number"></td>
+                        <td><input  class="sv-224" name="sv-224" type="number"></td>
+                        <td><input <?php echo (isset($_SESSION['STUDENT'])) ? "disabled" : ""; ?>  class="lop-224" name="lop-224" type="number"></td>
+                        <td><input <?php echo (!isset($_SESSION['ADMIN']) && !isset($_SESSION['BCH'])) ? "disabled" : ""; ?> class="khoa-224" name="khoa-224" type="number"></td>
                     </tr>
                     <tr>
                         <td>2.2.5 Không tham gia các buổi sinh hoạt lớp, chi đoàn, chi hội; các buổi phân công trực do Khoa, lớp phân công…</td>
                         <td>-3 điểm/lần</td>
                         <td></td>
-                        <td><input class="sv-225" name="sv-225" type="number"></td>
-                        <td><input class="lop-225" name="lop-225" type="number"></td>
-                        <td><input class="khoa-225" name="khoa-225" type="number"></td>
+                        <td><input  class="sv-225" name="sv-225" type="number"></td>
+                        <td><input <?php echo (isset($_SESSION['STUDENT'])) ? "disabled" : ""; ?>  class="lop-225" name="lop-225" type="number"></td>
+                        <td><input <?php echo (!isset($_SESSION['ADMIN']) && !isset($_SESSION['BCH'])) ? "disabled" : ""; ?> class="khoa-225" name="khoa-225" type="number"></td>
                     </tr>
                     <tr>
                         <td>2.2.6 Không tham gia các buổi sinh hoạt được Nhà trường, Đoàn trường, Hội sinh viên triệu tập.</td>
                         <td>-5 điểm/lần</td>
                         <td></td>
-                        <td><input class="sv-226" name="sv-226" type="number"></td>
-                        <td><input class="lop-226" name="lop-226" type="number"></td>
-                        <td><input class="khoa-226" name="khoa-226" type="number"></td>
+                        <td><input  class="sv-226" name="sv-226" type="number"></td>
+                        <td><input <?php echo (isset($_SESSION['STUDENT'])) ? "disabled" : ""; ?>  class="lop-226" name="lop-226" type="number"></td>
+                        <td><input <?php echo (!isset($_SESSION['ADMIN']) && !isset($_SESSION['BCH'])) ? "disabled" : ""; ?> class="khoa-226" name="khoa-226" type="number"></td>
                     </tr>
                     <tr>
                         <td>
@@ -540,9 +540,9 @@
                         </td>
                         <td></td>
                         <td></td>
-                        <td><input class="sv-227" name="sv-227" type="number"></td>
-                        <td><input class="lop-227" name="lop-227" type="number"></td>
-                        <td><input class="khoa-227" name="khoa-227" type="number"></td>
+                        <td><input  class="sv-227" name="sv-227" type="number"></td>
+                        <td><input <?php echo (isset($_SESSION['STUDENT'])) ? "disabled" : ""; ?>  class="lop-227" name="lop-227" type="number"></td>
+                        <td><input <?php echo (!isset($_SESSION['ADMIN']) && !isset($_SESSION['BCH'])) ? "disabled" : ""; ?> class="khoa-227" name="khoa-227" type="number"></td>
                     </tr>
                     <tr class="total-score-part" style="font-weight: bold;">
                         <td>TỔNG ĐIỂM PHẦN 2 </td>
@@ -551,9 +551,9 @@
                             <p>(tối đa)</p>
                         </td>
                         <td></td>
-                        <td><input readonly class="sv-2" name="sv-2" type="number"></td>
-                        <td><input readonly class="lop-2" name="lop-2" type="number"></td>
-                        <td><input readonly class="khoa-2" name="khoa-2" type="number"></td>
+                        <td><input  readonly class="sv-2" name="sv-2" type="number"></td>
+                        <td><input <?php echo (isset($_SESSION['STUDENT'])) ? "disabled" : ""; ?>  readonly class="lop-2" name="lop-2" type="number"></td>
+                        <td><input <?php echo (!isset($_SESSION['ADMIN']) && !isset($_SESSION['BCH'])) ? "disabled" : ""; ?> readonly class="khoa-2" name="khoa-2" type="number"></td>
                     </tr>
                     <tr style="font-weight: bold;">
                         <td>3. Đánh giá về ý thức tham gia các hoạt động chính trị, xã hội, văn hóa, văn nghệ, thể thao, phòng chống tội phạm và các tệ nạn xã hội</td>
@@ -579,9 +579,9 @@
                             </div>
                             <div class="file-name-multi-311"></div>
                         </td>
-                        <td><input class="sv-311" name="sv-311" type="number"></td>
-                        <td><input class="lop-311" name="lop-311" type="number"></td>
-                        <td><input class="khoa-311" name="khoa-311" type="number"></td>
+                        <td><input  class="sv-311" name="sv-311" type="number"></td>
+                        <td><input <?php echo (isset($_SESSION['STUDENT'])) ? "disabled" : ""; ?>  class="lop-311" name="lop-311" type="number"></td>
+                        <td><input <?php echo (!isset($_SESSION['ADMIN']) && !isset($_SESSION['BCH'])) ? "disabled" : ""; ?> class="khoa-311" name="khoa-311" type="number"></td>
                     </tr>
                     <tr>
                         <td>3.1.2 Tham dự (cỗ vũ, cổ động…) các hoạt động rèn luyện về chính trị, xã hội, văn hóa, văn nghệ, thể thao. (Theo chương trình được duyệt và BTC đề xuất cộng điểm)</td>
@@ -593,9 +593,9 @@
                             </div>
                             <div class="file-name-multi-312"></div>
                         </td>
-                        <td><input class="sv-312" name="sv-312" type="number"></td>
-                        <td><input class="lop-312" name="lop-312" type="number"></td>
-                        <td><input class="khoa-312" name="khoa-312" type="number"></td>
+                        <td><input  class="sv-312" name="sv-312" type="number"></td>
+                        <td><input <?php echo (isset($_SESSION['STUDENT'])) ? "disabled" : ""; ?>  class="lop-312" name="lop-312" type="number"></td>
+                        <td><input <?php echo (!isset($_SESSION['ADMIN']) && !isset($_SESSION['BCH'])) ? "disabled" : ""; ?> class="khoa-312" name="khoa-312" type="number"></td>
                     </tr>
                     <tr>
                         <td>3.1.3 Tham gia (thí sinh, vận động viên,…) các hoạt động rèn luyện về chính trị, xã hội, văn hóa, văn nghệ, thể thao…</td>
@@ -607,9 +607,9 @@
                             </div>
                             <div class="file-name-multi-313"></div>
                         </td>
-                        <td><input class="sv-313" name="sv-313" type="number"></td>
-                        <td><input class="lop-313" name="lop-313" type="number"></td>
-                        <td><input class="khoa-313" name="khoa-313" type="number"></td>
+                        <td><input  class="sv-313" name="sv-313" type="number"></td>
+                        <td><input <?php echo (isset($_SESSION['STUDENT'])) ? "disabled" : ""; ?>  class="lop-313" name="lop-313" type="number"></td>
+                        <td><input <?php echo (!isset($_SESSION['ADMIN']) && !isset($_SESSION['BCH'])) ? "disabled" : ""; ?> class="khoa-313" name="khoa-313" type="number"></td>
                     </tr>
                     <tr>
                         <td>
@@ -633,8 +633,8 @@
                             <div class="file-name-multi-314"></div>
                         </td>
                         <td><input class="sv-314" name="sv-314" type="number"></td>
-                        <td><input class="lop-314" name="lop-314" type="number"></td>
-                        <td><input class="khoa-314" name="khoa-314" type="number"></td>
+                        <td><input <?php echo (isset($_SESSION['STUDENT'])) ? "disabled" : ""; ?> class="lop-314" name="lop-314" type="number"></td>
+                        <td><input <?php echo (!isset($_SESSION['ADMIN']) && !isset($_SESSION['BCH'])) ? "disabled" : ""; ?> class="khoa-314" name="khoa-314" type="number"></td>
                     </tr>
                     <tr>
                         <td>
@@ -656,8 +656,8 @@
                             <div class="file-name-multi-315"></div>
                         </td>
                         <td><input class="sv-315" name="sv-315" type="number"></td>
-                        <td><input class="lop-315" name="lop-315" type="number"></td>
-                        <td><input class="khoa-315" name="khoa-315" type="number"></td>
+                        <td><input <?php echo (isset($_SESSION['STUDENT'])) ? "disabled" : ""; ?> class="lop-315" name="lop-315" type="number"></td>
+                        <td><input <?php echo (!isset($_SESSION['ADMIN']) && !isset($_SESSION['BCH'])) ? "disabled" : ""; ?> class="khoa-315" name="khoa-315" type="number"></td>
                     </tr>
                     <tr>
                         <td>
@@ -672,8 +672,8 @@
                             <div class="file-name-multi-316"></div>
                         </td>
                         <td><input class="sv-316" name="sv-316" type="number"></td>
-                        <td><input class="lop-316" name="lop-316" type="number"></td>
-                        <td><input class="khoa-316" name="khoa-316" type="number"></td>
+                        <td><input <?php echo (isset($_SESSION['STUDENT'])) ? "disabled" : ""; ?> class="lop-316" name="lop-316" type="number"></td>
+                        <td><input <?php echo (!isset($_SESSION['ADMIN']) && !isset($_SESSION['BCH'])) ? "disabled" : ""; ?> class="khoa-316" name="khoa-316" type="number"></td>
                     </tr>
                     <tr style="font-weight: bold;">
                         <td>3.2 Điểm trừ</td>
@@ -687,16 +687,16 @@
                         <td>-4 điểm/lần</td>
                         <td></td>
                         <td><input class="sv-321" name="sv-321" type="number"></td>
-                        <td><input class="lop-321" name="lop-321" type="number"></td>
-                        <td><input class="khoa-321" name="khoa-321" type="number"></td>
+                        <td><input <?php echo (isset($_SESSION['STUDENT'])) ? "disabled" : ""; ?> class="lop-321" name="lop-321" type="number"></td>
+                        <td><input <?php echo (!isset($_SESSION['ADMIN']) && !isset($_SESSION['BCH'])) ? "disabled" : ""; ?> class="khoa-321" name="khoa-321" type="number"></td>
                     </tr>
                     <tr>
                         <td>3.2.2 Có hành vi gây ảnh hưởng xấu đến công tác tổ chức các hoạt động (tùy vào mức độ gây ảnh hưởng, BTC các hoạt động đề xuất điểm trừ)</td>
                         <td>-6 điểm/lần</td>
                         <td></td>
                         <td><input class="sv-322" name="sv-322" type="number"></td>
-                        <td><input class="lop-322" name="lop-322" type="number"></td>
-                        <td><input class="khoa-322" name="khoa-322" type="number"></td>
+                        <td><input <?php echo (isset($_SESSION['STUDENT'])) ? "disabled" : ""; ?> class="lop-322" name="lop-322" type="number"></td>
+                        <td><input <?php echo (!isset($_SESSION['ADMIN']) && !isset($_SESSION['BCH'])) ? "disabled" : ""; ?> class="khoa-322" name="khoa-322" type="number"></td>
                     </tr>
                     <tr class="total-score-part" style="font-weight: bold;">
                         <td>TỔNG ĐIỂM PHẦN 3 </td>
@@ -706,8 +706,8 @@
                         </td>
                         <td></td>
                         <td><input readonly class="sv-3" name="sv-3" type="number"></td>
-                        <td><input readonly class="lop-3" name="lop-3" type="number"></td>
-                        <td><input readonly class="khoa-3" name="khoa-3" type="number"></td>
+                        <td><input <?php echo (isset($_SESSION['STUDENT'])) ? "disabled" : ""; ?> readonly class="lop-3" name="lop-3" type="number"></td>
+                        <td><input <?php echo (!isset($_SESSION['ADMIN']) && !isset($_SESSION['BCH'])) ? "disabled" : ""; ?> readonly class="khoa-3" name="khoa-3" type="number"></td>
                     </tr>
                     <tr style="font-weight: bold;">
                         <td>4. Đánh giá về ý thức công dân trong quan hệ cộng đồng</td>
@@ -724,8 +724,8 @@
                         </td>
                         <td></td>
                         <td><input class="sv-411" name="sv-411" type="number"></td>
-                        <td><input class="lop-411" name="lop-411" type="number"></td>
-                        <td><input class="khoa-411" name="khoa-411" type="number"></td>
+                        <td><input <?php echo (isset($_SESSION['STUDENT'])) ? "disabled" : ""; ?> class="lop-411" name="lop-411" type="number"></td>
+                        <td><input <?php echo (!isset($_SESSION['ADMIN']) && !isset($_SESSION['BCH'])) ? "disabled" : ""; ?> class="khoa-411" name="khoa-411" type="number"></td>
                     </tr>
                     <tr>
                         <td>
@@ -741,8 +741,8 @@
                         </td>
                         <td></td>
                         <td><input class="sv-412" name="sv-412" type="number"></td>
-                        <td><input class="lop-412" name="lop-412" type="number"></td>
-                        <td><input class="khoa-412" name="khoa-412" type="number"></td>
+                        <td><input <?php echo (isset($_SESSION['STUDENT'])) ? "disabled" : ""; ?> class="lop-412" name="lop-412" type="number"></td>
+                        <td><input <?php echo (!isset($_SESSION['ADMIN']) && !isset($_SESSION['BCH'])) ? "disabled" : ""; ?> class="khoa-412" name="khoa-412" type="number"></td>
                     </tr>
                     <tr>
                         <td>
@@ -759,16 +759,16 @@
                         </td>
                         <td></td>
                         <td><input class="sv-413" name="sv-413" type="number"></td>
-                        <td><input class="lop-413" name="lop-413" type="number"></td>
-                        <td><input class="khoa-413" name="khoa-413" type="number"></td>
+                        <td><input <?php echo (isset($_SESSION['STUDENT'])) ? "disabled" : ""; ?> class="lop-413" name="lop-413" type="number"></td>
+                        <td><input <?php echo (!isset($_SESSION['ADMIN']) && !isset($_SESSION['BCH'])) ? "disabled" : ""; ?> class="khoa-413" name="khoa-413" type="number"></td>
                     </tr>
                     <tr>
                         <td>4.1.4 Hoạt động giúp người, cứu người: Hiến máu nhân đạo; các hoạt động giúp người cứu người được tập thể lớp, các tổ chức đoàn thể trong và ngoài trường công nhận…</td>
                         <td>5 điểm/lần</td>
                         <td></td>
                         <td><input class="sv-414" name="sv-414" type="number"></td>
-                        <td><input class="lop-414" name="lop-414" type="number"></td>
-                        <td><input class="khoa-414" name="khoa-414" type="number"></td>
+                        <td><input <?php echo (isset($_SESSION['STUDENT'])) ? "disabled" : ""; ?> class="lop-414" name="lop-414" type="number"></td>
+                        <td><input <?php echo (!isset($_SESSION['ADMIN']) && !isset($_SESSION['BCH'])) ? "disabled" : ""; ?> class="khoa-414" name="khoa-414" type="number"></td>
                     </tr>
                     <tr>
                         <td>
@@ -784,8 +784,8 @@
                         </td>
                         <td></td>
                         <td><input class="sv-415" name="sv-415" type="number"></td>
-                        <td><input class="lop-415" name="lop-415" type="number"></td>
-                        <td><input class="khoa-415" name="khoa-415" type="number"></td>
+                        <td><input <?php echo (isset($_SESSION['STUDENT'])) ? "disabled" : ""; ?> class="lop-415" name="lop-415" type="number"></td>
+                        <td><input <?php echo (!isset($_SESSION['ADMIN']) && !isset($_SESSION['BCH'])) ? "disabled" : ""; ?> class="khoa-415" name="khoa-415" type="number"></td>
                     </tr>
                     <tr>
                         <td>
@@ -807,8 +807,8 @@
                             <div class="file-name-multi-416"></div>
                         </td>
                         <td><input class="sv-416" name="sv-416" type="number"></td>
-                        <td><input class="lop-416" name="lop-416" type="number"></td>
-                        <td><input class="khoa-416" name="khoa-416" type="number"></td>
+                        <td><input <?php echo (isset($_SESSION['STUDENT'])) ? "disabled" : ""; ?> class="lop-416" name="lop-416" type="number"></td>
+                        <td><input <?php echo (!isset($_SESSION['ADMIN']) && !isset($_SESSION['BCH'])) ? "disabled" : ""; ?> class="khoa-416" name="khoa-416" type="number"></td>
                     </tr>
                     <tr class="total-score-part" style="font-weight: bold;">
                         <td>TỔNG ĐIỂM PHẦN 4 </td>
@@ -818,8 +818,8 @@
                         </td>
                         <td></td>
                         <td><input readonly class="sv-4" name="sv-4" type="number"></td>
-                        <td><input readonly class="lop-4" name="lop-4" type="number"></td>
-                        <td><input readonly class="khoa-4" name="khoa-4" type="number"></td>
+                        <td><input <?php echo (isset($_SESSION['STUDENT'])) ? "disabled" : ""; ?> readonly class="lop-4" name="lop-4" type="number"></td>
+                        <td><input <?php echo (!isset($_SESSION['ADMIN']) && !isset($_SESSION['BCH'])) ? "disabled" : ""; ?> readonly class="khoa-4" name="khoa-4" type="number"></td>
                     </tr>
                     <tr style="font-weight: bold;">
                         <td>5. Đánh giá về ý thức và kết quả khi tham gia công tác cán bộ lớp, các đoàn thể, tổ chức trong trường hoặc sinh viên đạt được thành tích đặc biệt trong học tập, rèn luyện</td>
@@ -845,8 +845,8 @@
                         </td>
                         <td></td>
                         <td><input type="number" class="sv-511" name="sv-511" id=""></td>
-                        <td><input type="number" class="lop-511" name="lop-511" id=""></td>
-                        <td><input type="number" class="khoa-511" name="khoa-511" id=""></td>
+                        <td><input <?php echo (isset($_SESSION['STUDENT'])) ? "disabled" : ""; ?> type="number" class="lop-511" name="lop-511" id=""></td>
+                        <td><input <?php echo (!isset($_SESSION['ADMIN']) && !isset($_SESSION['BCH'])) ? "disabled" : ""; ?> type="number" class="khoa-511" name="khoa-511" id=""></td>
                     </tr>
                     <tr>
                         <td>5.1.2 Sinh viên là cộng tác viên (thường xuyên) của các đơn vị trong trường, tổ chức đoàn thể có nhiều đóng góp trong công tác. Được các đơn vị, tổ chức đoàn thể xác nhận đánh giá công nhận.</td>
@@ -862,8 +862,8 @@
                             <div class="file-name-multi-512"></div>
                         </td>
                         <td><input type="number" class="sv-512" name="sv-512" id=""></td>
-                        <td><input type="number" class="lop-512" name="lop-512" id=""></td>
-                        <td><input type="number" class="khoa-512" name="khoa-512" id=""></td>
+                        <td><input <?php echo (isset($_SESSION['STUDENT'])) ? "disabled" : ""; ?> type="number" class="lop-512" name="lop-512" id=""></td>
+                        <td><input <?php echo (!isset($_SESSION['ADMIN']) && !isset($_SESSION['BCH'])) ? "disabled" : ""; ?> type="number" class="khoa-512" name="khoa-512" id=""></td>
                     </tr>
                     <tr style="font-weight: bold;">
                         <td>5.2 Điểm thưởng </td>
@@ -880,8 +880,8 @@
                             <div class="file-name-multi-513"></div>
                         </td>
                         <td><input type="number" class="sv-513" name="sv-513" id=""></td>
-                        <td><input type="number" class="lop-513" name="lop-513" id=""></td>
-                        <td><input type="number" class="khoa-513" name="khoa-513" id=""></td>
+                        <td><input <?php echo (isset($_SESSION['STUDENT'])) ? "disabled" : ""; ?> type="number" class="lop-513" name="lop-513" id=""></td>
+                        <td><input <?php echo (!isset($_SESSION['ADMIN']) && !isset($_SESSION['BCH'])) ? "disabled" : ""; ?> type="number" class="khoa-513" name="khoa-513" id=""></td>
                     </tr>
                     <tr>
                         <td>5.2.2 Thành viên đội tuyển trường tham gia các cuộc thi, hội thi từ cấp tỉnh, thành phố trực thuộc trung ương trở lên đạt thành tích cao (Giải A, B, C, hoặc I, II, III, khuyến khích).</td>
@@ -894,8 +894,8 @@
                             <div class="file-name-multi-514"></div>
                         </td>
                         <td><input type="number" class="sv-514" name="sv-514" id=""></td>
-                        <td><input type="number" class="lop-514" name="lop-514" id=""></td>
-                        <td><input type="number" class="khoa-514" name="khoa-514" id=""></td>
+                        <td><input <?php echo (isset($_SESSION['STUDENT'])) ? "disabled" : ""; ?> type="number" class="lop-514" name="lop-514" id=""></td>
+                        <td><input <?php echo (!isset($_SESSION['ADMIN']) && !isset($_SESSION['BCH'])) ? "disabled" : ""; ?> type="number" class="khoa-514" name="khoa-514" id=""></td>
                     </tr>
                     <tr>
                         <td>
@@ -915,8 +915,8 @@
                             <div class="file-name-multi-515"></div>
                         </td>
                         <td><input type="number" class="sv-515" name="sv-515" id=""></td>
-                        <td><input type="number" class="lop-515" name="lop-515" id=""></td>
-                        <td><input type="number" class="khoa-515" name="khoa-515" id=""></td>
+                        <td><input <?php echo (isset($_SESSION['STUDENT'])) ? "disabled" : ""; ?> type="number" class="lop-515" name="lop-515" id=""></td>
+                        <td><input <?php echo (!isset($_SESSION['ADMIN']) && !isset($_SESSION['BCH'])) ? "disabled" : ""; ?> type="number" class="khoa-515" name="khoa-515" id=""></td>
                     </tr>
                     <tr>
                         <td>
@@ -936,8 +936,8 @@
                             <div class="file-name-multi-516"></div>
                         </td>
                         <td><input type="number" class="sv-516" name="sv-516" id=""></td>
-                        <td><input type="number" class="lop-516" name="lop-516" id=""></td>
-                        <td><input type="number" class="khoa-516" name="khoa-516" id=""></td>
+                        <td><input <?php echo (isset($_SESSION['STUDENT'])) ? "disabled" : ""; ?> type="number" class="lop-516" name="lop-516" id=""></td>
+                        <td><input <?php echo (!isset($_SESSION['ADMIN']) && !isset($_SESSION['BCH'])) ? "disabled" : ""; ?> type="number" class="khoa-516" name="khoa-516" id=""></td>
                     </tr>
                     <tr>
                         <td>
@@ -957,8 +957,8 @@
                             <div class="file-name-multi-517"></div>
                         </td>
                         <td><input type="number" class="sv-517" name="sv-517" id=""></td>
-                        <td><input type="number" class="lop-517" name="lop-517" id=""></td>
-                        <td><input type="number" class="khoa-517" name="khoa-517" id=""></td>
+                        <td><input <?php echo (isset($_SESSION['STUDENT'])) ? "disabled" : ""; ?> type="number" class="lop-517" name="lop-517" id=""></td>
+                        <td><input <?php echo (!isset($_SESSION['ADMIN']) && !isset($_SESSION['BCH'])) ? "disabled" : ""; ?> type="number" class="khoa-517" name="khoa-517" id=""></td>
                     </tr>
                     <tr>
                         <td>5.2.6 Thành tích đặc biệt trong học tập, rèn luyện khác do Hội đồng đánh giá điểm rèn luyện cấp trường xem xét công nhận.</td>
@@ -974,8 +974,8 @@
                             <div class="file-name-multi-518"></div>
                         </td>
                         <td><input type="number" class="sv-518" name="sv-518" id=""></td>
-                        <td><input type="number" class="lop-518" name="lop-518" id=""></td>
-                        <td><input type="number" class="khoa-518" name="khoa-518" id=""></td>
+                        <td><input <?php echo (isset($_SESSION['STUDENT'])) ? "disabled" : ""; ?> type="number" class="lop-518" name="lop-518" id=""></td>
+                        <td><input <?php echo (!isset($_SESSION['ADMIN']) && !isset($_SESSION['BCH'])) ? "disabled" : ""; ?> type="number" class="khoa-518" name="khoa-518" id=""></td>
                     </tr>
                     <tr class="total-score-part" style="font-weight: bold;">
                         <td>TỔNG ĐIỂM PHẦN 5 </td>
@@ -985,8 +985,8 @@
                         </td>
                         <td></td>
                         <td><input readonly class="sv-5" name="sv-5" type="number"></td>
-                        <td><input readonly class="lop-5" name="lop-5" type="number"></td>
-                        <td><input readonly class="khoa-5" name="khoa-5" type="number"></td>
+                        <td><input <?php echo (isset($_SESSION['STUDENT'])) ? "disabled" : ""; ?> readonly class="lop-5" name="lop-5" type="number"></td>
+                        <td><input <?php echo (!isset($_SESSION['ADMIN']) && !isset($_SESSION['BCH'])) ? "disabled" : ""; ?> readonly class="khoa-5" name="khoa-5" type="number"></td>
                     </tr>
                     <tr class="total-score-part" style="font-weight: bold;">
                         <td>TỔNG ĐIỂM PHẦN 1 + 2 + 3 + 4 + 5 </td>
@@ -996,8 +996,8 @@
                         </td>
                         <td></td>
                         <td><input readonly class="sv-tong" name="sv-tong" type="number"></td>
-                        <td><input readonly class="lop-tong" name="lop-tong" type="number"></td>
-                        <td><input readonly class="khoa-tong" name="khoa-tong" type="number"></td>
+                        <td><input <?php echo (isset($_SESSION['STUDENT'])) ? "disabled" : ""; ?> readonly class="lop-tong" name="lop-tong" type="number"></td>
+                        <td><input <?php echo (!isset($_SESSION['ADMIN']) && !isset($_SESSION['BCH'])) ? "disabled" : ""; ?> readonly class="khoa-tong" name="khoa-tong" type="number"></td>
                     </tr>
                 </tbody>
             </table>
