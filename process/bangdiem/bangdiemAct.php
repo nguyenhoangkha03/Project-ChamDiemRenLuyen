@@ -2,6 +2,8 @@
     session_start();
     require '../../database/bangdiemCls.php';
     require '../../database/minhchungCls.php';
+    require '../../database/diemtcCls.php';
+    require '../../database/diemtcctCls.php';
     if(isset($_GET['reqact'])){
         $requestAction = $_GET['reqact'];
         switch($requestAction){
@@ -65,7 +67,6 @@
                     $c116 = $_POST['sv-116']; $c117 = $_POST['sv-117']; $c118 = $_POST['sv-118']; $c119 = $_POST['sv-119'];
                     $t121 = $_POST['sv-121']; $t122 = $_POST['sv-122'];
                     $sum1 = (int)$c111 + (int)$c112 + (int)$c113 + (int)$c114 + (int)$c115 + (int)$c116 + (int)$c117 + (int)$c118 + (int)$c119 - (int)$t121 - (int)$t121;
-                    
                     
                     if (isset($_FILES['files113']['name'])) {
                         foreach ($_FILES['files113']['tmp_name'] as $key => $tmp_name) {
@@ -139,18 +140,24 @@
                             }
                         }
                     }
+                    if($sum1 > 20){
+                        $sum1 = 20;
+                    }
 
                     // Phan 2
                     $c211 = $_POST['sv-211']; $c212 = $_POST['sv-212'];
                     $t221 = $_POST['sv-221']; $t222 = $_POST['sv-222']; $t223 = $_POST['sv-223']; $t224 = $_POST['sv-224']; $t225 = $_POST['sv-225'];
                     $t226 = $_POST['sv-226']; $t227 = $_POST['sv-227'];
                     $sum2 = (int)$c211 + (int)$c212 - (int)$t221 - (int)$t222 - (int)$t223 - (int)$t224 - (int)$t225 - (int)$t226 - (int)$t227;
+                    if($sum2 > 25){
+                        $sum2 = 25;
+                    }
 
                     // Phan 3
                     $c311 = $_POST['sv-311']; $c312 = $_POST['sv-312']; $c313 = $_POST['sv-313']; $c314 = $_POST['sv-314']; $c315 = $_POST['sv-315'];
                     $c316 = $_POST['sv-316'];
                     $t321 = $_POST['sv-321']; $t322 = $_POST['sv-322'];
-                    $sum3 = $c311 + $c312 + $c313 + $c314 + $c315 + $c316 - $t321 - $t322;
+                    $sum3 = (int)$c311 + (int)$c312 + (int)$c313 + (int)$c314 + (int)$c315 + (int)$c316 - (int)$t321 - (int)$t322;
 
                     if (isset($_FILES['files311']['name'])) {
                         foreach ($_FILES['files311']['tmp_name'] as $key => $tmp_name) {
@@ -224,11 +231,14 @@
                             }
                         }
                     }
+                    if($sum3 > 20){
+                        $sum3 = 20;
+                    }
 
                     // Phan 4
                     $c411 = $_POST['sv-411']; $c412 = $_POST['sv-412']; $c413 = $_POST['sv-413']; $c414 = $_POST['sv-414']; $c415 = $_POST['sv-415'];
                     $c416 = $_POST['sv-416'];
-                    $sum4 = $c411 + $c412 + $c413 + $c414 + $c415 + $c416;
+                    $sum4 = (int)$c411 + (int)$c412 + (int)$c413 + (int)$c414 + (int)$c415 + (int)$c416;
 
                     if (isset($_FILES['files416']['name'])) {
                         foreach ($_FILES['files416']['tmp_name'] as $key => $tmp_name) {
@@ -242,11 +252,14 @@
                             }
                         }
                     }
+                    if($sum4 > 25){
+                        $sum4 = 25;
+                    }
 
                     // Phan 5
                     $c511 = $_POST['sv-511']; $c512 = $_POST['sv-512']; $c513 = $_POST['sv-513']; $c514 = $_POST['sv-514']; $c515 = $_POST['sv-515'];
                     $c516 = $_POST['sv-516']; $c517 = $_POST['sv-517']; $c518 = $_POST['sv-518'];
-                    $sum5 = $c511 + $c512 + $c513 + $c514 + $c515 + $c516 + $c517 + $c518;
+                    $sum5 = (int)$c511 + (int)$c512 + (int)$c513 + (int)$c514 + (int)$c515 + (int)$c516 + (int)$c517 + (int)$c518;
 
                     if (isset($_FILES['files512']['name'])) {
                         foreach ($_FILES['files512']['tmp_name'] as $key => $tmp_name) {
@@ -332,10 +345,32 @@
                             }
                         }
                     }
+                    if($sum5 > 10){
+                        $sum5 = 10;
+                    }
 
                     // Tong
-                    $sum = $sum1 + $sum2 + $sum3 + $sum4 + $sum5;
-                    echo $sum;
+                    $sum = (int)$sum1 + (int)$sum2 + (int)$sum3 + (int)$sum4 + (int)$sum5;
+                    
+                    // Insert
+                    $bangdiem = new Bangdiem();
+                    $diemtc = new DiemTC();
+                    $diemtcct = new DiemTCCT();
+                    $getcheck = $bangdiem->BangdiemGetbyCheckBoth(1, 1);
+                    $idbd = ($bangdiem->BangdiemLastOfIDSV($idsv))->ID_BD;
+                    if($getcheck != null){
+                        $resultBD = $bangdiem->BangdiemAdd($getcheck->HOCKY, $getcheck->NAMHOC, $sum, null, null, $idsv);
+                        // Diem TC
+                        $resultDTC1 = $diemtc->DiemTCAdd($sum1, null, null, $idbd, 1);   
+                        $resultDTC2 = $diemtc->DiemTCAdd($sum2, null, null, $idbd, 2);   
+                        $resultDTC3 = $diemtc->DiemTCAdd($sum3, null, null, $idbd, 3);   
+                        $resultDTC4 = $diemtc->DiemTCAdd($sum4, null, null, $idbd, 4);   
+                        $resultDTC5 = $diemtc->DiemTCAdd($sum5, null, null, $idbd, 5);   
+                        // Diem TCCT1
+                        $resultDTCCT1 = $diemtcct->DiemTCCTAdd($c111, 0, 0, $idbd, 1);
+                        $resultDTTCT2 = $diemtcct->DiemTCCTAdd($c112, 0, 0, $idbd, 2);
+                        $resultDTTCT3 = $diemtcct->DiemTCCTAdd($c113, 0, 0, $idbd, 3);
+                    }
                 }
 
                 break;

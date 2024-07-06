@@ -1,4 +1,7 @@
 <?php 
+    if(!isset($_SESSION['ADMIN']) && !isset($_SESSION['BCH']) && !isset($_SESSION['BCS']) && !isset($_SESSION['STUDENT'])){
+        echo '<script>window.location.href = "./login/index.php";</script>';
+    }
     require './database/bangdiemCls.php';
     $bangdiem = new Bangdiem();
     $arrayNam = array();
