@@ -370,6 +370,45 @@
                         $resultDTCCT1 = $diemtcct->DiemTCCTAdd($c111, 0, 0, $idbd, 1);
                         $resultDTTCT2 = $diemtcct->DiemTCCTAdd($c112, 0, 0, $idbd, 2);
                         $resultDTTCT3 = $diemtcct->DiemTCCTAdd($c113, 0, 0, $idbd, 3);
+                        $resultDTTCT4 = $diemtcct->DiemTCCTAdd($c114, 0, 0, $idbd, 4);
+                        $resultDTTCT5 = $diemtcct->DiemTCCTAdd($c115, 0, 0, $idbd, 5);
+                        $resultDTTCT6 = $diemtcct->DiemTCCTAdd($c116, 0, 0, $idbd, 6);
+                        $resultDTTCT7 = $diemtcct->DiemTCCTAdd($c117, 0, 0, $idbd, 7);
+                        $resultDTTCT8 = $diemtcct->DiemTCCTAdd($c118, 0, 0, $idbd, 8);
+                        $resultDTTCT9 = $diemtcct->DiemTCCTAdd($c119, 0, 0, $idbd, 9);
+                        $resultDTTCT10 = $diemtcct->DiemTCCTAdd($c121, 0, 0, $idbd, 10);
+                        $resultDTTCT11 = $diemtcct->DiemTCCTAdd($c122, 0, 0, $idbd, 11);
+                        $resultDTTCT12 = $diemtcct->DiemTCCTAdd($c123, 0, 0, $idbd, 12);
+                        $resultDTTCT13 = $diemtcct->DiemTCCTAdd($c124, 0, 0, $idbd, 13);
+                        $resultDTTCT14 = $diemtcct->DiemTCCTAdd($c125, 0, 0, $idbd, 14);
+                        $resultDTTCT15 = $diemtcct->DiemTCCTAdd($c126, 0, 0, $idbd, 15);
+                        $resultDTTCT16 = $diemtcct->DiemTCCTAdd($c127, 0, 0, $idbd, 16);
+                        $resultDTTCT17 = $diemtcct->DiemTCCTAdd($c128, 0, 0, $idbd, 17);
+                        $resultDTTCT18 = $diemtcct->DiemTCCTAdd($c129, 0, 0, $idbd, 18);
+                        $resultDTTCT19 = $diemtcct->DiemTCCTAdd($c131, 0, 0, $idbd, 19);
+                        $resultDTTCT20 = $diemtcct->DiemTCCTAdd($c132, 0, 0, $idbd, 20);
+                        $resultDTTCT21 = $diemtcct->DiemTCCTAdd($c133, 0, 0, $idbd, 21);
+                        $resultDTTCT22 = $diemtcct->DiemTCCTAdd($c134, 0, 0, $idbd, 22);
+                        $resultDTTCT23 = $diemtcct->DiemTCCTAdd($c135, 0, 0, $idbd, 23);
+                        $resultDTTCT24 = $diemtcct->DiemTCCTAdd($c136, 0, 0, $idbd, 24);
+                        $resultDTTCT25 = $diemtcct->DiemTCCTAdd($c137, 0, 0, $idbd, 25);
+                        $resultDTTCT26 = $diemtcct->DiemTCCTAdd($c138, 0, 0, $idbd, 26);
+                        $resultDTTCT27 = $diemtcct->DiemTCCTAdd($c139, 0, 0, $idbd, 27);
+                        $resultDTTCT28 = $diemtcct->DiemTCCTAdd($c141, 0, 0, $idbd, 28);
+                        $resultDTTCT29 = $diemtcct->DiemTCCTAdd($c142, 0, 0, $idbd, 29);
+                        $resultDTTCT30 = $diemtcct->DiemTCCTAdd($c143, 0, 0, $idbd, 30);
+                        $resultDTTCT31 = $diemtcct->DiemTCCTAdd($c144, 0, 0, $idbd, 31);
+                        $resultDTTCT32 = $diemtcct->DiemTCCTAdd($c145, 0, 0, $idbd, 32);
+                        $resultDTTCT33 = $diemtcct->DiemTCCTAdd($c146, 0, 0, $idbd, 33);
+                        $resultDTTCT34 = $diemtcct->DiemTCCTAdd($c147, 0, 0, $idbd, 34);
+                        $resultDTTCT35 = $diemtcct->DiemTCCTAdd($c148, 0, 0, $idbd, 35);
+                        $resultDTTCT36 = $diemtcct->DiemTCCTAdd($c149, 0, 0, $idbd, 36);
+                        $resultDTTCT37 = $diemtcct->DiemTCCTAdd($c1513, 0, 0, $idbd, 37);
+                        $resultDTTCT38 = $diemtcct->DiemTCCTAdd($c1514, 0, 0, $idbd, 38);
+                        $resultDTTCT39 = $diemtcct->DiemTCCTAdd($c1515, 0, 0, $idbd, 39);
+                        $resultDTTCT40 = $diemtcct->DiemTCCTAdd($c1516, 0, 0, $idbd, 40);
+                        $resultDTTCT41 = $diemtcct->DiemTCCTAdd($c1517, 0, 0, $idbd, 41);
+                        $resultDTTCT42 = $diemtcct->DiemTCCTAdd($c1518, 0, 0, $idbd, 42);
                     }
                 }
 
