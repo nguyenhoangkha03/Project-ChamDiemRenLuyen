@@ -532,8 +532,8 @@ $(document).ready(function(){
         var diemcong = parseInt(v211) + parseInt(v212);
         var diemtru = parseInt(v221) + parseInt(v222) + parseInt(v223) + parseInt(v224) + parseInt(v225) + parseInt(v226) + parseInt(v227);
         var conlai = diemcong - diemtru;
-        if(conlai > 20){
-            conlai = 20;
+        if(conlai > 25){
+            conlai = 25;
         }
         $('.sv-2').val(parseInt(conlai)).trigger('input');
     });
@@ -545,8 +545,8 @@ $(document).ready(function(){
         var diemcong = parseInt(v211) + parseInt(v212);
         var diemtru = parseInt(v221) + parseInt(v222) + parseInt(v223) + parseInt(v224) + parseInt(v225) + parseInt(v226) + parseInt(v227);
         var conlai = diemcong - diemtru;
-        if(conlai > 20){
-            conlai = 20;
+        if(conlai > 25){
+            conlai = 25;
         }
         $('.sv-2').val(parseInt(conlai)).trigger('input');
     });
@@ -558,8 +558,8 @@ $(document).ready(function(){
         var diemcong = parseInt(v211) + parseInt(v212);
         var diemtru = parseInt(v221) + parseInt(v222) + parseInt(v223) + parseInt(v224) + parseInt(v225) + parseInt(v226) + parseInt(v227);
         var conlai = diemcong - diemtru;
-        if(conlai > 20){
-            conlai = 20;
+        if(conlai > 25){
+            conlai = 25;
         }
         $('.sv-2').val(parseInt(conlai)).trigger('input');
     });
@@ -571,8 +571,8 @@ $(document).ready(function(){
         var diemcong = parseInt(v211) + parseInt(v212);
         var diemtru = parseInt(v221) + parseInt(v222) + parseInt(v223) + parseInt(v224) + parseInt(v225) + parseInt(v226) + parseInt(v227);
         var conlai = diemcong - diemtru;
-        if(conlai > 20){
-            conlai = 20;
+        if(conlai > 25){
+            conlai = 25;
         }
         $('.sv-2').val(parseInt(conlai)).trigger('input');
     });
@@ -584,8 +584,8 @@ $(document).ready(function(){
         var diemcong = parseInt(v211) + parseInt(v212);
         var diemtru = parseInt(v221) + parseInt(v222) + parseInt(v223) + parseInt(v224) + parseInt(v225) + parseInt(v226) + parseInt(v227);
         var conlai = diemcong - diemtru;
-        if(conlai > 20){
-            conlai = 20;
+        if(conlai > 25){
+            conlai = 25;
         }
         $('.sv-2').val(parseInt(conlai)).trigger('input');
     });
@@ -597,8 +597,8 @@ $(document).ready(function(){
         var diemcong = parseInt(v211) + parseInt(v212);
         var diemtru = parseInt(v221) + parseInt(v222) + parseInt(v223) + parseInt(v224) + parseInt(v225) + parseInt(v226) + parseInt(v227);
         var conlai = diemcong - diemtru;
-        if(conlai > 20){
-            conlai = 20;
+        if(conlai > 25){
+            conlai = 25;
         }
         $('.sv-2').val(parseInt(conlai)).trigger('input');
     });
@@ -610,8 +610,8 @@ $(document).ready(function(){
         var diemcong = parseInt(v211) + parseInt(v212);
         var diemtru = parseInt(v221) + parseInt(v222) + parseInt(v223) + parseInt(v224) + parseInt(v225) + parseInt(v226) + parseInt(v227);
         var conlai = diemcong - diemtru;
-        if(conlai > 20){
-            conlai = 20;
+        if(conlai > 25){
+            conlai = 25;
         }
         $('.sv-2').val(parseInt(conlai)).trigger('input');
     });
@@ -623,8 +623,8 @@ $(document).ready(function(){
         var diemcong = parseInt(v211) + parseInt(v212);
         var diemtru = parseInt(v221) + parseInt(v222) + parseInt(v223) + parseInt(v224) + parseInt(v225) + parseInt(v226) + parseInt(v227);
         var conlai = diemcong - diemtru;
-        if(conlai > 20){
-            conlai = 20;
+        if(conlai > 25){
+            conlai = 25;
         }
         $('.sv-2').val(parseInt(conlai)).trigger('input');
     });
@@ -636,8 +636,8 @@ $(document).ready(function(){
         var diemcong = parseInt(v211) + parseInt(v212);
         var diemtru = parseInt(v221) + parseInt(v222) + parseInt(v223) + parseInt(v224) + parseInt(v225) + parseInt(v226) + parseInt(v227);
         var conlai = diemcong - diemtru;
-        if(conlai > 20){
-            conlai = 20;
+        if(conlai > 25){
+            conlai = 25;
         }
         $('.sv-2').val(parseInt(conlai)).trigger('input');
     });
@@ -657,8 +657,8 @@ $(document).ready(function(){
         var diemcong = parseInt(v211) + parseInt(v212);
         var diemtru = parseInt(v221) + parseInt(v222) + parseInt(v223) + parseInt(v224) + parseInt(v225) + parseInt(v226) + parseInt(v227);
         var conlai = diemcong - diemtru;
-        if(conlai > 20){
-            conlai = 20;
+        if(conlai > 25){
+            conlai = 25;
         }
         $('.lop-2').val(parseInt(conlai)).trigger('input');
     });
@@ -670,8 +670,8 @@ $(document).ready(function(){
         var diemcong = parseInt(v211) + parseInt(v212);
         var diemtru = parseInt(v221) + parseInt(v222) + parseInt(v223) + parseInt(v224) + parseInt(v225) + parseInt(v226) + parseInt(v227);
         var conlai = diemcong - diemtru;
-        if(conlai > 20){
-            conlai = 20;
+        if(conlai > 25){
+            conlai = 25;
         }
         $('.lop-2').val(parseInt(conlai)).trigger('input');
     });
@@ -683,8 +683,8 @@ $(document).ready(function(){
         var diemcong = parseInt(v211) + parseInt(v212);
         var diemtru = parseInt(v221) + parseInt(v222) + parseInt(v223) + parseInt(v224) + parseInt(v225) + parseInt(v226) + parseInt(v227);
         var conlai = diemcong - diemtru;
-        if(conlai > 20){
-            conlai = 20;
+        if(conlai > 25){
+            conlai = 25;
         }
         $('.lop-2').val(parseInt(conlai)).trigger('input');
     });
@@ -696,8 +696,8 @@ $(document).ready(function(){
         var diemcong = parseInt(v211) + parseInt(v212);
         var diemtru = parseInt(v221) + parseInt(v222) + parseInt(v223) + parseInt(v224) + parseInt(v225) + parseInt(v226) + parseInt(v227);
         var conlai = diemcong - diemtru;
-        if(conlai > 20){
-            conlai = 20;
+        if(conlai > 25){
+            conlai = 25;
         }
         $('.lop-2').val(parseInt(conlai)).trigger('input');
     });
@@ -709,8 +709,8 @@ $(document).ready(function(){
         var diemcong = parseInt(v211) + parseInt(v212);
         var diemtru = parseInt(v221) + parseInt(v222) + parseInt(v223) + parseInt(v224) + parseInt(v225) + parseInt(v226) + parseInt(v227);
         var conlai = diemcong - diemtru;
-        if(conlai > 20){
-            conlai = 20;
+        if(conlai > 25){
+            conlai = 25;
         }
         $('.lop-2').val(parseInt(conlai)).trigger('input');
     });
@@ -722,8 +722,8 @@ $(document).ready(function(){
         var diemcong = parseInt(v211) + parseInt(v212);
         var diemtru = parseInt(v221) + parseInt(v222) + parseInt(v223) + parseInt(v224) + parseInt(v225) + parseInt(v226) + parseInt(v227);
         var conlai = diemcong - diemtru;
-        if(conlai > 20){
-            conlai = 20;
+        if(conlai > 25){
+            conlai = 25;
         }
         $('.lop-2').val(parseInt(conlai)).trigger('input');
     });
@@ -735,8 +735,8 @@ $(document).ready(function(){
         var diemcong = parseInt(v211) + parseInt(v212);
         var diemtru = parseInt(v221) + parseInt(v222) + parseInt(v223) + parseInt(v224) + parseInt(v225) + parseInt(v226) + parseInt(v227);
         var conlai = diemcong - diemtru;
-        if(conlai > 20){
-            conlai = 20;
+        if(conlai > 25){
+            conlai = 25;
         }
         $('.lop-2').val(parseInt(conlai)).trigger('input');
     });
@@ -748,8 +748,8 @@ $(document).ready(function(){
         var diemcong = parseInt(v211) + parseInt(v212);
         var diemtru = parseInt(v221) + parseInt(v222) + parseInt(v223) + parseInt(v224) + parseInt(v225) + parseInt(v226) + parseInt(v227);
         var conlai = diemcong - diemtru;
-        if(conlai > 20){
-            conlai = 20;
+        if(conlai > 25){
+            conlai = 25;
         }
         $('.lop-2').val(parseInt(conlai)).trigger('input');
     });
@@ -761,8 +761,8 @@ $(document).ready(function(){
         var diemcong = parseInt(v211) + parseInt(v212);
         var diemtru = parseInt(v221) + parseInt(v222) + parseInt(v223) + parseInt(v224) + parseInt(v225) + parseInt(v226) + parseInt(v227);
         var conlai = diemcong - diemtru;
-        if(conlai > 20){
-            conlai = 20;
+        if(conlai > 25){
+            conlai = 25;
         }
         $('.lop-2').val(parseInt(conlai)).trigger('input');
     });
@@ -782,8 +782,8 @@ $(document).ready(function(){
         var diemcong = parseInt(v211) + parseInt(v212);
         var diemtru = parseInt(v221) + parseInt(v222) + parseInt(v223) + parseInt(v224) + parseInt(v225) + parseInt(v226) + parseInt(v227);
         var conlai = diemcong - diemtru;
-        if(conlai > 20){
-            conlai = 20;
+        if(conlai > 25){
+            conlai = 25;
         }
         $('.khoa-2').val(parseInt(conlai)).trigger('input');
     });
@@ -795,8 +795,8 @@ $(document).ready(function(){
         var diemcong = parseInt(v211) + parseInt(v212);
         var diemtru = parseInt(v221) + parseInt(v222) + parseInt(v223) + parseInt(v224) + parseInt(v225) + parseInt(v226) + parseInt(v227);
         var conlai = diemcong - diemtru;
-        if(conlai > 20){
-            conlai = 20;
+        if(conlai > 25){
+            conlai = 25;
         }
         $('.khoa-2').val(parseInt(conlai)).trigger('input');
     });
@@ -808,8 +808,8 @@ $(document).ready(function(){
         var diemcong = parseInt(v211) + parseInt(v212);
         var diemtru = parseInt(v221) + parseInt(v222) + parseInt(v223) + parseInt(v224) + parseInt(v225) + parseInt(v226) + parseInt(v227);
         var conlai = diemcong - diemtru;
-        if(conlai > 20){
-            conlai = 20;
+        if(conlai > 25){
+            conlai = 25;
         }
         $('.khoa-2').val(parseInt(conlai)).trigger('input');
     });
@@ -821,8 +821,8 @@ $(document).ready(function(){
         var diemcong = parseInt(v211) + parseInt(v212);
         var diemtru = parseInt(v221) + parseInt(v222) + parseInt(v223) + parseInt(v224) + parseInt(v225) + parseInt(v226) + parseInt(v227);
         var conlai = diemcong - diemtru;
-        if(conlai > 20){
-            conlai = 20;
+        if(conlai > 25){
+            conlai = 25;
         }
         $('.khoa-2').val(parseInt(conlai)).trigger('input');
     });
@@ -834,8 +834,8 @@ $(document).ready(function(){
         var diemcong = parseInt(v211) + parseInt(v212);
         var diemtru = parseInt(v221) + parseInt(v222) + parseInt(v223) + parseInt(v224) + parseInt(v225) + parseInt(v226) + parseInt(v227);
         var conlai = diemcong - diemtru;
-        if(conlai > 20){
-            conlai = 20;
+        if(conlai > 25){
+            conlai = 25;
         }
         $('.khoa-2').val(parseInt(conlai)).trigger('input');
     });
@@ -847,8 +847,8 @@ $(document).ready(function(){
         var diemcong = parseInt(v211) + parseInt(v212);
         var diemtru = parseInt(v221) + parseInt(v222) + parseInt(v223) + parseInt(v224) + parseInt(v225) + parseInt(v226) + parseInt(v227);
         var conlai = diemcong - diemtru;
-        if(conlai > 20){
-            conlai = 20;
+        if(conlai > 25){
+            conlai = 25;
         }
         $('.khoa-2').val(parseInt(conlai)).trigger('input');
     });
@@ -860,8 +860,8 @@ $(document).ready(function(){
         var diemcong = parseInt(v211) + parseInt(v212);
         var diemtru = parseInt(v221) + parseInt(v222) + parseInt(v223) + parseInt(v224) + parseInt(v225) + parseInt(v226) + parseInt(v227);
         var conlai = diemcong - diemtru;
-        if(conlai > 20){
-            conlai = 20;
+        if(conlai > 25){
+            conlai = 25;
         }
         $('.khoa-2').val(parseInt(conlai)).trigger('input');
     });
@@ -873,8 +873,8 @@ $(document).ready(function(){
         var diemcong = parseInt(v211) + parseInt(v212);
         var diemtru = parseInt(v221) + parseInt(v222) + parseInt(v223) + parseInt(v224) + parseInt(v225) + parseInt(v226) + parseInt(v227);
         var conlai = diemcong - diemtru;
-        if(conlai > 20){
-            conlai = 20;
+        if(conlai > 25){
+            conlai = 25;
         }
         $('.khoa-2').val(parseInt(conlai)).trigger('input');
     });
@@ -886,8 +886,8 @@ $(document).ready(function(){
         var diemcong = parseInt(v211) + parseInt(v212);
         var diemtru = parseInt(v221) + parseInt(v222) + parseInt(v223) + parseInt(v224) + parseInt(v225) + parseInt(v226) + parseInt(v227);
         var conlai = diemcong - diemtru;
-        if(conlai > 20){
-            conlai = 20;
+        if(conlai > 25){
+            conlai = 25;
         }
         $('.khoa-2').val(parseInt(conlai)).trigger('input');
     });
@@ -1242,8 +1242,8 @@ $(document).ready(function(){
         var v415 = $('.sv-415').val(); var v416 = $('.sv-416').val();
         
         var diemcong = parseInt(v411) + parseInt(v412) + parseInt(v413) + parseInt(v414) + parseInt(v415) + parseInt(v416);
-        if(diemcong > 20){
-            diemcong = 20;
+        if(diemcong > 25){
+            diemcong = 25;
         }
         $('.sv-4').val(parseInt(diemcong)).trigger('input');
     });
@@ -1252,8 +1252,8 @@ $(document).ready(function(){
         var v415 = $('.sv-415').val(); var v416 = $('.sv-416').val();
         
         var diemcong = parseInt(v411) + parseInt(v412) + parseInt(v413) + parseInt(v414) + parseInt(v415) + parseInt(v416);
-        if(diemcong > 20){
-            diemcong = 20;
+        if(diemcong > 25){
+            diemcong = 25;
         }
         $('.sv-4').val(parseInt(diemcong)).trigger('input');
     });
@@ -1262,8 +1262,8 @@ $(document).ready(function(){
         var v415 = $('.sv-415').val(); var v416 = $('.sv-416').val();
         
         var diemcong = parseInt(v411) + parseInt(v412) + parseInt(v413) + parseInt(v414) + parseInt(v415) + parseInt(v416);
-        if(diemcong > 20){
-            diemcong = 20;
+        if(diemcong > 25){
+            diemcong = 25;
         }
         $('.sv-4').val(parseInt(diemcong)).trigger('input');
     });
@@ -1272,8 +1272,8 @@ $(document).ready(function(){
         var v415 = $('.sv-415').val(); var v416 = $('.sv-416').val();
         
         var diemcong = parseInt(v411) + parseInt(v412) + parseInt(v413) + parseInt(v414) + parseInt(v415) + parseInt(v416);
-        if(diemcong > 20){
-            diemcong = 20;
+        if(diemcong > 25){
+            diemcong = 25;
         }
         $('.sv-4').val(parseInt(diemcong)).trigger('input');
     });
@@ -1282,8 +1282,8 @@ $(document).ready(function(){
         var v415 = $('.sv-415').val(); var v416 = $('.sv-416').val();
         
         var diemcong = parseInt(v411) + parseInt(v412) + parseInt(v413) + parseInt(v414) + parseInt(v415) + parseInt(v416);
-        if(diemcong > 20){
-            diemcong = 20;
+        if(diemcong > 25){
+            diemcong = 25;
         }
         $('.sv-4').val(parseInt(diemcong)).trigger('input');
     });
@@ -1292,8 +1292,8 @@ $(document).ready(function(){
         var v415 = $('.sv-415').val(); var v416 = $('.sv-416').val();
         
         var diemcong = parseInt(v411) + parseInt(v412) + parseInt(v413) + parseInt(v414) + parseInt(v415) + parseInt(v416);
-        if(diemcong > 20){
-            diemcong = 20;
+        if(diemcong > 25){
+            diemcong = 25;
         }
         $('.sv-4').val(parseInt(diemcong)).trigger('input');
     });
@@ -1309,8 +1309,8 @@ $(document).ready(function(){
         var v415 = $('.lop-415').val(); var v416 = $('.lop-416').val();
         
         var diemcong = parseInt(v411) + parseInt(v412) + parseInt(v413) + parseInt(v414) + parseInt(v415) + parseInt(v416);
-        if(diemcong > 20){
-            diemcong = 20;
+        if(diemcong > 25){
+            diemcong = 25;
         }
         $('.lop-4').val(parseInt(diemcong)).trigger('input');
     });
@@ -1319,8 +1319,8 @@ $(document).ready(function(){
         var v415 = $('.lop-415').val(); var v416 = $('.lop-416').val();
         
         var diemcong = parseInt(v411) + parseInt(v412) + parseInt(v413) + parseInt(v414) + parseInt(v415) + parseInt(v416);
-        if(diemcong > 20){
-            diemcong = 20;
+        if(diemcong > 25){
+            diemcong = 25;
         }
         $('.lop-4').val(parseInt(diemcong)).trigger('input');
     });
@@ -1329,8 +1329,8 @@ $(document).ready(function(){
         var v415 = $('.lop-415').val(); var v416 = $('.lop-416').val();
         
         var diemcong = parseInt(v411) + parseInt(v412) + parseInt(v413) + parseInt(v414) + parseInt(v415) + parseInt(v416);
-        if(diemcong > 20){
-            diemcong = 20;
+        if(diemcong > 25){
+            diemcong = 25;
         }
         $('.lop-4').val(parseInt(diemcong)).trigger('input');
     });
@@ -1339,8 +1339,8 @@ $(document).ready(function(){
         var v415 = $('.lop-415').val(); var v416 = $('.lop-416').val();
         
         var diemcong = parseInt(v411) + parseInt(v412) + parseInt(v413) + parseInt(v414) + parseInt(v415) + parseInt(v416);
-        if(diemcong > 20){
-            diemcong = 20;
+        if(diemcong > 25){
+            diemcong = 25;
         }
         $('.lop-4').val(parseInt(diemcong)).trigger('input');
     });
@@ -1349,8 +1349,8 @@ $(document).ready(function(){
         var v415 = $('.lop-415').val(); var v416 = $('.lop-416').val();
         
         var diemcong = parseInt(v411) + parseInt(v412) + parseInt(v413) + parseInt(v414) + parseInt(v415) + parseInt(v416);
-        if(diemcong > 20){
-            diemcong = 20;
+        if(diemcong > 25){
+            diemcong = 25;
         }
         $('.lop-4').val(parseInt(diemcong)).trigger('input');
     });
@@ -1359,8 +1359,8 @@ $(document).ready(function(){
         var v415 = $('.lop-415').val(); var v416 = $('.lop-416').val();
         
         var diemcong = parseInt(v411) + parseInt(v412) + parseInt(v413) + parseInt(v414) + parseInt(v415) + parseInt(v416);
-        if(diemcong > 20){
-            diemcong = 20;
+        if(diemcong > 25){
+            diemcong = 25;
         }
         $('.lop-4').val(parseInt(diemcong)).trigger('input');
     });
@@ -1377,8 +1377,8 @@ $(document).ready(function(){
         var v415 = $('.khoa-415').val(); var v416 = $('.khoa-416').val();
         
         var diemcong = parseInt(v411) + parseInt(v412) + parseInt(v413) + parseInt(v414) + parseInt(v415) + parseInt(v416);
-        if(diemcong > 20){
-            diemcong = 20;
+        if(diemcong > 25){
+            diemcong = 25;
         }
         $('.khoa-4').val(parseInt(diemcong)).trigger('input');
     });
@@ -1387,8 +1387,8 @@ $(document).ready(function(){
         var v415 = $('.khoa-415').val(); var v416 = $('.khoa-416').val();
         
         var diemcong = parseInt(v411) + parseInt(v412) + parseInt(v413) + parseInt(v414) + parseInt(v415) + parseInt(v416);
-        if(diemcong > 20){
-            diemcong = 20;
+        if(diemcong > 25){
+            diemcong = 25;
         }
         $('.khoa-4').val(parseInt(diemcong)).trigger('input');
     });
@@ -1397,8 +1397,8 @@ $(document).ready(function(){
         var v415 = $('.khoa-415').val(); var v416 = $('.khoa-416').val();
         
         var diemcong = parseInt(v411) + parseInt(v412) + parseInt(v413) + parseInt(v414) + parseInt(v415) + parseInt(v416);
-        if(diemcong > 20){
-            diemcong = 20;
+        if(diemcong > 25){
+            diemcong = 25;
         }
         $('.khoa-4').val(parseInt(diemcong)).trigger('input');
     });
@@ -1407,8 +1407,8 @@ $(document).ready(function(){
         var v415 = $('.khoa-415').val(); var v416 = $('.khoa-416').val();
         
         var diemcong = parseInt(v411) + parseInt(v412) + parseInt(v413) + parseInt(v414) + parseInt(v415) + parseInt(v416);
-        if(diemcong > 20){
-            diemcong = 20;
+        if(diemcong > 25){
+            diemcong = 25;
         }
         $('.khoa-4').val(parseInt(diemcong)).trigger('input');
     });
@@ -1417,8 +1417,8 @@ $(document).ready(function(){
         var v415 = $('.khoa-415').val(); var v416 = $('.khoa-416').val();
         
         var diemcong = parseInt(v411) + parseInt(v412) + parseInt(v413) + parseInt(v414) + parseInt(v415) + parseInt(v416);
-        if(diemcong > 20){
-            diemcong = 20;
+        if(diemcong > 25){
+            diemcong = 25;
         }
         $('.khoa-4').val(parseInt(diemcong)).trigger('input');
     });
@@ -1427,8 +1427,8 @@ $(document).ready(function(){
         var v415 = $('.khoa-415').val(); var v416 = $('.khoa-416').val();
         
         var diemcong = parseInt(v411) + parseInt(v412) + parseInt(v413) + parseInt(v414) + parseInt(v415) + parseInt(v416);
-        if(diemcong > 20){
-            diemcong = 20;
+        if(diemcong > 25){
+            diemcong = 25;
         }
         $('.khoa-4').val(parseInt(diemcong)).trigger('input');
     });
@@ -1447,8 +1447,8 @@ $(document).ready(function(){
         
         var diemcong = parseInt(v511) + parseInt(v512) + parseInt(v513) + parseInt(v514) + parseInt(v515) + parseInt(v516) +
         parseInt(v517) + parseInt(v518);
-        if(diemcong > 20){
-            diemcong = 20;
+        if(diemcong > 10){
+            diemcong = 10;
         }
         $('.sv-5').val(parseInt(diemcong)).trigger('input');
     });
@@ -1458,8 +1458,8 @@ $(document).ready(function(){
         
         var diemcong = parseInt(v511) + parseInt(v512) + parseInt(v513) + parseInt(v514) + parseInt(v515) + parseInt(v516) +
         parseInt(v517) + parseInt(v518);
-        if(diemcong > 20){
-            diemcong = 20;
+        if(diemcong > 10){
+            diemcong = 10;
         }
         $('.sv-5').val(parseInt(diemcong)).trigger('input');
     });
@@ -1469,8 +1469,8 @@ $(document).ready(function(){
         
         var diemcong = parseInt(v511) + parseInt(v512) + parseInt(v513) + parseInt(v514) + parseInt(v515) + parseInt(v516) +
         parseInt(v517) + parseInt(v518);
-        if(diemcong > 20){
-            diemcong = 20;
+        if(diemcong > 10){
+            diemcong = 10;
         }
         $('.sv-5').val(parseInt(diemcong)).trigger('input');
     });
@@ -1480,8 +1480,8 @@ $(document).ready(function(){
         
         var diemcong = parseInt(v511) + parseInt(v512) + parseInt(v513) + parseInt(v514) + parseInt(v515) + parseInt(v516) +
         parseInt(v517) + parseInt(v518);
-        if(diemcong > 20){
-            diemcong = 20;
+        if(diemcong > 10){
+            diemcong = 10;
         }
         $('.sv-5').val(parseInt(diemcong)).trigger('input');
     });
@@ -1491,8 +1491,8 @@ $(document).ready(function(){
         
         var diemcong = parseInt(v511) + parseInt(v512) + parseInt(v513) + parseInt(v514) + parseInt(v515) + parseInt(v516) +
         parseInt(v517) + parseInt(v518);
-        if(diemcong > 20){
-            diemcong = 20;
+        if(diemcong > 10){
+            diemcong = 10;
         }
         $('.sv-5').val(parseInt(diemcong)).trigger('input');
     });
@@ -1502,8 +1502,8 @@ $(document).ready(function(){
         
         var diemcong = parseInt(v511) + parseInt(v512) + parseInt(v513) + parseInt(v514) + parseInt(v515) + parseInt(v516) +
         parseInt(v517) + parseInt(v518);
-        if(diemcong > 20){
-            diemcong = 20;
+        if(diemcong > 10){
+            diemcong = 10;
         }
         $('.sv-5').val(parseInt(diemcong)).trigger('input');
     });
@@ -1513,8 +1513,8 @@ $(document).ready(function(){
         
         var diemcong = parseInt(v511) + parseInt(v512) + parseInt(v513) + parseInt(v514) + parseInt(v515) + parseInt(v516) +
         parseInt(v517) + parseInt(v518);
-        if(diemcong > 20){
-            diemcong = 20;
+        if(diemcong > 10){
+            diemcong = 10;
         }
         $('.sv-5').val(parseInt(diemcong)).trigger('input');
     });
@@ -1524,8 +1524,8 @@ $(document).ready(function(){
         
         var diemcong = parseInt(v511) + parseInt(v512) + parseInt(v513) + parseInt(v514) + parseInt(v515) + parseInt(v516) +
         parseInt(v517) + parseInt(v518);
-        if(diemcong > 20){
-            diemcong = 20;
+        if(diemcong > 10){
+            diemcong = 10;
         }
         $('.sv-5').val(parseInt(diemcong)).trigger('input');
     });
@@ -1543,8 +1543,8 @@ $(document).ready(function(){
         
         var diemcong = parseInt(v511) + parseInt(v512) + parseInt(v513) + parseInt(v514) + parseInt(v515) + parseInt(v516) +
         parseInt(v517) + parseInt(v518);
-        if(diemcong > 20){
-            diemcong = 20;
+        if(diemcong > 10){
+            diemcong = 10;
         }
         $('.lop-5').val(parseInt(diemcong)).trigger('input');
     });
@@ -1554,8 +1554,8 @@ $(document).ready(function(){
         
         var diemcong = parseInt(v511) + parseInt(v512) + parseInt(v513) + parseInt(v514) + parseInt(v515) + parseInt(v516) +
         parseInt(v517) + parseInt(v518);
-        if(diemcong > 20){
-            diemcong = 20;
+        if(diemcong > 10){
+            diemcong = 10;
         }
         $('.lop-5').val(parseInt(diemcong)).trigger('input');
     });
@@ -1565,8 +1565,8 @@ $(document).ready(function(){
         
         var diemcong = parseInt(v511) + parseInt(v512) + parseInt(v513) + parseInt(v514) + parseInt(v515) + parseInt(v516) +
         parseInt(v517) + parseInt(v518);
-        if(diemcong > 20){
-            diemcong = 20;
+        if(diemcong > 10){
+            diemcong = 10;
         }
         $('.lop-5').val(parseInt(diemcong)).trigger('input');
     });
@@ -1576,8 +1576,8 @@ $(document).ready(function(){
         
         var diemcong = parseInt(v511) + parseInt(v512) + parseInt(v513) + parseInt(v514) + parseInt(v515) + parseInt(v516) +
         parseInt(v517) + parseInt(v518);
-        if(diemcong > 20){
-            diemcong = 20;
+        if(diemcong > 10){
+            diemcong = 10;
         }
         $('.lop-5').val(parseInt(diemcong)).trigger('input');
     });
@@ -1587,8 +1587,8 @@ $(document).ready(function(){
         
         var diemcong = parseInt(v511) + parseInt(v512) + parseInt(v513) + parseInt(v514) + parseInt(v515) + parseInt(v516) +
         parseInt(v517) + parseInt(v518);
-        if(diemcong > 20){
-            diemcong = 20;
+        if(diemcong > 10){
+            diemcong = 10;
         }
         $('.lop-5').val(parseInt(diemcong)).trigger('input');
     });
@@ -1598,8 +1598,8 @@ $(document).ready(function(){
         
         var diemcong = parseInt(v511) + parseInt(v512) + parseInt(v513) + parseInt(v514) + parseInt(v515) + parseInt(v516) +
         parseInt(v517) + parseInt(v518);
-        if(diemcong > 20){
-            diemcong = 20;
+        if(diemcong > 10){
+            diemcong = 10;
         }
         $('.lop-5').val(parseInt(diemcong)).trigger('input');
     });
@@ -1609,8 +1609,8 @@ $(document).ready(function(){
         
         var diemcong = parseInt(v511) + parseInt(v512) + parseInt(v513) + parseInt(v514) + parseInt(v515) + parseInt(v516) +
         parseInt(v517) + parseInt(v518);
-        if(diemcong > 20){
-            diemcong = 20;
+        if(diemcong > 10){
+            diemcong = 10;
         }
         $('.lop-5').val(parseInt(diemcong)).trigger('input');
     });
@@ -1620,8 +1620,8 @@ $(document).ready(function(){
         
         var diemcong = parseInt(v511) + parseInt(v512) + parseInt(v513) + parseInt(v514) + parseInt(v515) + parseInt(v516) +
         parseInt(v517) + parseInt(v518);
-        if(diemcong > 20){
-            diemcong = 20;
+        if(diemcong > 10){
+            diemcong = 10;
         }
         $('.lop-5').val(parseInt(diemcong)).trigger('input');
     });
@@ -1638,8 +1638,8 @@ $(document).ready(function(){
         
         var diemcong = parseInt(v511) + parseInt(v512) + parseInt(v513) + parseInt(v514) + parseInt(v515) + parseInt(v516) +
         parseInt(v517) + parseInt(v518);
-        if(diemcong > 20){
-            diemcong = 20;
+        if(diemcong > 10){
+            diemcong = 10;
         }
         $('.khoa-5').val(parseInt(diemcong)).trigger('input');
     });
@@ -1649,8 +1649,8 @@ $(document).ready(function(){
         
         var diemcong = parseInt(v511) + parseInt(v512) + parseInt(v513) + parseInt(v514) + parseInt(v515) + parseInt(v516) +
         parseInt(v517) + parseInt(v518);
-        if(diemcong > 20){
-            diemcong = 20;
+        if(diemcong > 10){
+            diemcong = 10;
         }
         $('.khoa-5').val(parseInt(diemcong)).trigger('input');
     });
@@ -1660,8 +1660,8 @@ $(document).ready(function(){
         
         var diemcong = parseInt(v511) + parseInt(v512) + parseInt(v513) + parseInt(v514) + parseInt(v515) + parseInt(v516) +
         parseInt(v517) + parseInt(v518);
-        if(diemcong > 20){
-            diemcong = 20;
+        if(diemcong > 10){
+            diemcong = 10;
         }
         $('.khoa-5').val(parseInt(diemcong)).trigger('input');
     });
@@ -1671,8 +1671,8 @@ $(document).ready(function(){
         
         var diemcong = parseInt(v511) + parseInt(v512) + parseInt(v513) + parseInt(v514) + parseInt(v515) + parseInt(v516) +
         parseInt(v517) + parseInt(v518);
-        if(diemcong > 20){
-            diemcong = 20;
+        if(diemcong > 10){
+            diemcong = 10;
         }
         $('.khoa-5').val(parseInt(diemcong)).trigger('input');
     });
@@ -1682,8 +1682,8 @@ $(document).ready(function(){
         
         var diemcong = parseInt(v511) + parseInt(v512) + parseInt(v513) + parseInt(v514) + parseInt(v515) + parseInt(v516) +
         parseInt(v517) + parseInt(v518);
-        if(diemcong > 20){
-            diemcong = 20;
+        if(diemcong > 10){
+            diemcong = 10;
         }
         $('.khoa-5').val(parseInt(diemcong)).trigger('input');
     });
@@ -1693,8 +1693,8 @@ $(document).ready(function(){
         
         var diemcong = parseInt(v511) + parseInt(v512) + parseInt(v513) + parseInt(v514) + parseInt(v515) + parseInt(v516) +
         parseInt(v517) + parseInt(v518);
-        if(diemcong > 20){
-            diemcong = 20;
+        if(diemcong > 10){
+            diemcong = 10;
         }
         $('.khoa-5').val(parseInt(diemcong)).trigger('input');
     });
@@ -1704,8 +1704,8 @@ $(document).ready(function(){
         
         var diemcong = parseInt(v511) + parseInt(v512) + parseInt(v513) + parseInt(v514) + parseInt(v515) + parseInt(v516) +
         parseInt(v517) + parseInt(v518);
-        if(diemcong > 20){
-            diemcong = 20;
+        if(diemcong > 10){
+            diemcong = 10;
         }
         $('.khoa-5').val(parseInt(diemcong)).trigger('input');
     });
@@ -1715,8 +1715,8 @@ $(document).ready(function(){
         
         var diemcong = parseInt(v511) + parseInt(v512) + parseInt(v513) + parseInt(v514) + parseInt(v515) + parseInt(v516) +
         parseInt(v517) + parseInt(v518);
-        if(diemcong > 20){
-            diemcong = 20;
+        if(diemcong > 10){
+            diemcong = 10;
         }
         $('.khoa-5').val(parseInt(diemcong)).trigger('input');
     });
@@ -1725,6 +1725,20 @@ $(document).ready(function(){
         var v5 = $('.khoa-5').val(); var v4 = $('.khoa-4').val();
         var tong = parseInt(v1) + parseInt(v2) + parseInt(v3) + parseInt(v4) + parseInt(v5);
         $('.khoa-tong').val(tong);
+    });
+
+    $(document).on('click', '.send-score', function(e){
+        e.preventDefault();
+        if(confirm("Bạn chắc chắn muốn gửi chưa ?")){
+            $('.form-score').submit();
+        }
+        else{
+            return false;
+        }
+    });
+
+    $(document).on('click', '.cancel-score', function(e){
+        e.preventDefault();
     });
 
     // Tong

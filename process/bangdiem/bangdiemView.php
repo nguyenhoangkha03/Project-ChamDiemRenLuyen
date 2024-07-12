@@ -3,7 +3,11 @@
         echo '<script>window.location.href = "./login/index.php";</script>';
     }
     require './database/bangdiemCls.php';
+    require './database/diemtcCls.php';
+    require './database/diemtcctCls.php';
     $bangdiem = new Bangdiem();
+    $diemtc = new DiemTC();
+    $diemtcct = new DiemTCCT();
     $arrayNam = array();
     $date = new DateTime();
     $year = $date->format('Y');
@@ -16,12 +20,22 @@
     }
     $getcheck = $bangdiem->BangdiemGetbyCheckBoth(1, 1);
     $getcheckOpen = $bangdiem->BangdiemGetbyCheckBoth(1, 0);
+    $getdiemofsv = null;
+    if($getcheck != null){
+        $getdiemofsv = $bangdiem->BangdiemGetbyIdSVAndNHAndHK($getsinhvien->ID_SV, $getcheck->NAMHOC, $getcheck->HOCKY);
+    }
+    if($getdiemofsv != null){
+        $getdiemtc = $diemtc->DiemTCGetbyIdBD($getdiemofsv->ID_BD);
+
+        $getdiemtcct = $diemtcct->DiemTCCTGetbyIdBD($getdiemofsv->ID_BD);
+    }
 ?>
 <div class="get-sv" value="<?php echo $getsinhvien != null ? $getsinhvien->ID_SV : ""; ?>"></div>
 <div class="address-profile" style="margin-bottom: 40px;">
     <div>ĐIỂM RÈN LUYỆN</div>
 </div>
 <?php 
+if(isset($_SESSION['BCH']) || isset($_SESSION['ADMIN'])){
     if($getcheck == null){
         if($getcheckOpen != null){
 ?>
@@ -48,6 +62,7 @@
         </button>
 <?php
     }
+}
 ?>
 <div id="modal" class="modal">
     <div class="modal-content">
@@ -97,26 +112,43 @@
         </div>
     </div>
 </div>
-<form action="./process/bangdiem/bangdiemAct.php?reqact=chamdiem&idsv=<?php echo $getsinhvien->ID_SV; ?>" method="POST" enctype="multipart/form-data">
+<form class="form-score" action="./process/bangdiem/bangdiemAct.php?reqact=chamdiem&idsv=<?php echo $getsinhvien->ID_SV; ?>" method="POST" enctype="multipart/form-data">
     <div class="score">
+        <?php 
+            if($getdiemofsv != null && $getdiemofsv->TONGDIEMSV != null && $getdiemofsv->TONGDIEMLOP == null && $getdiemofsv->TONGDIEMKHOA == null){
+        ?>
+            <div class="raise-tb">Sinh viên đã hoàn thành</div>
+        <?php
+            }
+            if($getdiemofsv != null && $getdiemofsv->TONGDIEMLOP != null && $getdiemofsv->TONGDIEMLOP != null && $getdiemofsv->TONGDIEMLOP == null){
+        ?>
+            <div class="raise-tb">Lớp đã hoàn thành</div>
+        <?php
+            }
+            if($getdiemofsv != null && $getdiemofsv->TONGDIEMLOP != null && $getdiemofsv->TONGDIEMLOP != null && $getdiemofsv->TONGDIEMLOP != null){
+        ?>
+            <div class="raise-tb">Khoa đã hoàn thành</div>
+        <?php
+            }
+        ?>
         <div class="score-top" style="text-align: center; margin-right: 10px;">
         <?php 
             if($getcheck == null){
         ?>
                 CHƯA MỞ BẢNG ĐIỂM MỚI
                 <div style="margin-top: 10px;"><button class="watch-old">Xem Bảng Điểm Cũ</button></div>
-                
-                <!-- BẢNG ĐIỂM
-                <div>Học kỳ 2</div>
-                <div>Năm học 2022 - 2023</div> -->
         <?php
             }
             else{
+                $tn = new DateTime($getcheck->TUNGAY);
+                $tungay = $tn->format('d-m-Y');
+                $dn = new DateTime($getcheck->DENNGAY);
+                $denngay = $dn->format('d-m-Y');
         ?>
                 SINH VIÊN TỰ CHẤM ĐIỂM RÈN LUYỆN
                 <div>HỌC KỲ <?php echo $getcheck->HOCKY; ?></div>
                 <div>NĂM HỌC <?php echo $getcheck->NAMHOC; ?></div>
-                <div>Thời gian thực hiện từ ngày <span><?php echo $getcheck->TUNGAY; ?></span> đến hết ngày <span><?php echo $getcheck->DENNGAY; ?></span></div>
+                <div>Thời gian thực hiện từ ngày <span><?php echo $tungay; ?></span> đến hết ngày <span><?php echo $denngay; ?></span></div>
         <?php
             }
         ?> 
@@ -155,13 +187,13 @@
 
                         </td>
                         <td>
-                            <input class="sv-111" name="sv-111" type="number">
+                            <input value="<?php echo $getdiemtcct != null ? $getdiemtcct[0]->TONGDIEMSV : ""; ?>" class="sv-111" name="sv-111" type="number">
                         </td>
                         <td>
-                            <input <?php echo (isset($_SESSION['STUDENT'])) ? "disabled" : ""; ?> class="lop-111" name="lop-111" type="number">
+                            <input value="<?php echo $getdiemtcct != null ? $getdiemtcct[0]->TONGDIEMLOP : ""; ?>" <?php echo (isset($_SESSION['STUDENT'])) ? "disabled" : ""; ?> class="lop-111" name="lop-111" type="number">
                         </td>
                         <td>
-                            <input <?php echo (!isset($_SESSION['ADMIN']) && !isset($_SESSION['BCH'])) ? "disabled" : ""; ?> class="khoa-111" name="khoa-111" type="number">
+                            <input value="<?php echo $getdiemtcct != null ? $getdiemtcct[0]->TONGDIEMKHOA : ""; ?>" <?php echo (!isset($_SESSION['ADMIN']) && !isset($_SESSION['BCH'])) ? "disabled" : ""; ?> class="khoa-111" name="khoa-111" type="number">
                         </td>
                     </tr>
                     <tr>
@@ -178,13 +210,13 @@
 
                         </td>
                         <td>
-                            <input  class="sv-112" name="sv-112" type="number">
+                            <input value="<?php echo $getdiemtcct != null ? $getdiemtcct[1]->TONGDIEMSV : ""; ?>"  class="sv-112" name="sv-112" type="number">
                         </td>
                         <td>
-                            <input <?php echo (isset($_SESSION['STUDENT'])) ? "disabled" : ""; ?>  class="lop-112" name="lop-112" type="number">
+                            <input value="<?php echo $getdiemtcct != null ? $getdiemtcct[1]->TONGDIEMLOP : ""; ?>" <?php echo (isset($_SESSION['STUDENT'])) ? "disabled" : ""; ?>  class="lop-112" name="lop-112" type="number">
                         </td>
                         <td>
-                            <input <?php echo (!isset($_SESSION['ADMIN']) && !isset($_SESSION['BCH'])) ? "disabled" : ""; ?> class="khoa-112" name="khoa-112" type="number">
+                            <input value="<?php echo $getdiemtcct != null ? $getdiemtcct[1]->TONGDIEMKHOA : ""; ?>" <?php echo (!isset($_SESSION['ADMIN']) && !isset($_SESSION['BCH'])) ? "disabled" : ""; ?> class="khoa-112" name="khoa-112" type="number">
                         </td>
                     </tr>
                     <tr>
@@ -196,20 +228,33 @@
                             2 điểm/lần
                         </td>
                         <td>
-                            <div class="custom-file-input-multi test">
-                                <input type="file" name="files113[]" accept="image/*" multiple id="file113">
-                                <label style="cursor: pointer;" for="file">Tải ảnh lên</label>
-                            </div>
-                            <div class="file-name-multi-113"></div>
+                        <?php 
+                            if($getdiemofsv == null || $getdiemofsv->TONGDIEMSV == null){
+                        ?>
+                                <div class="custom-file-input-multi test">
+                                    <input type="file" name="files113[]" accept="image/*" multiple id="file113">
+                                    <label style="cursor: pointer;" for="file">Tải ảnh lên</label>
+                                </div>
+                                <div class="file-name-multi-113"></div>
+                        <?php
+                            }
+                            else{
+                        ?>
+                                <div value = "<?php echo $getdiemtcct[2]->ID_DTCCT; ?>" class="score-image">
+                                    Ảnh đã tải lên
+                                </divv>
+                        <?php
+                            }
+                        ?>
                         </td>
                         <td>
-                            <input  name="sv-113" class="sv-113" type="number">
+                            <input value="<?php echo $getdiemtcct != null ? $getdiemtcct[2]->TONGDIEMSV : ""; ?>"  name="sv-113" class="sv-113" type="number">
                         </td>
                         <td>
-                            <input <?php echo (isset($_SESSION['STUDENT'])) ? "disabled" : ""; ?>  name="lop-113" class="lop-113" type="number">
+                            <input value="<?php echo $getdiemtcct != null ? $getdiemtcct[2]->TONGDIEMLOP : ""; ?>" <?php echo (isset($_SESSION['STUDENT'])) ? "disabled" : ""; ?>  name="lop-113" class="lop-113" type="number">
                         </td>
                         <td>
-                            <input <?php echo (!isset($_SESSION['ADMIN']) && !isset($_SESSION['BCH'])) ? "disabled" : ""; ?> name="khoa-113" class="khoa-113" type="number">
+                            <input value="<?php echo $getdiemtcct != null ? $getdiemtcct[2]->TONGDIEMKHOA : ""; ?>" <?php echo (!isset($_SESSION['ADMIN']) && !isset($_SESSION['BCH'])) ? "disabled" : ""; ?> name="khoa-113" class="khoa-113" type="number">
                         </td>
                     </tr>
                     <tr>
@@ -225,20 +270,33 @@
                             <p>2 điểm</p>
                         </td>
                         <td>
-                            <div class="custom-file-input-multi">
-                                <input type="file" name="files114[]" multiple id="file114">
-                                <label style="cursor: pointer;" for="file">Tải ảnh lên</label>
-                            </div>
-                            <div class="file-name-multi-114"></div>
+                        <?php 
+                            if($getdiemofsv == null || $getdiemofsv->TONGDIEMSV == null){
+                        ?>
+                                <div class="custom-file-input-multi">
+                                    <input type="file" name="files114[]" accept="image/*" multiple id="file114">
+                                    <label style="cursor: pointer;" for="file">Tải ảnh lên</label>
+                                </div>
+                                <div class="file-name-multi-114"></div>
+                        <?php
+                            }
+                            else{
+                        ?>
+                                <div value = "<?php echo $getdiemtcct[3]->ID_DTCCT; ?>" class="score-image">
+                                    Ảnh đã tải lên
+                                </divv>
+                        <?php
+                            }
+                        ?>               
                         </td>
                         <td>
-                            <input  class="sv-114" type="number" name="sv-114" id="">
+                            <input value="<?php echo $getdiemtcct != null ? $getdiemtcct[3]->TONGDIEMSV : ""; ?>"  class="sv-114" type="number" name="sv-114" id="">
                         </td>
                         <td>
-                            <input <?php echo (isset($_SESSION['STUDENT'])) ? "disabled" : ""; ?>  class="lop-114" type="number" name="lop-114" id="">
+                            <input value="<?php echo $getdiemtcct != null ? $getdiemtcct[3]->TONGDIEMLOP : ""; ?>" <?php echo (isset($_SESSION['STUDENT'])) ? "disabled" : ""; ?>  class="lop-114" type="number" name="lop-114" id="">
                         </td>
                         <td>
-                            <input <?php echo (!isset($_SESSION['ADMIN']) && !isset($_SESSION['BCH'])) ? "disabled" : ""; ?> class="khoa-114" type="number" name="khoa-114" id="">
+                            <input value="<?php echo $getdiemtcct != null ? $getdiemtcct[3]->TONGDIEMKHOA : ""; ?>" <?php echo (!isset($_SESSION['ADMIN']) && !isset($_SESSION['BCH'])) ? "disabled" : ""; ?> class="khoa-114" type="number" name="khoa-114" id="">
                         </td>
                     </tr>
                     <tr>
@@ -249,20 +307,33 @@
                             5 điểm/lần
                         </td>
                         <td>
-                            <div class="custom-file-input-multi">
-                                <input type="file" name="files115[]" multiple id="file115">
-                                <label style="cursor: pointer;" for="file">Tải ảnh lên</label>
-                            </div>
-                            <div class="file-name-multi-115"></div>
+                        <?php 
+                            if($getdiemofsv == null || $getdiemofsv->TONGDIEMSV == null){
+                        ?>
+                                <div class="custom-file-input-multi">
+                                    <input type="file" name="files115[]" accept="image/*" multiple id="file115">
+                                    <label style="cursor: pointer;" for="file">Tải ảnh lên</label>
+                                </div>
+                                <div class="file-name-multi-115"></div>
+                        <?php
+                            }
+                            else{
+                        ?>
+                                <div value = "<?php echo $getdiemtcct[4]->ID_DTCCT; ?>" class="score-image">
+                                    Ảnh đã tải lên
+                                </divv>
+                        <?php
+                            }
+                        ?>  
                         </td>
                         <td>
-                            <input  class="sv-115" name="sv-115" type="number">
+                            <input value="<?php echo $getdiemtcct != null ? $getdiemtcct[4]->TONGDIEMSV : ""; ?>"  class="sv-115" name="sv-115" type="number">
                         </td>
                         <td>
-                            <input <?php echo (isset($_SESSION['STUDENT'])) ? "disabled" : ""; ?> class="lop-115" name="lop-115" type="number">
+                            <input value="<?php echo $getdiemtcct != null ? $getdiemtcct[4]->TONGDIEMLOP : ""; ?>" <?php echo (isset($_SESSION['STUDENT'])) ? "disabled" : ""; ?> class="lop-115" name="lop-115" type="number">
                         </td>
                         <td>
-                            <input <?php echo (!isset($_SESSION['ADMIN']) && !isset($_SESSION['BCH'])) ? "disabled" : ""; ?> class="khoa-115" name="khoa-115" type="number">
+                            <input value="<?php echo $getdiemtcct != null ? $getdiemtcct[4]->TONGDIEMKHOA : ""; ?>" <?php echo (!isset($_SESSION['ADMIN']) && !isset($_SESSION['BCH'])) ? "disabled" : ""; ?> class="khoa-115" name="khoa-115" type="number">
                         </td>
                     </tr>
                     <tr>
@@ -290,15 +361,28 @@
                             </p>
                         </td>
                         <td>
-                            <div class="custom-file-input-multi">
-                                <input type="file" name="files116[]" multiple id="file116">
-                                <label style="cursor: pointer;" for="file">Tải ảnh lên</label>
-                            </div>
-                            <div class="file-name-multi-116"></div>
+                        <?php 
+                            if($getdiemofsv == null || $getdiemofsv->TONGDIEMSV == null){
+                        ?>
+                                <div class="custom-file-input-multi">
+                                    <input type="file" name="files116[]" accept="image/*" multiple id="file116">
+                                    <label style="cursor: pointer;" for="file">Tải ảnh lên</label>
+                                </div>
+                                <div class="file-name-multi-116"></div>
+                        <?php
+                            }
+                            else{
+                        ?>
+                                <div value = "<?php echo $getdiemtcct[5]->ID_DTCCT; ?>" class="score-image">
+                                    Ảnh đã tải lên
+                                </divv>
+                        <?php
+                            }
+                        ?>  
                         </td>
-                        <td><input  class="sv-116" name="sv-116" type="number"></td>
-                        <td><input <?php echo (isset($_SESSION['STUDENT'])) ? "disabled" : ""; ?>  class="lop-116" name="lop-116" type="number"></td>
-                        <td><input <?php echo (!isset($_SESSION['ADMIN']) && !isset($_SESSION['BCH'])) ? "disabled" : ""; ?> class="khoa-116" name="khoa-116" type="number"></td>
+                        <td><input value="<?php echo $getdiemtcct != null ? $getdiemtcct[5]->TONGDIEMSV : ""; ?>"  class="sv-116" name="sv-116" type="number"></td>
+                        <td><input value="<?php echo $getdiemtcct != null ? $getdiemtcct[5]->TONGDIEMLOP : ""; ?>" <?php echo (isset($_SESSION['STUDENT'])) ? "disabled" : ""; ?>  class="lop-116" name="lop-116" type="number"></td>
+                        <td><input value="<?php echo $getdiemtcct != null ? $getdiemtcct[5]->TONGDIEMKHOA : ""; ?>" <?php echo (!isset($_SESSION['ADMIN']) && !isset($_SESSION['BCH'])) ? "disabled" : ""; ?> class="khoa-116" name="khoa-116" type="number"></td>
                     </tr>
                     <tr>
                         <td>
@@ -313,29 +397,55 @@
                             <p>8 điểm</p>
                         </td>
                         <td>
-                            <div class="custom-file-input-multi">
-                                <input type="file" name="files117[]" multiple id="file117">
-                                <label style="cursor: pointer;" for="file">Tải ảnh lên</label>
-                            </div>
-                            <div class="file-name-multi-117"></div>
+                        <?php 
+                            if($getdiemofsv == null || $getdiemofsv->TONGDIEMSV == null){
+                        ?>
+                                <div class="custom-file-input-multi">
+                                    <input type="file" name="files117[]" accept="image/*" multiple id="file117">
+                                    <label style="cursor: pointer;" for="file">Tải ảnh lên</label>
+                                </div>
+                                <div class="file-name-multi-117"></div>
+                        <?php
+                            }
+                            else{
+                        ?>
+                                <div value = "<?php echo $getdiemtcct[6]->ID_DTCCT; ?>" class="score-image">
+                                    Ảnh đã tải lên
+                                </divv>
+                        <?php
+                            }
+                        ?>
                         </td>
-                        <td><input  class="sv-117" name="sv-117" type="number"></td>
-                        <td><input <?php echo (isset($_SESSION['STUDENT'])) ? "disabled" : ""; ?>  class="lop-117" name="lop-117" type="number"></td>
-                        <td><input <?php echo (!isset($_SESSION['ADMIN']) && !isset($_SESSION['BCH'])) ? "disabled" : ""; ?> class="khoa-117" name="khoa-117" type="number"></td>
+                        <td><input value="<?php echo $getdiemtcct != null ? $getdiemtcct[6]->TONGDIEMSV : ""; ?>"  class="sv-117" name="sv-117" type="number"></td>
+                        <td><input value="<?php echo $getdiemtcct != null ? $getdiemtcct[6]->TONGDIEMLOP : ""; ?>" <?php echo (isset($_SESSION['STUDENT'])) ? "disabled" : ""; ?>  class="lop-117" name="lop-117" type="number"></td>
+                        <td><input value="<?php echo $getdiemtcct != null ? $getdiemtcct[6]->TONGDIEMKHOA : ""; ?>" <?php echo (!isset($_SESSION['ADMIN']) && !isset($_SESSION['BCH'])) ? "disabled" : ""; ?> class="khoa-117" name="khoa-117" type="number"></td>
                     </tr>
                     <tr>
                         <td>1.1.8 Có bài viết được đăng báo, tạp chí KHPL, kỷ yếu  hội nghị, hội thảo, tham luận, báo cáo chuyên đề liên quan đến hoạt động học thuật</td>
                         <td>5 điểm/bài</td>
                         <td>
-                            <div class="custom-file-input-multi">
-                                <input type="file" name="files118[]" multiple id="file118">
-                                <label style="cursor: pointer;" for="file">Tải ảnh lên</label>
-                            </div>
-                            <div class="file-name-multi-118"></div>
+                        <?php 
+                            if($getdiemofsv == null || $getdiemofsv->TONGDIEMSV == null){
+                        ?>
+                                <div class="custom-file-input-multi">
+                                    <input type="file" name="files118[]" accept="image/*" multiple id="file118">
+                                    <label style="cursor: pointer;" for="file">Tải ảnh lên</label>
+                                </div>
+                                <div class="file-name-multi-118"></div>
+                        <?php
+                            }
+                            else{
+                        ?>
+                                <div value = "<?php echo $getdiemtcct[7]->ID_DTCCT; ?>" class="score-image">
+                                    Ảnh đã tải lên
+                                </divv>
+                        <?php
+                            }
+                        ?>
                         </td>
-                        <td><input  class="sv-118" name="sv-118" type="number"></td>
-                        <td><input <?php echo (isset($_SESSION['STUDENT'])) ? "disabled" : ""; ?>  name="lop-118" class="lop-118" type="number"></td>
-                        <td><input <?php echo (!isset($_SESSION['ADMIN']) && !isset($_SESSION['BCH'])) ? "disabled" : ""; ?> name="khoa-118" class="khoa-118" type="number"></td>
+                        <td><input value="<?php echo $getdiemtcct != null ? $getdiemtcct[7]->TONGDIEMSV : ""; ?>"  class="sv-118" name="sv-118" type="number"></td>
+                        <td><input value="<?php echo $getdiemtcct != null ? $getdiemtcct[7]->TONGDIEMLOP : ""; ?>" <?php echo (isset($_SESSION['STUDENT'])) ? "disabled" : ""; ?>  name="lop-118" class="lop-118" type="number"></td>
+                        <td><input value="<?php echo $getdiemtcct != null ? $getdiemtcct[7]->TONGDIEMKHOA : ""; ?>" <?php echo (!isset($_SESSION['ADMIN']) && !isset($_SESSION['BCH'])) ? "disabled" : ""; ?> name="khoa-118" class="khoa-118" type="number"></td>
                     </tr>
                     <tr>
                         <td>
@@ -350,9 +460,9 @@
                             <p>8 điểm</p>
                         </td>
                         <td></td>
-                        <td><input  class="sv-119" name="sv-119" type="number"></td>
-                        <td><input <?php echo (isset($_SESSION['STUDENT'])) ? "disabled" : ""; ?>  name="lop-119" class="lop-119" type="number"></td>
-                        <td><input <?php echo (!isset($_SESSION['ADMIN']) && !isset($_SESSION['BCH'])) ? "disabled" : ""; ?> name="khoa-119" class="khoa-119" type="number"></td>
+                        <td><input value="<?php echo $getdiemtcct != null ? $getdiemtcct[8]->TONGDIEMSV : ""; ?>"  class="sv-119" name="sv-119" type="number"></td>
+                        <td><input value="<?php echo $getdiemtcct != null ? $getdiemtcct[8]->TONGDIEMLOP : ""; ?>" <?php echo (isset($_SESSION['STUDENT'])) ? "disabled" : ""; ?>  name="lop-119" class="lop-119" type="number"></td>
+                        <td><input value="<?php echo $getdiemtcct != null ? $getdiemtcct[8]->TONGDIEMKHOA : ""; ?>" <?php echo (!isset($_SESSION['ADMIN']) && !isset($_SESSION['BCH'])) ? "disabled" : ""; ?> name="khoa-119" class="khoa-119" type="number"></td>
                     </tr>
                     <tr style="font-weight: bold;">
                         <td>1.2 Điểm trừ</td>
@@ -374,9 +484,9 @@
                             <p>-20 điểm</p>
                         </td>
                         <td></td>
-                        <td><input  class="sv-121" name="sv-121" type="number"></td>
-                        <td><input <?php echo (isset($_SESSION['STUDENT'])) ? "disabled" : ""; ?>  name="lop-121" class="lop-121" type="number"></td>
-                        <td><input <?php echo (!isset($_SESSION['ADMIN']) && !isset($_SESSION['BCH'])) ? "disabled" : ""; ?> name="khoa-121" class="khoa-121" type="number"></td>
+                        <td><input value="<?php echo $getdiemtcct != null ? $getdiemtcct[9]->TONGDIEMSV : ""; ?>"  class="sv-121" name="sv-121" type="number"></td>
+                        <td><input value="<?php echo $getdiemtcct != null ? $getdiemtcct[9]->TONGDIEMLOP : ""; ?>" <?php echo (isset($_SESSION['STUDENT'])) ? "disabled" : ""; ?>  name="lop-121" class="lop-121" type="number"></td>
+                        <td><input value="<?php echo $getdiemtcct != null ? $getdiemtcct[9]->TONGDIEMKHOA : ""; ?>" <?php echo (!isset($_SESSION['ADMIN']) && !isset($_SESSION['BCH'])) ? "disabled" : ""; ?> name="khoa-121" class="khoa-121" type="number"></td>
                     </tr>
                     <tr>
                         <td>1.2.2 Có hành vi gây ảnh hưởng xấu đến công tác tổ chức các hoạt động học thuật, học tập. (Tùy vào mức độ gây ảnh hưởng, BTC các hoạt động đề xuất điểm trừ) </td>
@@ -385,9 +495,9 @@
                             <p>(tối đa)
                         </td>
                         <td></td>
-                        <td><input  class="sv-122" name="sv-122" type="number"></td>
-                        <td><input <?php echo (isset($_SESSION['STUDENT'])) ? "disabled" : ""; ?> name="lop-122" class="lop-122" type="number"></td>
-                        <td><input <?php echo (!isset($_SESSION['ADMIN']) && !isset($_SESSION['BCH'])) ? "disabled" : ""; ?> name="khoa-122" class="khoa-122" type="number"></td>
+                        <td><input value="<?php echo $getdiemtcct != null ? $getdiemtcct[10]->TONGDIEMSV : ""; ?>"  class="sv-122" name="sv-122" type="number"></td>
+                        <td><input value="<?php echo $getdiemtcct != null ? $getdiemtcct[10]->TONGDIEMLOP : ""; ?>" <?php echo (isset($_SESSION['STUDENT'])) ? "disabled" : ""; ?> name="lop-122" class="lop-122" type="number"></td>
+                        <td><input value="<?php echo $getdiemtcct != null ? $getdiemtcct[10]->TONGDIEMKHOA : ""; ?>" <?php echo (!isset($_SESSION['ADMIN']) && !isset($_SESSION['BCH'])) ? "disabled" : ""; ?> name="khoa-122" class="khoa-122" type="number"></td>
                     </tr>
                     <tr class="total-score-part" style="font-weight: bold;">
                         <td>TỔNG ĐIỂM PHẦN 1 </td>
@@ -396,9 +506,9 @@
                             <p>(tối đa)</p>
                         </td>
                         <td></td>
-                        <td><input  readonly class="sv-1" name="sv-1"  type="number"></td>
-                        <td><input <?php echo (isset($_SESSION['STUDENT'])) ? "disabled" : ""; ?>  readonly class="lop-1" name="lop-1" type="number"></td>
-                        <td><input <?php echo (!isset($_SESSION['ADMIN']) && !isset($_SESSION['BCH'])) ? "disabled" : ""; ?> readonly class="khoa-1" name="khoa-1" type="number"></td>
+                        <td><input value="<?php echo $getdiemtc != null ? $getdiemtc[0]->TONGDIEMSV : ""; ?>"  readonly class="sv-1" name="sv-1"  type="number"></td>
+                        <td><input value="<?php echo $getdiemtc != null ? $getdiemtc[0]->TONGDIEMLOP : ""; ?>" <?php echo (isset($_SESSION['STUDENT'])) ? "disabled" : ""; ?>  readonly class="lop-1" name="lop-1" type="number"></td>
+                        <td><input value="<?php echo $getdiemtc != null ? $getdiemtc[0]->TONGDIEMKHOA : ""; ?>" <?php echo (!isset($_SESSION['ADMIN']) && !isset($_SESSION['BCH'])) ? "disabled" : ""; ?> readonly class="khoa-1" name="khoa-1" type="number"></td>
                     </tr>
                     <tr style="font-weight: bold;">
                         <td>2. Đánh giá về ý thức chấp hành nội quy, quy chế, quy định</td>
@@ -419,10 +529,10 @@
 
                         </td>
                         <td>
-                            <input  class="sv-211" name="sv-211" type="number">
+                            <input value="<?php echo $getdiemtcct != null ? $getdiemtcct[11]->TONGDIEMSV : ""; ?>"  class="sv-211" name="sv-211" type="number">
                         </td>
                         <td>
-                            <input  <?php echo (isset($_SESSION['STUDENT'])) ? "disabled" : ""; ?> class="lop-211" name="lop-211" type="number">
+                            <input value="<?php echo $getdiemtcct == null ? $getdiemtcct[11]->TONGDIEMLOP : " "; ?>"  <?php echo (isset($_SESSION['STUDENT'])) ? "disabled" : ""; ?> class="lop-211" name="lop-211" type="number">
                         </td>
                         <td>
                             <input <?php echo (!isset($_SESSION['ADMIN']) && !isset($_SESSION['BCH'])) ? "disabled" : ""; ?> class="khoa-211" name="khoa-211" type="number">
@@ -442,7 +552,7 @@
                         <td>
 
                         </td>
-                        <td><input  class="sv-212" name="sv-212" type="number"></td>
+                        <td><input value="<?php echo $getdiemtcct != null ? $getdiemtcct[12]->TONGDIEMSV : ""; ?>"  class="sv-212" name="sv-212" type="number"></td>
                         <td><input <?php echo (isset($_SESSION['STUDENT'])) ? "disabled" : ""; ?>  class="lop-212" name="lop-212" type="number"></td>
                         <td><input <?php echo (!isset($_SESSION['ADMIN']) && !isset($_SESSION['BCH'])) ? "disabled" : ""; ?> class="khoa-212" name="khoa-212" type="number"></td>
                     </tr>
@@ -463,7 +573,7 @@
                         <td>
 
                         </td>
-                        <td><input  class="sv-221" name="sv-221" type="number"></td>
+                        <td><input value="<?php echo $getdiemtcct != null ? $getdiemtcct[13]->TONGDIEMSV : ""; ?>"  class="sv-221" name="sv-221" type="number"></td>
                         <td><input <?php echo (isset($_SESSION['STUDENT'])) ? "disabled" : ""; ?>  class="lop-221" name="lop-221" type="number"></td>
                         <td><input <?php echo (!isset($_SESSION['ADMIN']) && !isset($_SESSION['BCH'])) ? "disabled" : ""; ?> class="khoa-221" name="khoa-221" type="number"></td>
                     </tr>
@@ -477,7 +587,7 @@
                         <td>
 
                         </td>
-                        <td><input  class="sv-222" name="sv-222" type="number"></td>
+                        <td><input value="<?php echo $getdiemtcct != null ? $getdiemtcct[14]->TONGDIEMSV : ""; ?>"  class="sv-222" name="sv-222" type="number"></td>
                         <td><input <?php echo (isset($_SESSION['STUDENT'])) ? "disabled" : ""; ?>  class="lop-222" name="lop-222" type="number"></td>
                         <td><input <?php echo (!isset($_SESSION['ADMIN']) && !isset($_SESSION['BCH'])) ? "disabled" : ""; ?> class="khoa-222" name="khoa-222" type="number"></td>
                     </tr>
@@ -507,7 +617,7 @@
                             <p>-20 điểm/lần</p>
                         </td>
                         <td></td>
-                        <td><input  class="sv-223" name="sv-223" type="number"></td>
+                        <td><input value="<?php echo $getdiemtcct != null ? $getdiemtcct[15]->TONGDIEMSV : ""; ?>"  class="sv-223" name="sv-223" type="number"></td>
                         <td><input <?php echo (isset($_SESSION['STUDENT'])) ? "disabled" : ""; ?> class="lop-223" name="lop-223" type="number"></td>
                         <td><input <?php echo (!isset($_SESSION['ADMIN']) && !isset($_SESSION['BCH'])) ? "disabled" : ""; ?> class="khoa-223" name="khoa-223" type="number"></td>
                     </tr>
@@ -515,7 +625,7 @@
                         <td>2.2.4 Vi phạm nội quy thư viện ở mức độ: Nhắc nhở, phê bình, khóa thẻ thư viện...</td>
                         <td>-5 điểm/lần</td>
                         <td></td>
-                        <td><input  class="sv-224" name="sv-224" type="number"></td>
+                        <td><input value="<?php echo $getdiemtcct != null ? $getdiemtcct[16]->TONGDIEMSV : ""; ?>"  class="sv-224" name="sv-224" type="number"></td>
                         <td><input <?php echo (isset($_SESSION['STUDENT'])) ? "disabled" : ""; ?>  class="lop-224" name="lop-224" type="number"></td>
                         <td><input <?php echo (!isset($_SESSION['ADMIN']) && !isset($_SESSION['BCH'])) ? "disabled" : ""; ?> class="khoa-224" name="khoa-224" type="number"></td>
                     </tr>
@@ -523,7 +633,7 @@
                         <td>2.2.5 Không tham gia các buổi sinh hoạt lớp, chi đoàn, chi hội; các buổi phân công trực do Khoa, lớp phân công…</td>
                         <td>-3 điểm/lần</td>
                         <td></td>
-                        <td><input  class="sv-225" name="sv-225" type="number"></td>
+                        <td><input value="<?php echo $getdiemtcct != null ? $getdiemtcct[17]->TONGDIEMSV : ""; ?>"  class="sv-225" name="sv-225" type="number"></td>
                         <td><input <?php echo (isset($_SESSION['STUDENT'])) ? "disabled" : ""; ?>  class="lop-225" name="lop-225" type="number"></td>
                         <td><input <?php echo (!isset($_SESSION['ADMIN']) && !isset($_SESSION['BCH'])) ? "disabled" : ""; ?> class="khoa-225" name="khoa-225" type="number"></td>
                     </tr>
@@ -531,7 +641,7 @@
                         <td>2.2.6 Không tham gia các buổi sinh hoạt được Nhà trường, Đoàn trường, Hội sinh viên triệu tập.</td>
                         <td>-5 điểm/lần</td>
                         <td></td>
-                        <td><input  class="sv-226" name="sv-226" type="number"></td>
+                        <td><input value="<?php echo $getdiemtcct != null ? $getdiemtcct[18]->TONGDIEMSV : ""; ?>"  class="sv-226" name="sv-226" type="number"></td>
                         <td><input <?php echo (isset($_SESSION['STUDENT'])) ? "disabled" : ""; ?>  class="lop-226" name="lop-226" type="number"></td>
                         <td><input <?php echo (!isset($_SESSION['ADMIN']) && !isset($_SESSION['BCH'])) ? "disabled" : ""; ?> class="khoa-226" name="khoa-226" type="number"></td>
                     </tr>
@@ -543,7 +653,7 @@
                         </td>
                         <td></td>
                         <td></td>
-                        <td><input  class="sv-227" name="sv-227" type="number"></td>
+                        <td><input value="<?php echo $getdiemtcct != null ? $getdiemtcct[19]->TONGDIEMSV : ""; ?>"  class="sv-227" name="sv-227" type="number"></td>
                         <td><input <?php echo (isset($_SESSION['STUDENT'])) ? "disabled" : ""; ?>  class="lop-227" name="lop-227" type="number"></td>
                         <td><input <?php echo (!isset($_SESSION['ADMIN']) && !isset($_SESSION['BCH'])) ? "disabled" : ""; ?> class="khoa-227" name="khoa-227" type="number"></td>
                     </tr>
@@ -554,7 +664,7 @@
                             <p>(tối đa)</p>
                         </td>
                         <td></td>
-                        <td><input  readonly class="sv-2" name="sv-2" type="number"></td>
+                        <td><input value="<?php echo $getdiemtc != null ? $getdiemtc[1]->TONGDIEMSV : ""; ?>"  readonly class="sv-2" name="sv-2" type="number"></td>
                         <td><input <?php echo (isset($_SESSION['STUDENT'])) ? "disabled" : ""; ?>  readonly class="lop-2" name="lop-2" type="number"></td>
                         <td><input <?php echo (!isset($_SESSION['ADMIN']) && !isset($_SESSION['BCH'])) ? "disabled" : ""; ?> readonly class="khoa-2" name="khoa-2" type="number"></td>
                     </tr>
@@ -576,13 +686,26 @@
                             <p>4 điểm</p>
                         </td>
                         <td>
-                            <div class="custom-file-input-multi">
-                                <input type="file" name="files311[]" multiple id="file311">
-                                <label style="cursor: pointer;" for="file">Tải ảnh lên</label>
-                            </div>
-                            <div class="file-name-multi-311"></div>
+                        <?php 
+                            if($getdiemofsv == null || $getdiemofsv->TONGDIEMSV == null){
+                        ?>
+                                <div class="custom-file-input-multi">
+                                    <input type="file" name="files311[]" accept="image/*" multiple id="file311">
+                                    <label style="cursor: pointer;" for="file">Tải ảnh lên</label>
+                                </div>
+                                <div class="file-name-multi-311"></div>
+                        <?php
+                            }
+                            else{
+                        ?>
+                                <div value = "<?php echo $getdiemtcct[20]->ID_DTCCT; ?>" class="score-image">
+                                    Ảnh đã tải lên
+                                </divv>
+                        <?php
+                            }
+                        ?>
                         </td>
-                        <td><input  class="sv-311" name="sv-311" type="number"></td>
+                        <td><input value="<?php echo $getdiemtcct != null ? $getdiemtcct[20]->TONGDIEMSV : ""; ?>"  class="sv-311" name="sv-311" type="number"></td>
                         <td><input <?php echo (isset($_SESSION['STUDENT'])) ? "disabled" : ""; ?>  class="lop-311" name="lop-311" type="number"></td>
                         <td><input <?php echo (!isset($_SESSION['ADMIN']) && !isset($_SESSION['BCH'])) ? "disabled" : ""; ?> class="khoa-311" name="khoa-311" type="number"></td>
                     </tr>
@@ -590,13 +713,26 @@
                         <td>3.1.2 Tham dự (cỗ vũ, cổ động…) các hoạt động rèn luyện về chính trị, xã hội, văn hóa, văn nghệ, thể thao. (Theo chương trình được duyệt và BTC đề xuất cộng điểm)</td>
                         <td>2 điểm/lần</td>
                         <td>
-                            <div class="custom-file-input-multi">
-                                <input type="file" name="files312[]" multiple id="file312">
-                                <label style="cursor: pointer;" for="file">Tải ảnh lên</label>
-                            </div>
-                            <div class="file-name-multi-312"></div>
+                        <?php 
+                            if($getdiemofsv == null || $getdiemofsv->TONGDIEMSV == null){
+                        ?>
+                                <div class="custom-file-input-multi">
+                                    <input type="file" name="files312[]" accept="image/*" multiple id="file312">
+                                    <label style="cursor: pointer;" for="file">Tải ảnh lên</label>
+                                </div>
+                                <div class="file-name-multi-312"></div>
+                        <?php
+                            }
+                            else{
+                        ?>
+                                <div value = "<?php echo $getdiemtcct[21]->ID_DTCCT; ?>" class="score-image">
+                                    Ảnh đã tải lên
+                                </divv>
+                        <?php
+                            }
+                        ?>
                         </td>
-                        <td><input  class="sv-312" name="sv-312" type="number"></td>
+                        <td><input value="<?php echo $getdiemtcct != null ? $getdiemtcct[21]->TONGDIEMSV : ""; ?>"  class="sv-312" name="sv-312" type="number"></td>
                         <td><input <?php echo (isset($_SESSION['STUDENT'])) ? "disabled" : ""; ?>  class="lop-312" name="lop-312" type="number"></td>
                         <td><input <?php echo (!isset($_SESSION['ADMIN']) && !isset($_SESSION['BCH'])) ? "disabled" : ""; ?> class="khoa-312" name="khoa-312" type="number"></td>
                     </tr>
@@ -604,13 +740,26 @@
                         <td>3.1.3 Tham gia (thí sinh, vận động viên,…) các hoạt động rèn luyện về chính trị, xã hội, văn hóa, văn nghệ, thể thao…</td>
                         <td>3 điểm/lần</td>
                         <td>
-                            <div class="custom-file-input-multi">
-                                <input type="file" name="files313[]" multiple id="file313">
-                                <label style="cursor: pointer;" for="file">Tải ảnh lên</label>
-                            </div>
-                            <div class="file-name-multi-313"></div>
+                        <?php 
+                            if($getdiemofsv == null || $getdiemofsv->TONGDIEMSV == null){
+                        ?>
+                                <div class="custom-file-input-multi">
+                                    <input type="file" name="files313[]" accept="image/*" multiple id="file313">
+                                    <label style="cursor: pointer;" for="file">Tải ảnh lên</label>
+                                </div>
+                                <div class="file-name-multi-313"></div>
+                        <?php
+                            }
+                            else{
+                        ?>
+                                <div value = "<?php echo $getdiemtcct[22]->ID_DTCCT; ?>" class="score-image">
+                                    Ảnh đã tải lên
+                                </divv>
+                        <?php
+                            }
+                        ?>                       
                         </td>
-                        <td><input  class="sv-313" name="sv-313" type="number"></td>
+                        <td><input value="<?php echo $getdiemtcct != null ? $getdiemtcct[22]->TONGDIEMSV : ""; ?>"  class="sv-313" name="sv-313" type="number"></td>
                         <td><input <?php echo (isset($_SESSION['STUDENT'])) ? "disabled" : ""; ?>  class="lop-313" name="lop-313" type="number"></td>
                         <td><input <?php echo (!isset($_SESSION['ADMIN']) && !isset($_SESSION['BCH'])) ? "disabled" : ""; ?> class="khoa-313" name="khoa-313" type="number"></td>
                     </tr>
@@ -629,13 +778,26 @@
                             <p>5 điểm/lần</p>
                         </td>
                         <td>
-                            <div class="custom-file-input-multi">
-                                <input type="file" name="files314[]" multiple id="file314">
-                                <label style="cursor: pointer;" for="file">Tải ảnh lên</label>
-                            </div>
-                            <div class="file-name-multi-314"></div>
+                        <?php 
+                            if($getdiemofsv == null || $getdiemofsv->TONGDIEMSV == null){
+                        ?>
+                                <div class="custom-file-input-multi">
+                                    <input type="file" name="files314[]" accept="image/*" multiple id="file314">
+                                    <label style="cursor: pointer;" for="file">Tải ảnh lên</label>
+                                </div>
+                                <div class="file-name-multi-314"></div>
+                        <?php
+                            }
+                            else{
+                        ?>
+                                <div value = "<?php echo $getdiemtcct[23]->ID_DTCCT; ?>" class="score-image">
+                                    Ảnh đã tải lên
+                                </divv>
+                        <?php
+                            }
+                        ?>                    
                         </td>
-                        <td><input class="sv-314" name="sv-314" type="number"></td>
+                        <td><input value="<?php echo $getdiemtcct != null ? $getdiemtcct[23]->TONGDIEMSV : ""; ?>" class="sv-314" name="sv-314" type="number"></td>
                         <td><input <?php echo (isset($_SESSION['STUDENT'])) ? "disabled" : ""; ?> class="lop-314" name="lop-314" type="number"></td>
                         <td><input <?php echo (!isset($_SESSION['ADMIN']) && !isset($_SESSION['BCH'])) ? "disabled" : ""; ?> class="khoa-314" name="khoa-314" type="number"></td>
                     </tr>
@@ -652,13 +814,26 @@
                             <p>4 điểm/giải</p>
                         </td>
                         <td>
-                            <div class="custom-file-input-multi">
-                                <input type="file" name="files315[]" multiple id="file315">
-                                <label style="cursor: pointer;" for="file">Tải ảnh lên</label>
-                            </div>
-                            <div class="file-name-multi-315"></div>
+                        <?php 
+                            if($getdiemofsv == null || $getdiemofsv->TONGDIEMSV == null){
+                        ?>
+                                <div class="custom-file-input-multi">
+                                    <input type="file" name="files315[]" accept="image/*" multiple id="file315">
+                                    <label style="cursor: pointer;" for="file">Tải ảnh lên</label>
+                                </div>
+                                <div class="file-name-multi-315"></div>
+                        <?php
+                            }
+                            else{
+                        ?>
+                                <div value = "<?php echo $getdiemtcct[24]->ID_DTCCT; ?>" class="score-image">
+                                    Ảnh đã tải lên
+                                </divv>
+                        <?php
+                            }
+                        ?>                              
                         </td>
-                        <td><input class="sv-315" name="sv-315" type="number"></td>
+                        <td><input value="<?php echo $getdiemtcct != null ? $getdiemtcct[24]->TONGDIEMSV : ""; ?>" class="sv-315" name="sv-315" type="number"></td>
                         <td><input <?php echo (isset($_SESSION['STUDENT'])) ? "disabled" : ""; ?> class="lop-315" name="lop-315" type="number"></td>
                         <td><input <?php echo (!isset($_SESSION['ADMIN']) && !isset($_SESSION['BCH'])) ? "disabled" : ""; ?> class="khoa-315" name="khoa-315" type="number"></td>
                     </tr>
@@ -668,13 +843,26 @@
                         </td>
                         <td>5 điểm/lần</td>
                         <td>
-                            <div class="custom-file-input-multi">
-                                <input type="file" name="files316[]" multiple id="file316">
-                                <label style="cursor: pointer;" for="file">Tải ảnh lên</label>
-                            </div>
-                            <div class="file-name-multi-316"></div>
+                        <?php 
+                            if($getdiemofsv == null || $getdiemofsv->TONGDIEMSV == null){
+                        ?>
+                                <div class="custom-file-input-multi">
+                                    <input type="file" name="files316[]" accept="image/*" multiple id="file316">
+                                    <label style="cursor: pointer;" for="file">Tải ảnh lên</label>
+                                </div>
+                                <div class="file-name-multi-316"></div>
+                        <?php
+                            }
+                            else{
+                        ?>
+                                <div value = "<?php echo $getdiemtcct[25]->ID_DTCCT; ?>" class="score-image">
+                                    Ảnh đã tải lên
+                                </divv>
+                        <?php
+                            }
+                        ?>                          
                         </td>
-                        <td><input class="sv-316" name="sv-316" type="number"></td>
+                        <td><input value="<?php echo $getdiemtcct != null ? $getdiemtcct[25]->TONGDIEMSV : ""; ?>" class="sv-316" name="sv-316" type="number"></td>
                         <td><input <?php echo (isset($_SESSION['STUDENT'])) ? "disabled" : ""; ?> class="lop-316" name="lop-316" type="number"></td>
                         <td><input <?php echo (!isset($_SESSION['ADMIN']) && !isset($_SESSION['BCH'])) ? "disabled" : ""; ?> class="khoa-316" name="khoa-316" type="number"></td>
                     </tr>
@@ -689,7 +877,7 @@
                         <td>3.2.1 Đăng ký tham gia, dự thi các hoạt động rèn luyện về chính trị, xã hội, văn hóa, văn nghệ, thể thao, nhưng tự ý bỏ cuộc (không có lý do)</td>
                         <td>-4 điểm/lần</td>
                         <td></td>
-                        <td><input class="sv-321" name="sv-321" type="number"></td>
+                        <td><input value="<?php echo $getdiemtcct != null ? $getdiemtcct[26]->TONGDIEMSV : ""; ?>" class="sv-321" name="sv-321" type="number"></td>
                         <td><input <?php echo (isset($_SESSION['STUDENT'])) ? "disabled" : ""; ?> class="lop-321" name="lop-321" type="number"></td>
                         <td><input <?php echo (!isset($_SESSION['ADMIN']) && !isset($_SESSION['BCH'])) ? "disabled" : ""; ?> class="khoa-321" name="khoa-321" type="number"></td>
                     </tr>
@@ -697,7 +885,7 @@
                         <td>3.2.2 Có hành vi gây ảnh hưởng xấu đến công tác tổ chức các hoạt động (tùy vào mức độ gây ảnh hưởng, BTC các hoạt động đề xuất điểm trừ)</td>
                         <td>-6 điểm/lần</td>
                         <td></td>
-                        <td><input class="sv-322" name="sv-322" type="number"></td>
+                        <td><input value="<?php echo $getdiemtcct != null ? $getdiemtcct[27]->TONGDIEMSV : ""; ?>" class="sv-322" name="sv-322" type="number"></td>
                         <td><input <?php echo (isset($_SESSION['STUDENT'])) ? "disabled" : ""; ?> class="lop-322" name="lop-322" type="number"></td>
                         <td><input <?php echo (!isset($_SESSION['ADMIN']) && !isset($_SESSION['BCH'])) ? "disabled" : ""; ?> class="khoa-322" name="khoa-322" type="number"></td>
                     </tr>
@@ -708,7 +896,7 @@
                             <p>(tối đa)</p>
                         </td>
                         <td></td>
-                        <td><input readonly class="sv-3" name="sv-3" type="number"></td>
+                        <td><input value="<?php echo $getdiemtc != null ? $getdiemtc[2]->TONGDIEMSV : ""; ?>" readonly class="sv-3" name="sv-3" type="number"></td>
                         <td><input <?php echo (isset($_SESSION['STUDENT'])) ? "disabled" : ""; ?> readonly class="lop-3" name="lop-3" type="number"></td>
                         <td><input <?php echo (!isset($_SESSION['ADMIN']) && !isset($_SESSION['BCH'])) ? "disabled" : ""; ?> readonly class="khoa-3" name="khoa-3" type="number"></td>
                     </tr>
@@ -726,7 +914,7 @@
                             <p>(tối đa)</p>
                         </td>
                         <td></td>
-                        <td><input class="sv-411" name="sv-411" type="number"></td>
+                        <td><input value="<?php echo $getdiemtcct != null ? $getdiemtcct[28]->TONGDIEMSV : ""; ?>" class="sv-411" name="sv-411" type="number"></td>
                         <td><input <?php echo (isset($_SESSION['STUDENT'])) ? "disabled" : ""; ?> class="lop-411" name="lop-411" type="number"></td>
                         <td><input <?php echo (!isset($_SESSION['ADMIN']) && !isset($_SESSION['BCH'])) ? "disabled" : ""; ?> class="khoa-411" name="khoa-411" type="number"></td>
                     </tr>
@@ -743,7 +931,7 @@
                             <p>(tối đa)</p>
                         </td>
                         <td></td>
-                        <td><input class="sv-412" name="sv-412" type="number"></td>
+                        <td><input value="<?php echo $getdiemtcct != null ? $getdiemtcct[29]->TONGDIEMSV : ""; ?>" class="sv-412" name="sv-412" type="number"></td>
                         <td><input <?php echo (isset($_SESSION['STUDENT'])) ? "disabled" : ""; ?> class="lop-412" name="lop-412" type="number"></td>
                         <td><input <?php echo (!isset($_SESSION['ADMIN']) && !isset($_SESSION['BCH'])) ? "disabled" : ""; ?> class="khoa-412" name="khoa-412" type="number"></td>
                     </tr>
@@ -761,7 +949,7 @@
                             <p>(tối đa)</p>
                         </td>
                         <td></td>
-                        <td><input class="sv-413" name="sv-413" type="number"></td>
+                        <td><input value="<?php echo $getdiemtcct != null ? $getdiemtcct[30]->TONGDIEMSV : ""; ?>" class="sv-413" name="sv-413" type="number"></td>
                         <td><input <?php echo (isset($_SESSION['STUDENT'])) ? "disabled" : ""; ?> class="lop-413" name="lop-413" type="number"></td>
                         <td><input <?php echo (!isset($_SESSION['ADMIN']) && !isset($_SESSION['BCH'])) ? "disabled" : ""; ?> class="khoa-413" name="khoa-413" type="number"></td>
                     </tr>
@@ -769,7 +957,7 @@
                         <td>4.1.4 Hoạt động giúp người, cứu người: Hiến máu nhân đạo; các hoạt động giúp người cứu người được tập thể lớp, các tổ chức đoàn thể trong và ngoài trường công nhận…</td>
                         <td>5 điểm/lần</td>
                         <td></td>
-                        <td><input class="sv-414" name="sv-414" type="number"></td>
+                        <td><input value="<?php echo $getdiemtcct != null ? $getdiemtcct[31]->TONGDIEMSV : ""; ?>" class="sv-414" name="sv-414" type="number"></td>
                         <td><input <?php echo (isset($_SESSION['STUDENT'])) ? "disabled" : ""; ?> class="lop-414" name="lop-414" type="number"></td>
                         <td><input <?php echo (!isset($_SESSION['ADMIN']) && !isset($_SESSION['BCH'])) ? "disabled" : ""; ?> class="khoa-414" name="khoa-414" type="number"></td>
                     </tr>
@@ -786,7 +974,7 @@
                             <p>(tối đa)</p>
                         </td>
                         <td></td>
-                        <td><input class="sv-415" name="sv-415" type="number"></td>
+                        <td><input value="<?php echo $getdiemtcct != null ? $getdiemtcct[32]->TONGDIEMSV : ""; ?>" class="sv-415" name="sv-415" type="number"></td>
                         <td><input <?php echo (isset($_SESSION['STUDENT'])) ? "disabled" : ""; ?> class="lop-415" name="lop-415" type="number"></td>
                         <td><input <?php echo (!isset($_SESSION['ADMIN']) && !isset($_SESSION['BCH'])) ? "disabled" : ""; ?> class="khoa-415" name="khoa-415" type="number"></td>
                     </tr>
@@ -803,13 +991,26 @@
                             <p>4điểm/gK</p>
                         </td>
                         <td>
-                            <div class="custom-file-input-multi">
-                                <input type="file" name="files416[]" multiple id="file416">
-                                <label style="cursor: pointer;" for="file">Tải ảnh lên</label>
-                            </div>
-                            <div class="file-name-multi-416"></div>
+                        <?php 
+                            if($getdiemofsv == null || $getdiemofsv->TONGDIEMSV == null){
+                        ?>
+                                <div class="custom-file-input-multi">
+                                    <input type="file" name="files416[]" accept="image/*" multiple id="file416">
+                                    <label style="cursor: pointer;" for="file">Tải ảnh lên</label>
+                                </div>
+                                <div class="file-name-multi-416"></div>
+                        <?php
+                            }
+                            else{
+                        ?>
+                                <div value = "<?php echo $getdiemtcct[33]->ID_DTCCT; ?>" class="score-image">
+                                    Ảnh đã tải lên
+                                </divv>
+                        <?php
+                            }
+                        ?>                           
                         </td>
-                        <td><input class="sv-416" name="sv-416" type="number"></td>
+                        <td><input value="<?php echo $getdiemtcct != null ? $getdiemtcct[33]->TONGDIEMSV : ""; ?>" class="sv-416" name="sv-416" type="number"></td>
                         <td><input <?php echo (isset($_SESSION['STUDENT'])) ? "disabled" : ""; ?> class="lop-416" name="lop-416" type="number"></td>
                         <td><input <?php echo (!isset($_SESSION['ADMIN']) && !isset($_SESSION['BCH'])) ? "disabled" : ""; ?> class="khoa-416" name="khoa-416" type="number"></td>
                     </tr>
@@ -820,7 +1021,7 @@
                             <p>(tối đa)</p>
                         </td>
                         <td></td>
-                        <td><input readonly class="sv-4" name="sv-4" type="number"></td>
+                        <td><input value="<?php echo $getdiemtc != null ? $getdiemtc[3]->TONGDIEMSV : ""; ?>" readonly class="sv-4" name="sv-4" type="number"></td>
                         <td><input <?php echo (isset($_SESSION['STUDENT'])) ? "disabled" : ""; ?> readonly class="lop-4" name="lop-4" type="number"></td>
                         <td><input <?php echo (!isset($_SESSION['ADMIN']) && !isset($_SESSION['BCH'])) ? "disabled" : ""; ?> readonly class="khoa-4" name="khoa-4" type="number"></td>
                     </tr>
@@ -847,7 +1048,7 @@
                             <p>0 điểm</p>
                         </td>
                         <td></td>
-                        <td><input type="number" class="sv-511" name="sv-511" id=""></td>
+                        <td><input value="<?php echo $getdiemtcct != null ? $getdiemtcct[34]->TONGDIEMSV : ""; ?>" type="number" class="sv-511" name="sv-511" id=""></td>
                         <td><input <?php echo (isset($_SESSION['STUDENT'])) ? "disabled" : ""; ?> type="number" class="lop-511" name="lop-511" id=""></td>
                         <td><input <?php echo (!isset($_SESSION['ADMIN']) && !isset($_SESSION['BCH'])) ? "disabled" : ""; ?> type="number" class="khoa-511" name="khoa-511" id=""></td>
                     </tr>
@@ -858,13 +1059,26 @@
                             <p>(tối đa)</p>
                         </td>
                         <td>
-                            <div class="custom-file-input-multi">
-                                <input type="file" name="files512[]" multiple id="file512">
-                                <label style="cursor: pointer;" for="file">Tải ảnh lên</label>
-                            </div>
-                            <div class="file-name-multi-512"></div>
+                        <?php 
+                            if($getdiemofsv == null || $getdiemofsv->TONGDIEMSV == null){
+                        ?>
+                                <div class="custom-file-input-multi">
+                                    <input type="file" name="files512[]" accept="image/*" multiple id="file512">
+                                    <label style="cursor: pointer;" for="file">Tải ảnh lên</label>
+                                </div>
+                                <div class="file-name-multi-512"></div>
+                        <?php
+                            }
+                            else{
+                        ?>
+                                <div value = "<?php echo $getdiemtcct[35]->ID_DTCCT; ?>" class="score-image">
+                                    Ảnh đã tải lên
+                                </divv>
+                        <?php
+                            }
+                        ?>    
                         </td>
-                        <td><input type="number" class="sv-512" name="sv-512" id=""></td>
+                        <td><input value="<?php echo $getdiemtcct != null ? $getdiemtcct[35]->TONGDIEMSV : ""; ?>" type="number" class="sv-512" name="sv-512" id=""></td>
                         <td><input <?php echo (isset($_SESSION['STUDENT'])) ? "disabled" : ""; ?> type="number" class="lop-512" name="lop-512" id=""></td>
                         <td><input <?php echo (!isset($_SESSION['ADMIN']) && !isset($_SESSION['BCH'])) ? "disabled" : ""; ?> type="number" class="khoa-512" name="khoa-512" id=""></td>
                     </tr>
@@ -876,13 +1090,26 @@
                         <td>5.2.1 Sinh viên đạt giải thưởng hoặc có giấy khen trong học tập, nghiên cứu khoa học cấp trường và trên cấp trường</td>
                         <td>10 điểm</td>
                         <td>
-                            <div class="custom-file-input-multi">
-                                <input type="file" name="files513[]" multiple id="file513">
-                                <label style="cursor: pointer;" for="file">Tải ảnh lên</label>
-                            </div>
-                            <div class="file-name-multi-513"></div>
+                        <?php 
+                            if($getdiemofsv == null || $getdiemofsv->TONGDIEMSV == null){
+                        ?>
+                                <div class="custom-file-input-multi">
+                                    <input type="file" name="files513[]" accept="image/*" multiple id="file513">
+                                    <label style="cursor: pointer;" for="file">Tải ảnh lên</label>
+                                </div>
+                                <div class="file-name-multi-513"></div>
+                        <?php
+                            }
+                            else{
+                        ?>
+                                <div value = "<?php echo $getdiemtcct[36]->ID_DTCCT; ?>" class="score-image">
+                                    Ảnh đã tải lên
+                                </divv>
+                        <?php
+                            }
+                        ?>                  
                         </td>
-                        <td><input type="number" class="sv-513" name="sv-513" id=""></td>
+                        <td><input value="<?php echo $getdiemtcct != null ? $getdiemtcct[36]->TONGDIEMSV : ""; ?>" type="number" class="sv-513" name="sv-513" id=""></td>
                         <td><input <?php echo (isset($_SESSION['STUDENT'])) ? "disabled" : ""; ?> type="number" class="lop-513" name="lop-513" id=""></td>
                         <td><input <?php echo (!isset($_SESSION['ADMIN']) && !isset($_SESSION['BCH'])) ? "disabled" : ""; ?> type="number" class="khoa-513" name="khoa-513" id=""></td>
                     </tr>
@@ -890,13 +1117,26 @@
                         <td>5.2.2 Thành viên đội tuyển trường tham gia các cuộc thi, hội thi từ cấp tỉnh, thành phố trực thuộc trung ương trở lên đạt thành tích cao (Giải A, B, C, hoặc I, II, III, khuyến khích).</td>
                         <td>10 điểm</td>
                         <td>
-                            <div class="custom-file-input-multi">
-                                <input type="file" name="files514[]" multiple id="file514">
-                                <label style="cursor: pointer;" for="file">Tải ảnh lên</label>
-                            </div>
-                            <div class="file-name-multi-514"></div>
+                        <?php 
+                            if($getdiemofsv == null || $getdiemofsv->TONGDIEMSV == null){
+                        ?>
+                                <div class="custom-file-input-multi">
+                                    <input type="file" name="files514[]" accept="image/*" multiple id="file514">
+                                    <label style="cursor: pointer;" for="file">Tải ảnh lên</label>
+                                </div>
+                                <div class="file-name-multi-514"></div>
+                        <?php
+                            }
+                            else{
+                        ?>
+                                <div value = "<?php echo $getdiemtcct[37]->ID_DTCCT; ?>" class="score-image">
+                                    Ảnh đã tải lên
+                                </divv>
+                        <?php
+                            }
+                        ?> 
                         </td>
-                        <td><input type="number" class="sv-514" name="sv-514" id=""></td>
+                        <td><input value="<?php echo $getdiemtcct != null ? $getdiemtcct[37]->TONGDIEMSV : ""; ?>" type="number" class="sv-514" name="sv-514" id=""></td>
                         <td><input <?php echo (isset($_SESSION['STUDENT'])) ? "disabled" : ""; ?> type="number" class="lop-514" name="lop-514" id=""></td>
                         <td><input <?php echo (!isset($_SESSION['ADMIN']) && !isset($_SESSION['BCH'])) ? "disabled" : ""; ?> type="number" class="khoa-514" name="khoa-514" id=""></td>
                     </tr>
@@ -911,13 +1151,26 @@
                             <p>10 điểm</p>
                         </td>
                         <td>
-                            <div class="custom-file-input-multi">
-                                <input type="file" name="files515[]" multiple id="file515">
-                                <label style="cursor: pointer;" for="file">Tải ảnh lên</label>
-                            </div>
-                            <div class="file-name-multi-515"></div>
+                        <?php 
+                            if($getdiemofsv == null || $getdiemofsv->TONGDIEMSV == null){
+                        ?>
+                                <div class="custom-file-input-multi">
+                                    <input type="file" name="files515[]" accept="image/*" multiple id="file515">
+                                    <label style="cursor: pointer;" for="file">Tải ảnh lên</label>
+                                </div>
+                                <div class="file-name-multi-515"></div>
+                        <?php
+                            }
+                            else{
+                        ?>
+                                <div value = "<?php echo $getdiemtcct[38]->ID_DTCCT; ?>" class="score-image">
+                                    Ảnh đã tải lên
+                                </divv>
+                        <?php
+                            }
+                        ?>                       
                         </td>
-                        <td><input type="number" class="sv-515" name="sv-515" id=""></td>
+                        <td><input value="<?php echo $getdiemtcct != null ? $getdiemtcct[38]->TONGDIEMSV : ""; ?>" type="number" class="sv-515" name="sv-515" id=""></td>
                         <td><input <?php echo (isset($_SESSION['STUDENT'])) ? "disabled" : ""; ?> type="number" class="lop-515" name="lop-515" id=""></td>
                         <td><input <?php echo (!isset($_SESSION['ADMIN']) && !isset($_SESSION['BCH'])) ? "disabled" : ""; ?> type="number" class="khoa-515" name="khoa-515" id=""></td>
                     </tr>
@@ -932,13 +1185,26 @@
                             <p>10 điểm</p>
                         </td>
                         <td>
-                            <div class="custom-file-input-multi">
-                                <input type="file" name="files516[]" multiple id="file516">
-                                <label style="cursor: pointer;" for="file">Tải ảnh lên</label>
-                            </div>
-                            <div class="file-name-multi-516"></div>
+                        <?php 
+                            if($getdiemofsv == null || $getdiemofsv->TONGDIEMSV == null){
+                        ?>
+                                <div class="custom-file-input-multi">
+                                    <input type="file" name="files516[]" accept="image/*" multiple id="file516">
+                                    <label style="cursor: pointer;" for="file">Tải ảnh lên</label>
+                                </div>
+                                <div class="file-name-multi-516"></div>
+                        <?php
+                            }
+                            else{
+                        ?>
+                                <div value = "<?php echo $getdiemtcct[39]->ID_DTCCT; ?>" class="score-image">
+                                    Ảnh đã tải lên
+                                </divv>
+                        <?php
+                            }
+                        ?>                      
                         </td>
-                        <td><input type="number" class="sv-516" name="sv-516" id=""></td>
+                        <td><input value="<?php echo $getdiemtcct != null ? $getdiemtcct[39]->TONGDIEMSV : ""; ?>" type="number" class="sv-516" name="sv-516" id=""></td>
                         <td><input <?php echo (isset($_SESSION['STUDENT'])) ? "disabled" : ""; ?> type="number" class="lop-516" name="lop-516" id=""></td>
                         <td><input <?php echo (!isset($_SESSION['ADMIN']) && !isset($_SESSION['BCH'])) ? "disabled" : ""; ?> type="number" class="khoa-516" name="khoa-516" id=""></td>
                     </tr>
@@ -953,13 +1219,26 @@
                             <p>4 điểm/gK</p>
                         </td>
                         <td>
-                            <div class="custom-file-input-multi">
-                                <input type="file" name="files517[]" multiple id="file517">
-                                <label style="cursor: pointer;" for="file">Tải ảnh lên</label>
-                            </div>
-                            <div class="file-name-multi-517"></div>
+                        <?php 
+                            if($getdiemofsv == null || $getdiemofsv->TONGDIEMSV == null){
+                        ?>
+                                <div class="custom-file-input-multi">
+                                    <input type="file" name="files517[]" accept="image/*" multiple id="file517">
+                                    <label style="cursor: pointer;" for="file">Tải ảnh lên</label>
+                                </div>
+                                <div class="file-name-multi-517"></div>
+                        <?php
+                            }
+                            else{
+                        ?>
+                                <div value = "<?php echo $getdiemtcct[40]->ID_DTCCT; ?>" class="score-image">
+                                    Ảnh đã tải lên
+                                </divv>
+                        <?php
+                            }
+                        ?>                          
                         </td>
-                        <td><input type="number" class="sv-517" name="sv-517" id=""></td>
+                        <td><input value="<?php echo $getdiemtcct != null ? $getdiemtcct[40]->TONGDIEMSV : ""; ?>" type="number" class="sv-517" name="sv-517" id=""></td>
                         <td><input <?php echo (isset($_SESSION['STUDENT'])) ? "disabled" : ""; ?> type="number" class="lop-517" name="lop-517" id=""></td>
                         <td><input <?php echo (!isset($_SESSION['ADMIN']) && !isset($_SESSION['BCH'])) ? "disabled" : ""; ?> type="number" class="khoa-517" name="khoa-517" id=""></td>
                     </tr>
@@ -970,13 +1249,26 @@
                             <p>(tối đa)</p>
                         </td>
                         <td>
-                            <div class="custom-file-input-multi">
-                                <input type="file" name="files518[]" multiple id="file518">
-                                <label style="cursor: pointer;" for="file">Tải ảnh lên</label>
-                            </div>
-                            <div class="file-name-multi-518"></div>
+                        <?php 
+                            if($getdiemofsv == null || $getdiemofsv->TONGDIEMSV == null){
+                        ?>
+                                <div class="custom-file-input-multi"> 
+                                    <input type="file" name="files518[]" accept="image/*" multiple id="file518">
+                                    <label style="cursor: pointer;" for="file">Tải ảnh lên</label>
+                                </div>
+                                <div class="file-name-multi-518"></div>
+                        <?php
+                            }
+                            else{
+                        ?>
+                                <div value = "<?php echo $getdiemtcct[41]->ID_DTCCT; ?>" class="score-image">
+                                    Ảnh đã tải lên
+                                </divv>
+                        <?php
+                            }
+                        ?>                       
                         </td>
-                        <td><input type="number" class="sv-518" name="sv-518" id=""></td>
+                        <td><input value="<?php echo $getdiemtcct != null ? $getdiemtcct[41]->TONGDIEMSV : ""; ?>" type="number" class="sv-518" name="sv-518" id=""></td>
                         <td><input <?php echo (isset($_SESSION['STUDENT'])) ? "disabled" : ""; ?> type="number" class="lop-518" name="lop-518" id=""></td>
                         <td><input <?php echo (!isset($_SESSION['ADMIN']) && !isset($_SESSION['BCH'])) ? "disabled" : ""; ?> type="number" class="khoa-518" name="khoa-518" id=""></td>
                     </tr>
@@ -987,7 +1279,7 @@
                             <p>(tối đa)</p>
                         </td>
                         <td></td>
-                        <td><input readonly class="sv-5" name="sv-5" type="number"></td>
+                        <td><input value="<?php echo $getdiemtc != null ? $getdiemtc[4]->TONGDIEMSV : ""; ?>" readonly class="sv-5" name="sv-5" type="number"></td>
                         <td><input <?php echo (isset($_SESSION['STUDENT'])) ? "disabled" : ""; ?> readonly class="lop-5" name="lop-5" type="number"></td>
                         <td><input <?php echo (!isset($_SESSION['ADMIN']) && !isset($_SESSION['BCH'])) ? "disabled" : ""; ?> readonly class="khoa-5" name="khoa-5" type="number"></td>
                     </tr>
@@ -998,7 +1290,7 @@
                             <p>(tối đa)</p>
                         </td>
                         <td></td>
-                        <td><input readonly class="sv-tong" name="sv-tong" type="number"></td>
+                        <td><input value="<?php echo $getdiemofsv != null ? $getdiemofsv->TONGDIEMSV : ""; ?>" readonly class="sv-tong" name="sv-tong" type="number"></td>
                         <td><input <?php echo (isset($_SESSION['STUDENT'])) ? "disabled" : ""; ?> readonly class="lop-tong" name="lop-tong" type="number"></td>
                         <td><input <?php echo (!isset($_SESSION['ADMIN']) && !isset($_SESSION['BCH'])) ? "disabled" : ""; ?> readonly class="khoa-tong" name="khoa-tong" type="number"></td>
                     </tr>
@@ -1006,7 +1298,7 @@
             </table>
         </div>
         <?php 
-            if($getcheck != null){
+            if($getcheck != null && ($getdiemofsv == null || $getdiemofsv->TONGDIEMSV == null)){
         ?>
                 <div class="score-bottom">
                     <button class="send-score">GỬI</button>
@@ -1017,3 +1309,17 @@
         ?>
     </div>
 </form>
+
+<div class="score-image-show">
+    <div>
+        <div class="title-show">Ảnh Đã Tải Lên</div>
+        <div class="exit-show">X</div>
+        <div class="body-show">
+            
+        </div>
+    </div>
+</div>
+
+<div class="overlay" onclick="closeImage()">
+    <img id="expandedImg">
+</div>

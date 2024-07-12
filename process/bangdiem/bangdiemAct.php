@@ -56,7 +56,745 @@
             case 'chamdiem':
                 $idsv = $_GET['idsv'];
                 if(isset($_SESSION['ADMIN']) || isset($_SESSION['BCH'])){
+                    // Phan 1
+                    // Sinhvien
+                    $c111 = $_POST['sv-111']; $c112 = $_POST['sv-112']; $c113 = $_POST['sv-113']; $c114 = $_POST['sv-114']; $c115 = $_POST['sv-115'];
+                    $c116 = $_POST['sv-116']; $c117 = $_POST['sv-117']; $c118 = $_POST['sv-118']; $c119 = $_POST['sv-119'];
+                    $t121 = $_POST['sv-121']; $t122 = $_POST['sv-122'];
+                    $sum1 = (int)$c111 + (int)$c112 + (int)$c113 + (int)$c114 + (int)$c115 + (int)$c116 + (int)$c117 + (int)$c118 + (int)$c119 - (int)$t121 - (int)$t121;
+                    // Lop
+                    $lc111 = $_POST['lop-111']; $lc112 = $_POST['lop-112']; $lc113 = $_POST['lop-113']; $lc114 = $_POST['lop-114']; $lc115 = $_POST['lop-115'];
+                    $lc116 = $_POST['lop-116']; $lc117 = $_POST['lop-117']; $lc118 = $_POST['lop-118']; $lc119 = $_POST['lop-119'];
+                    $lt121 = $_POST['lop-121']; $lt122 = $_POST['lop-122'];
+                    $suml1 = (int)$lc111 + (int)$lc112 + (int)$lc113 + (int)$lc114 + (int)$lc115 + (int)$lc116 + (int)$lc117 + (int)$lc118 + (int)$lc119 - (int)$lt121 - (int)$lt121;
+                    // Khoa
+                    $kc111 = $_POST['khoa-111']; $kc112 = $_POST['khoa-112']; $kc113 = $_POST['khoa-113']; $kc114 = $_POST['khoa-114']; $kc115 = $_POST['khoa-115'];
+                    $kc116 = $_POST['khoa-116']; $kc117 = $_POST['khoa-117']; $kc118 = $_POST['khoa-118']; $kc119 = $_POST['khoa-119'];
+                    $kt121 = $_POST['khoa-121']; $kt122 = $_POST['khoa-122'];
+                    $sumk1 = (int)$kc111 + (int)$kc112 + (int)$kc113 + (int)$kc114 + (int)$kc115 + (int)$kc116 + (int)$kc117 + (int)$kc118 + (int)$kc119 - (int)$kt121 - (int)$kt121;
                     
+                    if (isset($_FILES['files113']['name'])) {
+                        foreach ($_FILES['files113']['tmp_name'] as $key => $tmp_name) {
+                            if (!empty($tmp_name)) {
+                                $minhchung = new Minhchung();
+                                $hinhanh = file_get_contents($tmp_name);
+                                $hinhanh = base64_encode($hinhanh);
+
+                            } else {
+                                $sum1 -= (int)$c113;
+                                $suml1 -= (int)$lc113;
+                                $sumk1 -= (int)$kc113;
+                            }
+                        }
+                    }
+                    if (isset($_FILES['files114']['name'])) {
+                        foreach ($_FILES['files114']['tmp_name'] as $key => $tmp_name) {
+                            if (!empty($tmp_name)) {
+                                $minhchung = new Minhchung();
+                                $hinhanh = file_get_contents($tmp_name);
+                                $hinhanh = base64_encode($hinhanh);
+
+                            } else {
+                                $sum1 -= (int)$c114;
+                                $suml1 -= (int)$lc114;
+                                $sumk1 -= (int)$kc114;
+                            }
+                        }
+                    } 
+                    if (isset($_FILES['files115']['name'])) {
+                        foreach ($_FILES['files115']['tmp_name'] as $key => $tmp_name) {
+                            if (!empty($tmp_name)) {
+                                $minhchung = new Minhchung();
+                                $hinhanh = file_get_contents($tmp_name);
+                                $hinhanh = base64_encode($hinhanh);
+
+                            } else {
+                                $sum1 -= (int)$c115;
+                                $suml1 -= (int)$lc115;
+                                $sumk1 -= (int)$kc115;
+                            }
+                        }
+                    } 
+                    if (isset($_FILES['files116']['name'])) {
+                        foreach ($_FILES['files116']['tmp_name'] as $key => $tmp_name) {
+                            if (!empty($tmp_name)) {
+                                $minhchung = new Minhchung();
+                                $hinhanh = file_get_contents($tmp_name);
+                                $hinhanh = base64_encode($hinhanh);
+
+                            } else {
+                                $sum1 -= (int)$c116;
+                                $suml1 -= (int)$lc116;
+                                $sumk1 -= (int)$kc116;
+                            }
+                        }
+                    }
+                    if (isset($_FILES['files117']['name'])) {
+                        foreach ($_FILES['files117']['tmp_name'] as $key => $tmp_name) {
+                            if (!empty($tmp_name)) {
+                                $minhchung = new Minhchung();
+                                $hinhanh = file_get_contents($tmp_name);
+                                $hinhanh = base64_encode($hinhanh);
+
+                            } else {
+                                $sum1 -= (int)$c117;
+                                $suml1 -= (int)$lc117;
+                                $sumk1 -= (int)$kc117;
+                            }
+                        }
+                    }
+                    if (isset($_FILES['files118']['name'])) {
+                        foreach ($_FILES['files118']['tmp_name'] as $key => $tmp_name) {
+                            if (!empty($tmp_name)) {
+                                $minhchung = new Minhchung();
+                                $hinhanh = file_get_contents($tmp_name);
+                                $hinhanh = base64_encode($hinhanh);
+
+                            } else {
+                                $sum1 -= (int)$c118;
+                                $suml1 -= (int)$lc118;
+                                $sumk1 -= (int)$kc118;
+                            }
+                        }
+                    }
+                    if($sum1 > 20){
+                        $sum1 = 20;
+                    }
+                    if($suml1 > 20){
+                        $suml1 = 20;
+                    }
+                    if($sumk1 > 20){
+                        $sumk1 = 20;
+                    }
+
+                    // Phan 2
+                    // Sinhvien
+                    $c211 = $_POST['sv-211']; $c212 = $_POST['sv-212'];
+                    $t221 = $_POST['sv-221']; $t222 = $_POST['sv-222']; $t223 = $_POST['sv-223']; $t224 = $_POST['sv-224']; $t225 = $_POST['sv-225'];
+                    $t226 = $_POST['sv-226']; $t227 = $_POST['sv-227'];
+                    $sum2 = (int)$c211 + (int)$c212 - (int)$t221 - (int)$t222 - (int)$t223 - (int)$t224 - (int)$t225 - (int)$t226 - (int)$t227;
+                    // Lop
+                    $lc211 = $_POST['lop-211']; $lc212 = $_POST['lop-212'];
+                    $lt221 = $_POST['lop-221']; $lt222 = $_POST['lop-222']; $lt223 = $_POST['lop-223']; $lt224 = $_POST['lop-224']; $lt225 = $_POST['lop-225'];
+                    $lt226 = $_POST['lop-226']; $lt227 = $_POST['lop-227'];
+                    $suml2 = (int)$lc211 + (int)$lc212 - (int)$lt221 - (int)$lt222 - (int)$lt223 - (int)$lt224 - (int)$lt225 - (int)$lt226 - (int)$lt227;
+                    // Khoa
+                    $kc211 = $_POST['khoa-211']; $kc212 = $_POST['khoa-212'];
+                    $kt221 = $_POST['khoa-221']; $kt222 = $_POST['khoa-222']; $kt223 = $_POST['khoa-223']; $kt224 = $_POST['khoa-224']; $kt225 = $_POST['khoa-225'];
+                    $kt226 = $_POST['khoa-226']; $kt227 = $_POST['khoa-227'];
+                    $sumk2 = (int)$kc211 + (int)$kc212 - (int)$kt221 - (int)$kt222 - (int)$kt223 - (int)$kt224 - (int)$kt225 - (int)$kt226 - (int)$kt227;
+                    if($sum2 > 25){
+                        $sum2 = 25;
+                    }
+                    if($suml2 > 25){
+                        $suml2 = 25;
+                    }
+                    if($sumk2 > 25){
+                        $sumk2 = 25;
+                    }
+
+                    // Phan 3
+                    // Sinh vien
+                    $c311 = $_POST['sv-311']; $c312 = $_POST['sv-312']; $c313 = $_POST['sv-313']; $c314 = $_POST['sv-314']; $c315 = $_POST['sv-315'];
+                    $c316 = $_POST['sv-316'];
+                    $t321 = $_POST['sv-321']; $t322 = $_POST['sv-322'];
+                    $sum3 = (int)$c311 + (int)$c312 + (int)$c313 + (int)$c314 + (int)$c315 + (int)$c316 - (int)$t321 - (int)$t322;
+                    // Lop
+                    $lc311 = $_POST['lop-311']; $lc312 = $_POST['lop-312']; $lc313 = $_POST['lop-313']; $lc314 = $_POST['lop-314']; $lc315 = $_POST['lop-315'];
+                    $lc316 = $_POST['lop-316'];
+                    $lt321 = $_POST['lop-321']; $lt322 = $_POST['lop-322'];
+                    $suml3 = (int)$lc311 + (int)$lc312 + (int)$lc313 + (int)$lc314 + (int)$lc315 + (int)$lc316 - (int)$lt321 - (int)$lt322;
+                    // Khoa
+                    $kc311 = $_POST['khoa-311']; $kc312 = $_POST['khoa-312']; $kc313 = $_POST['khoa-313']; $kc314 = $_POST['khoa-314']; $kc315 = $_POST['khoa-315'];
+                    $kc316 = $_POST['khoa-316'];
+                    $kt321 = $_POST['khoa-321']; $kt322 = $_POST['khoa-322'];
+                    $sumk3 = (int)$kc311 + (int)$kc312 + (int)$kc313 + (int)$kc314 + (int)$kc315 + (int)$kc316 - (int)$kt321 - (int)$kt322;
+
+                    if (isset($_FILES['files311']['name'])) {
+                        foreach ($_FILES['files311']['tmp_name'] as $key => $tmp_name) {
+                            if (!empty($tmp_name)) {
+                                $minhchung = new Minhchung();
+                                $hinhanh = file_get_contents($tmp_name);
+                                $hinhanh = base64_encode($hinhanh);
+
+                            } else {
+                                $sum3 -= (int)$c311;
+                                $suml3 -= (int)$lc311;
+                                $sumk3 -= (int)$kc311;
+                            }
+                        }
+                    }
+                    if (isset($_FILES['files312']['name'])) {
+                        foreach ($_FILES['files312']['tmp_name'] as $key => $tmp_name) {
+                            if (!empty($tmp_name)) {
+                                $minhchung = new Minhchung();
+                                $hinhanh = file_get_contents($tmp_name);
+                                $hinhanh = base64_encode($hinhanh);
+
+                            } else {
+                                $sum3 -= (int)$c312;
+                                $suml3 -= (int)$lc312;
+                                $sumk3 -= (int)$kc312;
+                            }
+                        }
+                    }
+                    if (isset($_FILES['files313']['name'])) {
+                        foreach ($_FILES['files313']['tmp_name'] as $key => $tmp_name) {
+                            if (!empty($tmp_name)) {
+                                $minhchung = new Minhchung();
+                                $hinhanh = file_get_contents($tmp_name);
+                                $hinhanh = base64_encode($hinhanh);
+
+                            } else {
+                                $sum3 -= (int)$c313;
+                                $suml3 -= (int)$lc313;
+                                $sumk3 -= (int)$kc313;
+                            }
+                        }
+                    }
+                    if (isset($_FILES['files314']['name'])) {
+                        foreach ($_FILES['files314']['tmp_name'] as $key => $tmp_name) {
+                            if (!empty($tmp_name)) {
+                                $minhchung = new Minhchung();
+                                $hinhanh = file_get_contents($tmp_name);
+                                $hinhanh = base64_encode($hinhanh);
+
+                            } else {
+                                $sum3 -= (int)$c314;
+                                $suml3 -= (int)$lc314;
+                                $sumk3 -= (int)$kc314;
+                            }
+                        }
+                    }
+                    if (isset($_FILES['files315']['name'])) {
+                        foreach ($_FILES['files315']['tmp_name'] as $key => $tmp_name) {
+                            if (!empty($tmp_name)) {
+                                $minhchung = new Minhchung();
+                                $hinhanh = file_get_contents($tmp_name);
+                                $hinhanh = base64_encode($hinhanh);
+
+                            } else {
+                                $sum3 -= (int)$c315;
+                                $suml3 -= (int)$lc315;
+                                $sumk3 -= (int)$kc315;
+                            }
+                        }
+                    }
+                    if (isset($_FILES['files316']['name'])) {
+                        foreach ($_FILES['files316']['tmp_name'] as $key => $tmp_name) {
+                            if (!empty($tmp_name)) {
+                                $minhchung = new Minhchung();
+                                $hinhanh = file_get_contents($tmp_name);
+                                $hinhanh = base64_encode($hinhanh);
+
+                            } else {
+                                $sum3 -= (int)$c316;
+                                $suml3 -= (int)$lc316;
+                                $sumk3 -= (int)$kc316;
+                            }
+                        }
+                    }
+                    if($sum3 > 20){
+                        $sum3 = 20;
+                    }
+                    if($suml3 > 20){
+                        $suml3 = 20;
+                    }
+                    if($sumk3 > 20){
+                        $sumk3 = 20;
+                    }
+
+                    // Phan 4
+                    // Sinhvien
+                    $c411 = $_POST['sv-411']; $c412 = $_POST['sv-412']; $c413 = $_POST['sv-413']; $c414 = $_POST['sv-414']; $c415 = $_POST['sv-415'];
+                    $c416 = $_POST['sv-416'];
+                    $sum4 = (int)$c411 + (int)$c412 + (int)$c413 + (int)$c414 + (int)$c415 + (int)$c416;
+                    // Lop
+                    $lc411 = $_POST['lop-411']; $lc412 = $_POST['lop-412']; $lc413 = $_POST['lop-413']; $lc414 = $_POST['lop-414']; $lc415 = $_POST['lop-415'];
+                    $lc416 = $_POST['lop-416'];
+                    $suml4 = (int)$lc411 + (int)$lc412 + (int)$lc413 + (int)$lc414 + (int)$lc415 + (int)$lc416;
+                    // Khoa
+                    $kc411 = $_POST['khoa-411']; $kc412 = $_POST['khoa-412']; $kc413 = $_POST['khoa-413']; $kc414 = $_POST['khoa-414']; $kc415 = $_POST['khoa-415'];
+                    $kc416 = $_POST['khoa-416'];
+                    $sumk4 = (int)$kc411 + (int)$kc412 + (int)$kc413 + (int)$kc414 + (int)$kc415 + (int)$kc416;
+
+                    if (isset($_FILES['files416']['name'])) {
+                        foreach ($_FILES['files416']['tmp_name'] as $key => $tmp_name) {
+                            if (!empty($tmp_name)) {
+                                $minhchung = new Minhchung();
+                                $hinhanh = file_get_contents($tmp_name);
+                                $hinhanh = base64_encode($hinhanh);
+
+                            } else {
+                                $sum4 -= (int)$c416;
+                                $suml4 -= (int)$lc416;
+                                $sumk4 -= (int)$kc416;
+                            }
+                        }
+                    }
+                    if($sum4 > 25){
+                        $sum4 = 25;
+                    }
+                    if($suml4 > 25){
+                        $suml4 = 25;
+                    }
+                    if($sumk4 > 25){
+                        $sumk4 = 25;
+                    }
+
+                    // Phan 5
+                    // Sinhvien
+                    $c511 = $_POST['sv-511']; $c512 = $_POST['sv-512']; $c513 = $_POST['sv-513']; $c514 = $_POST['sv-514']; $c515 = $_POST['sv-515'];
+                    $c516 = $_POST['sv-516']; $c517 = $_POST['sv-517']; $c518 = $_POST['sv-518'];
+                    $sum5 = (int)$c511 + (int)$c512 + (int)$c513 + (int)$c514 + (int)$c515 + (int)$c516 + (int)$c517 + (int)$c518;
+                    // Lop
+                    $lc511 = $_POST['lop-511']; $lc512 = $_POST['lop-512']; $lc513 = $_POST['lop-513']; $lc514 = $_POST['lop-514']; $lc515 = $_POST['lop-515'];
+                    $lc516 = $_POST['lop-516']; $lc517 = $_POST['lop-517']; $lc518 = $_POST['lop-518'];
+                    $suml5 = (int)$lc511 + (int)$lc512 + (int)$lc513 + (int)$lc514 + (int)$lc515 + (int)$lc516 + (int)$lc517 + (int)$lc518;
+                    // Khoa
+                    $kc511 = $_POST['khoa-511']; $kc512 = $_POST['khoa-512']; $kc513 = $_POST['khoa-513']; $kc514 = $_POST['khoa-514']; $kc515 = $_POST['khoa-515'];
+                    $kc516 = $_POST['khoa-516']; $kc517 = $_POST['khoa-517']; $kc518 = $_POST['khoa-518'];
+                    $sumk5 = (int)$kc511 + (int)$kc512 + (int)$kc513 + (int)$kc514 + (int)$kc515 + (int)$kc516 + (int)$kc517 + (int)$kc518;
+
+                    if (isset($_FILES['files512']['name'])) {
+                        foreach ($_FILES['files512']['tmp_name'] as $key => $tmp_name) {
+                            if (!empty($tmp_name)) {
+                                $minhchung = new Minhchung();
+                                $hinhanh = file_get_contents($tmp_name);
+                                $hinhanh = base64_encode($hinhanh);
+
+                            } else {
+                                $sum5 -= (int)$c512;
+                                $suml5 -= (int)$lc512;
+                                $sumk5 -= (int)$kc512;
+                            }
+                        }
+                    }
+                    if (isset($_FILES['files513']['name'])) {
+                        foreach ($_FILES['files513']['tmp_name'] as $key => $tmp_name) {
+                            if (!empty($tmp_name)) {
+                                $minhchung = new Minhchung();
+                                $hinhanh = file_get_contents($tmp_name);
+                                $hinhanh = base64_encode($hinhanh);
+
+                            } else {
+                                $sum5 -= (int)$c513;
+                                $suml5 -= (int)$lc513;
+                                $sumk5 -= (int)$kc513;
+                            }
+                        }
+                    }
+                    if (isset($_FILES['files514']['name'])) {
+                        foreach ($_FILES['files514']['tmp_name'] as $key => $tmp_name) {
+                            if (!empty($tmp_name)) {
+                                $minhchung = new Minhchung();
+                                $hinhanh = file_get_contents($tmp_name);
+                                $hinhanh = base64_encode($hinhanh);
+
+                            } else {
+                                $sum5 -= (int)$c514;
+                                $suml5 -= (int)$lc514;
+                                $sumk5 -= (int)$kc514;
+                            }
+                        }
+                    }
+                    if (isset($_FILES['files515']['name'])) {
+                        foreach ($_FILES['files515']['tmp_name'] as $key => $tmp_name) {
+                            if (!empty($tmp_name)) {
+                                $minhchung = new Minhchung();
+                                $hinhanh = file_get_contents($tmp_name);
+                                $hinhanh = base64_encode($hinhanh);
+
+                            } else {
+                                $sum5 -= (int)$c515;
+                                $suml5 -= (int)$lc515;
+                                $sumk5 -= (int)$kc515;
+                            }
+                        }
+                    }
+                    if (isset($_FILES['files516']['name'])) {
+                        foreach ($_FILES['files516']['tmp_name'] as $key => $tmp_name) {
+                            if (!empty($tmp_name)) {
+                                $minhchung = new Minhchung();
+                                $hinhanh = file_get_contents($tmp_name);
+                                $hinhanh = base64_encode($hinhanh);
+
+                            } else {
+                                $sum5 -= (int)$c516;
+                                $suml5 -= (int)$lc516;
+                                $sumk5 -= (int)$kc516;
+                            }
+                        }
+                    }
+                    if (isset($_FILES['files517']['name'])) {
+                        foreach ($_FILES['files517']['tmp_name'] as $key => $tmp_name) {
+                            if (!empty($tmp_name)) {
+                                $minhchung = new Minhchung();
+                                $hinhanh = file_get_contents($tmp_name);
+                                $hinhanh = base64_encode($hinhanh);
+
+                            } else {
+                                $sum5 -= (int)$c517;
+                                $suml5 -= (int)$lc517;
+                                $sumk5 -= (int)$kc517;
+                            }
+                        }
+                    }
+                    if (isset($_FILES['files518']['name'])) {
+                        foreach ($_FILES['files518']['tmp_name'] as $key => $tmp_name) {
+                            if (!empty($tmp_name)) {
+                                $minhchung = new Minhchung();
+                                $hinhanh = file_get_contents($tmp_name);
+                                $hinhanh = base64_encode($hinhanh);
+
+                            } else {
+                                $sum5 -= (int)$c518;
+                                $suml5 -= (int)$lc518;
+                                $sumk5 -= (int)$kc518;
+                            }
+                        }
+                    }
+                    if($sum5 > 10){
+                        $sum5 = 10;
+                    }
+                    if($suml5 > 10){
+                        $suml5 = 10;
+                    }
+                    if($sumk5 > 10){
+                        $sumk5 = 10;
+                    }
+
+                    // Tong
+                    $sum = (int)$sum1 + (int)$sum2 + (int)$sum3 + (int)$sum4 + (int)$sum5;
+                    $suml = (int)$suml1 + (int)$suml2 + (int)$suml3 + (int)$suml4 + (int)$suml5;
+                    $sumk = (int)$sumk1 + (int)$sumk2 + (int)$sumk3 + (int)$sumk4 + (int)$sumk5;
+                    
+                    // Insert
+                    $bangdiem = new Bangdiem();
+                    $diemtc = new DiemTC();
+                    $diemtcct = new DiemTCCT();
+                    $getcheck = $bangdiem->BangdiemGetbyCheckBoth(1, 1);
+                    $getbdofsv = $bangdiem->BangdiemGetbyIdSVAndNHAndHK($idsv, $getcheck->NAMHOC, $getcheck->HOCKY);
+                    if($getbdofsv == null){
+                        $resultBD = $bangdiem->BangdiemAdd($getcheck->HOCKY, $getcheck->NAMHOC, $sum, $suml, $sumk, $idsv, $getcheck->TUNGAY, $getcheck->DENNGAY);
+                        $idbd = ($bangdiem->BangdiemLastOfIDSV($idsv))->ID_BD;
+                        // Diem TC
+                        $resultDTC1 = $diemtc->DiemTCAdd($sum1, $suml1, $sumk1, $idbd, 1);   
+                        $resultDTC2 = $diemtc->DiemTCAdd($sum2, $suml2, $sumk2, $idbd, 2);   
+                        $resultDTC3 = $diemtc->DiemTCAdd($sum3, $suml3, $sumk3, $idbd, 3);   
+                        $resultDTC4 = $diemtc->DiemTCAdd($sum4, $suml4, $sumk4, $idbd, 4);   
+                        $resultDTC5 = $diemtc->DiemTCAdd($sum5, $suml5, $sumk5, $idbd, 5);   
+                        // Diem TCCT1
+                        $resultDTCCT111 = $diemtcct->DiemTCCTAdd($c111, $lc111, $kc111, $idbd, 1);
+                        $resultDTTCT112 = $diemtcct->DiemTCCTAdd($c112, $lc112, $kc112, $idbd, 2);
+                        $resultDTTCT113 = $diemtcct->DiemTCCTAdd($c113, $lc113, $kc113, $idbd, 3);
+                        if (isset($_FILES['files113']['name'])) {
+                            foreach ($_FILES['files113']['tmp_name'] as $key => $tmp_name) {
+                                if (!empty($tmp_name)) {
+                                    $IDDTCCTLast = ($diemtcct->DiemTCCTLast())->ID_DTCCT;
+                                    $minhchung = new Minhchung();
+                                    $hinhanh = file_get_contents($tmp_name);
+                                    $hinhanh = base64_encode($hinhanh);
+                                    $resultHA = $minhchung->MinhchungAdd($hinhanh,$IDDTCCTLast);
+                                } else {
+                                    
+                                }
+                            }
+                        }
+                        $resultDTTCT114 = $diemtcct->DiemTCCTAdd($c114, $lc114, $kc114, $idbd, 4);
+                        if (isset($_FILES['files114']['name'])) {
+                            foreach ($_FILES['files114']['tmp_name'] as $key => $tmp_name) {
+                                if (!empty($tmp_name)) {
+                                    $IDDTCCTLast = ($diemtcct->DiemTCCTLast())->ID_DTCCT;
+                                    $minhchung = new Minhchung();
+                                    $hinhanh = file_get_contents($tmp_name);
+                                    $hinhanh = base64_encode($hinhanh);
+                                    $resultHA = $minhchung->MinhchungAdd($hinhanh,$IDDTCCTLast);
+                                } else {
+                                    
+                                }
+                            }
+                        }
+                        $resultDTTCT115 = $diemtcct->DiemTCCTAdd($c115, $lc115, $kc115, $idbd, 5);
+                        if (isset($_FILES['files115']['name'])) {
+                            foreach ($_FILES['files115']['tmp_name'] as $key => $tmp_name) {
+                                if (!empty($tmp_name)) {
+                                    $IDDTCCTLast = ($diemtcct->DiemTCCTLast())->ID_DTCCT;
+                                    $minhchung = new Minhchung();
+                                    $hinhanh = file_get_contents($tmp_name);
+                                    $hinhanh = base64_encode($hinhanh);
+                                    $resultHA = $minhchung->MinhchungAdd($hinhanh,$IDDTCCTLast);
+                                } else {
+                                    
+                                }
+                            }
+                        }
+                        $resultDTTCT116 = $diemtcct->DiemTCCTAdd($c116, $lc116, $kc116, $idbd, 6);
+                        if (isset($_FILES['files116']['name'])) {
+                            foreach ($_FILES['files116']['tmp_name'] as $key => $tmp_name) {
+                                if (!empty($tmp_name)) {
+                                    $IDDTCCTLast = ($diemtcct->DiemTCCTLast())->ID_DTCCT;
+                                    $minhchung = new Minhchung();
+                                    $hinhanh = file_get_contents($tmp_name);
+                                    $hinhanh = base64_encode($hinhanh);
+                                    $resultHA = $minhchung->MinhchungAdd($hinhanh,$IDDTCCTLast);
+                                } else {
+                                    
+                                }
+                            }
+                        }
+                        $resultDTTCT117 = $diemtcct->DiemTCCTAdd($c117, $lc117, $kc117, $idbd, 7);
+                        if (isset($_FILES['files117']['name'])) {
+                            foreach ($_FILES['files117']['tmp_name'] as $key => $tmp_name) {
+                                if (!empty($tmp_name)) {
+                                    $IDDTCCTLast = ($diemtcct->DiemTCCTLast())->ID_DTCCT;
+                                    $minhchung = new Minhchung();
+                                    $hinhanh = file_get_contents($tmp_name);
+                                    $hinhanh = base64_encode($hinhanh);
+                                    $resultHA = $minhchung->MinhchungAdd($hinhanh,$IDDTCCTLast);
+                                } else {
+                                    
+                                }
+                            }
+                        }
+                        $resultDTTCT118 = $diemtcct->DiemTCCTAdd($c118, $lc118, $kc118, $idbd, 8);
+                        if (isset($_FILES['files118']['name'])) {
+                            foreach ($_FILES['files118']['tmp_name'] as $key => $tmp_name) {
+                                if (!empty($tmp_name)) {
+                                    $IDDTCCTLast = ($diemtcct->DiemTCCTLast())->ID_DTCCT;
+                                    $minhchung = new Minhchung();
+                                    $hinhanh = file_get_contents($tmp_name);
+                                    $hinhanh = base64_encode($hinhanh);
+                                    $resultHA = $minhchung->MinhchungAdd($hinhanh,$IDDTCCTLast);
+                                } else {
+                                    
+                                }
+                            }
+                        }
+                        $resultDTTCT119 = $diemtcct->DiemTCCTAdd($c119, $lc119, $kc119, $idbd, 9);
+                        $resultDTTCT121 = $diemtcct->DiemTCCTAdd($t121, $lt121, $kt121, $idbd, 10);
+                        $resultDTTCT122 = $diemtcct->DiemTCCTAdd($t122, $lt122, $kt122, $idbd, 11);
+                        // Diem TCCT2
+                        $resultDTTCT211 = $diemtcct->DiemTCCTAdd($c211, $lc211, $kc211, $idbd, 12);
+                        $resultDTTCT212 = $diemtcct->DiemTCCTAdd($c212, $lc211, $kc211, $idbd, 13);
+                        $resultDTTCT221 = $diemtcct->DiemTCCTAdd($t221, $lt221, $kt221, $idbd, 14);
+                        $resultDTTCT222 = $diemtcct->DiemTCCTAdd($t222, $lt222, $kt222, $idbd, 15);
+                        $resultDTTCT223 = $diemtcct->DiemTCCTAdd($t223, $lt223, $kt223, $idbd, 16);
+                        $resultDTTCT224 = $diemtcct->DiemTCCTAdd($t224, $lt224, $kt224, $idbd, 17);
+                        $resultDTTCT225 = $diemtcct->DiemTCCTAdd($t225, $lt225, $kt225, $idbd, 18);
+                        $resultDTTCT226 = $diemtcct->DiemTCCTAdd($t226, $lt226, $kt226, $idbd, 19);
+                        $resultDTTCT227 = $diemtcct->DiemTCCTAdd($t227, $lt227, $kt227, $idbd, 20);
+                        // DiemTCCT3
+                        $resultDTTCT311 = $diemtcct->DiemTCCTAdd($c311, $lc311, $kc311, $idbd, 21);
+                        if (isset($_FILES['files311']['name'])) {
+                            foreach ($_FILES['files311']['tmp_name'] as $key => $tmp_name) {
+                                if (!empty($tmp_name)) {
+                                    $IDDTCCTLast = ($diemtcct->DiemTCCTLast())->ID_DTCCT;
+                                    $minhchung = new Minhchung();
+                                    $hinhanh = file_get_contents($tmp_name);
+                                    $hinhanh = base64_encode($hinhanh);
+                                    $resultHA = $minhchung->MinhchungAdd($hinhanh,$IDDTCCTLast);
+                                } else {
+                                    
+                                }
+                            }
+                        }
+                        $resultDTTCT312 = $diemtcct->DiemTCCTAdd($c312, $lc312, $kc312, $idbd, 22);
+                        if (isset($_FILES['files312']['name'])) {
+                            foreach ($_FILES['files312']['tmp_name'] as $key => $tmp_name) {
+                                if (!empty($tmp_name)) {
+                                    $IDDTCCTLast = ($diemtcct->DiemTCCTLast())->ID_DTCCT;
+                                    $minhchung = new Minhchung();
+                                    $hinhanh = file_get_contents($tmp_name);
+                                    $hinhanh = base64_encode($hinhanh);
+                                    $resultHA = $minhchung->MinhchungAdd($hinhanh,$IDDTCCTLast);
+                                } else {
+                                    
+                                }
+                            }
+                        }
+                        $resultDTTCT313 = $diemtcct->DiemTCCTAdd($c313, $lc313, $kc313, $idbd, 23);
+                        if (isset($_FILES['files313']['name'])) {
+                            foreach ($_FILES['files313']['tmp_name'] as $key => $tmp_name) {
+                                if (!empty($tmp_name)) {
+                                    $IDDTCCTLast = ($diemtcct->DiemTCCTLast())->ID_DTCCT;
+                                    $minhchung = new Minhchung();
+                                    $hinhanh = file_get_contents($tmp_name);
+                                    $hinhanh = base64_encode($hinhanh);
+                                    $resultHA = $minhchung->MinhchungAdd($hinhanh,$IDDTCCTLast);
+                                } else {
+                                    
+                                }
+                            }
+                        }
+                        $resultDTTCT314 = $diemtcct->DiemTCCTAdd($c314, $lc314, $kc314, $idbd, 24);
+                        if (isset($_FILES['files314']['name'])) {
+                            foreach ($_FILES['files314']['tmp_name'] as $key => $tmp_name) {
+                                if (!empty($tmp_name)) {
+                                    $IDDTCCTLast = ($diemtcct->DiemTCCTLast())->ID_DTCCT;
+                                    $minhchung = new Minhchung();
+                                    $hinhanh = file_get_contents($tmp_name);
+                                    $hinhanh = base64_encode($hinhanh);
+                                    $resultHA = $minhchung->MinhchungAdd($hinhanh,$IDDTCCTLast);
+                                } else {
+                                    
+                                }
+                            }
+                        }
+                        $resultDTTCT315 = $diemtcct->DiemTCCTAdd($c315, $lc315, $kc315, $idbd, 25);
+                        if (isset($_FILES['files315']['name'])) {
+                            foreach ($_FILES['files315']['tmp_name'] as $key => $tmp_name) {
+                                if (!empty($tmp_name)) {
+                                    $IDDTCCTLast = ($diemtcct->DiemTCCTLast())->ID_DTCCT;
+                                    $minhchung = new Minhchung();
+                                    $hinhanh = file_get_contents($tmp_name);
+                                    $hinhanh = base64_encode($hinhanh);
+                                    $resultHA = $minhchung->MinhchungAdd($hinhanh,$IDDTCCTLast);
+                                } else {
+                                    
+                                }
+                            }
+                        }
+                        $resultDTTCT316 = $diemtcct->DiemTCCTAdd($c316, $lc316, $kc316, $idbd, 26);
+                        if (isset($_FILES['files316']['name'])) {
+                            foreach ($_FILES['files316']['tmp_name'] as $key => $tmp_name) {
+                                if (!empty($tmp_name)) {
+                                    $IDDTCCTLast = ($diemtcct->DiemTCCTLast())->ID_DTCCT;
+                                    $minhchung = new Minhchung();
+                                    $hinhanh = file_get_contents($tmp_name);
+                                    $hinhanh = base64_encode($hinhanh);
+                                    $resultHA = $minhchung->MinhchungAdd($hinhanh,$IDDTCCTLast);
+                                } else {
+                                    
+                                }
+                            }
+                        }
+                        $resultDTTCT321 = $diemtcct->DiemTCCTAdd($t321, $lt321, $kt321, $idbd, 27);
+                        $resultDTTCT322 = $diemtcct->DiemTCCTAdd($t322, $lt322, $kt322, $idbd, 28);
+                        // DiemTCCT4
+                        $resultDTTCT411 = $diemtcct->DiemTCCTAdd($c411, $lc411, $kc411, $idbd, 29);
+                        $resultDTTCT412 = $diemtcct->DiemTCCTAdd($c412, $lc412, $kc412, $idbd, 30);
+                        $resultDTTCT413 = $diemtcct->DiemTCCTAdd($c413, $lc413, $kc413, $idbd, 31);
+                        $resultDTTCT414 = $diemtcct->DiemTCCTAdd($c414, $lc414, $kc414, $idbd, 32);
+                        $resultDTTCT415 = $diemtcct->DiemTCCTAdd($c415, $lc415, $kc415, $idbd, 33);
+                        $resultDTTCT416 = $diemtcct->DiemTCCTAdd($c416, $lc416, $kc416, $idbd, 34);
+                        if (isset($_FILES['files416']['name'])) {
+                            foreach ($_FILES['files416']['tmp_name'] as $key => $tmp_name) {
+                                if (!empty($tmp_name)) {
+                                    $IDDTCCTLast = ($diemtcct->DiemTCCTLast())->ID_DTCCT;
+                                    $minhchung = new Minhchung();
+                                    $hinhanh = file_get_contents($tmp_name);
+                                    $hinhanh = base64_encode($hinhanh);
+                                    $resultHA = $minhchung->MinhchungAdd($hinhanh,$IDDTCCTLast);
+                                } else {
+                                    
+                                }
+                            }
+                        }
+                        // DiemTCCT5
+                        $resultDTTCT511 = $diemtcct->DiemTCCTAdd($c511, $lc511, $kc511, $idbd, 35);
+                        $resultDTTCT512 = $diemtcct->DiemTCCTAdd($c512, $lc512, $kc512, $idbd, 36);
+                        if (isset($_FILES['files512']['name'])) {
+                            foreach ($_FILES['files512']['tmp_name'] as $key => $tmp_name) {
+                                if (!empty($tmp_name)) {
+                                    $IDDTCCTLast = ($diemtcct->DiemTCCTLast())->ID_DTCCT;
+                                    $minhchung = new Minhchung();
+                                    $hinhanh = file_get_contents($tmp_name);
+                                    $hinhanh = base64_encode($hinhanh);
+                                    $resultHA = $minhchung->MinhchungAdd($hinhanh,$IDDTCCTLast);
+                                } else {
+                                    
+                                }
+                            }
+                        }
+                        $resultDTTCT513 = $diemtcct->DiemTCCTAdd($c513, $lc513, $kc513, $idbd, 37);
+                        if (isset($_FILES['files513']['name'])) {
+                            foreach ($_FILES['files513']['tmp_name'] as $key => $tmp_name) {
+                                if (!empty($tmp_name)) {
+                                    $IDDTCCTLast = ($diemtcct->DiemTCCTLast())->ID_DTCCT;
+                                    $minhchung = new Minhchung();
+                                    $hinhanh = file_get_contents($tmp_name);
+                                    $hinhanh = base64_encode($hinhanh);
+                                    $resultHA = $minhchung->MinhchungAdd($hinhanh,$IDDTCCTLast);
+                                } else {
+                                    
+                                }
+                            }
+                        }
+                        $resultDTTCT514 = $diemtcct->DiemTCCTAdd($c514, $lc514, $kc514, $idbd, 38);
+                        if (isset($_FILES['files514']['name'])) {
+                            foreach ($_FILES['files514']['tmp_name'] as $key => $tmp_name) {
+                                if (!empty($tmp_name)) {
+                                    $IDDTCCTLast = ($diemtcct->DiemTCCTLast())->ID_DTCCT;
+                                    $minhchung = new Minhchung();
+                                    $hinhanh = file_get_contents($tmp_name);
+                                    $hinhanh = base64_encode($hinhanh);
+                                    $resultHA = $minhchung->MinhchungAdd($hinhanh,$IDDTCCTLast);
+                                } else {
+                                    
+                                }
+                            }
+                        }
+                        $resultDTTCT515 = $diemtcct->DiemTCCTAdd($c515, $lc515, $kc515, $idbd, 39);
+                        if (isset($_FILES['files515']['name'])) {
+                            foreach ($_FILES['files515']['tmp_name'] as $key => $tmp_name) {
+                                if (!empty($tmp_name)) {
+                                    $IDDTCCTLast = ($diemtcct->DiemTCCTLast())->ID_DTCCT;
+                                    $minhchung = new Minhchung();
+                                    $hinhanh = file_get_contents($tmp_name);
+                                    $hinhanh = base64_encode($hinhanh);
+                                    $resultHA = $minhchung->MinhchungAdd($hinhanh,$IDDTCCTLast);
+                                } else {
+                                    
+                                }
+                            }
+                        }
+                        $resultDTTCT516 = $diemtcct->DiemTCCTAdd($c516, $lc516, $kc516, $idbd, 40);
+                        if (isset($_FILES['files516']['name'])) {
+                            foreach ($_FILES['files516']['tmp_name'] as $key => $tmp_name) {
+                                if (!empty($tmp_name)) {
+                                    $IDDTCCTLast = ($diemtcct->DiemTCCTLast())->ID_DTCCT;
+                                    $minhchung = new Minhchung();
+                                    $hinhanh = file_get_contents($tmp_name);
+                                    $hinhanh = base64_encode($hinhanh);
+                                    $resultHA = $minhchung->MinhchungAdd($hinhanh,$IDDTCCTLast);
+                                } else {
+                                    
+                                }
+                            }
+                        }
+                        $resultDTTCT517 = $diemtcct->DiemTCCTAdd($c517, $lc517, $kc517, $idbd, 41);
+                        if (isset($_FILES['files517']['name'])) {
+                            foreach ($_FILES['files517']['tmp_name'] as $key => $tmp_name) {
+                                if (!empty($tmp_name)) {
+                                    $IDDTCCTLast = ($diemtcct->DiemTCCTLast())->ID_DTCCT;
+                                    $minhchung = new Minhchung();
+                                    $hinhanh = file_get_contents($tmp_name);
+                                    $hinhanh = base64_encode($hinhanh);
+                                    $resultHA = $minhchung->MinhchungAdd($hinhanh,$IDDTCCTLast);
+                                } else {
+                                    
+                                }
+                            }
+                        }
+                        $resultDTTCT518 = $diemtcct->DiemTCCTAdd($c518, $lc518, $kc518, $idbd, 42);
+                        if (isset($_FILES['files518']['name'])) {
+                            foreach ($_FILES['files518']['tmp_name'] as $key => $tmp_name) {
+                                if (!empty($tmp_name)) {
+                                    $IDDTCCTLast = ($diemtcct->DiemTCCTLast())->ID_DTCCT;
+                                    $minhchung = new Minhchung();
+                                    $hinhanh = file_get_contents($tmp_name);
+                                    $hinhanh = base64_encode($hinhanh);
+                                    $resultHA = $minhchung->MinhchungAdd($hinhanh,$IDDTCCTLast);
+                                } else {
+                                    
+                                }
+                            }
+                        }
+                    }
+                    else{
+                        // Update
+                    }
                 }
                 else if(isset($_SESSION['BCS'])){
                     
@@ -357,9 +1095,10 @@
                     $diemtc = new DiemTC();
                     $diemtcct = new DiemTCCT();
                     $getcheck = $bangdiem->BangdiemGetbyCheckBoth(1, 1);
-                    $idbd = ($bangdiem->BangdiemLastOfIDSV($idsv))->ID_BD;
                     if($getcheck != null){
-                        $resultBD = $bangdiem->BangdiemAdd($getcheck->HOCKY, $getcheck->NAMHOC, $sum, null, null, $idsv);
+
+                        $resultBD = $bangdiem->BangdiemAdd($getcheck->HOCKY, $getcheck->NAMHOC, $sum, null, null, $idsv, $getcheck->TUNGAY, $getcheck->DENNGAY);
+                        $idbd = ($bangdiem->BangdiemLastOfIDSV($idsv))->ID_BD;
                         // Diem TC
                         $resultDTC1 = $diemtc->DiemTCAdd($sum1, null, null, $idbd, 1);   
                         $resultDTC2 = $diemtc->DiemTCAdd($sum2, null, null, $idbd, 2);   
@@ -367,48 +1106,315 @@
                         $resultDTC4 = $diemtc->DiemTCAdd($sum4, null, null, $idbd, 4);   
                         $resultDTC5 = $diemtc->DiemTCAdd($sum5, null, null, $idbd, 5);   
                         // Diem TCCT1
-                        $resultDTCCT1 = $diemtcct->DiemTCCTAdd($c111, 0, 0, $idbd, 1);
-                        $resultDTTCT2 = $diemtcct->DiemTCCTAdd($c112, 0, 0, $idbd, 2);
-                        $resultDTTCT3 = $diemtcct->DiemTCCTAdd($c113, 0, 0, $idbd, 3);
-                        $resultDTTCT4 = $diemtcct->DiemTCCTAdd($c114, 0, 0, $idbd, 4);
-                        $resultDTTCT5 = $diemtcct->DiemTCCTAdd($c115, 0, 0, $idbd, 5);
-                        $resultDTTCT6 = $diemtcct->DiemTCCTAdd($c116, 0, 0, $idbd, 6);
-                        $resultDTTCT7 = $diemtcct->DiemTCCTAdd($c117, 0, 0, $idbd, 7);
-                        $resultDTTCT8 = $diemtcct->DiemTCCTAdd($c118, 0, 0, $idbd, 8);
-                        $resultDTTCT9 = $diemtcct->DiemTCCTAdd($c119, 0, 0, $idbd, 9);
-                        $resultDTTCT10 = $diemtcct->DiemTCCTAdd($c121, 0, 0, $idbd, 10);
-                        $resultDTTCT11 = $diemtcct->DiemTCCTAdd($c122, 0, 0, $idbd, 11);
-                        $resultDTTCT12 = $diemtcct->DiemTCCTAdd($c123, 0, 0, $idbd, 12);
-                        $resultDTTCT13 = $diemtcct->DiemTCCTAdd($c124, 0, 0, $idbd, 13);
-                        $resultDTTCT14 = $diemtcct->DiemTCCTAdd($c125, 0, 0, $idbd, 14);
-                        $resultDTTCT15 = $diemtcct->DiemTCCTAdd($c126, 0, 0, $idbd, 15);
-                        $resultDTTCT16 = $diemtcct->DiemTCCTAdd($c127, 0, 0, $idbd, 16);
-                        $resultDTTCT17 = $diemtcct->DiemTCCTAdd($c128, 0, 0, $idbd, 17);
-                        $resultDTTCT18 = $diemtcct->DiemTCCTAdd($c129, 0, 0, $idbd, 18);
-                        $resultDTTCT19 = $diemtcct->DiemTCCTAdd($c131, 0, 0, $idbd, 19);
-                        $resultDTTCT20 = $diemtcct->DiemTCCTAdd($c132, 0, 0, $idbd, 20);
-                        $resultDTTCT21 = $diemtcct->DiemTCCTAdd($c133, 0, 0, $idbd, 21);
-                        $resultDTTCT22 = $diemtcct->DiemTCCTAdd($c134, 0, 0, $idbd, 22);
-                        $resultDTTCT23 = $diemtcct->DiemTCCTAdd($c135, 0, 0, $idbd, 23);
-                        $resultDTTCT24 = $diemtcct->DiemTCCTAdd($c136, 0, 0, $idbd, 24);
-                        $resultDTTCT25 = $diemtcct->DiemTCCTAdd($c137, 0, 0, $idbd, 25);
-                        $resultDTTCT26 = $diemtcct->DiemTCCTAdd($c138, 0, 0, $idbd, 26);
-                        $resultDTTCT27 = $diemtcct->DiemTCCTAdd($c139, 0, 0, $idbd, 27);
-                        $resultDTTCT28 = $diemtcct->DiemTCCTAdd($c141, 0, 0, $idbd, 28);
-                        $resultDTTCT29 = $diemtcct->DiemTCCTAdd($c142, 0, 0, $idbd, 29);
-                        $resultDTTCT30 = $diemtcct->DiemTCCTAdd($c143, 0, 0, $idbd, 30);
-                        $resultDTTCT31 = $diemtcct->DiemTCCTAdd($c144, 0, 0, $idbd, 31);
-                        $resultDTTCT32 = $diemtcct->DiemTCCTAdd($c145, 0, 0, $idbd, 32);
-                        $resultDTTCT33 = $diemtcct->DiemTCCTAdd($c146, 0, 0, $idbd, 33);
-                        $resultDTTCT34 = $diemtcct->DiemTCCTAdd($c147, 0, 0, $idbd, 34);
-                        $resultDTTCT35 = $diemtcct->DiemTCCTAdd($c148, 0, 0, $idbd, 35);
-                        $resultDTTCT36 = $diemtcct->DiemTCCTAdd($c149, 0, 0, $idbd, 36);
-                        $resultDTTCT37 = $diemtcct->DiemTCCTAdd($c1513, 0, 0, $idbd, 37);
-                        $resultDTTCT38 = $diemtcct->DiemTCCTAdd($c1514, 0, 0, $idbd, 38);
-                        $resultDTTCT39 = $diemtcct->DiemTCCTAdd($c1515, 0, 0, $idbd, 39);
-                        $resultDTTCT40 = $diemtcct->DiemTCCTAdd($c1516, 0, 0, $idbd, 40);
-                        $resultDTTCT41 = $diemtcct->DiemTCCTAdd($c1517, 0, 0, $idbd, 41);
-                        $resultDTTCT42 = $diemtcct->DiemTCCTAdd($c1518, 0, 0, $idbd, 42);
+                        $resultDTCCT111 = $diemtcct->DiemTCCTAdd($c111, 0, 0, $idbd, 1);
+                        $resultDTTCT112 = $diemtcct->DiemTCCTAdd($c112, 0, 0, $idbd, 2);
+                        $resultDTTCT113 = $diemtcct->DiemTCCTAdd($c113, 0, 0, $idbd, 3);
+                        if (isset($_FILES['files113']['name'])) {
+                            foreach ($_FILES['files113']['tmp_name'] as $key => $tmp_name) {
+                                if (!empty($tmp_name)) {
+                                    $IDDTCCTLast = ($diemtcct->DiemTCCTLast())->ID_DTCCT;
+                                    $minhchung = new Minhchung();
+                                    $hinhanh = file_get_contents($tmp_name);
+                                    $hinhanh = base64_encode($hinhanh);
+                                    $resultHA = $minhchung->MinhchungAdd($hinhanh,$IDDTCCTLast);
+                                } else {
+                                    
+                                }
+                            }
+                        }
+                        $resultDTTCT114 = $diemtcct->DiemTCCTAdd($c114, 0, 0, $idbd, 4);
+                        if (isset($_FILES['files114']['name'])) {
+                            foreach ($_FILES['files114']['tmp_name'] as $key => $tmp_name) {
+                                if (!empty($tmp_name)) {
+                                    $IDDTCCTLast = ($diemtcct->DiemTCCTLast())->ID_DTCCT;
+                                    $minhchung = new Minhchung();
+                                    $hinhanh = file_get_contents($tmp_name);
+                                    $hinhanh = base64_encode($hinhanh);
+                                    $resultHA = $minhchung->MinhchungAdd($hinhanh,$IDDTCCTLast);
+                                } else {
+                                    
+                                }
+                            }
+                        }
+                        $resultDTTCT115 = $diemtcct->DiemTCCTAdd($c115, 0, 0, $idbd, 5);
+                        if (isset($_FILES['files115']['name'])) {
+                            foreach ($_FILES['files115']['tmp_name'] as $key => $tmp_name) {
+                                if (!empty($tmp_name)) {
+                                    $IDDTCCTLast = ($diemtcct->DiemTCCTLast())->ID_DTCCT;
+                                    $minhchung = new Minhchung();
+                                    $hinhanh = file_get_contents($tmp_name);
+                                    $hinhanh = base64_encode($hinhanh);
+                                    $resultHA = $minhchung->MinhchungAdd($hinhanh,$IDDTCCTLast);
+                                } else {
+                                    
+                                }
+                            }
+                        }
+                        $resultDTTCT116 = $diemtcct->DiemTCCTAdd($c116, 0, 0, $idbd, 6);
+                        if (isset($_FILES['files116']['name'])) {
+                            foreach ($_FILES['files116']['tmp_name'] as $key => $tmp_name) {
+                                if (!empty($tmp_name)) {
+                                    $IDDTCCTLast = ($diemtcct->DiemTCCTLast())->ID_DTCCT;
+                                    $minhchung = new Minhchung();
+                                    $hinhanh = file_get_contents($tmp_name);
+                                    $hinhanh = base64_encode($hinhanh);
+                                    $resultHA = $minhchung->MinhchungAdd($hinhanh,$IDDTCCTLast);
+                                } else {
+                                    
+                                }
+                            }
+                        }
+                        $resultDTTCT117 = $diemtcct->DiemTCCTAdd($c117, 0, 0, $idbd, 7);
+                        if (isset($_FILES['files117']['name'])) {
+                            foreach ($_FILES['files117']['tmp_name'] as $key => $tmp_name) {
+                                if (!empty($tmp_name)) {
+                                    $IDDTCCTLast = ($diemtcct->DiemTCCTLast())->ID_DTCCT;
+                                    $minhchung = new Minhchung();
+                                    $hinhanh = file_get_contents($tmp_name);
+                                    $hinhanh = base64_encode($hinhanh);
+                                    $resultHA = $minhchung->MinhchungAdd($hinhanh,$IDDTCCTLast);
+                                } else {
+                                    
+                                }
+                            }
+                        }
+                        $resultDTTCT118 = $diemtcct->DiemTCCTAdd($c118, 0, 0, $idbd, 8);
+                        if (isset($_FILES['files118']['name'])) {
+                            foreach ($_FILES['files118']['tmp_name'] as $key => $tmp_name) {
+                                if (!empty($tmp_name)) {
+                                    $IDDTCCTLast = ($diemtcct->DiemTCCTLast())->ID_DTCCT;
+                                    $minhchung = new Minhchung();
+                                    $hinhanh = file_get_contents($tmp_name);
+                                    $hinhanh = base64_encode($hinhanh);
+                                    $resultHA = $minhchung->MinhchungAdd($hinhanh,$IDDTCCTLast);
+                                } else {
+                                    
+                                }
+                            }
+                        }
+                        $resultDTTCT119 = $diemtcct->DiemTCCTAdd($c119, 0, 0, $idbd, 9);
+                        $resultDTTCT121 = $diemtcct->DiemTCCTAdd($t121, 0, 0, $idbd, 10);
+                        $resultDTTCT122 = $diemtcct->DiemTCCTAdd($t122, 0, 0, $idbd, 11);
+                        // Diem TCCT2
+                        $resultDTTCT211 = $diemtcct->DiemTCCTAdd($c211, 0, 0, $idbd, 12);
+                        $resultDTTCT212 = $diemtcct->DiemTCCTAdd($c212, 0, 0, $idbd, 13);
+                        $resultDTTCT221 = $diemtcct->DiemTCCTAdd($t221, 0, 0, $idbd, 14);
+                        $resultDTTCT222 = $diemtcct->DiemTCCTAdd($t222, 0, 0, $idbd, 15);
+                        $resultDTTCT223 = $diemtcct->DiemTCCTAdd($t223, 0, 0, $idbd, 16);
+                        $resultDTTCT224 = $diemtcct->DiemTCCTAdd($t224, 0, 0, $idbd, 17);
+                        $resultDTTCT225 = $diemtcct->DiemTCCTAdd($t225, 0, 0, $idbd, 18);
+                        $resultDTTCT226 = $diemtcct->DiemTCCTAdd($t226, 0, 0, $idbd, 19);
+                        $resultDTTCT227 = $diemtcct->DiemTCCTAdd($t227, 0, 0, $idbd, 20);
+                        // DiemTCCT3
+                        $resultDTTCT311 = $diemtcct->DiemTCCTAdd($c311, 0, 0, $idbd, 21);
+                        if (isset($_FILES['files311']['name'])) {
+                            foreach ($_FILES['files311']['tmp_name'] as $key => $tmp_name) {
+                                if (!empty($tmp_name)) {
+                                    $IDDTCCTLast = ($diemtcct->DiemTCCTLast())->ID_DTCCT;
+                                    $minhchung = new Minhchung();
+                                    $hinhanh = file_get_contents($tmp_name);
+                                    $hinhanh = base64_encode($hinhanh);
+                                    $resultHA = $minhchung->MinhchungAdd($hinhanh,$IDDTCCTLast);
+                                } else {
+                                    
+                                }
+                            }
+                        }
+                        $resultDTTCT312 = $diemtcct->DiemTCCTAdd($c312, 0, 0, $idbd, 22);
+                        if (isset($_FILES['files312']['name'])) {
+                            foreach ($_FILES['files312']['tmp_name'] as $key => $tmp_name) {
+                                if (!empty($tmp_name)) {
+                                    $IDDTCCTLast = ($diemtcct->DiemTCCTLast())->ID_DTCCT;
+                                    $minhchung = new Minhchung();
+                                    $hinhanh = file_get_contents($tmp_name);
+                                    $hinhanh = base64_encode($hinhanh);
+                                    $resultHA = $minhchung->MinhchungAdd($hinhanh,$IDDTCCTLast);
+                                } else {
+                                    
+                                }
+                            }
+                        }
+                        $resultDTTCT313 = $diemtcct->DiemTCCTAdd($c313, 0, 0, $idbd, 23);
+                        if (isset($_FILES['files313']['name'])) {
+                            foreach ($_FILES['files313']['tmp_name'] as $key => $tmp_name) {
+                                if (!empty($tmp_name)) {
+                                    $IDDTCCTLast = ($diemtcct->DiemTCCTLast())->ID_DTCCT;
+                                    $minhchung = new Minhchung();
+                                    $hinhanh = file_get_contents($tmp_name);
+                                    $hinhanh = base64_encode($hinhanh);
+                                    $resultHA = $minhchung->MinhchungAdd($hinhanh,$IDDTCCTLast);
+                                } else {
+                                    
+                                }
+                            }
+                        }
+                        $resultDTTCT314 = $diemtcct->DiemTCCTAdd($c314, 0, 0, $idbd, 24);
+                        if (isset($_FILES['files314']['name'])) {
+                            foreach ($_FILES['files314']['tmp_name'] as $key => $tmp_name) {
+                                if (!empty($tmp_name)) {
+                                    $IDDTCCTLast = ($diemtcct->DiemTCCTLast())->ID_DTCCT;
+                                    $minhchung = new Minhchung();
+                                    $hinhanh = file_get_contents($tmp_name);
+                                    $hinhanh = base64_encode($hinhanh);
+                                    $resultHA = $minhchung->MinhchungAdd($hinhanh,$IDDTCCTLast);
+                                } else {
+                                    
+                                }
+                            }
+                        }
+                        $resultDTTCT315 = $diemtcct->DiemTCCTAdd($c315, 0, 0, $idbd, 25);
+                        if (isset($_FILES['files315']['name'])) {
+                            foreach ($_FILES['files315']['tmp_name'] as $key => $tmp_name) {
+                                if (!empty($tmp_name)) {
+                                    $IDDTCCTLast = ($diemtcct->DiemTCCTLast())->ID_DTCCT;
+                                    $minhchung = new Minhchung();
+                                    $hinhanh = file_get_contents($tmp_name);
+                                    $hinhanh = base64_encode($hinhanh);
+                                    $resultHA = $minhchung->MinhchungAdd($hinhanh,$IDDTCCTLast);
+                                } else {
+                                    
+                                }
+                            }
+                        }
+                        $resultDTTCT316 = $diemtcct->DiemTCCTAdd($c316, 0, 0, $idbd, 26);
+                        if (isset($_FILES['files316']['name'])) {
+                            foreach ($_FILES['files316']['tmp_name'] as $key => $tmp_name) {
+                                if (!empty($tmp_name)) {
+                                    $IDDTCCTLast = ($diemtcct->DiemTCCTLast())->ID_DTCCT;
+                                    $minhchung = new Minhchung();
+                                    $hinhanh = file_get_contents($tmp_name);
+                                    $hinhanh = base64_encode($hinhanh);
+                                    $resultHA = $minhchung->MinhchungAdd($hinhanh,$IDDTCCTLast);
+                                } else {
+                                    
+                                }
+                            }
+                        }
+                        $resultDTTCT321 = $diemtcct->DiemTCCTAdd($t321, 0, 0, $idbd, 27);
+                        $resultDTTCT322 = $diemtcct->DiemTCCTAdd($t322, 0, 0, $idbd, 28);
+                        // DiemTCCT4
+                        $resultDTTCT411 = $diemtcct->DiemTCCTAdd($c411, 0, 0, $idbd, 29);
+                        $resultDTTCT412 = $diemtcct->DiemTCCTAdd($c412, 0, 0, $idbd, 30);
+                        $resultDTTCT413 = $diemtcct->DiemTCCTAdd($c413, 0, 0, $idbd, 31);
+                        $resultDTTCT414 = $diemtcct->DiemTCCTAdd($c414, 0, 0, $idbd, 32);
+                        $resultDTTCT415 = $diemtcct->DiemTCCTAdd($c415, 0, 0, $idbd, 33);
+                        $resultDTTCT416 = $diemtcct->DiemTCCTAdd($c416, 0, 0, $idbd, 34);
+                        if (isset($_FILES['files416']['name'])) {
+                            foreach ($_FILES['files416']['tmp_name'] as $key => $tmp_name) {
+                                if (!empty($tmp_name)) {
+                                    $IDDTCCTLast = ($diemtcct->DiemTCCTLast())->ID_DTCCT;
+                                    $minhchung = new Minhchung();
+                                    $hinhanh = file_get_contents($tmp_name);
+                                    $hinhanh = base64_encode($hinhanh);
+                                    $resultHA = $minhchung->MinhchungAdd($hinhanh,$IDDTCCTLast);
+                                } else {
+                                    
+                                }
+                            }
+                        }
+                        // DiemTCCT5
+                        $resultDTTCT511 = $diemtcct->DiemTCCTAdd($c511, 0, 0, $idbd, 35);
+                        $resultDTTCT512 = $diemtcct->DiemTCCTAdd($c512, 0, 0, $idbd, 36);
+                        if (isset($_FILES['files512']['name'])) {
+                            foreach ($_FILES['files512']['tmp_name'] as $key => $tmp_name) {
+                                if (!empty($tmp_name)) {
+                                    $IDDTCCTLast = ($diemtcct->DiemTCCTLast())->ID_DTCCT;
+                                    $minhchung = new Minhchung();
+                                    $hinhanh = file_get_contents($tmp_name);
+                                    $hinhanh = base64_encode($hinhanh);
+                                    $resultHA = $minhchung->MinhchungAdd($hinhanh,$IDDTCCTLast);
+                                } else {
+                                    
+                                }
+                            }
+                        }
+                        $resultDTTCT513 = $diemtcct->DiemTCCTAdd($c513, 0, 0, $idbd, 37);
+                        if (isset($_FILES['files513']['name'])) {
+                            foreach ($_FILES['files513']['tmp_name'] as $key => $tmp_name) {
+                                if (!empty($tmp_name)) {
+                                    $IDDTCCTLast = ($diemtcct->DiemTCCTLast())->ID_DTCCT;
+                                    $minhchung = new Minhchung();
+                                    $hinhanh = file_get_contents($tmp_name);
+                                    $hinhanh = base64_encode($hinhanh);
+                                    $resultHA = $minhchung->MinhchungAdd($hinhanh,$IDDTCCTLast);
+                                } else {
+                                    
+                                }
+                            }
+                        }
+                        $resultDTTCT514 = $diemtcct->DiemTCCTAdd($c514, 0, 0, $idbd, 38);
+                        if (isset($_FILES['files514']['name'])) {
+                            foreach ($_FILES['files514']['tmp_name'] as $key => $tmp_name) {
+                                if (!empty($tmp_name)) {
+                                    $IDDTCCTLast = ($diemtcct->DiemTCCTLast())->ID_DTCCT;
+                                    $minhchung = new Minhchung();
+                                    $hinhanh = file_get_contents($tmp_name);
+                                    $hinhanh = base64_encode($hinhanh);
+                                    $resultHA = $minhchung->MinhchungAdd($hinhanh,$IDDTCCTLast);
+                                } else {
+                                    
+                                }
+                            }
+                        }
+                        $resultDTTCT515 = $diemtcct->DiemTCCTAdd($c515, 0, 0, $idbd, 39);
+                        if (isset($_FILES['files515']['name'])) {
+                            foreach ($_FILES['files515']['tmp_name'] as $key => $tmp_name) {
+                                if (!empty($tmp_name)) {
+                                    $IDDTCCTLast = ($diemtcct->DiemTCCTLast())->ID_DTCCT;
+                                    $minhchung = new Minhchung();
+                                    $hinhanh = file_get_contents($tmp_name);
+                                    $hinhanh = base64_encode($hinhanh);
+                                    $resultHA = $minhchung->MinhchungAdd($hinhanh,$IDDTCCTLast);
+                                } else {
+                                    
+                                }
+                            }
+                        }
+                        $resultDTTCT516 = $diemtcct->DiemTCCTAdd($c516, 0, 0, $idbd, 40);
+                        if (isset($_FILES['files516']['name'])) {
+                            foreach ($_FILES['files516']['tmp_name'] as $key => $tmp_name) {
+                                if (!empty($tmp_name)) {
+                                    $IDDTCCTLast = ($diemtcct->DiemTCCTLast())->ID_DTCCT;
+                                    $minhchung = new Minhchung();
+                                    $hinhanh = file_get_contents($tmp_name);
+                                    $hinhanh = base64_encode($hinhanh);
+                                    $resultHA = $minhchung->MinhchungAdd($hinhanh,$IDDTCCTLast);
+                                } else {
+                                    
+                                }
+                            }
+                        }
+                        $resultDTTCT517 = $diemtcct->DiemTCCTAdd($c517, 0, 0, $idbd, 41);
+                        if (isset($_FILES['files517']['name'])) {
+                            foreach ($_FILES['files517']['tmp_name'] as $key => $tmp_name) {
+                                if (!empty($tmp_name)) {
+                                    $IDDTCCTLast = ($diemtcct->DiemTCCTLast())->ID_DTCCT;
+                                    $minhchung = new Minhchung();
+                                    $hinhanh = file_get_contents($tmp_name);
+                                    $hinhanh = base64_encode($hinhanh);
+                                    $resultHA = $minhchung->MinhchungAdd($hinhanh,$IDDTCCTLast);
+                                } else {
+                                    
+                                }
+                            }
+                        }
+                        $resultDTTCT518 = $diemtcct->DiemTCCTAdd($c518, 0, 0, $idbd, 42);
+                        if (isset($_FILES['files518']['name'])) {
+                            foreach ($_FILES['files518']['tmp_name'] as $key => $tmp_name) {
+                                if (!empty($tmp_name)) {
+                                    $IDDTCCTLast = ($diemtcct->DiemTCCTLast())->ID_DTCCT;
+                                    $minhchung = new Minhchung();
+                                    $hinhanh = file_get_contents($tmp_name);
+                                    $hinhanh = base64_encode($hinhanh);
+                                    $resultHA = $minhchung->MinhchungAdd($hinhanh,$IDDTCCTLast);
+                                } else {
+                                    
+                                }
+                            }
+                        }
+                    }
+                    else{
+                        echo "Chưa mở bảng điểm";
                     }
                 }
 

@@ -21,9 +21,9 @@
             return $getAll->fetchAll();
         }
 
-        public function BangdiemAdd($hocky, $namhoc, $tongdiemsv, $diemdiemlop, $tongdiemkhoa, $idsv){
-            $add = $this->connect->prepare("INSERT INTO bangdiem(HOCKY, NAMHOC, TONGDIEMSV, TONGDIEMLOP, TONGDIEMKHOA, ID_SV) VALUES (?,?,?,?,?,?)");
-            $add->execute(array($hocky, $namhoc, $tongdiemsv, $diemdiemlop, $tongdiemkhoa, $idsv));
+        public function BangdiemAdd($hocky, $namhoc, $tongdiemsv, $diemdiemlop, $tongdiemkhoa, $idsv, $tungay, $denngay){
+            $add = $this->connect->prepare("INSERT INTO bangdiem(HOCKY, NAMHOC, TONGDIEMSV, TONGDIEMLOP, TONGDIEMKHOA, ID_SV, TUNGAY, DENNGAY) VALUES (?,?,?,?,?,?,?,?)");
+            $add->execute(array($hocky, $namhoc, $tongdiemsv, $diemdiemlop, $tongdiemkhoa, $idsv, $tungay, $denngay));
             
             return $add->rowCount();
         }
@@ -57,6 +57,7 @@
             
             return $getBD->fetch();
         }
+
 
         public function BangdiemGetbyCheckNew() {
             $getBD = $this->connect->prepare("SELECT * FROM bangdiem WHERE ISNEW = 1");
@@ -103,6 +104,15 @@
             $getBD->execute(array($namhoc, $idsv));
             
             return $getBD->fetchAll();
+        }
+
+        public function BangdiemGetbyIdSVAndNHAndHK($idsv,$namhoc, $hocky) {
+            $getBD = $this->connect->prepare("SELECT * FROM bangdiem WHERE ID_SV = ? AND NAMHOC = ? AND HOCKY = ?");
+
+            $getBD->setFetchMode(PDO::FETCH_OBJ);
+            $getBD->execute(array($idsv, $namhoc, $hocky));
+            
+            return $getBD->fetch();
         }
     }
 ?>

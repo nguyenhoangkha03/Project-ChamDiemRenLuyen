@@ -517,5 +517,18 @@ $(document).ready(function(){
         e.preventDefault();
     });
 
+    // Load image score
+    $(document).on('click', '.score-image', function(){
+        var value = $(this).attr('value');
+        $('.score-image-show').css('display', 'block');
+        $('.body-show').load('./process/minhchung/minhchungLoad.php?iddtcct='+value, function(){
+
+        });
+    });
+    $(document).on('click', '.exit-show', function(){
+        $('.score-image-show').css('display', 'none');
+    });
+
+
     $('.mySelect').select2();
 });

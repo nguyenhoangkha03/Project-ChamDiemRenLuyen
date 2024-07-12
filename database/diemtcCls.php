@@ -47,5 +47,13 @@
             
             return $getDTC->fetch();
         }
+
+        public function DiemTCGetbyIdBD($idbd) {
+            $getDTC = $this->connect->prepare("SELECT * FROM diemtc WHERE ID_BD = ?");
+            $getDTC->setFetchMode(PDO::FETCH_OBJ);
+            $getDTC->execute(array($idbd));
+            
+            return $getDTC->fetchAll();
+        }
     }
 ?>

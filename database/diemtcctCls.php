@@ -47,5 +47,19 @@
             
             return $getDTCCT->fetch();
         }
+        public function DiemTCCTGetbyIdBD($idbd) {
+            $getDTCCT = $this->connect->prepare("SELECT * FROM diemtcct WHERE ID_BD = ?");
+            $getDTCCT->setFetchMode(PDO::FETCH_OBJ);
+            $getDTCCT->execute(array($idbd));
+            
+            return $getDTCCT->fetchAll();
+        }
+        public function DiemTCCTLast() {
+            $getDTCCT = $this->connect->prepare("SELECT * FROM diemtcct WHERE ID_DTCCT = (SELECT max(ID_DTCCT) FROM diemtcct)");
+            $getDTCCT->setFetchMode(PDO::FETCH_OBJ);
+            $getDTCCT->execute(array());
+            
+            return $getDTCCT->fetch();
+        }
     }
 ?>
