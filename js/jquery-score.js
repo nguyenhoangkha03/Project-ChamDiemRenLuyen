@@ -1740,6 +1740,17 @@ $(document).ready(function(){
     $(document).on('click', '.cancel-score', function(e){
         e.preventDefault();
     });
+    $(document).on('click', '.finish-score', function(){
+        
+    });
+    $('.bcs-score').click(function(){
+        var value = $(this).attr('value');
+        window.location.href = 'index.php?request=bcs-sinhvien&idlop=' + value;
+    });
+    $('.bcs-mark').click(function(){
+        var value = $(this).attr('value');
+        window.location.href = 'index.php?request=bcsMark&idsv=' + value;
+    });
 
     // Tong
 

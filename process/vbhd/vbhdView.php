@@ -99,6 +99,8 @@
                             <div class="time-item"><?php echo $time; ?></div>
                         </div>
                     </div>
+                    <div class="menu-item">●●●</div>
+                    <div class="delete-item" value="<?php echo $item->ID_VBHD; ?>">Xóa</div>
                     <div class="item-content">
                         <div class="text-content">
                             <?php echo $item->NOIDUNG; ?>

@@ -4,6 +4,7 @@
     require '../../database/fileCls.php';
     require '../../database/hinhanhCls.php';
     require '../../database/luotxemCls.php';
+    require '../../database/likesCls.php';
     if(isset($_GET['reqact'])){
         $requestAction = $_GET['reqact'];
         switch($requestAction){
@@ -64,6 +65,7 @@
                     echo 'Tải tệp lên.';
                 }
 
+                header('location:../../index.php?request=vbhdView');
 
                 break;
             case 'view':
@@ -78,15 +80,33 @@
 
                 break;
             case 'delete':
-                $idlop = $_GET['id'];
-                $lop = new Lop();
+                $idvbhd = $_GET['id'];
+                $vbhd = new VBHD();
+                $file = new File();
+                $hinhanh = new Hinhanh();
+                $luotxem = new Luotxem();
+                $like = new LIKES();
 
-                $result = $lop->LopDelete($idlop);
+                $getAllFile = $file->FileGetbyIdVBHD($idvbhd);
+                $getAllHinhanh = $hinhanh->HinhanhGetbyIdVBHD($idvbhd);
+                $getAllLuotxem = $luotxem->LuotxemGetAllByIDVBHD($idvbhd);
+                $getAllLikes = $like->LikesGetAllByIDVBHD($idvbhd);
+
+                // Xoa File
+                foreach($getAllFile as $f){ $resFile = $file->FileDelete($f->ID_FILE); }
+                // Xoa Hinhanh
+                foreach($getAllHinhanh as $hh) { $resHA = $hinhanh->HinhanhDelete($hh->ID_HA); }
+                // Xoa luot xem
+                foreach($getAllLuotxem as $lx) { $resLX = $luotxem->LuotxemDelete($lx->ID_LX); }
+                // Xoa Like
+                foreach($getAllLikes as $l) { $resLike = $like->LikesDelete($l->ID_LIKE); }
+
+                $result = $vbhd->VBHDDelete($idvbhd);
                 if($result){
-                    header('location:../../index.php?request=lopView&result=ok');
+                    header('location:../../index.php?request=vbhdView&result=ok');
                 }
                 else{
-                    header('location:../../index.php?request=lopView&result=notok');
+                    header('location:../../index.php?request=vbhdView&result=notok');
                 }
 
                 break;

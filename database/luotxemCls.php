@@ -51,9 +51,9 @@
             
             return $add->rowCount();
         }
-        public function LikesDelete($idlike) {
-            $del = $this->connect->prepare("DELETE FROM likes WHERE ID_LIKE = ?");
-            $del->execute(array($idlike));
+        public function LuotxemDelete($idlx) {
+            $del = $this->connect->prepare("DELETE FROM luotxem WHERE ID_LX = ?");
+            $del->execute(array($idlx));
 
             return $del->rowCount();
         }

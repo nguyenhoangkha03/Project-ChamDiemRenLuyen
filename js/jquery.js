@@ -528,6 +528,16 @@ $(document).ready(function(){
     $(document).on('click', '.exit-show', function(){
         $('.score-image-show').css('display', 'none');
     });
+    $('.menu-item').click(function(){
+        $('.delete-item').css('display', 'block');
+    });
+    $('.delete-item').mouseleave(function(){
+        $('.delete-item').css('display', 'none');
+    });
+    $('.delete-item').click(function(){
+        var value = $(this).attr('value');
+        window.location.href = "./process/vbhd/vbhdAct.php?reqact=delete&id=" + value;
+    });
 
 
     $('.mySelect').select2();

@@ -1,16 +1,19 @@
 <?php 
-    //require './database/lopCls.php';
-    // require 'database/sinhvienCls.php';
-    //$lop = new Lop();
-    // $sinhvien = new Sinhvien();
     $idlop = $_GET['idlop'];
     $list_sinhvien = $sinhvien->SinhVienGetByIdLop($idlop);
     $count = 0;
+
+    require './database/bangdiemCls.php';
+    $bangdiem = new Bangdiem();
+    $getcheckboth = $bangdiem->BangdiemGetbyCheckBoth(1,1);
 ?>
+<div class="address-profile" style="margin-bottom: 40px;">
+    <div>BAN CÁN SỰ CHẤM ĐIỂM RÈN LUYỆN CHO LỚP : <?php echo $getlop->TENLOP; ?></div>
+</div>
 <div class="class-view">
-            <div>
-                <div class="addnew-student" value="<?php echo $idlop; ?>">
-                    Thêm Sinh Viên
+            <div style="margin-bottom: 10px;">
+                <div>
+
                 </div>
                 <div>
                     <div>
@@ -33,16 +36,15 @@
                         <th>Họ Tên</th>
                         <th>Ngày Sinh</th>
                         <th>Giới Tính</th>
-                        <th>Địa Chỉ</th>
-                        <th>SĐT</th>
-                        <th>Email</th>
                         <th>Hình Ảnh</th>
                         <th>Điểm RL</th>
-                        <th>Thao Tác</th>
                     </thead>
                     <tbody>
                 <?php 
-                    foreach($list_sinhvien as $sv){                     
+                    foreach($list_sinhvien as $sv){   
+                        if($getcheckboth != null){
+                            $getchecksv = $bangdiem->BangdiemGetbyIdSVAndNHAndHK($sv->ID_SV, $getcheckboth->NAMHOC, $getcheckboth->HOCKY);                  
+                        }
                 ?>
                     <tr>
                         <td><?php echo ++$count; ?></td>
@@ -50,24 +52,35 @@
                         <td><?php echo $sv->HOTEN; ?></td>
                         <td><?php echo $sv->NGAYSINH; ?></td>
                         <td><?php echo $sv->GIOITINH == 1 ? "Nam" : "Nữ"; ?></td>
-                        <td><?php echo $sv->DIACHI; ?></td>
-                        <td><?php echo $sv->SDT; ?></td>
-                        <td><?php echo $sv->EMAIL; ?></td>
                         <td>
                             <img width="100px" height="120px" class="img-table" src='data:image/png;base64,<?php echo ($sv->HINHANH); ?>' />
                         </td>
-                        <td>
-                            Chưa hoàn thành
-                        </td>
-                        <td class="operation-class">
-                            <div class="update update-student" value="<?php echo $sv->ID_SV; ?>">
-                                <img class="icon-table" src="./images/update.png" alt="">
-                                Sửa 
-                            </div>
-                            <div class="delete delete-student" value="<?php echo $sv->ID_SV; ?>">
-                                <img class="icon-table" src="./images/delete.png" alt="">
-                                Delete 
-                            </div>
+                        <td class="bcs-operation">
+                        <?php 
+                            if($getcheckboth == null){
+                        ?>
+                                <button>Chưa mở bảng điểm học kỳ này</button>
+                        <?php
+                            }
+                            else{
+                                if($getchecksv == null){
+                            ?>
+                                    <button style="background-color: red;">Sinh viên chưa hoàn thành</button>
+                            <?php    
+                                }
+                                else{
+                                    if($getchecksv->TONGDIEMLOP == null){
+                                ?>
+                                        <button class="bcs-mark" value="<?php echo $sv->ID_SV; ?>">Sinh viên đã hoàn thành - Click để chấm điểm</button>
+                                <?php
+                                    }else{
+                                ?>
+                                        <button style="background-color: green;">Ban cán sự đã chấm xong</button>
+                                <?php
+                                    }
+                                }
+                            }
+                        ?>
                         </td>
                     </tr>
                 <?php

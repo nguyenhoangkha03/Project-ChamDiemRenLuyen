@@ -431,7 +431,11 @@ hr {
 .create-score,
 .close-score, 
 .open-score,
-.watch-old {
+.watch-old,
+.finish-score,
+.manager-score,
+.bcs-score,
+.bcs-operation button {
     padding: 10px 10px;
     border: none;
     background-color: #4db8ff;
@@ -1041,6 +1045,7 @@ hr {
     margin-top: 20px;
     border-radius: 10px;
     box-shadow: 10px 10px 30px rgba(0, 0, 0, 0.2);
+    position: relative;
 }
 
 .item-title {
@@ -1070,9 +1075,30 @@ hr {
     color: gray;
 }
 
+.menu-item {
+    position: absolute;
+    right: 20px;
+    top: 20px;
+    cursor: pointer;
+}
+
+.delete-item {
+    position: absolute;
+    right: -110px;
+    top: 25px;
+    padding: 5px 90px 5px 10px;
+    border-radius: 5px;
+    cursor: pointer;
+    box-shadow: 10px 10px 30px rgba(0, 0, 0, 0.2);
+    background-color: rgb(233, 233, 233);   
+    display: none;
+}
+
 .item-content {
     min-height: 500px;
     margin-top: 20px;
+    height: 600px;
+    overflow: auto;
 }
 
 .text-content {

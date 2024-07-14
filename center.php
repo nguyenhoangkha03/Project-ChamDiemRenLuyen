@@ -50,6 +50,12 @@
             case 'taikhoanUpdate':
                 require './process/taikhoan/taikhoanUpdate.php';
                 break;  
+            case 'bcs-sinhvien':
+                require './process/bangdiem/bcs_sinhvien.php';
+                break;
+            case 'bcsMark':
+                require './process/bangdiem/bcs_cham.php';
+                break;
         }
     }
     else{
