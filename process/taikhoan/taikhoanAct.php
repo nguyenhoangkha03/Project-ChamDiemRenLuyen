@@ -1,8 +1,5 @@
 <?php 
     session_start();
-    if(!isset($_SESSION['ADMIN'])){
-        echo '<script>window.location.href = "index.php";</script>';
-    }
     require '../../database/taikhoanCls.php';
     require '../../database/quyenCls.php';
     if(isset($_GET['reqact'])){

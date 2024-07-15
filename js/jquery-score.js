@@ -1745,7 +1745,16 @@ $(document).ready(function(){
     });
     $('.bcs-score').click(function(){
         var value = $(this).attr('value');
-        window.location.href = 'index.php?request=bcs-sinhvien&idlop=' + value;
+        var [idlop, word] = value.split(" ");
+        if(word == 'finish'){
+            alert("Chấm điểm cho học kỳ này đã kết thúc!");
+        }
+        else if(word == 'lock'){
+            alert("BCH đã khóa, không thể thực hiện!");
+        }
+        else{
+            window.location.href = 'index.php?request=bcs-sinhvien&idlop=' + idlop;
+        }
     });
     $('.bcs-mark').click(function(){
         var value = $(this).attr('value');
@@ -1777,6 +1786,11 @@ $(document).ready(function(){
             window.location.href = "index.php?request=managerScoreSV&idlop=" + idlop + "&hocky=" + hocky + "&namhoc=" + namhoc;
         }
     });
+
+    $(document).on('click', '.bch-mark', function(){
+        var [idsv, hocky, namhoc] = ($(this).attr('value')).split(" ");
+        window.location.href = "index.php?request=bchMark&idsv=" + idsv + "&hocky=" + hocky + "&namhoc=" + namhoc;
+    })
 
     // Tong
 

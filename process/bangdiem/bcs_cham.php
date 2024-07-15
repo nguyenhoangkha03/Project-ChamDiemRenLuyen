@@ -24,7 +24,11 @@
 ?>
 <div class="get-sv" value="<?php echo $getsinhvien != null ? $getsinhvien->ID_SV : ""; ?>"></div>
 <div class="address-profile" style="margin-bottom: 40px;">
-    <div>BCS CHẤM ĐIỂM RÈN LUYỆN CHO SINH VIÊN : <?php echo $getsv->MASOSV . " - " . $getsv->HOTEN; ?></div>
+    <div>CHẤM ĐIỂM RÈN LUYỆN CHO SINH VIÊN : <?php echo $getsv->MASOSV . " - " . $getsv->HOTEN; ?></div>
+</div>
+<div class="previous" onclick="window.location.href='index.php?request=bcs-sinhvien&idlop=<?php echo $getsv->ID_LOP; ?>';">
+    <img width="30px" src="./images/back.png" alt="">
+    Trở về
 </div>
 <form class="form-score" action="./process/bangdiem/bangdiemAct.php?reqact=updateByBCS&idbd=<?php echo $getdiemofsv->ID_BD; ?>" method="POST" enctype="multipart/form-data">
     <div class="score">
@@ -59,7 +63,7 @@
                 $dn = new DateTime($getcheck->DENNGAY);
                 $denngay = $dn->format('d-m-Y');
         ?>
-                SINH VIÊN TỰ CHẤM ĐIỂM RÈN LUYỆN
+                BAN CÁN SỰ CHẤM ĐIỂM CHO SINH VIÊN
                 <div>HỌC KỲ <?php echo $getcheck->HOCKY; ?></div>
                 <div>NĂM HỌC <?php echo $getcheck->NAMHOC; ?></div>
                 <div>Thời gian thực hiện từ ngày <span><?php echo $tungay; ?></span> đến hết ngày <span><?php echo $denngay; ?></span></div>
@@ -1211,10 +1215,16 @@
                 </tbody>
             </table>
         </div>
-        <div class="score-bottom">
-            <button class="send-score">GỬI</button>
-            <button class="cancel-score">HỦY</button>
-        </div>
+        <?php 
+            if($getdiemofsv->TONGDIEMLOP == null){
+        ?>
+                <div class="score-bottom">
+                    <button class="send-score">GỬI</button>
+                    <button class="cancel-score">HỦY</button>
+                </div>
+        <?php
+            }
+        ?>
     </div>
 </form>
 

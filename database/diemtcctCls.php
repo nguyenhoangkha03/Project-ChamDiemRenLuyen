@@ -47,6 +47,13 @@
             
             return $update->rowCount();
         }
+        public function DiemTCCTUpdateTONGDIEMLOPANDKHOA($tongdiemlop, $tongdiemkhoa, $iddtcct) {
+            $update = $this->connect->prepare("UPDATE diemtcct SET TONGDIEMLOP = ?, TONGDIEMKHOA = ?"
+                                                . " WHERE ID_DTCCT = ?");
+            $update->execute(array($tongdiemlop, $tongdiemkhoa, $iddtcct));
+            
+            return $update->rowCount();
+        }
         public function DiemTCCTGetbyId($iddtcct) {
             $getDTCCT = $this->connect->prepare("SELECT * FROM diemtcct WHERE ID_DTCCT = ?");
             $getDTCCT->setFetchMode(PDO::FETCH_OBJ);

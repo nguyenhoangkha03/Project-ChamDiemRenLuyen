@@ -58,6 +58,14 @@
             return $update->rowCount();
         }
 
+        public function BangdiemUpdateTONGDIEMLOPANDKHOA($diemdiemlop, $tongdiemkhoa, $idbd) {
+            $update = $this->connect->prepare("UPDATE bangdiem SET TONGDIEMLOP = ?, TONGDIEMKHOA = ?"
+                                                . " WHERE ID_BD = ?");
+            $update->execute(array($diemdiemlop, $tongdiemkhoa, $idbd));
+            
+            return $update->rowCount();
+        }
+
         public function BangdiemGetbyCheckBoth($isnew, $open) {
             $getBD = $this->connect->prepare("SELECT * FROM bangdiem WHERE ISNEW = ? AND OPEN = ?");
             $getBD->setFetchMode(PDO::FETCH_OBJ);

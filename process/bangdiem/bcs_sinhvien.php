@@ -12,8 +12,9 @@
 </div>
 <div class="class-view">
             <div style="margin-bottom: 10px;">
-                <div>
-
+                <div class="previous" onclick="window.location.href='index.php?request=scoreView';">
+                    <img width="30px" src="./images/back.png" alt="">
+                    Trở về
                 </div>
                 <div>
                     <div style="margin-right: 0;">
@@ -33,7 +34,8 @@
                         <th>Ngày Sinh</th>
                         <th>Giới Tính</th>
                         <th>Hình Ảnh</th>
-                        <th>Điểm RL</th>
+                        <th>Tổng Điểm <br> (BCS chấm)</th>
+                        <th>Chấm</th>
                     </thead>
                     <tbody>
                 <?php 
@@ -51,6 +53,7 @@
                         <td>
                             <img width="100px" height="120px" class="img-table" src='data:image/png;base64,<?php echo ($sv->HINHANH); ?>' />
                         </td>
+                        <td><?php echo ($getchecksv != null && $getchecksv->TONGDIEMLOP != 0) ? $getchecksv->TONGDIEMLOP : "Chưa hoàn thành";  ?></td>
                         <td class="bcs-operation">
                         <?php 
                             if($getcheckboth == null){
@@ -61,7 +64,7 @@
                             else{
                                 if($getchecksv == null){
                             ?>
-                                    <button style="background-color: red;">Sinh viên chưa hoàn thành</button>
+                                    <button onclick="alert('Sinh viên chưa chấm!');" style="background-color: red;">Sinh viên chưa hoàn thành</button>
                             <?php    
                                 }
                                 else{
@@ -71,7 +74,7 @@
                                 <?php
                                     }else{
                                 ?>
-                                        <button style="background-color: green;">Ban cán sự đã chấm xong</button>
+                                        <button onclick="alert('Đã chấm xong!');" style="background-color: green;">Ban cán sự đã chấm xong</button>
                                 <?php
                                     }
                                 }

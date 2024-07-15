@@ -75,7 +75,7 @@
         }
 
         public function TaikhoanCheckLogin($username, $password){
-            $getTK = $this->connect->prepare("SELECT * FROM taikhoan WHERE USERNAME = ? AND PASSWORD = ?");
+            $getTK = $this->connect->prepare("SELECT * FROM taikhoan WHERE BINARY USERNAME = ? AND BINARY PASSWORD = ?");
             $getTK->setFetchMode(PDO::FETCH_OBJ);
             $getTK->execute(array($username, $password));
 

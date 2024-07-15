@@ -2,156 +2,29 @@
     if(!isset($_SESSION['ADMIN']) && !isset($_SESSION['BCH']) && !isset($_SESSION['BCS']) && !isset($_SESSION['STUDENT'])){
         echo '<script>window.location.href = "./login/index.php";</script>';
     }
+    $idsv = $_GET['idsv'];
+    $hocky = $_GET['hocky'];
+    $namhoc = $_GET['namhoc'];
+    $getsv = $sinhvien->SinhVienGetById($idsv);
+    
     require './database/bangdiemCls.php';
     require './database/diemtcCls.php';
     require './database/diemtcctCls.php';
     $bangdiem = new Bangdiem();
     $diemtc = new DiemTC();
     $diemtcct = new DiemTCCT();
-    $arrayNam = array();
-    $date = new DateTime();
-    $year = $date->format('Y');
-    $month = $date->format('m');
-    for($i = 2023; $i < $year; $i++){
-        $arrayNam[] = $i . '-' . $i+1;
-    }
-    if($month >= 9){
-        $arrayNam[] = $year . '-' . $year+1;
-    }
-    $getcheck = $bangdiem->BangdiemGetbyCheckBoth(1, 1);
-    $getcheckOpen = $bangdiem->BangdiemGetbyCheckBoth(1, 0);
-    $getdiemofsv = null;
-    if($getcheck != null){
-        $getdiemofsv = $bangdiem->BangdiemGetbyIdSVAndNHAndHK($getsinhvien->ID_SV, $getcheck->NAMHOC, $getcheck->HOCKY);
-    }
-    if($getcheckOpen != null){
-        $getdiemofsv = $bangdiem->BangdiemGetbyIdSVAndNHAndHK($getsinhvien->ID_SV, $getcheckOpen->NAMHOC, $getcheckOpen->HOCKY);
-    }
+
+    $getdiemofsv = $bangdiem->BangdiemGetbyIdSVAndNHAndHK($getsv->ID_SV, $namhoc, $hocky);
     if($getdiemofsv != null){
         $getdiemtc = $diemtc->DiemTCGetbyIdBD($getdiemofsv->ID_BD);
-
         $getdiemtcct = $diemtcct->DiemTCCTGetbyIdBD($getdiemofsv->ID_BD);
     }
 ?>
 <div class="get-sv" value="<?php echo $getsinhvien != null ? $getsinhvien->ID_SV : ""; ?>"></div>
 <div class="address-profile" style="margin-bottom: 40px;">
-    <div>ĐIỂM RÈN LUYỆN</div>
+    <div>CHẤM ĐIỂM RÈN LUYỆN CHO SINH VIÊN : <?php echo $getsv->MASOSV . " - " . $getsv->HOTEN; ?></div>
 </div>
-<div style="display: flex; justify-content: space-between;">
-    <div>
-<?php 
-if(isset($_SESSION['BCH']) || isset($_SESSION['ADMIN'])){
-    if($getcheck == null){
-        if($getcheckOpen != null){
-?>
-            <button class="open-score">
-                Mở Khóa Bảng Điểm
-            </button>
-            <button class="finish-score">
-                Hoàn Thành Bản Điểm
-            </button>
-<?php
-        }
-        else{
-            $checkBCS = 'lock';
-?>
-            <button class="create-score">
-                Tạo Bảng Điểm Mới
-            </button>
-<?php
-        }
-?>
-
-<?php
-    }
-    else{
-?>
-        <button class="close-score">
-            Khóa Bảng Điểm
-        </button>
-        <button class="finish-score">
-            Hoàn Thành Bản Điểm
-        </button>
-<?php
-    }
-}
-?>
-</div>
-<div>
-<?php 
-    if(isset($_SESSION['ADMIN']) || isset($_SESSION['BCH'])){
-?>
-        <button class="manager-score">Quản Lý Điểm Rèn Luyện</button>
-<?php
-    }
-    if(isset($_SESSION['BCS'])){
-        if($getcheck == null){
-            if($getcheckOpen == null){
-                $checkBCS = 'finish';
-            }
-            else{
-                $checkBCS = 'lock';
-            }
-        }
-        else{
-            $checkBCS = 'default';
-        }
-?>
-        <button class="bcs-score" value="<?php echo $getsinhvien->ID_LOP . ' ' . $checkBCS; ?>">Chấm Điểm Cho Lớp</button>
-<?php
-    }
-?>
-</div>
-</div>
-<div id="modal" class="modal">
-    <div class="modal-content">
-        <div class="change-title">
-            <div>Tạo Bảng Điểm</div>
-            <div>&times;</div>
-        </div>
-        <div class="change-body">
-            <form class="form-changePass" action="./process/bangdiem/bangdiemAct.php?reqact=createBD&idsv=<?php echo $getsinhvien->ID_SV; ?>" method="POST">
-                <div style="margin-bottom: 5px;">
-                    <label for="selectNam">Chọn năm học</label>
-                </div>
-                <select required class="mySelect selectNam" style="width: 160px;" name="selectNam" id="selectNam">
-                    <option selected disabled value="default">--Chọn năm học--</option>
-                <?php 
-                    foreach($arrayNam as $nam){
-                ?>
-                        <option value="<?php echo $nam; ?>"><?php echo $nam; ?></option>
-                <?php
-                    }
-                ?>              
-                </select>
-                <div style="margin-bottom: 5px;">
-                    <label for="selectHK">Chọn học kỳ</label>
-                </div>
-                <select disabled class="mySelect selectHK" style="width: 160px;" name="selectHK" id="selectHK">
-                    <option value="1">1</option>
-                    <option value="2">2</option>
-                    <option value="3">3</option>
-                </select>
-                <hr style="width: 100%; margin-bottom: 0;">
-                <div>
-                    <label for="passOld">Thời gian thực hiện</label>
-                </div>
-                <div>
-                    <label for="passOld">Từ ngày </label>
-                </div>
-                <input class="passOld" style="margin-top: 5px;" required placeholder="Nhập mật khẩu cũ" id="passOld" name="tungay" type="date">
-                <div>
-                    <label for="passOld">Đến hết ngày</label>
-                </div>
-                <input class="passOld" style="margin-top: 5px;" required placeholder="Nhập mật khẩu cũ" id="passOld" name="denngay" type="date">
-                <div style="margin-top: 20px; display: flex; justify-content: end;">
-                    <input type="submit" value="Tạo">
-                </div>
-            </form>
-        </div>
-    </div>
-</div>
-<form class="form-score" action="./process/bangdiem/bangdiemAct.php?reqact=chamdiem&idsv=<?php echo $getsinhvien->ID_SV; ?>" method="POST" enctype="multipart/form-data">
+<form class="form-score" action="./process/bangdiem/bangdiemAct.php?reqact=updateByBCH&idbd=<?php echo $getdiemofsv->ID_BD; ?>&hocky=<?php echo $hocky; ?>&namhoc=<?php echo $namhoc; ?>" method="POST" enctype="multipart/form-data">
     <div class="score">
         <?php 
             if($getdiemofsv != null && $getdiemofsv->TONGDIEMSV != null && $getdiemofsv->TONGDIEMLOP == null && $getdiemofsv->TONGDIEMKHOA == null){
@@ -171,41 +44,9 @@ if(isset($_SESSION['BCH']) || isset($_SESSION['ADMIN'])){
             }
         ?>
         <div class="score-top" style="text-align: center; margin-right: 10px;">
-        <?php 
-            if($getcheck == null){
-                if($getcheckOpen == null){
-            ?>
-                    CHƯA MỞ BẢNG ĐIỂM MỚI
-                    <div style="margin-top: 10px;"><button class="watch-old">Xem Bảng Điểm Cũ</button></div>
-            <?php
-                }
-                else{
-                    $tn = new DateTime($getcheckOpen->TUNGAY);
-                    $tungay = $tn->format('d-m-Y');
-                    $dn = new DateTime($getcheckOpen->DENNGAY);
-                    $denngay = $dn->format('d-m-Y');
-            ?>
-                    SINH VIÊN TỰ CHẤM ĐIỂM RÈN LUYỆN
-                    <div>HỌC KỲ <?php echo $getcheckOpen->HOCKY; ?></div>
-                    <div>NĂM HỌC <?php echo $getcheckOpen->NAMHOC; ?></div>
-                    <div>Thời gian thực hiện từ ngày <span><?php echo $tungay; ?></span> đến hết ngày <span><?php echo $denngay; ?></span></div>
-                    <div class="raise-lock">Đang bị khóa</div>
-            <?php
-                }
-            }
-            else{
-                $tn = new DateTime($getcheck->TUNGAY);
-                $tungay = $tn->format('d-m-Y');
-                $dn = new DateTime($getcheck->DENNGAY);
-                $denngay = $dn->format('d-m-Y');
-        ?>
-                SINH VIÊN TỰ CHẤM ĐIỂM RÈN LUYỆN
-                <div>HỌC KỲ <?php echo $getcheck->HOCKY; ?></div>
-                <div>NĂM HỌC <?php echo $getcheck->NAMHOC; ?></div>
-                <div>Thời gian thực hiện từ ngày <span><?php echo $tungay; ?></span> đến hết ngày <span><?php echo $denngay; ?></span></div>
-        <?php
-            }
-        ?> 
+            BAN CHẤP HÀNH CHẤM ĐIỂM CHO SINH VIÊN
+            <div>HỌC KỲ <?php echo $hocky; ?></div>
+            <div>NĂM HỌC <?php echo $namhoc; ?></div>
         </div>
         <hr style="width: 100%;">
         <div class="score-body">
@@ -1351,16 +1192,10 @@ if(isset($_SESSION['BCH']) || isset($_SESSION['ADMIN'])){
                 </tbody>
             </table>
         </div>
-        <?php 
-            if($getcheck != null && ($getdiemofsv == null || $getdiemofsv->TONGDIEMSV == null)){
-        ?>
-                <div class="score-bottom">
-                    <button class="send-score">GỬI</button>
-                    <button class="cancel-score">HỦY</button>
-                </div>
-        <?php
-            }
-        ?>
+        <div class="score-bottom">
+            <button class="send-score">GỬI</button>
+            <button class="cancel-score">HỦY</button>
+        </div>
     </div>
 </form>
 

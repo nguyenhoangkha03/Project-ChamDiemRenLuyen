@@ -62,6 +62,9 @@
             case 'managerScoreSV':
                 require './process/diemmanager/svmanager.php';
                 break;
+            case 'bchMark':
+                require './process/diemmanager/bch_cham.php';
+                break;
         }
     }
     else{
