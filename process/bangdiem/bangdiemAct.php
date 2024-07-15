@@ -81,9 +81,12 @@
                                 $hinhanh = base64_encode($hinhanh);
 
                             } else {
-                                $sum1 -= (int)$c113;
-                                $suml1 -= (int)$lc113;
-                                $sumk1 -= (int)$kc113;
+                                $sum1 -= (int)$c113; 
+                                $suml1 -= (int)$lc113; 
+                                $sumk1 -= (int)$kc113; 
+                                $c113 = 0;
+                                $lc113 = 0;
+                                $kc113 = 0;
                             }
                         }
                     }
@@ -98,6 +101,9 @@
                                 $sum1 -= (int)$c114;
                                 $suml1 -= (int)$lc114;
                                 $sumk1 -= (int)$kc114;
+                                $c114 = 0;
+                                $lc114 = 0;
+                                $kc114 = 0;
                             }
                         }
                     } 
@@ -112,6 +118,9 @@
                                 $sum1 -= (int)$c115;
                                 $suml1 -= (int)$lc115;
                                 $sumk1 -= (int)$kc115;
+                                $c115 = 0;
+                                $lc115 = 0;
+                                $kc115 = 0;
                             }
                         }
                     } 
@@ -126,6 +135,9 @@
                                 $sum1 -= (int)$c116;
                                 $suml1 -= (int)$lc116;
                                 $sumk1 -= (int)$kc116;
+                                $c116 = 0;
+                                $lc116 = 0;
+                                $kc116 = 0;
                             }
                         }
                     }
@@ -140,6 +152,9 @@
                                 $sum1 -= (int)$c117;
                                 $suml1 -= (int)$lc117;
                                 $sumk1 -= (int)$kc117;
+                                $c117 = 0;
+                                $lc117 = 0;
+                                $kc117 = 0;
                             }
                         }
                     }
@@ -154,6 +169,9 @@
                                 $sum1 -= (int)$c118;
                                 $suml1 -= (int)$lc118;
                                 $sumk1 -= (int)$kc118;
+                                $c118 = 0;
+                                $lc118 = 0;
+                                $kc118 = 0;
                             }
                         }
                     }
@@ -221,6 +239,9 @@
                                 $sum3 -= (int)$c311;
                                 $suml3 -= (int)$lc311;
                                 $sumk3 -= (int)$kc311;
+                                $c311 = 0;
+                                $lc311 = 0;
+                                $kc311 = 0;
                             }
                         }
                     }
@@ -235,6 +256,9 @@
                                 $sum3 -= (int)$c312;
                                 $suml3 -= (int)$lc312;
                                 $sumk3 -= (int)$kc312;
+                                $c312 = 0;
+                                $lc312 = 0;
+                                $kc312 = 0;
                             }
                         }
                     }
@@ -249,6 +273,9 @@
                                 $sum3 -= (int)$c313;
                                 $suml3 -= (int)$lc313;
                                 $sumk3 -= (int)$kc313;
+                                $c313 = 0;
+                                $lc313 = 0;
+                                $kc313 = 0;
                             }
                         }
                     }
@@ -263,6 +290,9 @@
                                 $sum3 -= (int)$c314;
                                 $suml3 -= (int)$lc314;
                                 $sumk3 -= (int)$kc314;
+                                $c314 = 0;
+                                $lc314 = 0;
+                                $kc314 = 0;
                             }
                         }
                     }
@@ -277,6 +307,9 @@
                                 $sum3 -= (int)$c315;
                                 $suml3 -= (int)$lc315;
                                 $sumk3 -= (int)$kc315;
+                                $c315 = 0;
+                                $lc315 = 0;
+                                $kc315 = 0;
                             }
                         }
                     }
@@ -291,6 +324,9 @@
                                 $sum3 -= (int)$c316;
                                 $suml3 -= (int)$lc316;
                                 $sumk3 -= (int)$kc316;
+                                $c316 = 0;
+                                $lc316 = 0;
+                                $kc316 = 0;
                             }
                         }
                     }
@@ -329,6 +365,9 @@
                                 $sum4 -= (int)$c416;
                                 $suml4 -= (int)$lc416;
                                 $sumk4 -= (int)$kc416;
+                                $c416 = 0;
+                                $lc416 = 0;
+                                $kc416 = 0;
                             }
                         }
                     }
@@ -367,6 +406,9 @@
                                 $sum5 -= (int)$c512;
                                 $suml5 -= (int)$lc512;
                                 $sumk5 -= (int)$kc512;
+                                $c512 = 0;
+                                $lc512 = 0;
+                                $kc512 = 0;
                             }
                         }
                     }
@@ -381,6 +423,9 @@
                                 $sum5 -= (int)$c513;
                                 $suml5 -= (int)$lc513;
                                 $sumk5 -= (int)$kc513;
+                                $c513 = 0;
+                                $lc513 = 0;
+                                $kc513 = 0;
                             }
                         }
                     }
@@ -395,6 +440,9 @@
                                 $sum5 -= (int)$c514;
                                 $suml5 -= (int)$lc514;
                                 $sumk5 -= (int)$kc514;
+                                $c514 = 0;
+                                $lc514 = 0;
+                                $kc514 = 0;
                             }
                         }
                     }
@@ -409,6 +457,9 @@
                                 $sum5 -= (int)$c515;
                                 $suml5 -= (int)$lc515;
                                 $sumk5 -= (int)$kc515;
+                                $c515 = 0;
+                                $lc515 = 0;
+                                $kc515 = 0;
                             }
                         }
                     }
@@ -423,6 +474,9 @@
                                 $sum5 -= (int)$c516;
                                 $suml5 -= (int)$lc516;
                                 $sumk5 -= (int)$kc516;
+                                $c516 = 0;
+                                $lc516 = 0;
+                                $kc516 = 0;
                             }
                         }
                     }
@@ -437,6 +491,9 @@
                                 $sum5 -= (int)$c517;
                                 $suml5 -= (int)$lc517;
                                 $sumk5 -= (int)$kc517;
+                                $c517 = 0;
+                                $lc517 = 0;
+                                $kc517 = 0;
                             }
                         }
                     }
@@ -451,6 +508,9 @@
                                 $sum5 -= (int)$c518;
                                 $suml5 -= (int)$lc518;
                                 $sumk5 -= (int)$kc518;
+                                $c518 = 0;
+                                $lc518 = 0;
+                                $kc518 = 0;
                             }
                         }
                     }
@@ -1131,6 +1191,7 @@
 
                             } else {
                                 $sum1 -= (int)$c113;
+                                $c113 = 0;
                             }
                         }
                     }
@@ -1143,6 +1204,7 @@
 
                             } else {
                                 $sum1 -= (int)$c114;
+                                $c114 = 0;
                             }
                         }
                     } 
@@ -1155,6 +1217,7 @@
 
                             } else {
                                 $sum1 -= (int)$c115;
+                                $c115 = 0;
                             }
                         }
                     } 
@@ -1167,6 +1230,7 @@
 
                             } else {
                                 $sum1 -= (int)$c116;
+                                $c116 = 0;
                             }
                         }
                     }
@@ -1179,6 +1243,7 @@
 
                             } else {
                                 $sum1 -= (int)$c117;
+                                $c117 = 0;
                             }
                         }
                     }
@@ -1191,6 +1256,7 @@
 
                             } else {
                                 $sum1 -= (int)$c118;
+                                $c118 = 0;
                             }
                         }
                     }
@@ -1222,6 +1288,7 @@
 
                             } else {
                                 $sum3 -= (int)$c311;
+                                $c311 = 0;
                             }
                         }
                     }
@@ -1234,6 +1301,7 @@
 
                             } else {
                                 $sum3 -= (int)$c312;
+                                $c312 = 0;
                             }
                         }
                     }
@@ -1246,6 +1314,7 @@
 
                             } else {
                                 $sum3 -= (int)$c313;
+                                $c313 = 0;
                             }
                         }
                     }
@@ -1258,6 +1327,7 @@
 
                             } else {
                                 $sum3 -= (int)$c314;
+                                $c314 = 0;
                             }
                         }
                     }
@@ -1270,6 +1340,7 @@
 
                             } else {
                                 $sum3 -= (int)$c315;
+                                $c315 = 0;
                             }
                         }
                     }
@@ -1282,6 +1353,7 @@
 
                             } else {
                                 $sum3 -= (int)$c316;
+                                $c316 = 0;
                             }
                         }
                     }
@@ -1303,6 +1375,7 @@
 
                             } else {
                                 $sum4 -= (int)$c416;
+                                $c416 = 0;
                             }
                         }
                     }
@@ -1324,6 +1397,7 @@
 
                             } else {
                                 $sum5 -= (int)$c512;
+                                $c512 = 0;
                             }
                         }
                     }
@@ -1336,6 +1410,7 @@
 
                             } else {
                                 $sum5 -= (int)$c513;
+                                $c513 = 0;
                             }
                         }
                     }
@@ -1348,6 +1423,7 @@
 
                             } else {
                                 $sum5 -= (int)$c514;
+                                $c514 = 0;
                             }
                         }
                     }
@@ -1360,6 +1436,7 @@
 
                             } else {
                                 $sum5 -= (int)$c515;
+                                $c515 = 0;
                             }
                         }
                     }
@@ -1372,6 +1449,7 @@
 
                             } else {
                                 $sum5 -= (int)$c516;
+                                $c516 = 0;
                             }
                         }
                     }
@@ -1384,6 +1462,7 @@
 
                             } else {
                                 $sum5 -= (int)$c517;
+                                $c517 = 0;
                             }
                         }
                     }
@@ -1396,6 +1475,7 @@
 
                             } else {
                                 $sum5 -= (int)$c518;
+                                $c518 = 0;
                             }
                         }
                     }
@@ -1736,20 +1816,6 @@
                 }
 
                 break;
-            case 'delete':
-                $idsv = $_GET['idsv'];
-                $sinhvien = new Sinhvien();
-                $getsv = $sinhvien->SinhVienGetById($idsv);
-
-                $result = $sinhvien->SinhVienDelete($idsv);
-                if($result){
-                    header('location:../../index.php?request=sinhvienView&idlop=' . $getsv->ID_SV . '&result=ok');
-                }   
-                else{
-                    header('location:../../index.php?request=sinhvienView&idlop=' . $getsv->ID_SV . '&result=notok');
-                }
-
-                break;
             case 'updateByBCS':
                 $idbd = $_GET['idbd'];
 
@@ -1856,93 +1922,6 @@
                     if($count==42){ $result = $diemtcct->DiemTCCTUpdateTONGDIEMLOP($lc518, $dtcct->ID_DTCCT); }
                 }
                 header('location:../../index.php?request=bcsMark&idsv=' . $getbangdiem->ID_SV);
-                break;
-            case 'addNewBCH':
-                $mssv = $_POST['mssv'];
-                $idlop = $_POST['lop'];
-                $hoten = $_POST['hoten'];
-                $chucvu = $_POST['chucvu'];
-                $ngaysinh = $_POST['ngaysinh'];
-                $gioitinh = $_POST['gioitinh'];
-                if($gioitinh == 'nam'){
-                    $gioitinh = true;
-                }
-                else{
-                    $gioitinh = false;
-                }
-                $diachi = $_POST['diachi'];
-                $sdt = $_POST['sdt'];
-                $email = $_POST['email'];
-                if (isset($_FILES['file-upload']['tmp_name'])) {
-                    $hinhanh = $_FILES['file-upload']['tmp_name'];
-                    $hinhanh = base64_encode(file_get_contents(addslashes($hinhanh)));
-                } else {
-                    echo 'Tải file lên';
-                }
-
-
-                $sinhvien = new Sinhvien();
-                $result = $sinhvien->SinhVienAdd($mssv, $hoten, $ngaysinh, $gioitinh, $diachi, $sdt, $email, $hinhanh, true, $chucvu, $idlop);
-
-                if($result){
-                    header('location:../../index.php?request=bchView&result=ok');
-                }
-                else{
-                    header('location:../../index.php?request=bchView&result=notok');
-                }
-
-                break;
-            case 'updateBCH':
-                $idsv = $_GET['idsv'];
-                $sinhvien = new Sinhvien();
-                $getsv = $sinhvien->SinhVienGetById($idsv);
-                $mssv = $_POST['mssv'];
-                $idlop = $_POST['lop'];
-                $hoten = $_POST['hoten'];
-                $chucvu = $_POST['chucvu'];
-                $ngaysinh = $_POST['ngaysinh'];
-                $gioitinh = $_POST['gioitinh'];
-                if($gioitinh == 'nam'){
-                    $gioitinh = true;
-                }
-                else{
-                    $gioitinh = false;
-                }
-                $diachi = $_POST['diachi'];
-                $sdt = $_POST['sdt'];
-                $email = $_POST['email'];
-                if ($_FILES['file-upload']['error'] == 0) {
-                    $hinhanh = $_FILES['file-upload']['tmp_name'];
-                    $hinhanh = base64_encode(file_get_contents(addslashes($hinhanh)));
-                } else {
-                    $hinhanh = $getsv->HINHANH;
-                }
-
-
-                $sinhvien = new Sinhvien();
-                $result = $sinhvien->SinhVienUpdate($mssv, $hoten, $ngaysinh, $gioitinh, $diachi, $sdt, $email, $hinhanh, true, $chucvu, $idlop, $idsv);
-
-                if($result){
-                    header('location:../../index.php?request=bchView&result=ok');
-                }
-                else{
-                    header('location:../../index.php?request=bchView&result=notok');
-                }
-
-                break;
-            case 'deleteBCH':
-                $idsv = $_GET['idsv'];
-                $sinhvien = new Sinhvien();
-                $getsv = $sinhvien->SinhVienGetById($idsv);
-
-                $result = $sinhvien->SinhVienDelete($idsv);
-                if($result){
-                    header('location:../../index.php?request=bchView&result=ok');
-                }
-                else{
-                    header('location:../../index.php?request=bchView&result=notok');
-                }
-
                 break;
         }
     }

@@ -249,6 +249,7 @@ a {
 }
 
 .list-student,
+.list-student-score,
 .update,
 .delete {
     display: flex;
@@ -264,7 +265,8 @@ a {
     background-color: rgb(139, 248, 139);
 }
 
-.update {
+.update,
+.list-student-score {
     background-color: rgb(108, 201, 255);
     margin: 0 10px;
 }
@@ -649,6 +651,28 @@ hr {
     overflow: auto;
 }
 
+.choose-NHHK {
+    background-color: rgb(255, 80, 80);
+    padding: 7px 10px;
+    border-radius: 5px;
+    color: white;
+    font-weight: 600;
+}
+
+.choose-NHHK select {
+    color: rgb(160, 160, 160);
+    font-weight: 500;
+    font-size: 15px;
+    outline: none;
+    border: none;
+    height: 28px;
+    cursor: pointer;
+}
+
+.choose-NHHK select option:checked {
+    cursor: pointer;
+}
+
 /* bch */
 
 .bch-title {
@@ -804,6 +828,10 @@ hr {
 
     width: 45.3%;
     margin-left: 26%;
+
+    height: 95vh;
+    overflow-x: hidden;
+    overflow-y: auto;
 }
 
 .add-back {

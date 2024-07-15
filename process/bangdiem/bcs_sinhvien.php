@@ -16,13 +16,9 @@
 
                 </div>
                 <div>
-                    <div>
+                    <div style="margin-right: 0;">
                         Số lượng sinh viên : 
                         <span><?php echo count($list_sinhvien); ?></span>
-                    </div>
-                    <div>
-                        Nhập tên sinh viên : 
-                        <input class="search-student" type="text">
                     </div>
                 </div>
             </div>

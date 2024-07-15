@@ -2,19 +2,28 @@
     if(!isset($_SESSION['ADMIN']) && !isset($_SESSION['BCH'])){
         echo '<script>window.location.href = "index.php";</script>';
     }
-    // require './database/lopCls.php';
-    // $lop = new Lop();
+    require './database/bangdiemCls.php';
     $list_lop = $lop->LopGetAll();
     $count = 0;
-
+    $bangdiem = new Bangdiem();
+    $getAllNHHK = $bangdiem->BangdiemAllNHHK();
 ?>
 <div class="address-profile" style="margin-bottom: 40px;">
-    <div>QUẢN LÝ LỚP</div>
+    <div>QUẢN LÝ ĐIỂM RÈN LUYỆN</div>
 </div>
 <div class="class-view">
-            <div>
-                <div class="addnew-class">
-                    Thêm lớp
+            <div style="margin-bottom: 5px;">
+                <div class="choose-NHHK"> Chọn:
+                    <select class="select-NHHK" name="" id="">
+                        <option selected disabled value="default" style="text-align: center;">Chọn Học Kỳ</option>
+                    <?php 
+                        foreach($getAllNHHK as $nhhk){
+                    ?>
+                            <option value="<?php echo $nhhk->HOCKY . " " . $nhhk->NAMHOC; ?>"><?php echo "Học kỳ: " . $nhhk->HOCKY . " - Năm học: " . $nhhk->NAMHOC; ?></option>
+                    <?php
+                        }
+                    ?>
+                    </select>
                 </div>
                 <div>
                     <div>
@@ -36,11 +45,13 @@
                         <th>Tên Lớp</th>
                         <th>Khóa</th>
                         <th>Số Lượng Sinh Viên</th>
+                        <th>Đã Hoàn Thành</th>
                         <th>Thao Tác</th>
                     </thead>
                     <tbody>
                 <?php 
                     foreach($list_lop as $l){
+                        $countSV = 0;
                         $getsvbylop = $sinhvien->SinhVienGetByIdLop($l->ID_LOP);
                 ?>
                         <tr>
@@ -48,18 +59,11 @@
                         <td><?php echo $l->TENLOP; ?></td>
                         <td><?php echo $l->KHOAHOC; ?></td>
                         <td><?php echo count($getsvbylop); ?></td>
+                        <td></td>
                         <td class="operation-class">
-                            <div class="list-student" value="<?php echo $l->ID_LOP; ?>">
+                            <div class="list-student-score" value="<?php echo $l->ID_LOP . " default"; ?>">
                                 <img class="icon-table" src="./images/list.png" alt="">
-                                Danh sách sinh viên 
-                            </div>
-                            <div class="update update-class" value="<?php echo $l->ID_LOP; ?>">
-                                <img class="icon-table" src="./images/update.png" alt="">
-                                Sửa 
-                            </div>
-                            <div class="delete delete-class" value="<?php echo $l->ID_LOP; ?>">
-                                <img class="icon-table" src="./images/delete.png" alt="">
-                                Delete 
+                                Chấm Điểm Cho Lớp
                             </div>
                         </td>
                     </tr>

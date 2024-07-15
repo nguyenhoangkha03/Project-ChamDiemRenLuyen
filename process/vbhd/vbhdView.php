@@ -99,7 +99,13 @@
                             <div class="time-item"><?php echo $time; ?></div>
                         </div>
                     </div>
-                    <div class="menu-item">●●●</div>
+                    <?php 
+                        if($item->ID_SV === $getsinhvien->ID_SV){
+                    ?>
+                            <div class="menu-item">●●●</div>
+                    <?php
+                        }
+                    ?>
                     <div class="delete-item" value="<?php echo $item->ID_VBHD; ?>">Xóa</div>
                     <div class="item-content">
                         <div class="text-content">

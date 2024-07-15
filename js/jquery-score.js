@@ -1751,6 +1751,32 @@ $(document).ready(function(){
         var value = $(this).attr('value');
         window.location.href = 'index.php?request=bcsMark&idsv=' + value;
     });
+    $('.manager-score').click(function(){
+        window.location.href = "index.php?request=managerScoreLop";
+    });
+    $(document).on('input', '.select-NHHK', function(){
+        var value = $('.select-NHHK').val();
+        var [hocky,namhoc] = value.split(" ");
+        $.ajax({
+            url: './process/diemmanager/load.php',
+            type: 'POST',
+            data: {hocky: hocky, namhoc: namhoc},
+            success: function(data){
+                $('.table-class tbody').html(data);
+            }
+        });
+    });
+    $(document).on('click', '.list-student-score', function(){
+        var value = $(this).attr('value');
+        var [idlop, select] = value.split(" ");
+        if(select == "default"){
+            alert("Vui lòng chọn học kỳ!");
+        }
+        else{
+            var [hocky, namhoc] = select.split("/");
+            window.location.href = "index.php?request=managerScoreSV&idlop=" + idlop + "&hocky=" + hocky + "&namhoc=" + namhoc;
+        }
+    });
 
     // Tong
 

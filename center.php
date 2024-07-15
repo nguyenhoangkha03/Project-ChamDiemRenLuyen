@@ -56,6 +56,12 @@
             case 'bcsMark':
                 require './process/bangdiem/bcs_cham.php';
                 break;
+            case 'managerScoreLop':
+                require './process/diemmanager/lopmanager.php';
+                break;
+            case 'managerScoreSV':
+                require './process/diemmanager/svmanager.php';
+                break;
         }
     }
     else{

@@ -98,6 +98,14 @@
             return $getBD->fetch();
         }
 
+        public function BangdiemAllNHHK() {
+            $getBD = $this->connect->prepare("SELECT DISTINCT HOCKY, NAMHOC FROM bangdiem ORDER BY NAMHOC DESC, HOCKY DESC");
+            $getBD->setFetchMode(PDO::FETCH_OBJ);
+            $getBD->execute();
+            
+            return $getBD->fetchAll();
+        }
+
         public function BangdiemLastOfIDSV($idsv) {
             $getBD = $this->connect->prepare("SELECT * FROM bangdiem WHERE ID_BD = (SELECT max(ID_BD) FROM bangdiem WHERE ID_SV = ?)");
             $getBD->setFetchMode(PDO::FETCH_OBJ);
@@ -121,6 +129,19 @@
             $getBD->execute(array($idsv, $namhoc, $hocky));
             
             return $getBD->fetch();
+        }
+
+        public function BangdiemGetbyNHAndHKOrderbyLOP($hocky, $namhoc) {
+            $getBD = $this->connect->prepare("SELECT lop.ID_LOP, lop.TENLOP, COUNT(sinhvien.ID_SV) AS SOLUONG
+                                              FROM bangdiem INNER JOIN sinhvien ON bangdiem.ID_SV = sinhvien.ID_SV
+                                                            INNER JOIN lop ON sinhvien.ID_LOP = lop.ID_LOP
+                                              WHERE bangdiem.HOCKY = ? AND bangdiem.NAMHOC = ? AND bangdiem.TONGDIEMKHOA IS NOT NULL AND bangdiem.TONGDIEMKHOA != 0
+                                              GROUP BY lop.ID_LOP, lop.TENLOP");
+
+            $getBD->setFetchMode(PDO::FETCH_OBJ);
+            $getBD->execute(array($hocky, $namhoc));
+            
+            return $getBD->fetchAll();
         }
     }
 ?>
