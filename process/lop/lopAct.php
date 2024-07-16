@@ -1,5 +1,6 @@
 <?php 
     require '../../database/lopCls.php';
+    require '../../database/sinhvienCls.php';
     if(isset($_GET['reqact'])){
         $requestAction = $_GET['reqact'];
         switch($requestAction){
@@ -23,13 +24,27 @@
             case 'delete':
                 $idlop = $_GET['id'];
                 $lop = new Lop();
+                $sinhvien = new Sinhvien();
 
-                $result = $lop->LopDelete($idlop);
-                if($result){
-                    header('location:../../index.php?request=lopView&result=ok');
+                $getsv = $sinhvien->SinhVienGetByIdLop($idlop);
+
+                if(count($getsv) > 0){
+                    echo '<script>';
+                    echo 'if (confirm("Lớp đang có sinh viên không thể xóa!")) {';
+                    echo '  window.location.href="../../index.php?request=lopView";'; 
+                    echo '}else{';
+                    echo '  window.location.href="../../index.php?request=lopView";';
+                    echo '}';
+                    echo '</script>';
                 }
                 else{
-                    header('location:../../index.php?request=lopView&result=notok');
+                    $result = $lop->LopDelete($idlop);
+                    if($result){
+                        header('location:../../index.php?request=lopView&result=ok');
+                    }
+                    else{
+                        header('location:../../index.php?request=lopView&result=notok');
+                    }
                 }
 
                 break;

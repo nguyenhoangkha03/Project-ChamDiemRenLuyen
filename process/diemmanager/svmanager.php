@@ -8,6 +8,7 @@
     $getl = $lop->LopGetByID($idlop);
     $count = 0;
 ?>
+<div class="data" value="<?php echo $idlop . " " . $hocky . " " . $namhoc; ?>"></div>
 <div class="address-profile" style="margin-bottom: 40px;">
     <div>QUẢN LÝ ĐIỂM CỦA SINH VIÊN LỚP: <?php echo $getl->TENLOP; ?></div>
     <div>Học kỳ: <?php echo $hocky; ?></div>
@@ -20,14 +21,14 @@
                     Trở về
                 </div>
                 <div>
-                    <div>
+                    <div style="margin-right: 0;">
                         Số lượng sinh viên : 
                         <span><?php echo count($list_sinhvien); ?></span>
                     </div>
-                    <div>
+                    <!-- <div>
                         Nhập tên sinh viên : 
-                        <input class="search-student" type="text">
-                    </div>
+                        <input class="search-student-manager" type="text">
+                    </div> -->
                 </div>
             </div>
             <?php 

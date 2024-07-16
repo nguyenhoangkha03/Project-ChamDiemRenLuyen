@@ -17,7 +17,9 @@ $(document).ready(function(){
     });
     $('.delete-student').click(function(){
         var value = $(this).attr('value');
-        window.location.href = "./process/sinhvien/sinhvienAct.php?reqact=delete&idsv=" + value;
+        if(confirm("Nếu xóa sinh viên thì tất cả thông tin liên quan của sinh viên đều bị xóa. Bạn chắc chắn ?")){
+            window.location.href = "./process/sinhvien/sinhvienAct.php?reqact=delete&idsv=" + value;
+        }
     });
     // $('.update-class').click(function(){
     //     var value = $(this).attr('value');
@@ -59,10 +61,23 @@ $(document).ready(function(){
     });
     $('.search-student').on('input', function(){
         var value = $(this).val();
+        var idlop = $('.data-sv').attr('value');
         $.ajax({
             url: './process/sinhvien/search.php',
             method: 'POST',
-            data: { searchQuery: value },
+            data: { searchQuery: value, idlop: idlop },
+            success: function(data) {
+                $('.table-student tbody').html(data);
+            }
+        });
+    });
+    $('.search-student-manager').on('input', function(){
+        var value = $(this).val();
+        var [lop, hocky, namhoc] = ($('.data').attr('value')).split(" ");
+        $.ajax({
+            url: './process/diemmanager/svmanagerLoad.php',
+            method: 'POST',
+            data: { searchQuery: value, lop: lop, hocky: hocky, namhoc: namhoc},
             success: function(data) {
                 $('.table-student tbody').html(data);
             }
@@ -86,8 +101,9 @@ $(document).ready(function(){
     });
     $(document).on("click", ".cancel-save-student", function (e) { 
         e.preventDefault();
-        var value = $(this).attr('value');
-        window.location.href = "index.php?request=sinhvienView&idlop=" + value;
+        // var value = $(this).attr('value');
+        // window.location.href = "index.php?request=sinhvienView&idlop=" + value;
+        window.location.href = "index.php?request=bchView";
     });
     $(document).on("click", ".cancel-save-bch", function (e) { 
         e.preventDefault();
@@ -397,7 +413,9 @@ $(document).ready(function(){
     });
     $('.control-bch > button:nth-child(2)').click(function(){
         var value = $(this).attr('value');
-        window.location.href = "./process/sinhvien/sinhvienAct.php?reqact=deleteBCH&idsv=" + value;
+        if(confirm("Nếu xóa sinh viên thì tất cả thông tin liên quan của ban chấp hành đều bị xóa. Bạn chắc chắn ?")){
+            window.location.href = "./process/sinhvien/sinhvienAct.php?reqact=deleteBCH&idsv=" + value;
+        }
     });
     $('.vbhd-view').click(function(){
         window.location.href = "index.php?request=vbhdView";

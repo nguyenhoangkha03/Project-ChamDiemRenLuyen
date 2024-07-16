@@ -27,7 +27,7 @@
                 require './process/bch/bchView.php';
                 break;
             case 'bchAdd':
-                require './process/bch/bchAdd.php';
+                require './process/bch/bchView.php';
                 break;
             case 'bchAddNew':
                 require './process/bch/bchAddNew.php';

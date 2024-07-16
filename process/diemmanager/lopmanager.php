@@ -33,14 +33,14 @@
                     </div>
                 </div>
                 <div>
-                    <div>
+                    <div style="margin-right: 0;">
                         Số lượng lớp : 
                         <span><?php echo count($list_lop); ?></span>
                     </div>
-                    <div>
+                    <!-- <div>
                         Nhập tên lớp : 
                         <input class="search-class" type="text">
-                    </div>
+                    </div> -->
                 </div>
             </div>
             <?php 

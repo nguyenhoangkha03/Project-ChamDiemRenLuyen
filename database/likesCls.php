@@ -57,10 +57,10 @@
 
             return $del->rowCount();
         }
-        public function FileUpdate($filefile, $idvbhd,$idfile) {
-            $update = $this->connect->prepare("UPDATE file SET FILEFILE = ?, ID_VBHD = ?"
-                                                . " WHERE ID_FILE = ?");
-            $update->execute(array($filefile, $idvbhd,$idfile));
+        public function LikeUpdate($idlike) {
+            $update = $this->connect->prepare("UPDATE likes SET ID_SV = null"
+                                                . " WHERE ID_LIKE = ?");
+            $update->execute(array($idlike));
             
             return $update->rowCount();
         }

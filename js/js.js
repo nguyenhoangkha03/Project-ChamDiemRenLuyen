@@ -6,7 +6,7 @@ document.addEventListener("DOMContentLoaded", function(){
         View.style.color = 'white';
         View.style.backgroundColor = 'lightblue';
     }
-    else if(requestValue == 'bchView'){
+    else if(requestValue == 'bchView' || requestValue == 'bchAddNew'){
         const View = document.querySelector('.bch-view');
         View.style.color = 'white';
         View.style.backgroundColor = 'lightblue';
@@ -21,7 +21,7 @@ document.addEventListener("DOMContentLoaded", function(){
         View.style.color = 'white';
         View.style.backgroundColor = 'lightblue';
     }
-    else if(requestValue == 'taikhoanView'){
+    else if(requestValue == 'taikhoanView' || requestValue == 'taikhoanAdd' || requestValue == 'taikhoanUpdate'){
         const View = document.querySelector('.taikhoan-view');
         View.style.color = 'white';
         View.style.backgroundColor = 'lightblue';

@@ -2,6 +2,15 @@
     require '../../database/sinhvienCls.php';
     require '../../database/mangxahoiCls.php';
     require '../../database/taikhoanCls.php';
+    require '../../database/luotxemCls.php';
+    require '../../database/vbhdCls.php';
+    require '../../database/likesCls.php';
+    require '../../database/bangdiemCls.php';
+    require '../../database/fileCls.php';
+    require '../../database/hinhanhCls.php';
+    require '../../database/minhchungCls.php';
+    require '../../database/diemtcCls.php';
+    require '../../database/diemtcctCls.php';
     if(isset($_GET['idlop'])){
         $idlop = $_GET['idlop'];
     }
@@ -42,29 +51,88 @@
                 break;
             case 'delete':
                 $idsv = $_GET['idsv'];
+
                 $sinhvien = new Sinhvien();
-                $getsv = $sinhvien->SinhVienGetById($idsv);
-
+                $mangxahoi = new MXH();
                 $taikhoan = new Taikhoan();
-                $gettk = $taikhoan->TaiKhoanGetByIdSV($idsv);
+                $luotxem = new Luotxem();
+                $vbhd = new VBHD();
+                $like = new LIKES();
+                $bangdiem = new Bangdiem();
+                $file = new File();
+                $hinhanh = new Hinhanh();
+                $minhchung = new Minhchung();
+                $diemtc = new DiemTC();
+                $diemtcct = new DiemTCCT();
 
-                if(count($gettk) > 0){
-                    echo '<script>';
-                    echo 'if(confirm("Sinh viên đang sở hữu tài khoản vui lòng xóa tài khoản trước khi xóa sinh viên!")){';
-                    echo 'window.location.href="../../index.php?request=bchView"';
-                    echo '}else{';
-                    echo 'window.location.href="../../index.php?request=bchView"';
-                    echo '}';
-                    echo '</script>';
+                $getMXH = $mangxahoi->MXHGetByIDSV($idsv);
+                $getAllTK = $taikhoan->TaiKhoanGetByIdSV($idsv);
+                $getAllLXSV = $luotxem->LuotxemGetAllByIDSV($idsv);
+                $getAllVBHD = $vbhd->VBHDGetbyIdSV($idsv);
+                $getAllLikeSV = $like->LikesGetAllByIDSV($idsv);
+                $getAllBD = $bangdiem->BangdiemGetbyIdSV($idsv);
+
+                if($getMXH != null){
+                    $resMXH = $mangxahoi->MXHDelete($getMXH->ID_MXH);
+                }
+                foreach($getAllTK as $tk){
+                    $resTK = $taikhoan->TaiKhoanDelete($tk->ID_TK);
+                }
+                foreach($getAllLXSV as $lx){
+                    $resLX = $luotxem->LuotxemUpdate($lx->ID_LX);
+                }
+                foreach($getAllLikeSV as $l){
+                    $resLIKE = $like->LikeUpdate($l->ID_LIKE);
+                }
+                foreach($getAllVBHD as $vb){
+                    $getAllFile = $file->FileGetbyIdVBHD($vb->ID_VBHD);
+                    $getAllHA = $hinhanh->HinhanhGetbyIdVBHD($vb->ID_VBHD);
+                    foreach($getAllFile as $f){
+                        $resFILE = $file->FileDelete($f->ID_FILE);
+                    }
+                    foreach($getAllHA as $ha){
+                        $resHA = $hinhanh->HinhanhDelete($ha->ID_HA);
+                    }
+
+                    $getAllLXVBHD = $luotxem->LuotxemGetAllByIDVBHD($vb->ID_VBHD);
+                    $getAllLikeVBHD = $like->LikesGetAllByIDVBHD($vb->ID_VBHD);
+
+                    foreach($getAllLXVBHD as $t){
+                        $res = $luotxem->LuotxemDelete($t->ID_LX);
+                    }
+                    foreach($getAllLikeVBHD as $t){
+                        $res = $like->LikesDelete($t->ID_LIKE);
+                    }
+
+                    $resVBHD = $vbhd->VBHDDelete($vb->ID_VBHD);
+                }
+                foreach($getAllBD as $bd){
+                    $getAllDTC = $diemtc->DiemTCGetbyIdBD($bd->ID_BD);
+                    $getAllDTCCT = $diemtcct->DiemTCCTGetbyIdBD($bd->ID_BD);
+                    foreach($getAllDTCCT as $dtcct){
+                        $getAllMC = $minhchung->MinhchungGetbyIDDTCCT($dtcct->ID_DTCCT);
+                        foreach($getAllMC as $mc){
+                            $res = $minhchung->MinhchungDelete($mc->ID_MC);
+                        }
+                        $res = $diemtcct->DiemTCCTDelete($dtcct->ID_DTCCT);
+                    }
+                    foreach($getAllDTC as $dtc){
+                        $res = $diemtc->DiemTCDelete($dtc->ID_DTC);
+                    }
+
+                    $resBD = $bangdiem->BangdiemDelete($bd->ID_BD);
+                }
+
+
+                $getsv = $sinhvien->SinhVienGetById($idsv);
+                $idlop = $getsv->ID_LOP;
+
+                $result = $sinhvien->SinhVienDelete($idsv);
+                if($result){
+                    header('location:../../index.php?request=sinhvienView&idlop=' . $idlop . '&result=ok');
                 }
                 else{
-                    $result = $sinhvien->SinhVienDelete($idsv);
-                    if($result){
-                        header('location:../../index.php?request=sinhvienView&idlop=' . $getsv->ID_SV . '&result=ok');
-                    }
-                    else{
-                        header('location:../../index.php?request=sinhvienView&idlop=' . $getsv->ID_SV . '&result=notok');
-                    }
+                    header('location:../../index.php?request=sinhvienView&idlop=' . $idlop . '&result=notok');
                 }
 
                 break;
@@ -195,32 +263,86 @@
             case 'deleteBCH':
                 $idsv = $_GET['idsv'];
                 $sinhvien = new Sinhvien();
-                $getsv = $sinhvien->SinhVienGetById($idsv);
-
-                $mxh = new MXH();
-                $getmxh = $mxh->MXHGetByIDSV($idsv);
-                $resultMXH = $mxh->MXHDelete($getmxh->ID_MXH);  
-
+                $mangxahoi = new MXH();
                 $taikhoan = new Taikhoan();
-                $gettk = $taikhoan->TaiKhoanGetByIdSV($idsv);
+                $luotxem = new Luotxem();
+                $vbhd = new VBHD();
+                $like = new LIKES();
+                $bangdiem = new Bangdiem();
+                $file = new File();
+                $hinhanh = new Hinhanh();
+                $minhchung = new Minhchung();
+                $diemtc = new DiemTC();
+                $diemtcct = new DiemTCCT();
 
-                if(count($gettk) > 0){
-                    echo '<script>';
-                    echo 'if(confirm("BCH đang sở hữu tài khoản vui lòng xóa tài khoản trước khi xóa BCH!")){';
-                    echo 'window.location.href="../../index.php?request=bchView"';
-                    echo '}else{';
-                    echo 'window.location.href="../../index.php?request=bchView"';
-                    echo '}';
-                    echo '</script>';
+                $getMXH = $mangxahoi->MXHGetByIDSV($idsv);
+                $getAllTK = $taikhoan->TaiKhoanGetByIdSV($idsv);
+                $getAllLXSV = $luotxem->LuotxemGetAllByIDSV($idsv);
+                $getAllVBHD = $vbhd->VBHDGetbyIdSV($idsv);
+                $getAllLikeSV = $like->LikesGetAllByIDSV($idsv);
+                $getAllBD = $bangdiem->BangdiemGetbyIdSV($idsv);
+
+                if($getMXH != null){
+                    $resMXH = $mangxahoi->MXHDelete($getMXH->ID_MXH);
+                }
+                foreach($getAllTK as $tk){
+                    $resTK = $taikhoan->TaiKhoanDelete($tk->ID_TK);
+                }
+                foreach($getAllLXSV as $lx){
+                    $resLX = $luotxem->LuotxemUpdate($lx->ID_LX);
+                }
+                foreach($getAllLikeSV as $l){
+                    $resLIKE = $like->LikeUpdate($l->ID_LIKE);
+                }
+                foreach($getAllVBHD as $vb){
+                    $getAllFile = $file->FileGetbyIdVBHD($vb->ID_VBHD);
+                    $getAllHA = $hinhanh->HinhanhGetbyIdVBHD($vb->ID_VBHD);
+                    foreach($getAllFile as $f){
+                        $resFILE = $file->FileDelete($f->ID_FILE);
+                    }
+                    foreach($getAllHA as $ha){
+                        $resHA = $hinhanh->HinhanhDelete($ha->ID_HA);
+                    }
+
+                    $getAllLXVBHD = $luotxem->LuotxemGetAllByIDVBHD($vb->ID_VBHD);
+                    $getAllLikeVBHD = $like->LikesGetAllByIDVBHD($vb->ID_VBHD);
+
+                    foreach($getAllLXVBHD as $t){
+                        $res = $luotxem->LuotxemDelete($t->ID_LX);
+                    }
+                    foreach($getAllLikeVBHD as $t){
+                        $res = $like->LikesDelete($t->ID_LIKE);
+                    }
+
+                    $resVBHD = $vbhd->VBHDDelete($vb->ID_VBHD);
+                }
+                foreach($getAllBD as $bd){
+                    $getAllDTC = $diemtc->DiemTCGetbyIdBD($bd->ID_BD);
+                    $getAllDTCCT = $diemtcct->DiemTCCTGetbyIdBD($bd->ID_BD);
+                    foreach($getAllDTCCT as $dtcct){
+                        $getAllMC = $minhchung->MinhchungGetbyIDDTCCT($dtcct->ID_DTCCT);
+                        foreach($getAllMC as $mc){
+                            $res = $minhchung->MinhchungDelete($mc->ID_MC);
+                        }
+                        $res = $diemtcct->DiemTCCTDelete($dtcct->ID_DTCCT);
+                    }
+                    foreach($getAllDTC as $dtc){
+                        $res = $diemtc->DiemTCDelete($dtc->ID_DTC);
+                    }
+
+                    $resBD = $bangdiem->BangdiemDelete($bd->ID_BD);
+                }
+
+
+                $getsv = $sinhvien->SinhVienGetById($idsv);
+                $idlop = $getsv->ID_LOP;
+
+                $result = $sinhvien->SinhVienDelete($idsv);
+                if($result){
+                    header('location:../../index.php?request=bchView');
                 }
                 else{
-                    $result = $sinhvien->SinhVienDelete($idsv);
-                    if($result){
-                        header('location:../../index.php?request=bchView&result=ok');
-                    }
-                    else{
-                        header('location:../../index.php?request=bchView&result=notok');
-                    }
+                    header('location:../../index.php?request=bchView');
                 }
 
                 break;

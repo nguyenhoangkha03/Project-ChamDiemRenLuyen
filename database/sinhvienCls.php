@@ -75,6 +75,14 @@
             return $getSinhvien->fetchAll();
         }
 
+        public function SinhvienSearchNameANDIDLop($text, $idlop){
+            $getSinhvien = $this->connect->prepare("select * from sinhvien where HOTEN LIKE '%$text%' AND ID_LOP = ?");
+            $getSinhvien->setFetchMode(PDO::FETCH_OBJ);
+            $getSinhvien->execute(array($idlop));
+
+            return $getSinhvien->fetchAll();
+        }
+
         public function SinhvienIdLonNhat(){
             $getSv = $this->connect->prepare("select * from sinhvien WHERE ID_SV = (select max(ID_SV) from sinhvien)");
             $getSv->setFetchMode(PDO::FETCH_OBJ);

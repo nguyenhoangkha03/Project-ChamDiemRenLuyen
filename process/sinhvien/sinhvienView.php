@@ -1,8 +1,4 @@
 <?php 
-    //require './database/lopCls.php';
-    // require 'database/sinhvienCls.php';
-    //$lop = new Lop();
-    // $sinhvien = new Sinhvien();
     $idlop = $_GET['idlop'];
     $list_sinhvien = $sinhvien->SinhVienGetByIdLop($idlop);
     $count = 0;
@@ -10,6 +6,7 @@
 <div class="address-profile" style="margin-bottom: 40px;">
     <div>QUẢN LÝ SINH VIÊN</div>
 </div>
+<div class="data-sv" value="<?php echo $idlop; ?>"></div>
 <div class="class-view">
             <div>
                 <div class="addnew-student" value="<?php echo $idlop; ?>">

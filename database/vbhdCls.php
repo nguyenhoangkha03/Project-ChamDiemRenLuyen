@@ -34,7 +34,7 @@
             return $add->rowCount();
         }
         public function VBHDDelete($id_vbhd) {
-            $del = $this->connect->prepare("delete from vbhd where ID_VBHD = ?");
+            $del = $this->connect->prepare("DELETE from vbhd where ID_VBHD = ?");
             $del->execute(array($id_vbhd));
 
             return $del->rowCount();
