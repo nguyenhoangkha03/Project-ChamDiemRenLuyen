@@ -27,9 +27,9 @@
             
             return $add->rowCount();
         }
-        public function HinhanhDelete($idha) {
-            $del = $this->connect->prepare("DELETE FROM hinhanh WHERE ID_HA = ?");
-            $del->execute(array($idha));
+        public function MinhchungDelete($idmc) {
+            $del = $this->connect->prepare("DELETE FROM minhchung WHERE ID_MC = ?");
+            $del->execute(array($idmc));
 
             return $del->rowCount();
         }

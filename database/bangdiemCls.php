@@ -106,6 +106,16 @@
             return $getBD->fetch();
         }
 
+        public function BangdiemGetbyIdSV($idsv) {
+            $getBD = $this->connect->prepare("SELECT * FROM bangdiem 
+                                              WHERE ID_SV = ?
+                                              ORDER BY namhoc DESC, hocky DESC");
+            $getBD->setFetchMode(PDO::FETCH_OBJ);
+            $getBD->execute(array($idsv));
+            
+            return $getBD->fetchAll();
+        }
+
         public function BangdiemAllNHHK() {
             $getBD = $this->connect->prepare("SELECT DISTINCT HOCKY, NAMHOC FROM bangdiem ORDER BY NAMHOC DESC, HOCKY DESC");
             $getBD->setFetchMode(PDO::FETCH_OBJ);

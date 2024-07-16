@@ -2788,6 +2788,32 @@
                 header('location:../../index.php?request=bchMark&idsv=' . $getbangdiem->ID_SV . '&hocky=' . $hocky . '&namhoc=' . $namhoc);
 
                 break;
+            case 'delete':
+                $idbd = $_GET['idbd'];
+                $bangdiem = new Bangdiem();
+                $minhchung = new Minhchung();
+                $diemtc = new DiemTC();
+                $diemtcct = new DiemTCCT();
+
+                $getbangdiem = $bangdiem->BangdiemGetbyId($idbd);
+
+                $getAllDTC = $diemtc->DiemTCGetbyIdBD($idbd);
+                $getAllDTCCT = $diemtcct->DiemTCCTGetbyIdBD($idbd);
+                foreach($getAllDTCCT as $dtcct){
+                    $getAllMC = $minhchung->MinhchungGetbyIDDTCCT($dtcct->ID_DTCCT);
+                    foreach($getAllMC as $mc){
+                        $resultMC = $minhchung->MinhchungDelete($mc->ID_MC);
+                    }
+                    $resultDTCCT = $diemtcct->DiemTCCTDelete($dtcct->ID_DTCCT);
+                }
+                foreach($getAllDTC as $dtc){
+                    $resultDTC = $diemtc->DiemTCDelete($dtc->ID_DTC);
+                }
+                $resultBD = $bangdiem->BangdiemDelete($idbd);
+
+                header('location:../../index.php?request=scoreOfSV&idsv=' . $getbangdiem->ID_SV . '&hocky=' . $getbangdiem->HOCKY . '&namhoc=' . $getbangdiem->NAMHOC);
+                
+                break;
         }
     }
 ?>

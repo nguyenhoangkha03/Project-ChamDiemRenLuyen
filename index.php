@@ -44,7 +44,7 @@
     <link href="https://fonts.googleapis.com/css2?family=Nunito+Sans:wght@300;400;600;700;800;900&display=swap" rel="stylesheet">
     <link rel="shortcut icon" href="./images/logodoan.png" type="image/x-icon">
     <link href="https://cdnjs.cloudflare.com/ajax/libs/select2/4.1.0-beta.1/css/select2.min.css" rel="stylesheet" />
-    <title>Đoàn Khoa</title>
+    <title>Đoàn Khoa Luật Dân Sự</title>
 </head>
 <body>
     <div class="top">

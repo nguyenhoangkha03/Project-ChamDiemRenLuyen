@@ -2,10 +2,7 @@
     if(!isset($_SESSION['ADMIN']) && !isset($_SESSION['BCH']) && !isset($_SESSION['BCS']) && !isset($_SESSION['STUDENT'])){
         echo '<script>window.location.href = "./login/index.php";</script>';
     }
-    $idsv = $_GET['idsv'];
-    $hocky = $_GET['hocky'];
-    $namhoc = $_GET['namhoc'];
-    $getsv = $sinhvien->SinhVienGetById($idsv);
+    $idbd = $_GET['idbd'];
     
     require './database/bangdiemCls.php';
     require './database/diemtcCls.php';
@@ -14,7 +11,8 @@
     $diemtc = new DiemTC();
     $diemtcct = new DiemTCCT();
 
-    $getdiemofsv = $bangdiem->BangdiemGetbyIdSVAndNHAndHK($getsv->ID_SV, $namhoc, $hocky);
+    $getdiemofsv = $bangdiem->BangdiemGetbyId($idbd);
+    $getsv = $sinhvien->SinhVienGetById($getdiemofsv->ID_SV);
     if($getdiemofsv != null){
         $getdiemtc = $diemtc->DiemTCGetbyIdBD($getdiemofsv->ID_BD);
         $getdiemtcct = $diemtcct->DiemTCCTGetbyIdBD($getdiemofsv->ID_BD);
@@ -22,9 +20,9 @@
 ?>
 <div class="get-sv" value="<?php echo $getsinhvien != null ? $getsinhvien->ID_SV : ""; ?>"></div>
 <div class="address-profile" style="margin-bottom: 40px;">
-    <div>CHẤM ĐIỂM RÈN LUYỆN CHO SINH VIÊN : <?php echo $getsv->MASOSV . " - " . $getsv->HOTEN; ?></div>
+    <div>CHI TIẾT BẢNG ĐIỂM CỦA SINH VIÊN : <?php echo $getsv->MASOSV . " - " . $getsv->HOTEN; ?></div>
 </div>
-<div style="margin-right: 10px;" class="previous" onclick="window.location.href='index.php?request=managerScoreSV&idlop=<?php echo $getsv->ID_LOP; ?>&hocky=<?php echo $getdiemofsv->HOCKY; ?>&namhoc=<?php echo $getdiemofsv->NAMHOC; ?>';">
+<div style="margin-right: 10px;" class="previous" onclick="window.location.href='index.php?request=scoreOfSV&idsv=<?php echo $getdiemofsv->ID_SV; ?>&hocky=<?php echo $getdiemofsv->HOCKY; ?>&namhoc=<?php echo $getdiemofsv->NAMHOC; ?>';">
     <img width="30px" src="./images/back.png" alt="">
     Trở về
 </div>
@@ -48,9 +46,9 @@
             }
         ?>
         <div class="score-top" style="text-align: center; margin-right: 10px;">
-            BAN CHẤP HÀNH CHẤM ĐIỂM CHO SINH VIÊN
-            <div>HỌC KỲ <?php echo $hocky; ?></div>
-            <div>NĂM HỌC <?php echo $namhoc; ?></div>
+            CHI TIẾT BẢNG ĐIỂM
+            <div>HỌC KỲ <?php echo $getdiemofsv->HOCKY; ?></div>
+            <div>NĂM HỌC <?php echo $getdiemofsv->NAMHOC; ?></div>
         </div>
         <hr style="width: 100%;">
         <div class="score-body">
@@ -86,13 +84,13 @@
 
                         </td>
                         <td>
-                            <input value="<?php echo $getdiemtcct != null ? $getdiemtcct[0]->TONGDIEMSV : ""; ?>" class="sv-111" name="sv-111" type="number">
+                            <input disabled value="<?php echo $getdiemtcct != null ? $getdiemtcct[0]->TONGDIEMSV : ""; ?>" class="sv-111" name="sv-111" type="number">
                         </td>
                         <td>
-                            <input value="<?php echo $getdiemtcct != null ? $getdiemtcct[0]->TONGDIEMLOP : ""; ?>" <?php echo (isset($_SESSION['STUDENT'])) ? "disabled" : ""; ?> class="lop-111" name="lop-111" type="number">
+                            <input disabled value="<?php echo $getdiemtcct != null ? $getdiemtcct[0]->TONGDIEMLOP : ""; ?>" <?php echo (isset($_SESSION['STUDENT'])) ? "disabled" : ""; ?> class="lop-111" name="lop-111" type="number">
                         </td>
                         <td>
-                            <input value="<?php echo $getdiemtcct != null ? $getdiemtcct[0]->TONGDIEMKHOA : ""; ?>" <?php echo (!isset($_SESSION['ADMIN']) && !isset($_SESSION['BCH'])) ? "disabled" : ""; ?> class="khoa-111" name="khoa-111" type="number">
+                            <input disabled value="<?php echo $getdiemtcct != null ? $getdiemtcct[0]->TONGDIEMKHOA : ""; ?>" <?php echo (!isset($_SESSION['ADMIN']) && !isset($_SESSION['BCH'])) ? "disabled" : ""; ?> class="khoa-111" name="khoa-111" type="number">
                         </td>
                     </tr>
                     <tr>
@@ -109,13 +107,13 @@
 
                         </td>
                         <td>
-                            <input value="<?php echo $getdiemtcct != null ? $getdiemtcct[1]->TONGDIEMSV : ""; ?>"  class="sv-112" name="sv-112" type="number">
+                            <input disabled value="<?php echo $getdiemtcct != null ? $getdiemtcct[1]->TONGDIEMSV : ""; ?>"  class="sv-112" name="sv-112" type="number">
                         </td>
                         <td>
-                            <input value="<?php echo $getdiemtcct != null ? $getdiemtcct[1]->TONGDIEMLOP : ""; ?>" <?php echo (isset($_SESSION['STUDENT'])) ? "disabled" : ""; ?>  class="lop-112" name="lop-112" type="number">
+                            <input disabled value="<?php echo $getdiemtcct != null ? $getdiemtcct[1]->TONGDIEMLOP : ""; ?>" <?php echo (isset($_SESSION['STUDENT'])) ? "disabled" : ""; ?>  class="lop-112" name="lop-112" type="number">
                         </td>
                         <td>
-                            <input value="<?php echo $getdiemtcct != null ? $getdiemtcct[1]->TONGDIEMKHOA : ""; ?>" <?php echo (!isset($_SESSION['ADMIN']) && !isset($_SESSION['BCH'])) ? "disabled" : ""; ?> class="khoa-112" name="khoa-112" type="number">
+                            <input disabled value="<?php echo $getdiemtcct != null ? $getdiemtcct[1]->TONGDIEMKHOA : ""; ?>" <?php echo (!isset($_SESSION['ADMIN']) && !isset($_SESSION['BCH'])) ? "disabled" : ""; ?> class="khoa-112" name="khoa-112" type="number">
                         </td>
                     </tr>
                     <tr>
@@ -147,13 +145,13 @@
                         ?>
                         </td>
                         <td>
-                            <input value="<?php echo $getdiemtcct != null ? $getdiemtcct[2]->TONGDIEMSV : ""; ?>"  name="sv-113" class="sv-113" type="number">
+                            <input disabled value="<?php echo $getdiemtcct != null ? $getdiemtcct[2]->TONGDIEMSV : ""; ?>"  name="sv-113" class="sv-113" type="number">
                         </td>
                         <td>
-                            <input value="<?php echo $getdiemtcct != null ? $getdiemtcct[2]->TONGDIEMLOP : ""; ?>" <?php echo (isset($_SESSION['STUDENT'])) ? "disabled" : ""; ?>  name="lop-113" class="lop-113" type="number">
+                            <input disabled value="<?php echo $getdiemtcct != null ? $getdiemtcct[2]->TONGDIEMLOP : ""; ?>" <?php echo (isset($_SESSION['STUDENT'])) ? "disabled" : ""; ?>  name="lop-113" class="lop-113" type="number">
                         </td>
                         <td>
-                            <input value="<?php echo $getdiemtcct != null ? $getdiemtcct[2]->TONGDIEMKHOA : ""; ?>" <?php echo (!isset($_SESSION['ADMIN']) && !isset($_SESSION['BCH'])) ? "disabled" : ""; ?> name="khoa-113" class="khoa-113" type="number">
+                            <input disabled value="<?php echo $getdiemtcct != null ? $getdiemtcct[2]->TONGDIEMKHOA : ""; ?>" <?php echo (!isset($_SESSION['ADMIN']) && !isset($_SESSION['BCH'])) ? "disabled" : ""; ?> name="khoa-113" class="khoa-113" type="number">
                         </td>
                     </tr>
                     <tr>
@@ -189,13 +187,13 @@
                         ?>               
                         </td>
                         <td>
-                            <input value="<?php echo $getdiemtcct != null ? $getdiemtcct[3]->TONGDIEMSV : ""; ?>"  class="sv-114" type="number" name="sv-114" id="">
+                            <input disabled value="<?php echo $getdiemtcct != null ? $getdiemtcct[3]->TONGDIEMSV : ""; ?>"  class="sv-114" type="number" name="sv-114" id="">
                         </td>
                         <td>
-                            <input value="<?php echo $getdiemtcct != null ? $getdiemtcct[3]->TONGDIEMLOP : ""; ?>" <?php echo (isset($_SESSION['STUDENT'])) ? "disabled" : ""; ?>  class="lop-114" type="number" name="lop-114" id="">
+                            <input disabled value="<?php echo $getdiemtcct != null ? $getdiemtcct[3]->TONGDIEMLOP : ""; ?>" <?php echo (isset($_SESSION['STUDENT'])) ? "disabled" : ""; ?>  class="lop-114" type="number" name="lop-114" id="">
                         </td>
                         <td>
-                            <input value="<?php echo $getdiemtcct != null ? $getdiemtcct[3]->TONGDIEMKHOA : ""; ?>" <?php echo (!isset($_SESSION['ADMIN']) && !isset($_SESSION['BCH'])) ? "disabled" : ""; ?> class="khoa-114" type="number" name="khoa-114" id="">
+                            <input disabled value="<?php echo $getdiemtcct != null ? $getdiemtcct[3]->TONGDIEMKHOA : ""; ?>" <?php echo (!isset($_SESSION['ADMIN']) && !isset($_SESSION['BCH'])) ? "disabled" : ""; ?> class="khoa-114" type="number" name="khoa-114" id="">
                         </td>
                     </tr>
                     <tr>
@@ -226,13 +224,13 @@
                         ?>  
                         </td>
                         <td>
-                            <input value="<?php echo $getdiemtcct != null ? $getdiemtcct[4]->TONGDIEMSV : ""; ?>"  class="sv-115" name="sv-115" type="number">
+                            <input disabled value="<?php echo $getdiemtcct != null ? $getdiemtcct[4]->TONGDIEMSV : ""; ?>"  class="sv-115" name="sv-115" type="number">
                         </td>
                         <td>
-                            <input value="<?php echo $getdiemtcct != null ? $getdiemtcct[4]->TONGDIEMLOP : ""; ?>" <?php echo (isset($_SESSION['STUDENT'])) ? "disabled" : ""; ?> class="lop-115" name="lop-115" type="number">
+                            <input disabled value="<?php echo $getdiemtcct != null ? $getdiemtcct[4]->TONGDIEMLOP : ""; ?>" <?php echo (isset($_SESSION['STUDENT'])) ? "disabled" : ""; ?> class="lop-115" name="lop-115" type="number">
                         </td>
                         <td>
-                            <input value="<?php echo $getdiemtcct != null ? $getdiemtcct[4]->TONGDIEMKHOA : ""; ?>" <?php echo (!isset($_SESSION['ADMIN']) && !isset($_SESSION['BCH'])) ? "disabled" : ""; ?> class="khoa-115" name="khoa-115" type="number">
+                            <input disabled value="<?php echo $getdiemtcct != null ? $getdiemtcct[4]->TONGDIEMKHOA : ""; ?>" <?php echo (!isset($_SESSION['ADMIN']) && !isset($_SESSION['BCH'])) ? "disabled" : ""; ?> class="khoa-115" name="khoa-115" type="number">
                         </td>
                     </tr>
                     <tr>
@@ -279,9 +277,9 @@
                             }
                         ?>  
                         </td>
-                        <td><input value="<?php echo $getdiemtcct != null ? $getdiemtcct[5]->TONGDIEMSV : ""; ?>"  class="sv-116" name="sv-116" type="number"></td>
-                        <td><input value="<?php echo $getdiemtcct != null ? $getdiemtcct[5]->TONGDIEMLOP : ""; ?>" <?php echo (isset($_SESSION['STUDENT'])) ? "disabled" : ""; ?>  class="lop-116" name="lop-116" type="number"></td>
-                        <td><input value="<?php echo $getdiemtcct != null ? $getdiemtcct[5]->TONGDIEMKHOA : ""; ?>" <?php echo (!isset($_SESSION['ADMIN']) && !isset($_SESSION['BCH'])) ? "disabled" : ""; ?> class="khoa-116" name="khoa-116" type="number"></td>
+                        <td><input disabled value="<?php echo $getdiemtcct != null ? $getdiemtcct[5]->TONGDIEMSV : ""; ?>"  class="sv-116" name="sv-116" type="number"></td>
+                        <td><input disabled value="<?php echo $getdiemtcct != null ? $getdiemtcct[5]->TONGDIEMLOP : ""; ?>" <?php echo (isset($_SESSION['STUDENT'])) ? "disabled" : ""; ?>  class="lop-116" name="lop-116" type="number"></td>
+                        <td><input disabled value="<?php echo $getdiemtcct != null ? $getdiemtcct[5]->TONGDIEMKHOA : ""; ?>" <?php echo (!isset($_SESSION['ADMIN']) && !isset($_SESSION['BCH'])) ? "disabled" : ""; ?> class="khoa-116" name="khoa-116" type="number"></td>
                     </tr>
                     <tr>
                         <td>
@@ -315,9 +313,9 @@
                             }
                         ?>
                         </td>
-                        <td><input value="<?php echo $getdiemtcct != null ? $getdiemtcct[6]->TONGDIEMSV : ""; ?>"  class="sv-117" name="sv-117" type="number"></td>
-                        <td><input value="<?php echo $getdiemtcct != null ? $getdiemtcct[6]->TONGDIEMLOP : ""; ?>" <?php echo (isset($_SESSION['STUDENT'])) ? "disabled" : ""; ?>  class="lop-117" name="lop-117" type="number"></td>
-                        <td><input value="<?php echo $getdiemtcct != null ? $getdiemtcct[6]->TONGDIEMKHOA : ""; ?>" <?php echo (!isset($_SESSION['ADMIN']) && !isset($_SESSION['BCH'])) ? "disabled" : ""; ?> class="khoa-117" name="khoa-117" type="number"></td>
+                        <td><input disabled value="<?php echo $getdiemtcct != null ? $getdiemtcct[6]->TONGDIEMSV : ""; ?>"  class="sv-117" name="sv-117" type="number"></td>
+                        <td><input disabled value="<?php echo $getdiemtcct != null ? $getdiemtcct[6]->TONGDIEMLOP : ""; ?>" <?php echo (isset($_SESSION['STUDENT'])) ? "disabled" : ""; ?>  class="lop-117" name="lop-117" type="number"></td>
+                        <td><input disabled value="<?php echo $getdiemtcct != null ? $getdiemtcct[6]->TONGDIEMKHOA : ""; ?>" <?php echo (!isset($_SESSION['ADMIN']) && !isset($_SESSION['BCH'])) ? "disabled" : ""; ?> class="khoa-117" name="khoa-117" type="number"></td>
                     </tr>
                     <tr>
                         <td>1.1.8 Có bài viết được đăng báo, tạp chí KHPL, kỷ yếu  hội nghị, hội thảo, tham luận, báo cáo chuyên đề liên quan đến hoạt động học thuật</td>
@@ -342,9 +340,9 @@
                             }
                         ?>
                         </td>
-                        <td><input value="<?php echo $getdiemtcct != null ? $getdiemtcct[7]->TONGDIEMSV : ""; ?>"  class="sv-118" name="sv-118" type="number"></td>
-                        <td><input value="<?php echo $getdiemtcct != null ? $getdiemtcct[7]->TONGDIEMLOP : ""; ?>" <?php echo (isset($_SESSION['STUDENT'])) ? "disabled" : ""; ?>  name="lop-118" class="lop-118" type="number"></td>
-                        <td><input value="<?php echo $getdiemtcct != null ? $getdiemtcct[7]->TONGDIEMKHOA : ""; ?>" <?php echo (!isset($_SESSION['ADMIN']) && !isset($_SESSION['BCH'])) ? "disabled" : ""; ?> name="khoa-118" class="khoa-118" type="number"></td>
+                        <td><input disabled value="<?php echo $getdiemtcct != null ? $getdiemtcct[7]->TONGDIEMSV : ""; ?>"  class="sv-118" name="sv-118" type="number"></td>
+                        <td><input disabled value="<?php echo $getdiemtcct != null ? $getdiemtcct[7]->TONGDIEMLOP : ""; ?>" <?php echo (isset($_SESSION['STUDENT'])) ? "disabled" : ""; ?>  name="lop-118" class="lop-118" type="number"></td>
+                        <td><input disabled value="<?php echo $getdiemtcct != null ? $getdiemtcct[7]->TONGDIEMKHOA : ""; ?>" <?php echo (!isset($_SESSION['ADMIN']) && !isset($_SESSION['BCH'])) ? "disabled" : ""; ?> name="khoa-118" class="khoa-118" type="number"></td>
                     </tr>
                     <tr>
                         <td>
@@ -359,9 +357,9 @@
                             <p>8 điểm</p>
                         </td>
                         <td></td>
-                        <td><input value="<?php echo $getdiemtcct != null ? $getdiemtcct[8]->TONGDIEMSV : ""; ?>"  class="sv-119" name="sv-119" type="number"></td>
-                        <td><input value="<?php echo $getdiemtcct != null ? $getdiemtcct[8]->TONGDIEMLOP : ""; ?>" <?php echo (isset($_SESSION['STUDENT'])) ? "disabled" : ""; ?>  name="lop-119" class="lop-119" type="number"></td>
-                        <td><input value="<?php echo $getdiemtcct != null ? $getdiemtcct[8]->TONGDIEMKHOA : ""; ?>" <?php echo (!isset($_SESSION['ADMIN']) && !isset($_SESSION['BCH'])) ? "disabled" : ""; ?> name="khoa-119" class="khoa-119" type="number"></td>
+                        <td><input disabled value="<?php echo $getdiemtcct != null ? $getdiemtcct[8]->TONGDIEMSV : ""; ?>"  class="sv-119" name="sv-119" type="number"></td>
+                        <td><input disabled value="<?php echo $getdiemtcct != null ? $getdiemtcct[8]->TONGDIEMLOP : ""; ?>" <?php echo (isset($_SESSION['STUDENT'])) ? "disabled" : ""; ?>  name="lop-119" class="lop-119" type="number"></td>
+                        <td><input disabled value="<?php echo $getdiemtcct != null ? $getdiemtcct[8]->TONGDIEMKHOA : ""; ?>" <?php echo (!isset($_SESSION['ADMIN']) && !isset($_SESSION['BCH'])) ? "disabled" : ""; ?> name="khoa-119" class="khoa-119" type="number"></td>
                     </tr>
                     <tr style="font-weight: bold;">
                         <td>1.2 Điểm trừ</td>
@@ -383,9 +381,9 @@
                             <p>-20 điểm</p>
                         </td>
                         <td></td>
-                        <td><input value="<?php echo $getdiemtcct != null ? $getdiemtcct[9]->TONGDIEMSV : ""; ?>"  class="sv-121" name="sv-121" type="number"></td>
-                        <td><input value="<?php echo $getdiemtcct != null ? $getdiemtcct[9]->TONGDIEMLOP : ""; ?>" <?php echo (isset($_SESSION['STUDENT'])) ? "disabled" : ""; ?>  name="lop-121" class="lop-121" type="number"></td>
-                        <td><input value="<?php echo $getdiemtcct != null ? $getdiemtcct[9]->TONGDIEMKHOA : ""; ?>" <?php echo (!isset($_SESSION['ADMIN']) && !isset($_SESSION['BCH'])) ? "disabled" : ""; ?> name="khoa-121" class="khoa-121" type="number"></td>
+                        <td><input disabled value="<?php echo $getdiemtcct != null ? $getdiemtcct[9]->TONGDIEMSV : ""; ?>"  class="sv-121" name="sv-121" type="number"></td>
+                        <td><input disabled value="<?php echo $getdiemtcct != null ? $getdiemtcct[9]->TONGDIEMLOP : ""; ?>" <?php echo (isset($_SESSION['STUDENT'])) ? "disabled" : ""; ?>  name="lop-121" class="lop-121" type="number"></td>
+                        <td><input disabled value="<?php echo $getdiemtcct != null ? $getdiemtcct[9]->TONGDIEMKHOA : ""; ?>" <?php echo (!isset($_SESSION['ADMIN']) && !isset($_SESSION['BCH'])) ? "disabled" : ""; ?> name="khoa-121" class="khoa-121" type="number"></td>
                     </tr>
                     <tr>
                         <td>1.2.2 Có hành vi gây ảnh hưởng xấu đến công tác tổ chức các hoạt động học thuật, học tập. (Tùy vào mức độ gây ảnh hưởng, BTC các hoạt động đề xuất điểm trừ) </td>
@@ -394,9 +392,9 @@
                             <p>(tối đa)
                         </td>
                         <td></td>
-                        <td><input value="<?php echo $getdiemtcct != null ? $getdiemtcct[10]->TONGDIEMSV : ""; ?>"  class="sv-122" name="sv-122" type="number"></td>
-                        <td><input value="<?php echo $getdiemtcct != null ? $getdiemtcct[10]->TONGDIEMLOP : ""; ?>" <?php echo (isset($_SESSION['STUDENT'])) ? "disabled" : ""; ?> name="lop-122" class="lop-122" type="number"></td>
-                        <td><input value="<?php echo $getdiemtcct != null ? $getdiemtcct[10]->TONGDIEMKHOA : ""; ?>" <?php echo (!isset($_SESSION['ADMIN']) && !isset($_SESSION['BCH'])) ? "disabled" : ""; ?> name="khoa-122" class="khoa-122" type="number"></td>
+                        <td><input disabled value="<?php echo $getdiemtcct != null ? $getdiemtcct[10]->TONGDIEMSV : ""; ?>"  class="sv-122" name="sv-122" type="number"></td>
+                        <td><input disabled value="<?php echo $getdiemtcct != null ? $getdiemtcct[10]->TONGDIEMLOP : ""; ?>" <?php echo (isset($_SESSION['STUDENT'])) ? "disabled" : ""; ?> name="lop-122" class="lop-122" type="number"></td>
+                        <td><input disabled value="<?php echo $getdiemtcct != null ? $getdiemtcct[10]->TONGDIEMKHOA : ""; ?>" <?php echo (!isset($_SESSION['ADMIN']) && !isset($_SESSION['BCH'])) ? "disabled" : ""; ?> name="khoa-122" class="khoa-122" type="number"></td>
                     </tr>
                     <tr class="total-score-part" style="font-weight: bold;">
                         <td>TỔNG ĐIỂM PHẦN 1 </td>
@@ -405,9 +403,9 @@
                             <p>(tối đa)</p>
                         </td>
                         <td></td>
-                        <td><input value="<?php echo $getdiemtc != null ? $getdiemtc[0]->TONGDIEMSV : ""; ?>"  readonly class="sv-1" name="sv-1"  type="number"></td>
-                        <td><input value="<?php echo $getdiemtc != null ? $getdiemtc[0]->TONGDIEMLOP : ""; ?>" <?php echo (isset($_SESSION['STUDENT'])) ? "disabled" : ""; ?>  readonly class="lop-1" name="lop-1" type="number"></td>
-                        <td><input value="<?php echo $getdiemtc != null ? $getdiemtc[0]->TONGDIEMKHOA : ""; ?>" <?php echo (!isset($_SESSION['ADMIN']) && !isset($_SESSION['BCH'])) ? "disabled" : ""; ?> readonly class="khoa-1" name="khoa-1" type="number"></td>
+                        <td><input disabled value="<?php echo $getdiemtc != null ? $getdiemtc[0]->TONGDIEMSV : ""; ?>"  readonly class="sv-1" name="sv-1"  type="number"></td>
+                        <td><input disabled value="<?php echo $getdiemtc != null ? $getdiemtc[0]->TONGDIEMLOP : ""; ?>" <?php echo (isset($_SESSION['STUDENT'])) ? "disabled" : ""; ?>  readonly class="lop-1" name="lop-1" type="number"></td>
+                        <td><input disabled value="<?php echo $getdiemtc != null ? $getdiemtc[0]->TONGDIEMKHOA : ""; ?>" <?php echo (!isset($_SESSION['ADMIN']) && !isset($_SESSION['BCH'])) ? "disabled" : ""; ?> readonly class="khoa-1" name="khoa-1" type="number"></td>
                     </tr>
                     <tr style="font-weight: bold;">
                         <td>2. Đánh giá về ý thức chấp hành nội quy, quy chế, quy định</td>
@@ -428,13 +426,13 @@
 
                         </td>
                         <td>
-                            <input value="<?php echo $getdiemtcct != null ? $getdiemtcct[11]->TONGDIEMSV : ""; ?>"  class="sv-211" name="sv-211" type="number">
+                            <input disabled value="<?php echo $getdiemtcct != null ? $getdiemtcct[11]->TONGDIEMSV : ""; ?>"  class="sv-211" name="sv-211" type="number">
                         </td>
                         <td>
-                            <input value="<?php echo $getdiemtcct != null ? $getdiemtcct[11]->TONGDIEMLOP : ""; ?>"  <?php echo (isset($_SESSION['STUDENT'])) ? "disabled" : ""; ?> class="lop-211" name="lop-211" type="number">
+                            <input disabled value="<?php echo $getdiemtcct != null ? $getdiemtcct[11]->TONGDIEMLOP : ""; ?>"  <?php echo (isset($_SESSION['STUDENT'])) ? "disabled" : ""; ?> class="lop-211" name="lop-211" type="number">
                         </td>
                         <td>
-                            <input value="<?php echo $getdiemtcct != null ? $getdiemtcct[11]->TONGDIEMKHOA : ""; ?>" <?php echo (!isset($_SESSION['ADMIN']) && !isset($_SESSION['BCH'])) ? "disabled" : ""; ?> class="khoa-211" name="khoa-211" type="number">
+                            <input disabled value="<?php echo $getdiemtcct != null ? $getdiemtcct[11]->TONGDIEMKHOA : ""; ?>" <?php echo (!isset($_SESSION['ADMIN']) && !isset($_SESSION['BCH'])) ? "disabled" : ""; ?> class="khoa-211" name="khoa-211" type="number">
                         </td>
                     </tr>
                     <tr>
@@ -451,9 +449,9 @@
                         <td>
 
                         </td>
-                        <td><input value="<?php echo $getdiemtcct != null ? $getdiemtcct[12]->TONGDIEMSV : ""; ?>"  class="sv-212" name="sv-212" type="number"></td>
-                        <td><input value="<?php echo $getdiemtcct != null ? $getdiemtcct[12]->TONGDIEMLOP : ""; ?>" <?php echo (isset($_SESSION['STUDENT'])) ? "disabled" : ""; ?>  class="lop-212" name="lop-212" type="number"></td>
-                        <td><input value="<?php echo $getdiemtcct != null ? $getdiemtcct[12]->TONGDIEMKHOA : ""; ?>" <?php echo (!isset($_SESSION['ADMIN']) && !isset($_SESSION['BCH'])) ? "disabled" : ""; ?> class="khoa-212" name="khoa-212" type="number"></td>
+                        <td><input disabled value="<?php echo $getdiemtcct != null ? $getdiemtcct[12]->TONGDIEMSV : ""; ?>"  class="sv-212" name="sv-212" type="number"></td>
+                        <td><input disabled value="<?php echo $getdiemtcct != null ? $getdiemtcct[12]->TONGDIEMLOP : ""; ?>" <?php echo (isset($_SESSION['STUDENT'])) ? "disabled" : ""; ?>  class="lop-212" name="lop-212" type="number"></td>
+                        <td><input disabled value="<?php echo $getdiemtcct != null ? $getdiemtcct[12]->TONGDIEMKHOA : ""; ?>" <?php echo (!isset($_SESSION['ADMIN']) && !isset($_SESSION['BCH'])) ? "disabled" : ""; ?> class="khoa-212" name="khoa-212" type="number"></td>
                     </tr>
                     <tr style="font-weight: bold;">
                         <td>2.2 Điểm trừ</td>
@@ -472,9 +470,9 @@
                         <td>
 
                         </td>
-                        <td><input value="<?php echo $getdiemtcct != null ? $getdiemtcct[13]->TONGDIEMSV : ""; ?>"  class="sv-221" name="sv-221" type="number"></td>
-                        <td><input value="<?php echo $getdiemtcct != null ? $getdiemtcct[13]->TONGDIEMLOP : ""; ?>" <?php echo (isset($_SESSION['STUDENT'])) ? "disabled" : ""; ?>  class="lop-221" name="lop-221" type="number"></td>
-                        <td><input value="<?php echo $getdiemtcct != null ? $getdiemtcct[13]->TONGDIEMKHOA : ""; ?>" <?php echo (!isset($_SESSION['ADMIN']) && !isset($_SESSION['BCH'])) ? "disabled" : ""; ?> class="khoa-221" name="khoa-221" type="number"></td>
+                        <td><input disabled value="<?php echo $getdiemtcct != null ? $getdiemtcct[13]->TONGDIEMSV : ""; ?>"  class="sv-221" name="sv-221" type="number"></td>
+                        <td><input disabled value="<?php echo $getdiemtcct != null ? $getdiemtcct[13]->TONGDIEMLOP : ""; ?>" <?php echo (isset($_SESSION['STUDENT'])) ? "disabled" : ""; ?>  class="lop-221" name="lop-221" type="number"></td>
+                        <td><input disabled value="<?php echo $getdiemtcct != null ? $getdiemtcct[13]->TONGDIEMKHOA : ""; ?>" <?php echo (!isset($_SESSION['ADMIN']) && !isset($_SESSION['BCH'])) ? "disabled" : ""; ?> class="khoa-221" name="khoa-221" type="number"></td>
                     </tr>
                     <tr>
                         <td>
@@ -486,9 +484,9 @@
                         <td>
 
                         </td>
-                        <td><input value="<?php echo $getdiemtcct != null ? $getdiemtcct[14]->TONGDIEMSV : ""; ?>"  class="sv-222" name="sv-222" type="number"></td>
-                        <td><input value="<?php echo $getdiemtcct != null ? $getdiemtcct[14]->TONGDIEMLOP : ""; ?>" <?php echo (isset($_SESSION['STUDENT'])) ? "disabled" : ""; ?>  class="lop-222" name="lop-222" type="number"></td>
-                        <td><input value="<?php echo $getdiemtcct != null ? $getdiemtcct[14]->TONGDIEMKHOA : ""; ?>" <?php echo (!isset($_SESSION['ADMIN']) && !isset($_SESSION['BCH'])) ? "disabled" : ""; ?> class="khoa-222" name="khoa-222" type="number"></td>
+                        <td><input disabled value="<?php echo $getdiemtcct != null ? $getdiemtcct[14]->TONGDIEMSV : ""; ?>"  class="sv-222" name="sv-222" type="number"></td>
+                        <td><input disabled value="<?php echo $getdiemtcct != null ? $getdiemtcct[14]->TONGDIEMLOP : ""; ?>" <?php echo (isset($_SESSION['STUDENT'])) ? "disabled" : ""; ?>  class="lop-222" name="lop-222" type="number"></td>
+                        <td><input disabled value="<?php echo $getdiemtcct != null ? $getdiemtcct[14]->TONGDIEMKHOA : ""; ?>" <?php echo (!isset($_SESSION['ADMIN']) && !isset($_SESSION['BCH'])) ? "disabled" : ""; ?> class="khoa-222" name="khoa-222" type="number"></td>
                     </tr>
                     <tr>
                         <td>
@@ -516,33 +514,33 @@
                             <p>-20 điểm/lần</p>
                         </td>
                         <td></td>
-                        <td><input value="<?php echo $getdiemtcct != null ? $getdiemtcct[15]->TONGDIEMSV : ""; ?>"  class="sv-223" name="sv-223" type="number"></td>
-                        <td><input value="<?php echo $getdiemtcct != null ? $getdiemtcct[15]->TONGDIEMLOP : ""; ?>" <?php echo (isset($_SESSION['STUDENT'])) ? "disabled" : ""; ?> class="lop-223" name="lop-223" type="number"></td>
-                        <td><input value="<?php echo $getdiemtcct != null ? $getdiemtcct[15]->TONGDIEMKHOA : ""; ?>" <?php echo (!isset($_SESSION['ADMIN']) && !isset($_SESSION['BCH'])) ? "disabled" : ""; ?> class="khoa-223" name="khoa-223" type="number"></td>
+                        <td><input disabled value="<?php echo $getdiemtcct != null ? $getdiemtcct[15]->TONGDIEMSV : ""; ?>"  class="sv-223" name="sv-223" type="number"></td>
+                        <td><input disabled value="<?php echo $getdiemtcct != null ? $getdiemtcct[15]->TONGDIEMLOP : ""; ?>" <?php echo (isset($_SESSION['STUDENT'])) ? "disabled" : ""; ?> class="lop-223" name="lop-223" type="number"></td>
+                        <td><input disabled value="<?php echo $getdiemtcct != null ? $getdiemtcct[15]->TONGDIEMKHOA : ""; ?>" <?php echo (!isset($_SESSION['ADMIN']) && !isset($_SESSION['BCH'])) ? "disabled" : ""; ?> class="khoa-223" name="khoa-223" type="number"></td>
                     </tr>
                     <tr>
                         <td>2.2.4 Vi phạm nội quy thư viện ở mức độ: Nhắc nhở, phê bình, khóa thẻ thư viện...</td>
                         <td>-5 điểm/lần</td>
                         <td></td>
-                        <td><input value="<?php echo $getdiemtcct != null ? $getdiemtcct[16]->TONGDIEMSV : ""; ?>"  class="sv-224" name="sv-224" type="number"></td>
-                        <td><input value="<?php echo $getdiemtcct != null ? $getdiemtcct[16]->TONGDIEMLOP : ""; ?>" <?php echo (isset($_SESSION['STUDENT'])) ? "disabled" : ""; ?>  class="lop-224" name="lop-224" type="number"></td>
-                        <td><input value="<?php echo $getdiemtcct != null ? $getdiemtcct[16]->TONGDIEMKHOA : ""; ?>" <?php echo (!isset($_SESSION['ADMIN']) && !isset($_SESSION['BCH'])) ? "disabled" : ""; ?> class="khoa-224" name="khoa-224" type="number"></td>
+                        <td><input disabled value="<?php echo $getdiemtcct != null ? $getdiemtcct[16]->TONGDIEMSV : ""; ?>"  class="sv-224" name="sv-224" type="number"></td>
+                        <td><input disabled value="<?php echo $getdiemtcct != null ? $getdiemtcct[16]->TONGDIEMLOP : ""; ?>" <?php echo (isset($_SESSION['STUDENT'])) ? "disabled" : ""; ?>  class="lop-224" name="lop-224" type="number"></td>
+                        <td><input disabled value="<?php echo $getdiemtcct != null ? $getdiemtcct[16]->TONGDIEMKHOA : ""; ?>" <?php echo (!isset($_SESSION['ADMIN']) && !isset($_SESSION['BCH'])) ? "disabled" : ""; ?> class="khoa-224" name="khoa-224" type="number"></td>
                     </tr>
                     <tr>
                         <td>2.2.5 Không tham gia các buổi sinh hoạt lớp, chi đoàn, chi hội; các buổi phân công trực do Khoa, lớp phân công…</td>
                         <td>-3 điểm/lần</td>
                         <td></td>
-                        <td><input value="<?php echo $getdiemtcct != null ? $getdiemtcct[17]->TONGDIEMSV : ""; ?>"  class="sv-225" name="sv-225" type="number"></td>
-                        <td><input value="<?php echo $getdiemtcct != null ? $getdiemtcct[17]->TONGDIEMLOP : ""; ?>" <?php echo (isset($_SESSION['STUDENT'])) ? "disabled" : ""; ?>  class="lop-225" name="lop-225" type="number"></td>
-                        <td><input value="<?php echo $getdiemtcct != null ? $getdiemtcct[17]->TONGDIEMKHOA : ""; ?>" <?php echo (!isset($_SESSION['ADMIN']) && !isset($_SESSION['BCH'])) ? "disabled" : ""; ?> class="khoa-225" name="khoa-225" type="number"></td>
+                        <td><input disabled value="<?php echo $getdiemtcct != null ? $getdiemtcct[17]->TONGDIEMSV : ""; ?>"  class="sv-225" name="sv-225" type="number"></td>
+                        <td><input disabled value="<?php echo $getdiemtcct != null ? $getdiemtcct[17]->TONGDIEMLOP : ""; ?>" <?php echo (isset($_SESSION['STUDENT'])) ? "disabled" : ""; ?>  class="lop-225" name="lop-225" type="number"></td>
+                        <td><input disabled value="<?php echo $getdiemtcct != null ? $getdiemtcct[17]->TONGDIEMKHOA : ""; ?>" <?php echo (!isset($_SESSION['ADMIN']) && !isset($_SESSION['BCH'])) ? "disabled" : ""; ?> class="khoa-225" name="khoa-225" type="number"></td>
                     </tr>
                     <tr>
                         <td>2.2.6 Không tham gia các buổi sinh hoạt được Nhà trường, Đoàn trường, Hội sinh viên triệu tập.</td>
                         <td>-5 điểm/lần</td>
                         <td></td>
-                        <td><input value="<?php echo $getdiemtcct != null ? $getdiemtcct[18]->TONGDIEMSV : ""; ?>"  class="sv-226" name="sv-226" type="number"></td>
-                        <td><input value="<?php echo $getdiemtcct != null ? $getdiemtcct[18]->TONGDIEMLOP : ""; ?>" <?php echo (isset($_SESSION['STUDENT'])) ? "disabled" : ""; ?>  class="lop-226" name="lop-226" type="number"></td>
-                        <td><input value="<?php echo $getdiemtcct != null ? $getdiemtcct[18]->TONGDIEMKHOA : ""; ?>" <?php echo (!isset($_SESSION['ADMIN']) && !isset($_SESSION['BCH'])) ? "disabled" : ""; ?> class="khoa-226" name="khoa-226" type="number"></td>
+                        <td><input disabled value="<?php echo $getdiemtcct != null ? $getdiemtcct[18]->TONGDIEMSV : ""; ?>"  class="sv-226" name="sv-226" type="number"></td>
+                        <td><input disabled value="<?php echo $getdiemtcct != null ? $getdiemtcct[18]->TONGDIEMLOP : ""; ?>" <?php echo (isset($_SESSION['STUDENT'])) ? "disabled" : ""; ?>  class="lop-226" name="lop-226" type="number"></td>
+                        <td><input disabled value="<?php echo $getdiemtcct != null ? $getdiemtcct[18]->TONGDIEMKHOA : ""; ?>" <?php echo (!isset($_SESSION['ADMIN']) && !isset($_SESSION['BCH'])) ? "disabled" : ""; ?> class="khoa-226" name="khoa-226" type="number"></td>
                     </tr>
                     <tr>
                         <td>
@@ -552,9 +550,9 @@
                         </td>
                         <td></td>
                         <td></td>
-                        <td><input value="<?php echo $getdiemtcct != null ? $getdiemtcct[19]->TONGDIEMSV : ""; ?>"  class="sv-227" name="sv-227" type="number"></td>
-                        <td><input value="<?php echo $getdiemtcct != null ? $getdiemtcct[19]->TONGDIEMLOP : ""; ?>" <?php echo (isset($_SESSION['STUDENT'])) ? "disabled" : ""; ?>  class="lop-227" name="lop-227" type="number"></td>
-                        <td><input value="<?php echo $getdiemtcct != null ? $getdiemtcct[19]->TONGDIEMKHOA : ""; ?>" <?php echo (!isset($_SESSION['ADMIN']) && !isset($_SESSION['BCH'])) ? "disabled" : ""; ?> class="khoa-227" name="khoa-227" type="number"></td>
+                        <td><input disabled value="<?php echo $getdiemtcct != null ? $getdiemtcct[19]->TONGDIEMSV : ""; ?>"  class="sv-227" name="sv-227" type="number"></td>
+                        <td><input disabled value="<?php echo $getdiemtcct != null ? $getdiemtcct[19]->TONGDIEMLOP : ""; ?>" <?php echo (isset($_SESSION['STUDENT'])) ? "disabled" : ""; ?>  class="lop-227" name="lop-227" type="number"></td>
+                        <td><input disabled value="<?php echo $getdiemtcct != null ? $getdiemtcct[19]->TONGDIEMKHOA : ""; ?>" <?php echo (!isset($_SESSION['ADMIN']) && !isset($_SESSION['BCH'])) ? "disabled" : ""; ?> class="khoa-227" name="khoa-227" type="number"></td>
                     </tr>
                     <tr class="total-score-part" style="font-weight: bold;">
                         <td>TỔNG ĐIỂM PHẦN 2 </td>
@@ -563,9 +561,9 @@
                             <p>(tối đa)</p>
                         </td>
                         <td></td>
-                        <td><input value="<?php echo $getdiemtc != null ? $getdiemtc[1]->TONGDIEMSV : ""; ?>"  readonly class="sv-2" name="sv-2" type="number"></td>
-                        <td><input value="<?php echo $getdiemtc != null ? $getdiemtc[1]->TONGDIEMLOP : ""; ?>" <?php echo (isset($_SESSION['STUDENT'])) ? "disabled" : ""; ?>  readonly class="lop-2" name="lop-2" type="number"></td>
-                        <td><input value="<?php echo $getdiemtc != null ? $getdiemtc[1]->TONGDIEMKHOA : ""; ?>" <?php echo (!isset($_SESSION['ADMIN']) && !isset($_SESSION['BCH'])) ? "disabled" : ""; ?> readonly class="khoa-2" name="khoa-2" type="number"></td>
+                        <td><input disabled value="<?php echo $getdiemtc != null ? $getdiemtc[1]->TONGDIEMSV : ""; ?>"  readonly class="sv-2" name="sv-2" type="number"></td>
+                        <td><input disabled value="<?php echo $getdiemtc != null ? $getdiemtc[1]->TONGDIEMLOP : ""; ?>" <?php echo (isset($_SESSION['STUDENT'])) ? "disabled" : ""; ?>  readonly class="lop-2" name="lop-2" type="number"></td>
+                        <td><input disabled value="<?php echo $getdiemtc != null ? $getdiemtc[1]->TONGDIEMKHOA : ""; ?>" <?php echo (!isset($_SESSION['ADMIN']) && !isset($_SESSION['BCH'])) ? "disabled" : ""; ?> readonly class="khoa-2" name="khoa-2" type="number"></td>
                     </tr>
                     <tr style="font-weight: bold;">
                         <td>3. Đánh giá về ý thức tham gia các hoạt động chính trị, xã hội, văn hóa, văn nghệ, thể thao, phòng chống tội phạm và các tệ nạn xã hội</td>
@@ -604,9 +602,9 @@
                             }
                         ?>
                         </td>
-                        <td><input value="<?php echo $getdiemtcct != null ? $getdiemtcct[20]->TONGDIEMSV : ""; ?>"  class="sv-311" name="sv-311" type="number"></td>
-                        <td><input value="<?php echo $getdiemtcct != null ? $getdiemtcct[20]->TONGDIEMLOP : ""; ?>" <?php echo (isset($_SESSION['STUDENT'])) ? "disabled" : ""; ?>  class="lop-311" name="lop-311" type="number"></td>
-                        <td><input value="<?php echo $getdiemtcct != null ? $getdiemtcct[20]->TONGDIEMKHOA : ""; ?>" <?php echo (!isset($_SESSION['ADMIN']) && !isset($_SESSION['BCH'])) ? "disabled" : ""; ?> class="khoa-311" name="khoa-311" type="number"></td>
+                        <td><input disabled value="<?php echo $getdiemtcct != null ? $getdiemtcct[20]->TONGDIEMSV : ""; ?>"  class="sv-311" name="sv-311" type="number"></td>
+                        <td><input disabled value="<?php echo $getdiemtcct != null ? $getdiemtcct[20]->TONGDIEMLOP : ""; ?>" <?php echo (isset($_SESSION['STUDENT'])) ? "disabled" : ""; ?>  class="lop-311" name="lop-311" type="number"></td>
+                        <td><input disabled value="<?php echo $getdiemtcct != null ? $getdiemtcct[20]->TONGDIEMKHOA : ""; ?>" <?php echo (!isset($_SESSION['ADMIN']) && !isset($_SESSION['BCH'])) ? "disabled" : ""; ?> class="khoa-311" name="khoa-311" type="number"></td>
                     </tr>
                     <tr>
                         <td>3.1.2 Tham dự (cỗ vũ, cổ động…) các hoạt động rèn luyện về chính trị, xã hội, văn hóa, văn nghệ, thể thao. (Theo chương trình được duyệt và BTC đề xuất cộng điểm)</td>
@@ -631,9 +629,9 @@
                             }
                         ?>
                         </td>
-                        <td><input value="<?php echo $getdiemtcct != null ? $getdiemtcct[21]->TONGDIEMSV : ""; ?>"  class="sv-312" name="sv-312" type="number"></td>
-                        <td><input value="<?php echo $getdiemtcct != null ? $getdiemtcct[21]->TONGDIEMLOP : ""; ?>" <?php echo (isset($_SESSION['STUDENT'])) ? "disabled" : ""; ?>  class="lop-312" name="lop-312" type="number"></td>
-                        <td><input value="<?php echo $getdiemtcct != null ? $getdiemtcct[21]->TONGDIEMKHOA : ""; ?>" <?php echo (!isset($_SESSION['ADMIN']) && !isset($_SESSION['BCH'])) ? "disabled" : ""; ?> class="khoa-312" name="khoa-312" type="number"></td>
+                        <td><input disabled value="<?php echo $getdiemtcct != null ? $getdiemtcct[21]->TONGDIEMSV : ""; ?>"  class="sv-312" name="sv-312" type="number"></td>
+                        <td><input disabled value="<?php echo $getdiemtcct != null ? $getdiemtcct[21]->TONGDIEMLOP : ""; ?>" <?php echo (isset($_SESSION['STUDENT'])) ? "disabled" : ""; ?>  class="lop-312" name="lop-312" type="number"></td>
+                        <td><input disabled value="<?php echo $getdiemtcct != null ? $getdiemtcct[21]->TONGDIEMKHOA : ""; ?>" <?php echo (!isset($_SESSION['ADMIN']) && !isset($_SESSION['BCH'])) ? "disabled" : ""; ?> class="khoa-312" name="khoa-312" type="number"></td>
                     </tr>
                     <tr>
                         <td>3.1.3 Tham gia (thí sinh, vận động viên,…) các hoạt động rèn luyện về chính trị, xã hội, văn hóa, văn nghệ, thể thao…</td>
@@ -658,9 +656,9 @@
                             }
                         ?>                       
                         </td>
-                        <td><input value="<?php echo $getdiemtcct != null ? $getdiemtcct[22]->TONGDIEMSV : ""; ?>"  class="sv-313" name="sv-313" type="number"></td>
-                        <td><input value="<?php echo $getdiemtcct != null ? $getdiemtcct[22]->TONGDIEMLOP : ""; ?>" <?php echo (isset($_SESSION['STUDENT'])) ? "disabled" : ""; ?>  class="lop-313" name="lop-313" type="number"></td>
-                        <td><input value="<?php echo $getdiemtcct != null ? $getdiemtcct[22]->TONGDIEMKHOA : ""; ?>" <?php echo (!isset($_SESSION['ADMIN']) && !isset($_SESSION['BCH'])) ? "disabled" : ""; ?> class="khoa-313" name="khoa-313" type="number"></td>
+                        <td><input disabled value="<?php echo $getdiemtcct != null ? $getdiemtcct[22]->TONGDIEMSV : ""; ?>"  class="sv-313" name="sv-313" type="number"></td>
+                        <td><input disabled value="<?php echo $getdiemtcct != null ? $getdiemtcct[22]->TONGDIEMLOP : ""; ?>" <?php echo (isset($_SESSION['STUDENT'])) ? "disabled" : ""; ?>  class="lop-313" name="lop-313" type="number"></td>
+                        <td><input disabled value="<?php echo $getdiemtcct != null ? $getdiemtcct[22]->TONGDIEMKHOA : ""; ?>" <?php echo (!isset($_SESSION['ADMIN']) && !isset($_SESSION['BCH'])) ? "disabled" : ""; ?> class="khoa-313" name="khoa-313" type="number"></td>
                     </tr>
                     <tr>
                         <td>
@@ -696,9 +694,9 @@
                             }
                         ?>                    
                         </td>
-                        <td><input value="<?php echo $getdiemtcct != null ? $getdiemtcct[23]->TONGDIEMSV : ""; ?>" class="sv-314" name="sv-314" type="number"></td>
-                        <td><input value="<?php echo $getdiemtcct != null ? $getdiemtcct[23]->TONGDIEMLOP : ""; ?>" <?php echo (isset($_SESSION['STUDENT'])) ? "disabled" : ""; ?> class="lop-314" name="lop-314" type="number"></td>
-                        <td><input value="<?php echo $getdiemtcct != null ? $getdiemtcct[23]->TONGDIEMKHOA : ""; ?>" <?php echo (!isset($_SESSION['ADMIN']) && !isset($_SESSION['BCH'])) ? "disabled" : ""; ?> class="khoa-314" name="khoa-314" type="number"></td>
+                        <td><input disabled value="<?php echo $getdiemtcct != null ? $getdiemtcct[23]->TONGDIEMSV : ""; ?>" class="sv-314" name="sv-314" type="number"></td>
+                        <td><input disabled value="<?php echo $getdiemtcct != null ? $getdiemtcct[23]->TONGDIEMLOP : ""; ?>" <?php echo (isset($_SESSION['STUDENT'])) ? "disabled" : ""; ?> class="lop-314" name="lop-314" type="number"></td>
+                        <td><input disabled value="<?php echo $getdiemtcct != null ? $getdiemtcct[23]->TONGDIEMKHOA : ""; ?>" <?php echo (!isset($_SESSION['ADMIN']) && !isset($_SESSION['BCH'])) ? "disabled" : ""; ?> class="khoa-314" name="khoa-314" type="number"></td>
                     </tr>
                     <tr>
                         <td>
@@ -732,9 +730,9 @@
                             }
                         ?>                              
                         </td>
-                        <td><input value="<?php echo $getdiemtcct != null ? $getdiemtcct[24]->TONGDIEMSV : ""; ?>" class="sv-315" name="sv-315" type="number"></td>
-                        <td><input value="<?php echo $getdiemtcct != null ? $getdiemtcct[24]->TONGDIEMLOP : ""; ?>" <?php echo (isset($_SESSION['STUDENT'])) ? "disabled" : ""; ?> class="lop-315" name="lop-315" type="number"></td>
-                        <td><input value="<?php echo $getdiemtcct != null ? $getdiemtcct[24]->TONGDIEMKHOA : ""; ?>" <?php echo (!isset($_SESSION['ADMIN']) && !isset($_SESSION['BCH'])) ? "disabled" : ""; ?> class="khoa-315" name="khoa-315" type="number"></td>
+                        <td><input disabled value="<?php echo $getdiemtcct != null ? $getdiemtcct[24]->TONGDIEMSV : ""; ?>" class="sv-315" name="sv-315" type="number"></td>
+                        <td><input disabled value="<?php echo $getdiemtcct != null ? $getdiemtcct[24]->TONGDIEMLOP : ""; ?>" <?php echo (isset($_SESSION['STUDENT'])) ? "disabled" : ""; ?> class="lop-315" name="lop-315" type="number"></td>
+                        <td><input disabled value="<?php echo $getdiemtcct != null ? $getdiemtcct[24]->TONGDIEMKHOA : ""; ?>" <?php echo (!isset($_SESSION['ADMIN']) && !isset($_SESSION['BCH'])) ? "disabled" : ""; ?> class="khoa-315" name="khoa-315" type="number"></td>
                     </tr>
                     <tr>
                         <td>
@@ -761,9 +759,9 @@
                             }
                         ?>                          
                         </td>
-                        <td><input value="<?php echo $getdiemtcct != null ? $getdiemtcct[25]->TONGDIEMSV : ""; ?>" class="sv-316" name="sv-316" type="number"></td>
-                        <td><input value="<?php echo $getdiemtcct != null ? $getdiemtcct[25]->TONGDIEMLOP : ""; ?>" <?php echo (isset($_SESSION['STUDENT'])) ? "disabled" : ""; ?> class="lop-316" name="lop-316" type="number"></td>
-                        <td><input value="<?php echo $getdiemtcct != null ? $getdiemtcct[25]->TONGDIEMKHOA : ""; ?>" <?php echo (!isset($_SESSION['ADMIN']) && !isset($_SESSION['BCH'])) ? "disabled" : ""; ?> class="khoa-316" name="khoa-316" type="number"></td>
+                        <td><input disabled value="<?php echo $getdiemtcct != null ? $getdiemtcct[25]->TONGDIEMSV : ""; ?>" class="sv-316" name="sv-316" type="number"></td>
+                        <td><input disabled value="<?php echo $getdiemtcct != null ? $getdiemtcct[25]->TONGDIEMLOP : ""; ?>" <?php echo (isset($_SESSION['STUDENT'])) ? "disabled" : ""; ?> class="lop-316" name="lop-316" type="number"></td>
+                        <td><input disabled value="<?php echo $getdiemtcct != null ? $getdiemtcct[25]->TONGDIEMKHOA : ""; ?>" <?php echo (!isset($_SESSION['ADMIN']) && !isset($_SESSION['BCH'])) ? "disabled" : ""; ?> class="khoa-316" name="khoa-316" type="number"></td>
                     </tr>
                     <tr style="font-weight: bold;">
                         <td>3.2 Điểm trừ</td>
@@ -776,17 +774,17 @@
                         <td>3.2.1 Đăng ký tham gia, dự thi các hoạt động rèn luyện về chính trị, xã hội, văn hóa, văn nghệ, thể thao, nhưng tự ý bỏ cuộc (không có lý do)</td>
                         <td>-4 điểm/lần</td>
                         <td></td>
-                        <td><input value="<?php echo $getdiemtcct != null ? $getdiemtcct[26]->TONGDIEMSV : ""; ?>" class="sv-321" name="sv-321" type="number"></td>
-                        <td><input value="<?php echo $getdiemtcct != null ? $getdiemtcct[26]->TONGDIEMLOP : ""; ?>" <?php echo (isset($_SESSION['STUDENT'])) ? "disabled" : ""; ?> class="lop-321" name="lop-321" type="number"></td>
-                        <td><input value="<?php echo $getdiemtcct != null ? $getdiemtcct[26]->TONGDIEMKHOA : ""; ?>" <?php echo (!isset($_SESSION['ADMIN']) && !isset($_SESSION['BCH'])) ? "disabled" : ""; ?> class="khoa-321" name="khoa-321" type="number"></td>
+                        <td><input disabled value="<?php echo $getdiemtcct != null ? $getdiemtcct[26]->TONGDIEMSV : ""; ?>" class="sv-321" name="sv-321" type="number"></td>
+                        <td><input disabled value="<?php echo $getdiemtcct != null ? $getdiemtcct[26]->TONGDIEMLOP : ""; ?>" <?php echo (isset($_SESSION['STUDENT'])) ? "disabled" : ""; ?> class="lop-321" name="lop-321" type="number"></td>
+                        <td><input disabled value="<?php echo $getdiemtcct != null ? $getdiemtcct[26]->TONGDIEMKHOA : ""; ?>" <?php echo (!isset($_SESSION['ADMIN']) && !isset($_SESSION['BCH'])) ? "disabled" : ""; ?> class="khoa-321" name="khoa-321" type="number"></td>
                     </tr>
                     <tr>
                         <td>3.2.2 Có hành vi gây ảnh hưởng xấu đến công tác tổ chức các hoạt động (tùy vào mức độ gây ảnh hưởng, BTC các hoạt động đề xuất điểm trừ)</td>
                         <td>-6 điểm/lần</td>
                         <td></td>
-                        <td><input value="<?php echo $getdiemtcct != null ? $getdiemtcct[27]->TONGDIEMSV : ""; ?>" class="sv-322" name="sv-322" type="number"></td>
-                        <td><input value="<?php echo $getdiemtcct != null ? $getdiemtcct[27]->TONGDIEMLOP : ""; ?>" <?php echo (isset($_SESSION['STUDENT'])) ? "disabled" : ""; ?> class="lop-322" name="lop-322" type="number"></td>
-                        <td><input value="<?php echo $getdiemtcct != null ? $getdiemtcct[27]->TONGDIEMKHOA : ""; ?>" <?php echo (!isset($_SESSION['ADMIN']) && !isset($_SESSION['BCH'])) ? "disabled" : ""; ?> class="khoa-322" name="khoa-322" type="number"></td>
+                        <td><input disabled value="<?php echo $getdiemtcct != null ? $getdiemtcct[27]->TONGDIEMSV : ""; ?>" class="sv-322" name="sv-322" type="number"></td>
+                        <td><input disabled value="<?php echo $getdiemtcct != null ? $getdiemtcct[27]->TONGDIEMLOP : ""; ?>" <?php echo (isset($_SESSION['STUDENT'])) ? "disabled" : ""; ?> class="lop-322" name="lop-322" type="number"></td>
+                        <td><input disabled value="<?php echo $getdiemtcct != null ? $getdiemtcct[27]->TONGDIEMKHOA : ""; ?>" <?php echo (!isset($_SESSION['ADMIN']) && !isset($_SESSION['BCH'])) ? "disabled" : ""; ?> class="khoa-322" name="khoa-322" type="number"></td>
                     </tr>
                     <tr class="total-score-part" style="font-weight: bold;">
                         <td>TỔNG ĐIỂM PHẦN 3 </td>
@@ -795,9 +793,9 @@
                             <p>(tối đa)</p>
                         </td>
                         <td></td>
-                        <td><input value="<?php echo $getdiemtc != null ? $getdiemtc[2]->TONGDIEMSV : ""; ?>" readonly class="sv-3" name="sv-3" type="number"></td>
-                        <td><input value="<?php echo $getdiemtc != null ? $getdiemtc[2]->TONGDIEMLOP : ""; ?>" <?php echo (isset($_SESSION['STUDENT'])) ? "disabled" : ""; ?> readonly class="lop-3" name="lop-3" type="number"></td>
-                        <td><input value="<?php echo $getdiemtc != null ? $getdiemtc[2]->TONGDIEMKHOA : ""; ?>" <?php echo (!isset($_SESSION['ADMIN']) && !isset($_SESSION['BCH'])) ? "disabled" : ""; ?> readonly class="khoa-3" name="khoa-3" type="number"></td>
+                        <td><input disabled value="<?php echo $getdiemtc != null ? $getdiemtc[2]->TONGDIEMSV : ""; ?>" readonly class="sv-3" name="sv-3" type="number"></td>
+                        <td><input disabled value="<?php echo $getdiemtc != null ? $getdiemtc[2]->TONGDIEMLOP : ""; ?>" <?php echo (isset($_SESSION['STUDENT'])) ? "disabled" : ""; ?> readonly class="lop-3" name="lop-3" type="number"></td>
+                        <td><input disabled value="<?php echo $getdiemtc != null ? $getdiemtc[2]->TONGDIEMKHOA : ""; ?>" <?php echo (!isset($_SESSION['ADMIN']) && !isset($_SESSION['BCH'])) ? "disabled" : ""; ?> readonly class="khoa-3" name="khoa-3" type="number"></td>
                     </tr>
                     <tr style="font-weight: bold;">
                         <td>4. Đánh giá về ý thức công dân trong quan hệ cộng đồng</td>
@@ -813,9 +811,9 @@
                             <p>(tối đa)</p>
                         </td>
                         <td></td>
-                        <td><input value="<?php echo $getdiemtcct != null ? $getdiemtcct[28]->TONGDIEMSV : ""; ?>" class="sv-411" name="sv-411" type="number"></td>
-                        <td><input value="<?php echo $getdiemtcct != null ? $getdiemtcct[28]->TONGDIEMLOP : ""; ?>" <?php echo (isset($_SESSION['STUDENT'])) ? "disabled" : ""; ?> class="lop-411" name="lop-411" type="number"></td>
-                        <td><input value="<?php echo $getdiemtcct != null ? $getdiemtcct[28]->TONGDIEMKHOA : ""; ?>" <?php echo (!isset($_SESSION['ADMIN']) && !isset($_SESSION['BCH'])) ? "disabled" : ""; ?> class="khoa-411" name="khoa-411" type="number"></td>
+                        <td><input disabled value="<?php echo $getdiemtcct != null ? $getdiemtcct[28]->TONGDIEMSV : ""; ?>" class="sv-411" name="sv-411" type="number"></td>
+                        <td><input disabled value="<?php echo $getdiemtcct != null ? $getdiemtcct[28]->TONGDIEMLOP : ""; ?>" <?php echo (isset($_SESSION['STUDENT'])) ? "disabled" : ""; ?> class="lop-411" name="lop-411" type="number"></td>
+                        <td><input disabled value="<?php echo $getdiemtcct != null ? $getdiemtcct[28]->TONGDIEMKHOA : ""; ?>" <?php echo (!isset($_SESSION['ADMIN']) && !isset($_SESSION['BCH'])) ? "disabled" : ""; ?> class="khoa-411" name="khoa-411" type="number"></td>
                     </tr>
                     <tr>
                         <td>
@@ -830,9 +828,9 @@
                             <p>(tối đa)</p>
                         </td>
                         <td></td>
-                        <td><input value="<?php echo $getdiemtcct != null ? $getdiemtcct[29]->TONGDIEMSV : ""; ?>" class="sv-412" name="sv-412" type="number"></td>
-                        <td><input value="<?php echo $getdiemtcct != null ? $getdiemtcct[29]->TONGDIEMLOP : ""; ?>" <?php echo (isset($_SESSION['STUDENT'])) ? "disabled" : ""; ?> class="lop-412" name="lop-412" type="number"></td>
-                        <td><input value="<?php echo $getdiemtcct != null ? $getdiemtcct[29]->TONGDIEMKHOA : ""; ?>" <?php echo (!isset($_SESSION['ADMIN']) && !isset($_SESSION['BCH'])) ? "disabled" : ""; ?> class="khoa-412" name="khoa-412" type="number"></td>
+                        <td><input disabled value="<?php echo $getdiemtcct != null ? $getdiemtcct[29]->TONGDIEMSV : ""; ?>" class="sv-412" name="sv-412" type="number"></td>
+                        <td><input disabled value="<?php echo $getdiemtcct != null ? $getdiemtcct[29]->TONGDIEMLOP : ""; ?>" <?php echo (isset($_SESSION['STUDENT'])) ? "disabled" : ""; ?> class="lop-412" name="lop-412" type="number"></td>
+                        <td><input disabled value="<?php echo $getdiemtcct != null ? $getdiemtcct[29]->TONGDIEMKHOA : ""; ?>" <?php echo (!isset($_SESSION['ADMIN']) && !isset($_SESSION['BCH'])) ? "disabled" : ""; ?> class="khoa-412" name="khoa-412" type="number"></td>
                     </tr>
                     <tr>
                         <td>
@@ -848,17 +846,17 @@
                             <p>(tối đa)</p>
                         </td>
                         <td></td>
-                        <td><input value="<?php echo $getdiemtcct != null ? $getdiemtcct[30]->TONGDIEMSV : ""; ?>" class="sv-413" name="sv-413" type="number"></td>
-                        <td><input value="<?php echo $getdiemtcct != null ? $getdiemtcct[30]->TONGDIEMLOP : ""; ?>" <?php echo (isset($_SESSION['STUDENT'])) ? "disabled" : ""; ?> class="lop-413" name="lop-413" type="number"></td>
-                        <td><input value="<?php echo $getdiemtcct != null ? $getdiemtcct[30]->TONGDIEMKHOA : ""; ?>" <?php echo (!isset($_SESSION['ADMIN']) && !isset($_SESSION['BCH'])) ? "disabled" : ""; ?> class="khoa-413" name="khoa-413" type="number"></td>
+                        <td><input disabled value="<?php echo $getdiemtcct != null ? $getdiemtcct[30]->TONGDIEMSV : ""; ?>" class="sv-413" name="sv-413" type="number"></td>
+                        <td><input disabled value="<?php echo $getdiemtcct != null ? $getdiemtcct[30]->TONGDIEMLOP : ""; ?>" <?php echo (isset($_SESSION['STUDENT'])) ? "disabled" : ""; ?> class="lop-413" name="lop-413" type="number"></td>
+                        <td><input disabled value="<?php echo $getdiemtcct != null ? $getdiemtcct[30]->TONGDIEMKHOA : ""; ?>" <?php echo (!isset($_SESSION['ADMIN']) && !isset($_SESSION['BCH'])) ? "disabled" : ""; ?> class="khoa-413" name="khoa-413" type="number"></td>
                     </tr>
                     <tr>
                         <td>4.1.4 Hoạt động giúp người, cứu người: Hiến máu nhân đạo; các hoạt động giúp người cứu người được tập thể lớp, các tổ chức đoàn thể trong và ngoài trường công nhận…</td>
                         <td>5 điểm/lần</td>
                         <td></td>
-                        <td><input value="<?php echo $getdiemtcct != null ? $getdiemtcct[31]->TONGDIEMSV : ""; ?>" class="sv-414" name="sv-414" type="number"></td>
-                        <td><input value="<?php echo $getdiemtcct != null ? $getdiemtcct[31]->TONGDIEMLOP : ""; ?>" <?php echo (isset($_SESSION['STUDENT'])) ? "disabled" : ""; ?> class="lop-414" name="lop-414" type="number"></td>
-                        <td><input value="<?php echo $getdiemtcct != null ? $getdiemtcct[31]->TONGDIEMKHOA : ""; ?>" <?php echo (!isset($_SESSION['ADMIN']) && !isset($_SESSION['BCH'])) ? "disabled" : ""; ?> class="khoa-414" name="khoa-414" type="number"></td>
+                        <td><input disabled value="<?php echo $getdiemtcct != null ? $getdiemtcct[31]->TONGDIEMSV : ""; ?>" class="sv-414" name="sv-414" type="number"></td>
+                        <td><input disabled value="<?php echo $getdiemtcct != null ? $getdiemtcct[31]->TONGDIEMLOP : ""; ?>" <?php echo (isset($_SESSION['STUDENT'])) ? "disabled" : ""; ?> class="lop-414" name="lop-414" type="number"></td>
+                        <td><input disabled value="<?php echo $getdiemtcct != null ? $getdiemtcct[31]->TONGDIEMKHOA : ""; ?>" <?php echo (!isset($_SESSION['ADMIN']) && !isset($_SESSION['BCH'])) ? "disabled" : ""; ?> class="khoa-414" name="khoa-414" type="number"></td>
                     </tr>
                     <tr>
                         <td>
@@ -873,9 +871,9 @@
                             <p>(tối đa)</p>
                         </td>
                         <td></td>
-                        <td><input value="<?php echo $getdiemtcct != null ? $getdiemtcct[32]->TONGDIEMSV : ""; ?>" class="sv-415" name="sv-415" type="number"></td>
-                        <td><input value="<?php echo $getdiemtcct != null ? $getdiemtcct[32]->TONGDIEMLOP : ""; ?>" <?php echo (isset($_SESSION['STUDENT'])) ? "disabled" : ""; ?> class="lop-415" name="lop-415" type="number"></td>
-                        <td><input value="<?php echo $getdiemtcct != null ? $getdiemtcct[32]->TONGDIEMKHOA : ""; ?>" <?php echo (!isset($_SESSION['ADMIN']) && !isset($_SESSION['BCH'])) ? "disabled" : ""; ?> class="khoa-415" name="khoa-415" type="number"></td>
+                        <td><input disabled value="<?php echo $getdiemtcct != null ? $getdiemtcct[32]->TONGDIEMSV : ""; ?>" class="sv-415" name="sv-415" type="number"></td>
+                        <td><input disabled value="<?php echo $getdiemtcct != null ? $getdiemtcct[32]->TONGDIEMLOP : ""; ?>" <?php echo (isset($_SESSION['STUDENT'])) ? "disabled" : ""; ?> class="lop-415" name="lop-415" type="number"></td>
+                        <td><input disabled value="<?php echo $getdiemtcct != null ? $getdiemtcct[32]->TONGDIEMKHOA : ""; ?>" <?php echo (!isset($_SESSION['ADMIN']) && !isset($_SESSION['BCH'])) ? "disabled" : ""; ?> class="khoa-415" name="khoa-415" type="number"></td>
                     </tr>
                     <tr>
                         <td>
@@ -909,9 +907,9 @@
                             }
                         ?>                           
                         </td>
-                        <td><input value="<?php echo $getdiemtcct != null ? $getdiemtcct[33]->TONGDIEMSV : ""; ?>" class="sv-416" name="sv-416" type="number"></td>
-                        <td><input value="<?php echo $getdiemtcct != null ? $getdiemtcct[33]->TONGDIEMLOP : ""; ?>" <?php echo (isset($_SESSION['STUDENT'])) ? "disabled" : ""; ?> class="lop-416" name="lop-416" type="number"></td>
-                        <td><input value="<?php echo $getdiemtcct != null ? $getdiemtcct[33]->TONGDIEMKHOA : ""; ?>" <?php echo (!isset($_SESSION['ADMIN']) && !isset($_SESSION['BCH'])) ? "disabled" : ""; ?> class="khoa-416" name="khoa-416" type="number"></td>
+                        <td><input disabled value="<?php echo $getdiemtcct != null ? $getdiemtcct[33]->TONGDIEMSV : ""; ?>" class="sv-416" name="sv-416" type="number"></td>
+                        <td><input disabled value="<?php echo $getdiemtcct != null ? $getdiemtcct[33]->TONGDIEMLOP : ""; ?>" <?php echo (isset($_SESSION['STUDENT'])) ? "disabled" : ""; ?> class="lop-416" name="lop-416" type="number"></td>
+                        <td><input disabled value="<?php echo $getdiemtcct != null ? $getdiemtcct[33]->TONGDIEMKHOA : ""; ?>" <?php echo (!isset($_SESSION['ADMIN']) && !isset($_SESSION['BCH'])) ? "disabled" : ""; ?> class="khoa-416" name="khoa-416" type="number"></td>
                     </tr>
                     <tr class="total-score-part" style="font-weight: bold;">
                         <td>TỔNG ĐIỂM PHẦN 4 </td>
@@ -920,9 +918,9 @@
                             <p>(tối đa)</p>
                         </td>
                         <td></td>
-                        <td><input value="<?php echo $getdiemtc != null ? $getdiemtc[3]->TONGDIEMSV : ""; ?>" readonly class="sv-4" name="sv-4" type="number"></td>
-                        <td><input value="<?php echo $getdiemtc != null ? $getdiemtc[3]->TONGDIEMLOP : ""; ?>" <?php echo (isset($_SESSION['STUDENT'])) ? "disabled" : ""; ?> readonly class="lop-4" name="lop-4" type="number"></td>
-                        <td><input value="<?php echo $getdiemtc != null ? $getdiemtc[3]->TONGDIEMKHOA : ""; ?>" <?php echo (!isset($_SESSION['ADMIN']) && !isset($_SESSION['BCH'])) ? "disabled" : ""; ?> readonly class="khoa-4" name="khoa-4" type="number"></td>
+                        <td><input disabled value="<?php echo $getdiemtc != null ? $getdiemtc[3]->TONGDIEMSV : ""; ?>" readonly class="sv-4" name="sv-4" type="number"></td>
+                        <td><input disabled value="<?php echo $getdiemtc != null ? $getdiemtc[3]->TONGDIEMLOP : ""; ?>" <?php echo (isset($_SESSION['STUDENT'])) ? "disabled" : ""; ?> readonly class="lop-4" name="lop-4" type="number"></td>
+                        <td><input disabled value="<?php echo $getdiemtc != null ? $getdiemtc[3]->TONGDIEMKHOA : ""; ?>" <?php echo (!isset($_SESSION['ADMIN']) && !isset($_SESSION['BCH'])) ? "disabled" : ""; ?> readonly class="khoa-4" name="khoa-4" type="number"></td>
                     </tr>
                     <tr style="font-weight: bold;">
                         <td>5. Đánh giá về ý thức và kết quả khi tham gia công tác cán bộ lớp, các đoàn thể, tổ chức trong trường hoặc sinh viên đạt được thành tích đặc biệt trong học tập, rèn luyện</td>
@@ -947,9 +945,9 @@
                             <p>0 điểm</p>
                         </td>
                         <td></td>
-                        <td><input value="<?php echo $getdiemtcct != null ? $getdiemtcct[34]->TONGDIEMSV : ""; ?>" type="number" class="sv-511" name="sv-511" id=""></td>
-                        <td><input value="<?php echo $getdiemtcct != null ? $getdiemtcct[34]->TONGDIEMLOP : ""; ?>" <?php echo (isset($_SESSION['STUDENT'])) ? "disabled" : ""; ?> type="number" class="lop-511" name="lop-511" id=""></td>
-                        <td><input value="<?php echo $getdiemtcct != null ? $getdiemtcct[34]->TONGDIEMKHOA : ""; ?>" <?php echo (!isset($_SESSION['ADMIN']) && !isset($_SESSION['BCH'])) ? "disabled" : ""; ?> type="number" class="khoa-511" name="khoa-511" id=""></td>
+                        <td><input disabled value="<?php echo $getdiemtcct != null ? $getdiemtcct[34]->TONGDIEMSV : ""; ?>" type="number" class="sv-511" name="sv-511" id=""></td>
+                        <td><input disabled value="<?php echo $getdiemtcct != null ? $getdiemtcct[34]->TONGDIEMLOP : ""; ?>" <?php echo (isset($_SESSION['STUDENT'])) ? "disabled" : ""; ?> type="number" class="lop-511" name="lop-511" id=""></td>
+                        <td><input disabled value="<?php echo $getdiemtcct != null ? $getdiemtcct[34]->TONGDIEMKHOA : ""; ?>" <?php echo (!isset($_SESSION['ADMIN']) && !isset($_SESSION['BCH'])) ? "disabled" : ""; ?> type="number" class="khoa-511" name="khoa-511" id=""></td>
                     </tr>
                     <tr>
                         <td>5.1.2 Sinh viên là cộng tác viên (thường xuyên) của các đơn vị trong trường, tổ chức đoàn thể có nhiều đóng góp trong công tác. Được các đơn vị, tổ chức đoàn thể xác nhận đánh giá công nhận.</td>
@@ -977,9 +975,9 @@
                             }
                         ?>    
                         </td>
-                        <td><input value="<?php echo $getdiemtcct != null ? $getdiemtcct[35]->TONGDIEMSV : ""; ?>" type="number" class="sv-512" name="sv-512" id=""></td>
-                        <td><input value="<?php echo $getdiemtcct != null ? $getdiemtcct[35]->TONGDIEMLOP : ""; ?>" <?php echo (isset($_SESSION['STUDENT'])) ? "disabled" : ""; ?> type="number" class="lop-512" name="lop-512" id=""></td>
-                        <td><input value="<?php echo $getdiemtcct != null ? $getdiemtcct[35]->TONGDIEMKHOA : ""; ?>" <?php echo (!isset($_SESSION['ADMIN']) && !isset($_SESSION['BCH'])) ? "disabled" : ""; ?> type="number" class="khoa-512" name="khoa-512" id=""></td>
+                        <td><input disabled value="<?php echo $getdiemtcct != null ? $getdiemtcct[35]->TONGDIEMSV : ""; ?>" type="number" class="sv-512" name="sv-512" id=""></td>
+                        <td><input disabled value="<?php echo $getdiemtcct != null ? $getdiemtcct[35]->TONGDIEMLOP : ""; ?>" <?php echo (isset($_SESSION['STUDENT'])) ? "disabled" : ""; ?> type="number" class="lop-512" name="lop-512" id=""></td>
+                        <td><input disabled value="<?php echo $getdiemtcct != null ? $getdiemtcct[35]->TONGDIEMKHOA : ""; ?>" <?php echo (!isset($_SESSION['ADMIN']) && !isset($_SESSION['BCH'])) ? "disabled" : ""; ?> type="number" class="khoa-512" name="khoa-512" id=""></td>
                     </tr>
                     <tr style="font-weight: bold;">
                         <td>5.2 Điểm thưởng </td>
@@ -1008,9 +1006,9 @@
                             }
                         ?>                  
                         </td>
-                        <td><input value="<?php echo $getdiemtcct != null ? $getdiemtcct[36]->TONGDIEMSV : ""; ?>" type="number" class="sv-513" name="sv-513" id=""></td>
-                        <td><input value="<?php echo $getdiemtcct != null ? $getdiemtcct[36]->TONGDIEMLOP : ""; ?>" <?php echo (isset($_SESSION['STUDENT'])) ? "disabled" : ""; ?> type="number" class="lop-513" name="lop-513" id=""></td>
-                        <td><input value="<?php echo $getdiemtcct != null ? $getdiemtcct[36]->TONGDIEMKHOA : ""; ?>" <?php echo (!isset($_SESSION['ADMIN']) && !isset($_SESSION['BCH'])) ? "disabled" : ""; ?> type="number" class="khoa-513" name="khoa-513" id=""></td>
+                        <td><input disabled value="<?php echo $getdiemtcct != null ? $getdiemtcct[36]->TONGDIEMSV : ""; ?>" type="number" class="sv-513" name="sv-513" id=""></td>
+                        <td><input disabled value="<?php echo $getdiemtcct != null ? $getdiemtcct[36]->TONGDIEMLOP : ""; ?>" <?php echo (isset($_SESSION['STUDENT'])) ? "disabled" : ""; ?> type="number" class="lop-513" name="lop-513" id=""></td>
+                        <td><input disabled value="<?php echo $getdiemtcct != null ? $getdiemtcct[36]->TONGDIEMKHOA : ""; ?>" <?php echo (!isset($_SESSION['ADMIN']) && !isset($_SESSION['BCH'])) ? "disabled" : ""; ?> type="number" class="khoa-513" name="khoa-513" id=""></td>
                     </tr>
                     <tr>
                         <td>5.2.2 Thành viên đội tuyển trường tham gia các cuộc thi, hội thi từ cấp tỉnh, thành phố trực thuộc trung ương trở lên đạt thành tích cao (Giải A, B, C, hoặc I, II, III, khuyến khích).</td>
@@ -1035,9 +1033,9 @@
                             }
                         ?> 
                         </td>
-                        <td><input value="<?php echo $getdiemtcct != null ? $getdiemtcct[37]->TONGDIEMSV : ""; ?>" type="number" class="sv-514" name="sv-514" id=""></td>
-                        <td><input value="<?php echo $getdiemtcct != null ? $getdiemtcct[37]->TONGDIEMLOP : ""; ?>" <?php echo (isset($_SESSION['STUDENT'])) ? "disabled" : ""; ?> type="number" class="lop-514" name="lop-514" id=""></td>
-                        <td><input value="<?php echo $getdiemtcct != null ? $getdiemtcct[37]->TONGDIEMKHOA : ""; ?>" <?php echo (!isset($_SESSION['ADMIN']) && !isset($_SESSION['BCH'])) ? "disabled" : ""; ?> type="number" class="khoa-514" name="khoa-514" id=""></td>
+                        <td><input disabled value="<?php echo $getdiemtcct != null ? $getdiemtcct[37]->TONGDIEMSV : ""; ?>" type="number" class="sv-514" name="sv-514" id=""></td>
+                        <td><input disabled value="<?php echo $getdiemtcct != null ? $getdiemtcct[37]->TONGDIEMLOP : ""; ?>" <?php echo (isset($_SESSION['STUDENT'])) ? "disabled" : ""; ?> type="number" class="lop-514" name="lop-514" id=""></td>
+                        <td><input disabled value="<?php echo $getdiemtcct != null ? $getdiemtcct[37]->TONGDIEMKHOA : ""; ?>" <?php echo (!isset($_SESSION['ADMIN']) && !isset($_SESSION['BCH'])) ? "disabled" : ""; ?> type="number" class="khoa-514" name="khoa-514" id=""></td>
                     </tr>
                     <tr>
                         <td>
@@ -1069,9 +1067,9 @@
                             }
                         ?>                       
                         </td>
-                        <td><input value="<?php echo $getdiemtcct != null ? $getdiemtcct[38]->TONGDIEMSV : ""; ?>" type="number" class="sv-515" name="sv-515" id=""></td>
-                        <td><input value="<?php echo $getdiemtcct != null ? $getdiemtcct[38]->TONGDIEMLOP : ""; ?>" <?php echo (isset($_SESSION['STUDENT'])) ? "disabled" : ""; ?> type="number" class="lop-515" name="lop-515" id=""></td>
-                        <td><input value="<?php echo $getdiemtcct != null ? $getdiemtcct[38]->TONGDIEMKHOA : ""; ?>" <?php echo (!isset($_SESSION['ADMIN']) && !isset($_SESSION['BCH'])) ? "disabled" : ""; ?> type="number" class="khoa-515" name="khoa-515" id=""></td>
+                        <td><input disabled value="<?php echo $getdiemtcct != null ? $getdiemtcct[38]->TONGDIEMSV : ""; ?>" type="number" class="sv-515" name="sv-515" id=""></td>
+                        <td><input disabled value="<?php echo $getdiemtcct != null ? $getdiemtcct[38]->TONGDIEMLOP : ""; ?>" <?php echo (isset($_SESSION['STUDENT'])) ? "disabled" : ""; ?> type="number" class="lop-515" name="lop-515" id=""></td>
+                        <td><input disabled value="<?php echo $getdiemtcct != null ? $getdiemtcct[38]->TONGDIEMKHOA : ""; ?>" <?php echo (!isset($_SESSION['ADMIN']) && !isset($_SESSION['BCH'])) ? "disabled" : ""; ?> type="number" class="khoa-515" name="khoa-515" id=""></td>
                     </tr>
                     <tr>
                         <td>
@@ -1103,9 +1101,9 @@
                             }
                         ?>                      
                         </td>
-                        <td><input value="<?php echo $getdiemtcct != null ? $getdiemtcct[39]->TONGDIEMSV : ""; ?>" type="number" class="sv-516" name="sv-516" id=""></td>
-                        <td><input value="<?php echo $getdiemtcct != null ? $getdiemtcct[39]->TONGDIEMLOP : ""; ?>" <?php echo (isset($_SESSION['STUDENT'])) ? "disabled" : ""; ?> type="number" class="lop-516" name="lop-516" id=""></td>
-                        <td><input value="<?php echo $getdiemtcct != null ? $getdiemtcct[39]->TONGDIEMKHOA : ""; ?>" <?php echo (!isset($_SESSION['ADMIN']) && !isset($_SESSION['BCH'])) ? "disabled" : ""; ?> type="number" class="khoa-516" name="khoa-516" id=""></td>
+                        <td><input disabled value="<?php echo $getdiemtcct != null ? $getdiemtcct[39]->TONGDIEMSV : ""; ?>" type="number" class="sv-516" name="sv-516" id=""></td>
+                        <td><input disabled value="<?php echo $getdiemtcct != null ? $getdiemtcct[39]->TONGDIEMLOP : ""; ?>" <?php echo (isset($_SESSION['STUDENT'])) ? "disabled" : ""; ?> type="number" class="lop-516" name="lop-516" id=""></td>
+                        <td><input disabled value="<?php echo $getdiemtcct != null ? $getdiemtcct[39]->TONGDIEMKHOA : ""; ?>" <?php echo (!isset($_SESSION['ADMIN']) && !isset($_SESSION['BCH'])) ? "disabled" : ""; ?> type="number" class="khoa-516" name="khoa-516" id=""></td>
                     </tr>
                     <tr>
                         <td>
@@ -1137,9 +1135,9 @@
                             }
                         ?>                          
                         </td>
-                        <td><input value="<?php echo $getdiemtcct != null ? $getdiemtcct[40]->TONGDIEMSV : ""; ?>" type="number" class="sv-517" name="sv-517" id=""></td>
-                        <td><input value="<?php echo $getdiemtcct != null ? $getdiemtcct[40]->TONGDIEMLOP : ""; ?>" <?php echo (isset($_SESSION['STUDENT'])) ? "disabled" : ""; ?> type="number" class="lop-517" name="lop-517" id=""></td>
-                        <td><input value="<?php echo $getdiemtcct != null ? $getdiemtcct[40]->TONGDIEMKHOA : ""; ?>" <?php echo (!isset($_SESSION['ADMIN']) && !isset($_SESSION['BCH'])) ? "disabled" : ""; ?> type="number" class="khoa-517" name="khoa-517" id=""></td>
+                        <td><input disabled value="<?php echo $getdiemtcct != null ? $getdiemtcct[40]->TONGDIEMSV : ""; ?>" type="number" class="sv-517" name="sv-517" id=""></td>
+                        <td><input disabled value="<?php echo $getdiemtcct != null ? $getdiemtcct[40]->TONGDIEMLOP : ""; ?>" <?php echo (isset($_SESSION['STUDENT'])) ? "disabled" : ""; ?> type="number" class="lop-517" name="lop-517" id=""></td>
+                        <td><input disabled value="<?php echo $getdiemtcct != null ? $getdiemtcct[40]->TONGDIEMKHOA : ""; ?>" <?php echo (!isset($_SESSION['ADMIN']) && !isset($_SESSION['BCH'])) ? "disabled" : ""; ?> type="number" class="khoa-517" name="khoa-517" id=""></td>
                     </tr>
                     <tr>
                         <td>5.2.6 Thành tích đặc biệt trong học tập, rèn luyện khác do Hội đồng đánh giá điểm rèn luyện cấp trường xem xét công nhận.</td>
@@ -1167,9 +1165,9 @@
                             }
                         ?>                       
                         </td>
-                        <td><input value="<?php echo $getdiemtcct != null ? $getdiemtcct[41]->TONGDIEMSV : ""; ?>" type="number" class="sv-518" name="sv-518" id=""></td>
-                        <td><input value="<?php echo $getdiemtcct != null ? $getdiemtcct[41]->TONGDIEMLOP : ""; ?>" <?php echo (isset($_SESSION['STUDENT'])) ? "disabled" : ""; ?> type="number" class="lop-518" name="lop-518" id=""></td>
-                        <td><input value="<?php echo $getdiemtcct != null ? $getdiemtcct[41]->TONGDIEMKHOA : ""; ?>" <?php echo (!isset($_SESSION['ADMIN']) && !isset($_SESSION['BCH'])) ? "disabled" : ""; ?> type="number" class="khoa-518" name="khoa-518" id=""></td>
+                        <td><input disabled value="<?php echo $getdiemtcct != null ? $getdiemtcct[41]->TONGDIEMSV : ""; ?>" type="number" class="sv-518" name="sv-518" id=""></td>
+                        <td><input disabled value="<?php echo $getdiemtcct != null ? $getdiemtcct[41]->TONGDIEMLOP : ""; ?>" <?php echo (isset($_SESSION['STUDENT'])) ? "disabled" : ""; ?> type="number" class="lop-518" name="lop-518" id=""></td>
+                        <td><input disabled value="<?php echo $getdiemtcct != null ? $getdiemtcct[41]->TONGDIEMKHOA : ""; ?>" <?php echo (!isset($_SESSION['ADMIN']) && !isset($_SESSION['BCH'])) ? "disabled" : ""; ?> type="number" class="khoa-518" name="khoa-518" id=""></td>
                     </tr>
                     <tr class="total-score-part" style="font-weight: bold;">
                         <td>TỔNG ĐIỂM PHẦN 5 </td>
@@ -1178,9 +1176,9 @@
                             <p>(tối đa)</p>
                         </td>
                         <td></td>
-                        <td><input value="<?php echo $getdiemtc != null ? $getdiemtc[4]->TONGDIEMSV : ""; ?>" readonly class="sv-5" name="sv-5" type="number"></td>
-                        <td><input value="<?php echo $getdiemtc != null ? $getdiemtc[4]->TONGDIEMLOP : ""; ?>" <?php echo (isset($_SESSION['STUDENT'])) ? "disabled" : ""; ?> readonly class="lop-5" name="lop-5" type="number"></td>
-                        <td><input value="<?php echo $getdiemtc != null ? $getdiemtc[4]->TONGDIEMKHOA : ""; ?>" <?php echo (!isset($_SESSION['ADMIN']) && !isset($_SESSION['BCH'])) ? "disabled" : ""; ?> readonly class="khoa-5" name="khoa-5" type="number"></td>
+                        <td><input disabled value="<?php echo $getdiemtc != null ? $getdiemtc[4]->TONGDIEMSV : ""; ?>" readonly class="sv-5" name="sv-5" type="number"></td>
+                        <td><input disabled value="<?php echo $getdiemtc != null ? $getdiemtc[4]->TONGDIEMLOP : ""; ?>" <?php echo (isset($_SESSION['STUDENT'])) ? "disabled" : ""; ?> readonly class="lop-5" name="lop-5" type="number"></td>
+                        <td><input disabled value="<?php echo $getdiemtc != null ? $getdiemtc[4]->TONGDIEMKHOA : ""; ?>" <?php echo (!isset($_SESSION['ADMIN']) && !isset($_SESSION['BCH'])) ? "disabled" : ""; ?> readonly class="khoa-5" name="khoa-5" type="number"></td>
                     </tr>
                     <tr class="total-score-part" style="font-weight: bold;">
                         <td>TỔNG ĐIỂM PHẦN 1 + 2 + 3 + 4 + 5 </td>
@@ -1189,16 +1187,12 @@
                             <p>(tối đa)</p>
                         </td>
                         <td></td>
-                        <td><input value="<?php echo $getdiemofsv != null ? $getdiemofsv->TONGDIEMSV : ""; ?>" readonly class="sv-tong" name="sv-tong" type="number"></td>
-                        <td><input value="<?php echo $getdiemofsv != null ? $getdiemofsv->TONGDIEMLOP : ""; ?>" <?php echo (isset($_SESSION['STUDENT'])) ? "disabled" : ""; ?> readonly class="lop-tong" name="lop-tong" type="number"></td>
-                        <td><input value="<?php echo $getdiemofsv != null ? $getdiemofsv->TONGDIEMKHOA : ""; ?>" <?php echo (!isset($_SESSION['ADMIN']) && !isset($_SESSION['BCH'])) ? "disabled" : ""; ?> readonly class="khoa-tong" name="khoa-tong" type="number"></td>
+                        <td><input disabled value="<?php echo $getdiemofsv != null ? $getdiemofsv->TONGDIEMSV : ""; ?>" readonly class="sv-tong" name="sv-tong" type="number"></td>
+                        <td><input disabled value="<?php echo $getdiemofsv != null ? $getdiemofsv->TONGDIEMLOP : ""; ?>" <?php echo (isset($_SESSION['STUDENT'])) ? "disabled" : ""; ?> readonly class="lop-tong" name="lop-tong" type="number"></td>
+                        <td><input disabled value="<?php echo $getdiemofsv != null ? $getdiemofsv->TONGDIEMKHOA : ""; ?>" <?php echo (!isset($_SESSION['ADMIN']) && !isset($_SESSION['BCH'])) ? "disabled" : ""; ?> readonly class="khoa-tong" name="khoa-tong" type="number"></td>
                     </tr>
                 </tbody>
             </table>
-        </div>
-        <div class="score-bottom">
-            <button class="send-score">GỬI</button>
-            <button class="cancel-score">HỦY</button>
         </div>
     </div>
 </form>

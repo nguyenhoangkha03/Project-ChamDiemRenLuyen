@@ -15,8 +15,9 @@
 </div>
 <div class="class-view">
             <div style="margin-bottom: 5px;">
-                <div class="" value="<?php echo $idlop; ?>">
-          
+                <div style="margin-right: 10px;" class="previous" onclick="window.location.href='index.php?request=managerScoreLop';">
+                    <img width="30px" src="./images/back.png" alt="">
+                    Trở về
                 </div>
                 <div>
                     <div>
@@ -86,7 +87,7 @@
                         ?>
                         </td>
                         <td class="bcs-operation">
-                            <button style="background-color: lightseagreen;">Tất Cả Bảng Điểm</button>
+                            <button class="btn-scoreOfSV" value="<?php echo $sv->ID_SV . " " . $hocky . " " . $namhoc; ?>" style="background-color: lightseagreen;">Tất Cả Bảng Điểm</button>
                         </td>
                     </tr>
                 <?php

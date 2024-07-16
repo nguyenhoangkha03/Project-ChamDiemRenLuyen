@@ -1790,7 +1790,22 @@ $(document).ready(function(){
     $(document).on('click', '.bch-mark', function(){
         var [idsv, hocky, namhoc] = ($(this).attr('value')).split(" ");
         window.location.href = "index.php?request=bchMark&idsv=" + idsv + "&hocky=" + hocky + "&namhoc=" + namhoc;
-    })
+    });
+
+    $(document).on('click', '.btn-scoreOfSV', function(){
+        var [idsv, hocky, namhoc] = ($(this).attr('value')).split(" ");
+        window.location.href = "index.php?request=scoreOfSV&idsv=" + idsv + "&hocky=" + hocky + "&namhoc=" + namhoc;
+    });
+
+    $('.watch-title').click(function(){
+        var value = $(this).attr('value');
+        window.location.href = "index.php?request=scoreWatch&idbd=" + value;
+    });
+
+    $('.delete-score').click(function(){
+        var value = $(this).attr('value');
+        window.location.href = "./process/bangdiem/bangdiemAct.php?reqact=delete&idbd=" + value;
+    });
 
     // Tong
 

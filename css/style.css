@@ -249,6 +249,8 @@ a {
 }
 
 .list-student,
+.delete-score,
+.watch-title,
 .list-student-score,
 .update,
 .delete {
@@ -261,6 +263,11 @@ a {
     font-weight: bold;
 }
 
+.watch-title {
+    background-color: rgb(37, 212, 148);
+    margin-right: 10px;
+}
+
 .list-student {
     background-color: rgb(139, 248, 139);
 }
@@ -271,7 +278,8 @@ a {
     margin: 0 10px;
 }
 
-.delete {
+.delete,
+.delete-score {
     background-color: rgb(255, 97, 97);
 }
 
@@ -1510,4 +1518,14 @@ hr {
     color: white;
     font-size: 16px;
     cursor: pointer;
+}
+
+.none-table {
+    color: white;
+    font-size: 24px;
+    font-weight: 700;
+    text-align: center;
+    margin-top: 20px;
+    background-color: #00a181;
+    padding: 20px;
 }

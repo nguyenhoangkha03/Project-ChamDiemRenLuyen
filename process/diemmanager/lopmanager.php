@@ -13,17 +13,24 @@
 </div>
 <div class="class-view">
             <div style="margin-bottom: 5px;">
-                <div class="choose-NHHK"> Chọn:
-                    <select class="select-NHHK" name="" id="">
-                        <option selected disabled value="default" style="text-align: center;">Chọn Học Kỳ</option>
-                    <?php 
-                        foreach($getAllNHHK as $nhhk){
-                    ?>
-                            <option value="<?php echo $nhhk->HOCKY . " " . $nhhk->NAMHOC; ?>"><?php echo "Học kỳ: " . $nhhk->HOCKY . " - Năm học: " . $nhhk->NAMHOC; ?></option>
-                    <?php
-                        }
-                    ?>
-                    </select>
+                <div style="display: flex; align-items: center;">
+                    <div style="margin-right: 10px;" class="previous" onclick="window.location.href='index.php?request=scoreView';">
+                        <img width="30px" src="./images/back.png" alt="">
+                        Trở về
+                    </div>
+                    <div class="choose-NHHK">                
+                        Chọn:
+                        <select class="select-NHHK" name="" id="">
+                            <option selected disabled value="default" style="text-align: center;">Chọn Học Kỳ</option>
+                        <?php 
+                            foreach($getAllNHHK as $nhhk){
+                        ?>
+                                <option value="<?php echo $nhhk->HOCKY . " " . $nhhk->NAMHOC; ?>"><?php echo "Học kỳ: " . $nhhk->HOCKY . " - Năm học: " . $nhhk->NAMHOC; ?></option>
+                        <?php
+                            }
+                        ?>
+                        </select>
+                    </div>
                 </div>
                 <div>
                     <div>
