@@ -22,7 +22,7 @@
             $output .= '<td>' . 
                 '<img width="100px" class="img-table" src="data:image/png;base64,' . ($row->HINHANH) . ' "/>'
             . '</td>';
-            $output .= '<td class="operation-class">' . 
+            $output .= '<td class="operation-class" style="flex-direction: column; margin-top: 0;">' . 
                 '<div class="update update-student" value="' . $row->ID_SV  . '">
                     <img class="icon-table" src="./images/update.png" alt="">
                     Sửa 

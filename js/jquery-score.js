@@ -1807,6 +1807,29 @@ $(document).ready(function(){
         window.location.href = "./process/bangdiem/bangdiemAct.php?reqact=delete&idbd=" + value;
     });
 
+    $('.finish-score').click(function(){
+        window.location.href = "./process/bangdiem/bangdiemAct.php?reqact=finish";
+    });
+    
+    $('.watch-old').click(function(){
+        $('.watch-score-old').css('display', 'block');
+    });
+
+    $('.watch-score-old > div > div:first-child div').click(function(){
+        $('.watch-score-old').css('display', 'none');
+    });
+
+    $('.watch-score-old > div > div:nth-child(3)').click(function(){
+        var value = $('.select-NHHK').val();
+        if(value != null){
+            var [hocky, namhoc] = value.split(" ");
+            window.location.href = "index.php?request=scoreWatch&hocky=" + hocky + "&namhoc=" + namhoc;
+        }
+        else{
+            alert("Vui lòng chọn học kỳ!");
+        }
+    });
+
     // Tong
 
 });

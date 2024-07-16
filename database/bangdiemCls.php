@@ -90,6 +90,13 @@
             return $update->rowCount();
         }
 
+        public function BangdiemFinish($idbd) {
+            $update = $this->connect->prepare("UPDATE bangdiem SET OPEN = 0, ISNEW = 0 WHERE ID_BD = ?");
+            $update->execute(array($idbd));
+            
+            return $update->rowCount();
+        }
+
         public function BangdiemOpen($idbd) {
             $update = $this->connect->prepare("UPDATE bangdiem SET OPEN = 1 WHERE ID_BD = ?");
             $update->execute(array($idbd));
@@ -120,6 +127,14 @@
             $getBD = $this->connect->prepare("SELECT DISTINCT HOCKY, NAMHOC FROM bangdiem ORDER BY NAMHOC DESC, HOCKY DESC");
             $getBD->setFetchMode(PDO::FETCH_OBJ);
             $getBD->execute();
+            
+            return $getBD->fetchAll();
+        }
+
+        public function BangdiemAllNHHKAndIDSV($idsv) {
+            $getBD = $this->connect->prepare("SELECT DISTINCT HOCKY, NAMHOC FROM bangdiem WHERE ID_SV = ? ORDER BY NAMHOC DESC, HOCKY DESC");
+            $getBD->setFetchMode(PDO::FETCH_OBJ);
+            $getBD->execute(array($idsv));
             
             return $getBD->fetchAll();
         }

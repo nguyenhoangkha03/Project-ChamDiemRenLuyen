@@ -2,8 +2,7 @@
     if(!isset($_SESSION['ADMIN']) && !isset($_SESSION['BCH']) && !isset($_SESSION['BCS']) && !isset($_SESSION['STUDENT'])){
         echo '<script>window.location.href = "./login/index.php";</script>';
     }
-    $idbd = $_GET['idbd'];
-    
+
     require './database/bangdiemCls.php';
     require './database/diemtcCls.php';
     require './database/diemtcctCls.php';
@@ -11,18 +10,33 @@
     $diemtc = new DiemTC();
     $diemtcct = new DiemTCCT();
 
-    $getdiemofsv = $bangdiem->BangdiemGetbyId($idbd);
-    $getsv = $sinhvien->SinhVienGetById($getdiemofsv->ID_SV);
-    if($getdiemofsv != null){
-        $getdiemtc = $diemtc->DiemTCGetbyIdBD($getdiemofsv->ID_BD);
-        $getdiemtcct = $diemtcct->DiemTCCTGetbyIdBD($getdiemofsv->ID_BD);
+    if(isset($_GET['hocky'])){
+        $hocky = $_GET['hocky'];
+        $namhoc = $_GET['namhoc'];
+
+        $getdiemofsv = $bangdiem->BangdiemGetbyIdSVAndNHAndHK($getsinhvien->ID_SV, $namhoc, $hocky);
+        $getsv = $sinhvien->SinhVienGetById($getdiemofsv->ID_SV);
+        if($getdiemofsv != null){
+            $getdiemtc = $diemtc->DiemTCGetbyIdBD($getdiemofsv->ID_BD);
+            $getdiemtcct = $diemtcct->DiemTCCTGetbyIdBD($getdiemofsv->ID_BD);
+        }
+    }
+    else{
+        $idbd = $_GET['idbd'];
+    
+        $getdiemofsv = $bangdiem->BangdiemGetbyId($idbd);
+        $getsv = $sinhvien->SinhVienGetById($getdiemofsv->ID_SV);
+        if($getdiemofsv != null){
+            $getdiemtc = $diemtc->DiemTCGetbyIdBD($getdiemofsv->ID_BD);
+            $getdiemtcct = $diemtcct->DiemTCCTGetbyIdBD($getdiemofsv->ID_BD);
+        }
     }
 ?>
 <div class="get-sv" value="<?php echo $getsinhvien != null ? $getsinhvien->ID_SV : ""; ?>"></div>
 <div class="address-profile" style="margin-bottom: 40px;">
     <div>CHI TIẾT BẢNG ĐIỂM CỦA SINH VIÊN : <?php echo $getsv->MASOSV . " - " . $getsv->HOTEN; ?></div>
 </div>
-<div style="margin-right: 10px;" class="previous" onclick="window.location.href='index.php?request=scoreOfSV&idsv=<?php echo $getdiemofsv->ID_SV; ?>&hocky=<?php echo $getdiemofsv->HOCKY; ?>&namhoc=<?php echo $getdiemofsv->NAMHOC; ?>';">
+<div style="margin-right: 10px;" class="previous" onclick="window.location.href='index.php?request=<?php echo isset($_GET['hocky']) ? 'scoreView' : 'scoreOfSV'; ?>&idsv=<?php echo $getdiemofsv->ID_SV; ?>&hocky=<?php echo $getdiemofsv->HOCKY; ?>&namhoc=<?php echo $getdiemofsv->NAMHOC; ?>';">
     <img width="30px" src="./images/back.png" alt="">
     Trở về
 </div>

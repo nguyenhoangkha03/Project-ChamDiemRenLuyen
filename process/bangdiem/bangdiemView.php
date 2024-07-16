@@ -32,6 +32,7 @@
 
         $getdiemtcct = $diemtcct->DiemTCCTGetbyIdBD($getdiemofsv->ID_BD);
     }
+    $getAllNHHK = $bangdiem->BangdiemAllNHHKAndIDSV($getsinhvien->ID_SV);
 ?>
 <div class="get-sv" value="<?php echo $getsinhvien != null ? $getsinhvien->ID_SV : ""; ?>"></div>
 <div class="address-profile" style="margin-bottom: 40px;">
@@ -149,6 +150,28 @@ if(isset($_SESSION['BCH']) || isset($_SESSION['ADMIN'])){
                 </div>
             </form>
         </div>
+    </div>
+</div>
+<div class="watch-score-old">
+    <div>
+        <div>
+            Chọn Học Kỳ
+            <div>X</div>
+        </div>
+        <div class="choose-NHHK">                
+            Chọn:
+            <select class="select-NHHK" name="" id="">
+                <option selected disabled value="default" style="text-align: center;">Chọn Học Kỳ</option>
+            <?php 
+                foreach($getAllNHHK as $nhhk){
+            ?>
+                    <option value="<?php echo $nhhk->HOCKY . " " . $nhhk->NAMHOC; ?>"><?php echo "HK: " . $nhhk->HOCKY . " - N Học: " . $nhhk->NAMHOC; ?></option>
+            <?php
+                }
+            ?>
+            </select>
+        </div>
+        <div>Xem</div>
     </div>
 </div>
 <form class="form-score" action="./process/bangdiem/bangdiemAct.php?reqact=chamdiem&idsv=<?php echo $getsinhvien->ID_SV; ?>" method="POST" enctype="multipart/form-data">

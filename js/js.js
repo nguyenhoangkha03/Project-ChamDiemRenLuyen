@@ -1,7 +1,7 @@
 document.addEventListener("DOMContentLoaded", function(){
     var urlParams = new URLSearchParams(window.location.search);
     var requestValue = urlParams.get('request');
-    if(requestValue == 'scoreView'){
+    if(requestValue == 'scoreView' || requestValue == 'scoreWatch' || requestValue == 'managerScoreLop' || requestValue == 'managerScoreSV' || requestValue == 'bchMark' || requestValue == 'scoreOfSV' || requestValue == 'bcs-sinhvien' || requestValue == 'bcsMark'){
         const View = document.querySelector('.score-view');
         View.style.color = 'white';
         View.style.backgroundColor = 'lightblue';
@@ -26,7 +26,7 @@ document.addEventListener("DOMContentLoaded", function(){
         View.style.color = 'white';
         View.style.backgroundColor = 'lightblue';
     }
-    else if(requestValue == 'lopView'){
+    else if(requestValue == 'lopView' || requestValue == 'lopAdd' || requestValue == 'lopUpdate' || requestValue == 'sinhvienView' || requestValue == 'sinhvienUpdate' || requestValue == 'sinhvienAdd'){
         const View = document.querySelector('.list-class');
         View.style.color = 'white';
         View.style.backgroundColor = 'lightblue';

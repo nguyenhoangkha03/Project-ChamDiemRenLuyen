@@ -39,6 +39,28 @@
                 }
 
                 break;
+            case 'finish':
+                $bangdiem = new Bangdiem();
+                $getbangdiem1 = $bangdiem->BangdiemGetbyCheckBoth(1,1);
+                $getbangdiem2 = $bangdiem->BangdiemGetbyCheckBoth(1, 0);
+
+                if($getbangdiem1 != null){
+                    $getbangdiem = $bangdiem->BangdiemGetbyCheckBoth(1,1);
+                }
+                if($getbangdiem2 != null){
+                    $getbangdiem = $bangdiem->BangdiemGetbyCheckBoth(1, 0);
+                }
+                
+                $result = $bangdiem->BangdiemFinish($getbangdiem->ID_BD);
+
+                if($result){
+                    header('location:../../index.php?request=scoreView');
+                }   
+                else{
+                    header('location:../../index.php?request=scoreView');
+                }
+
+                break;
             case 'openBD':
                 $idsv = $_GET['idsv'];
                 $bangdiem = new Bangdiem();
