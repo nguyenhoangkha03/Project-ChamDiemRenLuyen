@@ -14,6 +14,13 @@
     $getlop = $lop->LopGetbyId($getsv->ID_LOP);
     $getmxh = $mxh->MXHGetByIDSV($idsv);
 ?>
+<div class="address-profile" style="margin-bottom: 20px;">
+    <div>CẬP NHẬT BAN CHẤP HÀNH</div>
+</div>
+<div class="previous" onclick="window.location.href='index.php?request=bchView';">
+    <img width="30px" src="./images/back.png" alt="">
+    Trở về
+</div>
 <form class="form-classification" name="form-classification" method="POST" enctype="multipart/form-data"
         action="./process/sinhvien/sinhvienAct.php?reqact=updateBCH&idsv=<?php echo $idsv; ?>">
     <div class="class-add">

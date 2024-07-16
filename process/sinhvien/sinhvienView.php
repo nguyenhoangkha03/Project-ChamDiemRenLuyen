@@ -9,8 +9,14 @@
 <div class="data-sv" value="<?php echo $idlop; ?>"></div>
 <div class="class-view">
             <div>
-                <div class="addnew-student" value="<?php echo $idlop; ?>">
-                    Thêm Sinh Viên
+                <div style="display: flex; align-items: center;">
+                    <div class="previous" style="margin-right: 10px;" onclick="window.location.href='index.php?request=lopView';">
+                        <img width="30px" src="./images/back.png" alt="">
+                        Trở về
+                    </div>
+                    <div class="addnew-student" value="<?php echo $idlop; ?>">
+                        Thêm Sinh Viên
+                    </div>
                 </div>
                 <div>
                     <div>

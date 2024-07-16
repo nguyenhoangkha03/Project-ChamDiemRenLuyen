@@ -7,6 +7,13 @@
     $quyen = new Quyen();
     $getAllQuyen = $quyen->QuyenGetAll();
 ?>
+<div class="address-profile" style="margin-bottom: 20px;">
+    <div>CẤP PHÁT TÀI KHOẢN</div>
+</div>
+<div class="previous" onclick="window.location.href='index.php?request=taikhoanView';">
+    <img width="30px" src="./images/back.png" alt="">
+    Trở về
+</div>
 <form class="form-classification" name="form-classification" method="POST" enctype="multipart/form-data"
         action="./process/taikhoan/taikhoanAct.php?reqact=addNew">
     <div class="class-add">

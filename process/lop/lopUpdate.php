@@ -19,6 +19,13 @@
     $lop = new Lop();
     $getlop = $lop->LopGetbyId($idlop);
 ?>
+<div class="address-profile" style="margin-bottom: 20px;">
+    <div>CẬP NHẬT LỚP HỌC</div>
+</div>
+<div class="previous" onclick="window.location.href='index.php?request=lopView';">
+    <img width="30px" src="./images/back.png" alt="">
+    Trở về
+</div>
 <form class="form-classification" name="form-classification" method="POST" enctype="multipart/form-data"
         action="./process/lop/lopAct.php?reqact=update&idlop=<?php echo $idlop; ?>">
     <div class="class-add">

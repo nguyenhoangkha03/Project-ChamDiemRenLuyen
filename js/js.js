@@ -6,7 +6,7 @@ document.addEventListener("DOMContentLoaded", function(){
         View.style.color = 'white';
         View.style.backgroundColor = 'lightblue';
     }
-    else if(requestValue == 'bchView' || requestValue == 'bchAddNew'){
+    else if(requestValue == 'bchView' || requestValue == 'bchAddNew' || requestValue == 'bchUpdate'){
         const View = document.querySelector('.bch-view');
         View.style.color = 'white';
         View.style.backgroundColor = 'lightblue';

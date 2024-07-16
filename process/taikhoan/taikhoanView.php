@@ -12,11 +12,6 @@
 ?>
 <div class="address-profile" style="margin-bottom: 20px;">
     <div>QUẢN LÝ TÀI KHOẢN</div>
-    <!-- <div class="profile-address">
-        <div><a href="index.php">Home</a></div>
-        <img style="width: 8px;" src="./images/icon/next-address.png" alt="">
-        <div style="cursor: default;" class="next-address">Tài khoản</div>
-    </div> -->
 </div>
 <div class="class-view">
     <div>

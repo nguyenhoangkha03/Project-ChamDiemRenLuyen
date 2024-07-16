@@ -8,6 +8,13 @@
     $getAllLop = $lop->LopGetAll();
     //$sinhvien = new Sinhvien();
 ?>
+<div class="address-profile" style="margin-bottom: 20px;">
+    <div>THÊM BAN CHẤP HÀNH MỚI</div>
+</div>
+<div class="previous" onclick="window.location.href='index.php?request=bchView';">
+    <img width="30px" src="./images/back.png" alt="">
+    Trở về
+</div>
 <form class="form-classification" name="form-classification" method="POST" enctype="multipart/form-data"
         action="./process/sinhvien/sinhvienAct.php?reqact=addNewBCH">
     <div class="class-add">

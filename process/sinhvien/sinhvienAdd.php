@@ -3,6 +3,13 @@
     $idlop = $_GET['idlop'];
     // $sinhvien = new Sinhvien();
 ?>
+<div class="address-profile" style="margin-bottom: 20px;">
+    <div>THÊM SINH VIÊN MỚI</div>
+</div>
+<div class="previous" onclick="window.location.href='index.php?request=sinhvienView&idlop=<?php echo $idlop; ?>';">
+    <img width="30px" src="./images/back.png" alt="">
+    Trở về
+</div>
 <form class="form-classification" name="form-classification" method="POST" enctype="multipart/form-data"
         action="./process/sinhvien/sinhvienAct.php?reqact=addNew&idlop=<?php echo $idlop; ?>">
     <div class="class-add">

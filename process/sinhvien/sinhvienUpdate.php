@@ -4,6 +4,13 @@
     $idsv = $_GET['idsv'];
     $getsv = $sinhvien->SinhVienGetById($idsv);
 ?>
+<div class="address-profile" style="margin-bottom: 20px;">
+    <div>CẬP NHẬT SINH VIÊN</div>
+</div>
+<div class="previous" onclick="window.location.href='index.php?request=sinhvienView&idlop=<?php echo $getsv->ID_LOP; ?>';">
+    <img width="30px" src="./images/back.png" alt="">
+    Trở về
+</div>
 <form class="form-classification" name="form-classification" method="POST" enctype="multipart/form-data"
         action="./process/sinhvien/sinhvienAct.php?reqact=update&idsv=<?php echo $idsv; ?>">
     <div class="class-add">
