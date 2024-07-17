@@ -67,7 +67,7 @@
                         <td><?php echo $l->KHOAHOC; ?></td>
                         <td><?php echo count($getsvbylop); ?></td>
                         <td></td>
-                        <td class="operation-class">
+                        <td class="operation-class" style="margin: 0;">
                             <div class="list-student-score" value="<?php echo $l->ID_LOP . " default"; ?>">
                                 <img class="icon-table" src="./images/list.png" alt="">
                                 Chấm Điểm Cho Lớp

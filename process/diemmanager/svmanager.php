@@ -1,4 +1,7 @@
 <?php 
+    if(!isset($_SESSION['ADMIN']) && !isset($_SESSION['BCH'])){
+        echo '<script>window.location.href = "index.php";</script>';
+    }
     $idlop = $_GET['idlop'];
     $hocky = $_GET['hocky'];
     $namhoc = $_GET['namhoc'];
@@ -25,10 +28,10 @@
                         Số lượng sinh viên : 
                         <span><?php echo count($list_sinhvien); ?></span>
                     </div>
-                    <!-- <div>
-                        Nhập tên sinh viên : 
-                        <input class="search-student-manager" type="text">
-                    </div> -->
+                    <div style="print-score">
+                        <img width="30px" src="./images/back.png" alt="">
+                        In bản điểm
+                    </div>
                 </div>
             </div>
             <?php 
@@ -64,6 +67,11 @@
                         <td class="bcs-operation" style="padding: 0;">
                         <?php 
                             if($getcheck != null){
+                                if($getcheck->TONGDIEMSV == null && $getcheck->TONGDIEMLOP == null && $getcheck->TONGDIEMKHOA == null){
+                            ?>
+                                    <button onclick="alert('Sinh viên chưa thực hiện chấm!');" style="background-color: red;">Sinh viên chưa chấm</button>
+                            <?php
+                                }
                                 if($getcheck->TONGDIEMSV != null && $getcheck->TONGDIEMLOP == null && $getcheck->TONGDIEMKHOA == null){
                             ?>
                                     <button value="<?php echo $sv->ID_SV . " " . $hocky . " " . $namhoc; ?>" class="bch-mark">Sinh viên đã hoàn thành</button>
@@ -71,7 +79,7 @@
                                 }
                                 if($getcheck->TONGDIEMSV != null && $getcheck->TONGDIEMLOP != null && $getcheck->TONGDIEMKHOA == null){
                             ?>
-                                    <button value="<?php echo $sv->ID_SV . " " . $hocky . " " . $namhoc; ?>" class="bch-mark">Lớp đã hoàn thành</button>
+                                    <button value="<?php echo $sv->ID_SV . " " . $hocky . " " . $namhoc; ?>" class="bch-mark">Lớp đã chấm - Click chấm</button>
                             <?php
                                 }
                                 if($getcheck->TONGDIEMSV != null && $getcheck->TONGDIEMLOP != null && $getcheck->TONGDIEMKHOA != null){

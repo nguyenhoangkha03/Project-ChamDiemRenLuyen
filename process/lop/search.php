@@ -15,7 +15,7 @@
             $output .= '<td>' . $row->TENLOP . '</td>';
             $output .= '<td>' . $row->KHOAHOC . '</td>';
             $output .= '<td>' . $row->SOLUONGSV . '</td>';
-            $output .= '<td class="operation-class">' . 
+            $output .= '<td class="operation-class" style="margin: 0;">' . 
                 '<div class="list-student" value="' . $row->ID_LOP  . '">
                     <img class="icon-table" src="./images/list.png" alt="">
                     Danh sách sinh viên 

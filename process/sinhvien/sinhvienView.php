@@ -1,4 +1,7 @@
 <?php 
+    if(!isset($_SESSION['ADMIN']) && !isset($_SESSION['BCH'])){
+        echo '<script>window.location.href = "index.php";</script>';
+    }
     $idlop = $_GET['idlop'];
     $list_sinhvien = $sinhvien->SinhVienGetByIdLop($idlop);
     $count = 0;

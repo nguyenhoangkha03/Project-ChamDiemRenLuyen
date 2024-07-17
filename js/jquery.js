@@ -101,9 +101,8 @@ $(document).ready(function(){
     });
     $(document).on("click", ".cancel-save-student", function (e) { 
         e.preventDefault();
-        // var value = $(this).attr('value');
-        // window.location.href = "index.php?request=sinhvienView&idlop=" + value;
-        window.location.href = "index.php?request=bchView";
+        var value = $(this).attr('value');
+        window.location.href = "index.php?request=sinhvienView&idlop=" + value;
     });
     $(document).on("click", ".cancel-save-bch", function (e) { 
         e.preventDefault();

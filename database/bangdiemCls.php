@@ -147,6 +147,14 @@
             return $getBD->fetch();
         }
 
+        public function BangdiemGetByNamHoc($namhoc) {
+            $getBD = $this->connect->prepare("SELECT DISTINCT HOCKY FROM bangdiem WHERE NAMHOC = ?");
+            $getBD->setFetchMode(PDO::FETCH_OBJ);
+            $getBD->execute(array($namhoc));
+            
+            return $getBD->fetchAll();
+        }
+
         public function BangdiemGetByNamHocAndIDSV($namhoc, $idsv) {
             $getBD = $this->connect->prepare("SELECT * FROM bangdiem WHERE NAMHOC = ? AND ID_SV = ?");
             $getBD->setFetchMode(PDO::FETCH_OBJ);

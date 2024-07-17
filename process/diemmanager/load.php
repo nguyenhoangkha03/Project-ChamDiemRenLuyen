@@ -30,7 +30,7 @@
             $output .= '<td>' . $row->KHOAHOC . '</td>';
             $output .= '<td>' . count($getsvbylop) . '</td>';
             $output .= '<td>' . $countHT . '</td>';
-            $output .= '<td class="operation-class">' . 
+            $output .= '<td class="operation-class" style="margin: 0;">' . 
                 '<div class="list-student-score" value="' . $row->ID_LOP  . ' ' . $hocky . '/' . $namhoc . '">
                     <img class="icon-table" src="./images/list.png" alt="">
                     Chấm Điểm Cho Lớp

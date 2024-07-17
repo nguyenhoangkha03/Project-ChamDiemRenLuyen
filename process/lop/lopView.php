@@ -48,7 +48,7 @@
                         <td><?php echo $l->TENLOP; ?></td>
                         <td><?php echo $l->KHOAHOC; ?></td>
                         <td><?php echo count($getsvbylop); ?></td>
-                        <td class="operation-class">
+                        <td class="operation-class" style="margin: 0;">
                             <div class="list-student" value="<?php echo $l->ID_LOP; ?>">
                                 <img class="icon-table" src="./images/list.png" alt="">
                                 Danh sách sinh viên 

@@ -85,7 +85,9 @@
                 $getAllfile = $file->FileGetbyIdVBHD($item->ID_VBHD);
                 $getlike = $like->LikesGetAllByIDVBHD($item->ID_VBHD);
                 $getlikecheck = null;
+                $idsvc = null;
                 if($getsinhvien != null){
+                    $idsvc = $getsinhvien->ID_SV;
                     $getlikecheck = $like->LikesGetAllByIDSVANDIDVBHD($getsinhvien->ID_SV, $item->ID_VBHD);
                 }
                 $getluotxem = $luotxem->LuotxemGetAllByIDVBHD($item->ID_VBHD);
@@ -100,7 +102,7 @@
                         </div>
                     </div>
                     <?php 
-                        if($item->ID_SV === $getsinhvien->ID_SV){
+                        if($item->ID_SV === $idsvc){
                     ?>
                             <div class="menu-item">●●●</div>
                     <?php

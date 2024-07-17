@@ -1,7 +1,8 @@
 <?php 
-    // require './database/sinhvienCls.php';
+    if(!isset($_SESSION['ADMIN']) && !isset($_SESSION['BCH'])){
+        echo '<script>window.location.href = "index.php";</script>';
+    }
     $idlop = $_GET['idlop'];
-    // $sinhvien = new Sinhvien();
 ?>
 <div class="address-profile" style="margin-bottom: 20px;">
     <div>THÊM SINH VIÊN MỚI</div>

@@ -1,4 +1,7 @@
 <?php 
+    if(!isset($_SESSION['ADMIN']) && !isset($_SESSION['BCH']) && !isset($_SESSION['BCS'])){
+        echo '<script>window.location.href = "index.php";</script>';
+    }
     $idlop = $_GET['idlop'];
     $list_sinhvien = $sinhvien->SinhVienGetByIdLop($idlop);
     $count = 0;
@@ -68,7 +71,12 @@
                             <?php    
                                 }
                                 else{
-                                    if($getchecksv->TONGDIEMLOP == null){
+                                    if($getchecksv->TONGDIEMSV == null){
+                                ?>
+                                        <button onclick="alert('Sinh viên chưa chấm!');" style="background-color: red;">Sinh viên chưa hoàn thành</button>
+                                <?php
+                                    }
+                                    else if($getchecksv->TONGDIEMLOP == null){
                                 ?>
                                         <button class="bcs-mark" value="<?php echo $sv->ID_SV; ?>">Sinh viên đã hoàn thành - Click để chấm điểm</button>
                                 <?php

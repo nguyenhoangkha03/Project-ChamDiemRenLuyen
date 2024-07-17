@@ -4,7 +4,8 @@
 
     $value = $_POST['value'];
     $idsv = $_POST['idsv'];
-    $result = $bangdiem->BangdiemGetByNamHocAndIDSV($value, $idsv);
+    // $result = $bangdiem->BangdiemGetByNamHocAndIDSV($value, $idsv);
+    $result = $bangdiem->BangdiemGetByNamHoc($value);
     
     $count = 0;
     $output = '';

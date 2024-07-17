@@ -1,6 +1,7 @@
 <?php 
-    //require './database/sinhvienCls.php';
-    //$sinhvien = new Sinhvien();
+    if(!isset($_SESSION['ADMIN']) && !isset($_SESSION['BCH'])){
+        echo '<script>window.location.href = "index.php";</script>';
+    }
     $idsv = $_GET['idsv'];
     $getsv = $sinhvien->SinhVienGetById($idsv);
 ?>
@@ -83,7 +84,7 @@
                 <input type="reset" value="RESET">
             </div>
             <div>
-                <button class="cancel-save-student" value="<?php echo $getsv->ID_LOP; ?>">HỦY</button>
+                <button class="" onclick="window.location.href='index.php?request=sinhvienView&idlop=<?php echo $getsv->ID_LOP; ?>';" value="<?php echo $getsv->ID_LOP; ?>">HỦY</button>
             </div>    
         </div>
     </div>

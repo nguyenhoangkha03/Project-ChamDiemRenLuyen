@@ -1,6 +1,6 @@
 <?php 
-    if(!isset($_SESSION['ADMIN']) && !isset($_SESSION['BCH']) && !isset($_SESSION['BCS']) && !isset($_SESSION['STUDENT'])){
-        echo '<script>window.location.href = "./login/index.php";</script>';
+    if(!isset($_SESSION['ADMIN']) && !isset($_SESSION['BCH'])){
+        echo '<script>window.location.href = "./index.php";</script>';
     }
     $idsv = $_GET['idsv'];
     $hocky = $_GET['hocky'];
